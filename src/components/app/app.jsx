@@ -6,6 +6,7 @@ import MyList from "../my-list/my-list.jsx";
 import Player from "../player/player.jsx";
 import AddReview from "../add-review/add-review.jsx";
 import Film from "../film/film.jsx";
+import Error404 from "../error-404/error-404";
 
 const App = (props) => {
   const {mainFilms, myListFilms, likeFilms} = props;
@@ -15,7 +16,8 @@ const App = (props) => {
       {/* <MyList myListFilms={myListFilms}/>*/}
       {/* <Player/>*/}
       {/* <AddReview/>*/}
-      <Film likeFilms={likeFilms}/>
+      {/*<Film likeFilms={likeFilms}/>*/}
+      <Error404/>
     </>
   );
 };
