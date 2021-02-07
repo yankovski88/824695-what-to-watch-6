@@ -3,6 +3,7 @@ import Main from "../main/main.jsx";
 import PropTypes from "prop-types";
 // import SignIn from "../sign-in/sign-in.jsx";
 // import MyList from "../my-list/my-list.jsx";
+// import Player from "../player/player.jsx";
 
 const App = (props) => {
   const {films, myListFilms} = props;
@@ -10,6 +11,7 @@ const App = (props) => {
     <>
       <Main films = {films}/>
       {/* <MyList myListFilms={myListFilms}/>*/}
+      {/* <Player/>*/}
     </>
   );
 };
