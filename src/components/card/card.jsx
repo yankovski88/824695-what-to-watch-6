@@ -4,7 +4,7 @@ import Logo from "../logo/logo.jsx";
 import UserBlock from "../user-block/user-block.jsx";
 
 const Card = (props) => {
-  const {films} = props;
+  const {mainFilms} = props;
 
   return (
     <section className="movie-card">
@@ -26,10 +26,10 @@ const Card = (props) => {
           </div>
 
           <div className="movie-card__desc">
-            <h2 className="movie-card__title">{films[0].name}</h2>
+            <h2 className="movie-card__title">{mainFilms[0].name}</h2>
             <p className="movie-card__meta">
-              <span className="movie-card__genre">{films[0].genre}</span>
-              <span className="movie-card__year">{films[0].released}</span>
+              <span className="movie-card__genre">{mainFilms[0].genre}</span>
+              <span className="movie-card__year">{mainFilms[0].released}</span>
             </p>
 
             <div className="movie-card__buttons">
@@ -55,7 +55,7 @@ const Card = (props) => {
 };
 
 Card.propTypes = {
-  films: PropTypes.array.isRequired,
+  mainFilms: PropTypes.array.isRequired,
 };
 
 export default Card;

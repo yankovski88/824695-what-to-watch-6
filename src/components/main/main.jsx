@@ -4,6 +4,7 @@ import SmallCard from "../small-card/small-card.jsx";
 import PropTypes from "prop-types";
 import Logo from "../logo/logo.jsx";
 import Copyright from "../copyright/copyright.jsx";
+import CatalogMaiinFilms from "../catalog-main-films/catalog-main-films";
 
 
 // Теперь, используя props, добавим динамики в компоненты. Для этого в компоненте главной страницы приложения
@@ -11,10 +12,10 @@ import Copyright from "../copyright/copyright.jsx";
 // (того, что в шапке страницы). Получите их из props и вставьте в JSX компонента.
 
 const Main = (props) => {
-  const {films} = props;
-
+  const {mainFilms} = props;
+  console.log(mainFilms);
   return <React.Fragment>
-    <Card films = {films}/>
+    <Card mainFilms = {mainFilms}/>
     <div className="page-content">
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
@@ -54,14 +55,16 @@ const Main = (props) => {
 
         <div className="catalog__movies-list">
 
-          {films.map((film)=>{
-            return <SmallCard
-              key = {film.id}
-              videoLink = {film.videoLink}
-              name = {film.name}
-              posterImage = {film.posterImage}
-            />;
-          })}
+          <CatalogMaiinFilms mainFilms={mainFilms}/>
+
+          {/* {mainFilms.map((mainFilm)=>{*/}
+          {/* return <SmallCard*/}
+          {/* key = {mainFilm.id}*/}
+          {/* videoLink = {mainFilm.videoLink}*/}
+          {/* name = {mainFilm.name}*/}
+          {/* posterImage = {mainFilm.posterImage}*/}
+          {/* />;*/}
+          {/* })}*/}
 
 
         </div>
@@ -82,7 +85,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  films: PropTypes.array.isRequired,
+  mainFilms: PropTypes.array.isRequired,
 };
 
 export default Main;

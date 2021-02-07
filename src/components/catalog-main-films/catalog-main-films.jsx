@@ -3,19 +3,20 @@ import SmallCard from "../small-card/small-card.jsx";
 import PropTypes from "prop-types";
 
 
-const Catalog = (props)=>{
-  const {myListFilms} = props;
+const CatalogMainFilms = (props)=>{
+  const {mainFilms} = props;
+
   return (
     <section className="catalog">
       <h2 className="catalog__title visually-hidden">Catalog</h2>
 
       <div className="catalog__movies-list">
-        {myListFilms.map((myListFilm)=> {
+        {mainFilms.map((mainFilm)=> {
           return <SmallCard
-            key={myListFilm.id}
-            videoLink = {myListFilm.videoLink}
-            name = {myListFilm.name}
-            posterImage = {myListFilm.posterImage}
+            key={mainFilm.id}
+            videoLink = {mainFilm.videoLink}
+            name = {mainFilm.name}
+            posterImage = {mainFilm.posterImage}
           />;
         })}
       </div>
@@ -23,8 +24,8 @@ const Catalog = (props)=>{
   );
 };
 
-Catalog.propTypes = {
-  myListFilms: PropTypes.array.isRequired
+CatalogMainFilms.propTypes = {
+  mainFilms: PropTypes.array.isRequired
 };
 
-export default Catalog;
+export default CatalogMainFilms;
