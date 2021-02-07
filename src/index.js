@@ -8,7 +8,13 @@ for (let i = 0; i < 20; i++) {
   films.push(getFilmData());
 }
 
+const myListFilms = [];
+for (let i = 0; i < 9; i++) {
+  myListFilms.push(getFilmData());
+}
+
+
 ReactDom.render(
-    <App films = {films}/>,
+    <App films = {films} myListFilms = {myListFilms}/>,
     document.querySelector(`#root`)
 );

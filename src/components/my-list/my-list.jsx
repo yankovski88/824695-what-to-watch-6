@@ -1,0 +1,43 @@
+import React from "react";
+import Logo from "../logo/logo.jsx";
+import PageTitleMyList from "../page-title-my-list/page-title-my-list.jsx";
+import UserBlock from "../user-block/user-block.jsx";
+import Copyright from "../copyright/copyright.jsx";
+import Catalog from "../catalog/catalog.jsx";
+import PropTypes from "prop-types";
+
+const MyList = (props) => {
+  const {myListFilms} = props;
+  return (
+    <>
+      <div className="user-page">
+        <header className="page-header user-page__head">
+          <Logo/>
+          <PageTitleMyList/>
+          <UserBlock/>
+        </header>
+
+        <section className="catalog">
+          <h2 className="catalog__title visually-hidden">Catalog</h2>
+
+          <div className="catalog__movies-list">
+            <Catalog myListFilms={myListFilms}/>
+
+          </div>
+        </section>
+
+        <footer className="page-footer">
+          <Logo/>
+          <Copyright/>
+        </footer>
+      </div>
+    </>
+  );
+};
+
+MyList.propTypes = {
+  myListFilms: PropTypes.array.isRequired
+};
+
+export default MyList;
+
