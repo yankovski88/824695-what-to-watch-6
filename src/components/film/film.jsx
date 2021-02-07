@@ -4,17 +4,24 @@ import Copyright from "../copyright/copyright";
 import UserBlock from "../user-block/user-block.jsx";
 import CatalogLikeFilms from "../catalog-like-films/catalog-like-films";
 import BtnPlay from "../btn-play/btn-play";
+import BtnAddMyList from "../btn-add-my-list/btn-add-my-list";
+import LinkAddReview from "../link-add-review/link-add-review";
+import MovieNav from "../movie-nav/movie-nav.jsx";
+import MovieRating from "../movie-rating/movie-rating.jsx";
+import FilmDescription from "../film-description/film-description";
+import PropTypes from "prop-types";
 
 
 const Film = (props) => {
   const {likeFilms} = props;
+  const [firstFilm, ...films] = likeFilms;
 
   return (
     <>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel"/>
+            <img src="img/bg-the-grand-budapest-hotel.jpg" alt={firstFilm.name}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -26,21 +33,16 @@ const Film = (props) => {
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="movie-card__title">{firstFilm.name}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">Drama</span>
-                <span className="movie-card__year">2014</span>
+                <span className="movie-card__genre">{firstFilm.genre}</span>
+                <span className="movie-card__year">{firstFilm.released}</span>
               </p>
 
               <div className="movie-card__buttons">
                 <BtnPlay/>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                <BtnAddMyList/>
+                <LinkAddReview/>
               </div>
             </div>
           </div>
@@ -49,47 +51,17 @@ const Film = (props) => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218"
+              <img src={firstFilm.posterImage} alt={firstFilm.name} width="218"
                 height="327"/>
             </div>
 
             <div className="movie-card__desc">
-              <nav className="movie-nav movie-card__nav">
-                <ul className="movie-nav__list">
-                  <li className="movie-nav__item movie-nav__item--active">
-                    <a href="#" className="movie-nav__link">Overview</a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Details</a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Reviews</a>
-                  </li>
-                </ul>
-              </nav>
 
-              <div className="movie-rating">
-                <div className="movie-rating__score">8,9</div>
-                <p className="movie-rating__meta">
-                  <span className="movie-rating__level">Very good</span>
-                  <span className="movie-rating__count">240 ratings</span>
-                </p>
-              </div>
+              <MovieNav/>
+              <MovieRating firstFilm={firstFilm}/>
+              <FilmDescription firstFilm={firstFilm}/>
 
-              <div className="movie-card__text">
-                <p>In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge
-                  Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.</p>
 
-                <p>Gustave prides himself on providing first-className service to the hotel's guests, including
-                  satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers
-                  dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect
-                  in her murder.</p>
-
-                <p className="movie-card__director"><strong>Director: Wes Andreson</strong></p>
-
-                <p className="movie-card__starring"><strong>Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe
-                  and other</strong></p>
-              </div>
             </div>
           </div>
         </div>
@@ -106,5 +78,7 @@ const Film = (props) => {
     </>
   );
 };
-
+Film.propTypes = {
+  likeFilms: PropTypes.array.isRequired,
+};
 export default Film;

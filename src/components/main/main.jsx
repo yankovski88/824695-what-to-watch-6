@@ -1,19 +1,12 @@
 import React from "react";
 import Card from "../card/card";
-import SmallCard from "../small-card/small-card.jsx";
 import PropTypes from "prop-types";
 import Logo from "../logo/logo.jsx";
 import Copyright from "../copyright/copyright.jsx";
-import CatalogMaiinFilms from "../catalog-main-films/catalog-main-films";
-
-
-// Теперь, используя props, добавим динамики в компоненты. Для этого в компоненте главной страницы приложения
-// определите изменяемые данные — это будет название, жанр и дата выхода промо-фильма
-// (того, что в шапке страницы). Получите их из props и вставьте в JSX компонента.
+import CatalogMainFilms from "../catalog-main-films/catalog-main-films";
 
 const Main = (props) => {
   const {mainFilms} = props;
-  console.log(mainFilms);
   return <React.Fragment>
     <Card mainFilms = {mainFilms}/>
     <div className="page-content">
@@ -54,19 +47,7 @@ const Main = (props) => {
         </ul>
 
         <div className="catalog__movies-list">
-
-          <CatalogMaiinFilms mainFilms={mainFilms}/>
-
-          {/* {mainFilms.map((mainFilm)=>{*/}
-          {/* return <SmallCard*/}
-          {/* key = {mainFilm.id}*/}
-          {/* videoLink = {mainFilm.videoLink}*/}
-          {/* name = {mainFilm.name}*/}
-          {/* posterImage = {mainFilm.posterImage}*/}
-          {/* />;*/}
-          {/* })}*/}
-
-
+          <CatalogMainFilms mainFilms={mainFilms}/>
         </div>
 
         <div className="catalog__more">
