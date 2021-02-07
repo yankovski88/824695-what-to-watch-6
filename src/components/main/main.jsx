@@ -2,6 +2,8 @@ import React from "react";
 import Card from "../card/card";
 import SmallCard from "../small-card/small-card.jsx";
 import PropTypes from "prop-types";
+import Logo from "../logo/logo.jsx";
+import Copyright from "../copyright/copyright.jsx";
 
 
 // Теперь, используя props, добавим динамики в компоненты. Для этого в компоненте главной страницы приложения
@@ -70,17 +72,8 @@ const Main = (props) => {
       </section>
 
       <footer className="page-footer">
-        <div className="logo">
-          <a className="logo__link logo__link--light">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
-
-        <div className="copyright">
-          <p>© 2019 What to watch Ltd.</p>
-        </div>
+        <Logo/>
+        <Copyright/>
       </footer>
     </div>
   </React.Fragment>;
