@@ -33,15 +33,15 @@ const App = (props) => {
       <Route exact path="/mylist">
         <MyList myListFilms={myListFilms}/>
       </Route>
-      {/*<Route exact path="/films/:id">*/}
-        {/*<Film likeFilms={likeFilms}/>*/}
-      {/*</Route>*/}
-      {/*<Route exact path="/films/:id/review">*/}
-        {/*<AddReview />*/}
-      {/*</Route>*/}
-      {/*<Route exact path="/player/:id">*/}
-        {/*<Player />*/}
-      {/*</Route>*/}
+      <Route exact path="/films/:id?">
+        <Film likeFilms={likeFilms}/>
+      </Route>
+      <Route exact path="/films/:id/review?">
+        <AddReview />
+      </Route>
+      <Route exact path="/player/:id?">
+        <Player />
+      </Route>
       <Route>
         <Error404 />
       </Route>
