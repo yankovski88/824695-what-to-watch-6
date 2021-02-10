@@ -1,8 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Logo from "../logo/logo.jsx";
+import UserBlock from "../user-block/user-block.jsx";
+import BtnAddMyList from "../btn-add-my-list/btn-add-my-list";
 
 const Card = (props) => {
-  const {films} = props;
+  const {mainFilms} = props;
 
   return (
     <section className="movie-card">
@@ -13,19 +16,8 @@ const Card = (props) => {
       <h1 className="visually-hidden">WTW</h1>
 
       <header className="page-header movie-card__head">
-        <div className="logo">
-          <a className="logo__link">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
-
-        <div className="user-block">
-          <div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-          </div>
-        </div>
+        <Logo/>
+        <UserBlock/>
       </header>
 
       <div className="movie-card__wrap">
@@ -35,10 +27,10 @@ const Card = (props) => {
           </div>
 
           <div className="movie-card__desc">
-            <h2 className="movie-card__title">{films[0].name}</h2>
+            <h2 className="movie-card__title">{mainFilms[0].name}</h2>
             <p className="movie-card__meta">
-              <span className="movie-card__genre">{films[0].genre}</span>
-              <span className="movie-card__year">{films[0].released}</span>
+              <span className="movie-card__genre">{mainFilms[0].genre}</span>
+              <span className="movie-card__year">{mainFilms[0].released}</span>
             </p>
 
             <div className="movie-card__buttons">
@@ -48,12 +40,8 @@ const Card = (props) => {
                 </svg>
                 <span>Play</span>
               </button>
-              <button className="btn btn--list movie-card__button" type="button">
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add"></use>
-                </svg>
-                <span>My list</span>
-              </button>
+
+              <BtnAddMyList />
             </div>
           </div>
         </div>
@@ -64,7 +52,7 @@ const Card = (props) => {
 };
 
 Card.propTypes = {
-  films: PropTypes.array.isRequired,
+  mainFilms: PropTypes.array.isRequired,
 };
 
 export default Card;
