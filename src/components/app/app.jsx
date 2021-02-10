@@ -22,31 +22,31 @@ import Error404 from "../error-404/error-404";
 const App = (props) => {
   const {mainFilms, myListFilms, likeFilms} = props;
   return (
-  <BrowserRouter>
-    <Switch>
-      <Route exact path="/">
-        <Main mainFilms = {mainFilms} />
-      </Route>
-      <Route exact path="/login">
-        <SignIn />
-      </Route>
-      <Route exact path="/mylist">
-        <MyList myListFilms={myListFilms}/>
-      </Route>
-      <Route exact path="/films/:id?">
-        <Film likeFilms={likeFilms}/>
-      </Route>
-      <Route exact path="/films/:id/review?">
-        <AddReview />
-      </Route>
-      <Route exact path="/player/:id?">
-        <Player />
-      </Route>
-      <Route>
-        <Error404 />
-      </Route>
-    </Switch>
-  </BrowserRouter>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          <Main mainFilms = {mainFilms} />
+        </Route>
+        <Route exact path="/login">
+          <SignIn />
+        </Route>
+        <Route exact path="/mylist">
+          <MyList myListFilms={myListFilms}/>
+        </Route>
+        <Route exact path="/films/:id?">
+          <Film likeFilms={likeFilms}/>
+        </Route>
+        <Route exact path="/films/:id/review?">
+          <AddReview />
+        </Route>
+        <Route exact path="/player/:id?">
+          <Player />
+        </Route>
+        <Route>
+          <Error404 />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 };
 

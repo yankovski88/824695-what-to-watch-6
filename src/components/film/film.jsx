@@ -14,7 +14,7 @@ import PropTypes from "prop-types";
 
 const Film = (props) => {
   const {likeFilms} = props;
-  const [firstFilm, ...films] = likeFilms;
+  const [firstFilm] = likeFilms; // ...films
 
   return (
     <>

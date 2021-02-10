@@ -41,7 +41,7 @@ const Card = (props) => {
                 <span>Play</span>
               </button>
 
-             <BtnAddMyList />
+              <BtnAddMyList />
             </div>
           </div>
         </div>
