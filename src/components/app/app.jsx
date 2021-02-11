@@ -10,15 +10,6 @@ import Film from "../film/film.jsx";
 import Error404 from "../error-404/error-404";
 
 
-// {/*<>*/}
-// {/* <Main mainFilms = {mainFilms}/>*/}
-// {/* <MyList myListFilms={myListFilms}/>*/}
-// {/* <Player/>*/}
-// {/* <AddReview/>*/}
-// {/*<Film likeFilms={likeFilms}/>*/}
-// {/*<Error404/>*/}
-// {/*</>*/}
-
 const App = (props) => {
   const {mainFilms, myListFilms, likeFilms} = props;
   return (
@@ -53,7 +44,7 @@ const App = (props) => {
 App.propTypes = {
   mainFilms: PropTypes.array.isRequired,
   myListFilms: PropTypes.array.isRequired,
-  likeFilms: PropTypes.array.isRequired
+  likeFilms: PropTypes.arrayOf(PropTypes.bool)
 };
 
 export default App;

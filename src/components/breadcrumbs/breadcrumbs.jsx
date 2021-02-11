@@ -1,6 +1,6 @@
 import React from "react";
 
-const Breadcrumbs = ()=>{
+const Breadcrumbs = () => {
   return (
     <nav className="breadcrumbs">
       <ul className="breadcrumbs__list">
