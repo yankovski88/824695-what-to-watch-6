@@ -44,7 +44,7 @@ const App = (props) => {
 App.propTypes = {
   mainFilms: PropTypes.array.isRequired,
   myListFilms: PropTypes.array.isRequired,
-  likeFilms: PropTypes.arrayOf(PropTypes.bool)
+  likeFilms: PropTypes.array.isRequired // PropTypes.arrayOf(PropTypes.bool)
 };
 
 export default App;

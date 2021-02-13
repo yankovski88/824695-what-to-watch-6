@@ -4,7 +4,7 @@ import App from "./components/app/app.jsx";
 import {getFilmData} from "./components/mock/film";
 
 const mainFilms = [];
-for (let i = 0; i < 20; i++) {
+for (let i = 0; i < 8; i++) {
   mainFilms.push(getFilmData());
 }
 
