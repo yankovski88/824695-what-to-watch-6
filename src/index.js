@@ -22,7 +22,6 @@ for (let i = 0; i < 4; i++) {
 }
 
 
-
 ReactDom.render(
     <App mainFilms = {mainFilms} myListFilms = {myListFilms} likeFilms={likeFilms} reviews={reviews} film={film}/>,
     document.querySelector(`#root`)

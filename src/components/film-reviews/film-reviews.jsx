@@ -19,10 +19,10 @@ const FilmReviews = (props) => {
 
   let columns1 = [];
   let columns2 = [];
-  if(remainder > 0){
+  if (remainder > 0) {
     columns1 = reviews.slice(0, reviews.length % 2 + 1);
     columns2 = reviews.slice(reviews.length % 2 + 1, reviews.length);
-  } else if(remainder === 0){
+  } else if (remainder === 0) {
     columns1 = reviews.slice(0, reviews.length % 2);
     columns2 = reviews.slice(reviews.length % 2, reviews.length);
   }
@@ -32,19 +32,19 @@ const FilmReviews = (props) => {
       <div className="movie-card__reviews-col">
 
         {columns1.map((review) => {
-        return <FilmReview review={review} key={review.id}/>
+          return <FilmReview review={review} key={review.id}/>;
         })}
 
       </div>
       <div className="movie-card__reviews-col">
         {columns2.map((review) => {
-          return <FilmReview review={review} key={review.id}/>
+          return <FilmReview review={review} key={review.id}/>;
         })}
       </div>
     </div>
 
 
-  )
+  );
 
 };
 

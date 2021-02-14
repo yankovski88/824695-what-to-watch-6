@@ -8,7 +8,11 @@ const SmallCard = (props)=>{
 
 
   return (
-    <article className="small-movie-card catalog__movies-card" id={id}  onMouseOver={()=>{setIdActive(id)}} onMouseOut={()=>{setIdActive(``)}}>
+    <article className="small-movie-card catalog__movies-card" id={id} onMouseOver={()=>{
+      setIdActive(id);
+    }} onMouseOut={()=>{
+      setIdActive(``);
+    }}>
       <div className="small-movie-card__image">
         <img src={posterImage} alt={name} width="280" height="175" />
       </div>

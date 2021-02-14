@@ -24,10 +24,11 @@ const App = (props) => {
         <Route exact path="/mylist">
           <MyList myListFilms={myListFilms}/>
         </Route>
-        <Route exact path="/films/:id/review?">
-          <AddReview/>
+        {/* "/films/:id/review?"*/}
+        <Route exact path="/films/review">
+          <AddReview film={film}/>
         </Route>
-        {/*/films/:id?*/}
+        {/* /films/:id?*/}
         <Route exact path="/film">
           <Film likeFilms={likeFilms} reviews={reviews} film={film}/>
         </Route>

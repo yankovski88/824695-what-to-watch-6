@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const FilmDetails = (props) => {
   const {film} = props;
-  console.log(props)
+  console.log(props);
   return (
     <div className="movie-card__text movie-card__row">
       <div className="movie-card__text-col">
@@ -15,16 +15,16 @@ const FilmDetails = (props) => {
           <strong className="movie-card__details-name">Starring</strong>
           <span className="movie-card__details-value" key={film.id}>
             {film.starring.map((item) => {
-              return (item)
+              return (item);
             })}
-                  </span>
+          </span>
         </p>
       </div>
 
       <div className="movie-card__text-col">
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Run Time</strong>
-          {/*1h 39m*/}
+          {/* 1h 39m*/}
           <span className="movie-card__details-value">{film.runTime}</span>
         </p>
         <p className="movie-card__details-item">
@@ -37,7 +37,7 @@ const FilmDetails = (props) => {
         </p>
       </div>
     </div>
-  )
+  );
 };
 
 

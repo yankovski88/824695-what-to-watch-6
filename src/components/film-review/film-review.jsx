@@ -16,7 +16,7 @@ const FilmReview = (props) => {
 
       <div className="review__rating">{review.rating}</div>
     </div>
-  )
+  );
 };
 
 

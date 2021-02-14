@@ -1,4 +1,4 @@
-import React from "react"; //useState
+import React from "react"; // useState
 import useState from "react"; // не имопртируется
 
 import SmallCard from "../small-card/small-card.jsx";

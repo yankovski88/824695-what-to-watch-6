@@ -14,7 +14,6 @@ import FilmReviews from "../film-reviews/film-reviews";
 import FilmDetails from "../film-details/film-details";
 
 
-
 const Film = (props) => {
   const {likeFilms, reviews, film} = props;
   // const [firstFilm] = likeFilms; // ...films
@@ -61,10 +60,10 @@ const Film = (props) => {
             <div className="movie-card__desc">
 
               <MovieNav/>
-              {/*<MovieRating film={film}/>*/}
-              {/*<FilmDescription film={film}/>*/}
+              {/* <MovieRating film={film}/>*/}
+              {/* <FilmDescription film={film}/>*/}
 
-              {/*<FilmReviews reviews={reviews}/>*/}
+              {/* <FilmReviews reviews={reviews}/>*/}
               <FilmDetails film={film} />
 
 
