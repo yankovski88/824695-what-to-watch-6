@@ -17,6 +17,7 @@ const CatalogMyListFilms = (props)=>{
             videoLink = {myListFilm.videoLink}
             name = {myListFilm.name}
             posterImage = {myListFilm.posterImage}
+            id={myListFilm.id}
           />;
         })}
       </div>

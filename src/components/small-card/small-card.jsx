@@ -4,11 +4,11 @@ import PropTypes from "prop-types";
 const SmallCard = (props)=>{
   const {posterImage, name, videoLink, id} = props;
 
-  const [idActive, setIdActive] = React.useState(`no id`);
+  const [idActive, setIdActive] = React.useState(``);
 
 
   return (
-    <article className={`small-movie-card catalog__movies-card`}  onMouseOver={()=>{setIdActive(id)}} onMouseOut={()=>{setIdActive(``)}}>
+    <article className="small-movie-card catalog__movies-card" id={id}  onMouseOver={()=>{setIdActive(id)}} onMouseOut={()=>{setIdActive(``)}}>
       <div className="small-movie-card__image">
         <img src={posterImage} alt={name} width="280" height="175" />
       </div>

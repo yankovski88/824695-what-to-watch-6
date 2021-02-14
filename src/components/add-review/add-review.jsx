@@ -4,7 +4,8 @@ import UserBlock from "../user-block/user-block.jsx";
 import Breadcrumbs from "../breadcrumbs/breadcrumbs.jsx";
 import AddReviewForm from "../add-review-form/add-review-form";
 
-const AddReview = () => {
+const AddReview = (props) => {
+
   return (
     <section className="movie-card movie-card--full">
       <div className="movie-card__header">

@@ -11,7 +11,7 @@ import Error404 from "../error-404/error-404";
 
 
 const App = (props) => {
-  const {mainFilms, myListFilms, likeFilms} = props;
+  const {mainFilms, myListFilms, likeFilms, reviews, film} = props;
   return (
     <BrowserRouter>
       <Switch>
@@ -24,11 +24,12 @@ const App = (props) => {
         <Route exact path="/mylist">
           <MyList myListFilms={myListFilms}/>
         </Route>
-        <Route exact path="/films/:id?">
-          <Film likeFilms={likeFilms}/>
-        </Route>
         <Route exact path="/films/:id/review?">
-          <AddReview />
+          <AddReview/>
+        </Route>
+        {/*/films/:id?*/}
+        <Route exact path="/film">
+          <Film likeFilms={likeFilms} reviews={reviews} film={film}/>
         </Route>
         <Route exact path="/player/:id?">
           <Player />
@@ -44,7 +45,9 @@ const App = (props) => {
 App.propTypes = {
   mainFilms: PropTypes.array.isRequired,
   myListFilms: PropTypes.array.isRequired,
-  likeFilms: PropTypes.array.isRequired // PropTypes.arrayOf(PropTypes.bool)
+  likeFilms: PropTypes.array.isRequired, // PropTypes.arrayOf(PropTypes.bool)
+  reviews: PropTypes.array.isRequired,
+  film: PropTypes.object.isRequired,
 };
 
 export default App;
