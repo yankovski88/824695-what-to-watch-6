@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
+
 
 const SmallCard = (props)=>{
-  const {posterImage, name, videoLink, id} = props;
+  const {posterImage, name, id} = props;
 
   const [idActive, setIdActive] = React.useState(``);
 
@@ -17,7 +19,8 @@ const SmallCard = (props)=>{
         <img src={posterImage} alt={name} width="280" height="175" />
       </div>
       <h3 className="small-movie-card__title">
-        <a className="small-movie-card__link" href={videoLink}>{name}</a>
+        {/* id нужно вставить чтобы направляло в на нужную страницу*/}
+        <Link className="small-movie-card__link" to={`/film`}>{name}</Link>
       </h3>
     </article>
   );
@@ -26,7 +29,6 @@ const SmallCard = (props)=>{
 SmallCard.propTypes = {
   posterImage: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  videoLink: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
 };
 

@@ -1,9 +1,10 @@
 import {nanoid} from "nanoid";
 
 export const getFilmData = ()=>{
+  const id = nanoid();
   return {
-    "id": nanoid(),
-    "name": `The Grand Budapest Hotel`,
+    "id": id,
+    "name": `The Grand Budapest Hotel ${id}`,
     "posterImage": `img/the-grand-budapest-hotel-poster.jpg`,
     "previewImage": `img/the-grand-budapest-hotel.jpg`,
     "backgroundImage": `img/the-grand-budapest-hotel-bg.jpg`,
