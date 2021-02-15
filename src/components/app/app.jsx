@@ -33,7 +33,7 @@ const App = (props) => {
           <Film likeFilms={likeFilms} reviews={reviews} film={film}/>
         </Route>
         <Route exact path="/player/:id?">
-          <Player />
+          <Player film={film}/>
         </Route>
         <Route>
           <Error404 />

@@ -8,7 +8,7 @@ const SmallCard = (props)=>{
 
 
   return (
-    <article className="small-movie-card catalog__movies-card" id={id} onMouseOver={()=>{
+    <article className={`small-movie-card catalog__movies-card ${idActive}`} id={id} onMouseOver={()=>{
       setIdActive(id);
     }} onMouseOut={()=>{
       setIdActive(``);
@@ -27,6 +27,7 @@ SmallCard.propTypes = {
   posterImage: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   videoLink: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 

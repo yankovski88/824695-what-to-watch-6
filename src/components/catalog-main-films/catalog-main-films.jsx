@@ -1,5 +1,4 @@
-import React from "react"; // useState
-import useState from "react"; // не имопртируется
+import React from "react";
 
 import SmallCard from "../small-card/small-card.jsx";
 import PropTypes from "prop-types";
@@ -7,7 +6,6 @@ import PropTypes from "prop-types";
 
 const CatalogMainFilms = (props)=>{
   const {mainFilms} = props;
-  // const [idActive, setIdActive] = React.useState(`no id`);
 
   return (
     <section className="catalog">
