@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {getTimeMovie} from "../../utils/utils";
 
 const FilmDetails = (props) => {
   const {film} = props;
@@ -14,9 +15,11 @@ const FilmDetails = (props) => {
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Starring</strong>
           <span className="movie-card__details-value" key={film.id}>
-            {film.starring.map((item) => {
+            {film.starring.map((item, index) => {
 
-              return (<> {item} <br/>   </>);
+              return (
+                <li key={index} style={{listStyle: `none`}}> {item} <br/>   </li>
+              );
             })}
           </span>
         </p>
@@ -26,7 +29,7 @@ const FilmDetails = (props) => {
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Run Time</strong>
           {/* 1h 39m*/}
-          <span className="movie-card__details-value">{film.runTime}</span>
+          <span className="movie-card__details-value">{getTimeMovie(film.runTime)}</span>
         </p>
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Genre</strong>
