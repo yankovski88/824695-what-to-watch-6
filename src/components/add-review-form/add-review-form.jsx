@@ -1,6 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-const AddReviewForm = () => {
+const AddReviewForm = (props) => {
+  const {onAnswer} = props;
   const [review, addReview] = React.useState({
     rating: ``,
     review: ``,
@@ -8,6 +10,7 @@ const AddReviewForm = () => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
+    onAnswer(review);
   };
 
   const handleFieldChange = (evt) => {
@@ -17,7 +20,9 @@ const AddReviewForm = () => {
 
   return (
     <div className="add-review">
-      <form onSubmit={handleSubmit} action="#" className="add-review__form">
+      <form
+        onSubmit={handleSubmit}
+        action="#" className="add-review__form">
         <div className="rating">
           <div className="rating__stars">
             <input className="rating__input" id="star-1" type="radio" name="rating" value="1"
@@ -88,4 +93,9 @@ const AddReviewForm = () => {
   );
 };
 
+AddReviewForm.propTypes = {
+  film: PropTypes.object.isRequired,
+  onAnswer: PropTypes.func.isRequired,
+
+};
 export default AddReviewForm;

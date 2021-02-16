@@ -26,7 +26,9 @@ const App = (props) => {
         </Route>
         {/* "/films/:id/review?"*/}
         <Route exact path="/films/review">
-          <AddReview film={film}/>
+          <AddReview film={film}
+            onAnswer={() => {}}
+          />
         </Route>
         {/* /films/:id?*/}
         <Route exact path="/film">

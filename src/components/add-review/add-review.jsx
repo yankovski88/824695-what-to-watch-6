@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 
 
 const AddReview = (props) => {
-  const {film} = props;
+  const {film, onAnswer} = props;
   const {name, posterImage} = film;
 
   return (
@@ -31,7 +31,7 @@ const AddReview = (props) => {
         </div>
       </div>
 
-      <AddReviewForm/>
+      <AddReviewForm onAnswer={onAnswer}/>
     </section>
 
   );
@@ -39,6 +39,8 @@ const AddReview = (props) => {
 
 AddReview.propTypes = {
   film: PropTypes.object.isRequired,
+  onAnswer: PropTypes.func.isRequired,
+
 };
 
 export default AddReview;
