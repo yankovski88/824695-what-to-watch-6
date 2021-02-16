@@ -5,8 +5,6 @@ import moment from "moment";
 const FilmReview = (props) => {
   const {review} = props;
 
-  console.log(review);
-
   return (
     <div className="review" id={review.id}>
       <blockquote className="review__quote">

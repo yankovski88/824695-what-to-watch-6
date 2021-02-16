@@ -5,16 +5,16 @@ import FilmReview from "../film-review/film-review";
 
 const FilmReviews = (props) => {
   const {reviews} = props;
-  const remainder = reviews.length % 2;
 
+  const remainder = reviews.length % 2;
   let columns1 = [];
   let columns2 = [];
   if (remainder > 0) {
-    columns1 = reviews.slice(0, reviews.length % 2 + 1);
-    columns2 = reviews.slice(reviews.length % 2 + 1, reviews.length);
+    columns1 = reviews.slice(0, Math.floor(reviews.length / 2) + 1);
+    columns2 = reviews.slice(Math.floor(reviews.length / 2) + 1, reviews.length);
   } else if (remainder === 0) {
-    columns1 = reviews.slice(0, reviews.length % 2);
-    columns2 = reviews.slice(reviews.length % 2, reviews.length);
+    columns1 = reviews.slice(0, Math.floor(reviews.length / 2));
+    columns2 = reviews.slice(Math.floor(reviews.length / 2), reviews.length);
   }
 
   return (
@@ -32,10 +32,7 @@ const FilmReviews = (props) => {
         })}
       </div>
     </div>
-
-
   );
-
 };
 
 FilmReviews.propTypes = {
