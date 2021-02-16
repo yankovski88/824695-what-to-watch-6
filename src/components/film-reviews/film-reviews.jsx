@@ -39,7 +39,6 @@ const FilmReviews = (props) => {
 };
 
 FilmReviews.propTypes = {
-  likeFilms: PropTypes.array.isRequired,
   reviews: PropTypes.array.isRequired,
 };
 

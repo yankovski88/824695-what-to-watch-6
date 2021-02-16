@@ -60,10 +60,10 @@ const Film = (props) => {
             <div className="movie-card__desc">
 
               <MovieNav/>
-               <MovieRating film={film}/>
-               <FilmDescription film={film}/>
+               {/*<MovieRating film={film}/>*/}
+               {/*<FilmDescription film={film}/>*/}
 
-               {/*<FilmReviews reviews={reviews}/>*/}
+               <FilmReviews reviews={reviews}/>
               {/*<FilmDetails film={film} />*/}
 
 
