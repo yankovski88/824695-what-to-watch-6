@@ -9,10 +9,13 @@ import LinkAddReview from "../link-add-review/link-add-review";
 import MovieNav from "../movie-nav/movie-nav.jsx";
 import PropTypes from "prop-types";
 import FilmDetails from "../film-details/film-details";
+import FilmDescription from "../film-description/film-description";
+import MovieRating from "../movie-rating/movie-rating";
+import FilmReviews from "../film-reviews/film-reviews";
 
 
 const Film = (props) => {
-  const {likeFilms, film} = props;
+  const {likeFilms, film, reviews} = props;
   const {posterImage, name, genre, released} = film;
 
   return (
@@ -57,11 +60,11 @@ const Film = (props) => {
             <div className="movie-card__desc">
 
               <MovieNav/>
-              {/* <MovieRating film={film}/>*/}
-              {/* <FilmDescription film={film}/>*/}
+               <MovieRating film={film}/>
+               <FilmDescription film={film}/>
 
-              {/* <FilmReviews reviews={reviews}/>*/}
-              <FilmDetails film={film} />
+               {/*<FilmReviews reviews={reviews}/>*/}
+              {/*<FilmDetails film={film} />*/}
 
 
             </div>
