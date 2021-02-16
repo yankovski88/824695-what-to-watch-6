@@ -18,7 +18,7 @@ const CatalogMainFilms = (props)=>{
             videoLink = {mainFilm.videoLink}
             name = {mainFilm.name}
             posterImage = {mainFilm.posterImage}
-            id={mainFilm.id}
+            id = {mainFilm.id}
           />;
         })}
       </div>

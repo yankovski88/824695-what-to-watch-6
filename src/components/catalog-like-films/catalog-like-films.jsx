@@ -17,6 +17,7 @@ const CatalogLikeFilms = (props)=>{
             videoLink = {likeFilm.videoLink}
             name = {likeFilm.name}
             posterImage = {likeFilm.posterImage}
+            id = {likeFilm.posterImage}
           />;
         })}
       </div>
