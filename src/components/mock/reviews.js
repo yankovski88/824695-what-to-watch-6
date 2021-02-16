@@ -26,13 +26,13 @@ export const reviews = [{
   "comment": `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
   "date": `2017-05-08T14:13:56.569Z`
 },
-  {"id": 5,
-    "user": {
-      "id": 10,
-      "name": `Kate Muir3`
-    },
-    "rating": 4,
-    "comment": `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
-    "date": `2016-05-08T14:13:56.569Z`
+{"id": 5,
+  "user": {
+    "id": 10,
+    "name": `Kate Muir3`
   },
+  "rating": 4,
+  "comment": `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+  "date": `2016-05-08T14:13:56.569Z`
+},
 ];
