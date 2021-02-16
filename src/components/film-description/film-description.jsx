@@ -10,11 +10,11 @@ const FilmDescription = (props)=>{
 
       <p className="movie-card__director"><strong>Director: {film.director}</strong></p>
 
-
-      <p className="movie-card__starring"><strong>Starring:
+      <p className="movie-card__starring"><strong>Starring:&nbsp;
         {
-          film.starring.map((item)=>{
-            return `${item}, `
+          film.starring.map((item, index)=>{
+            console.log(index);
+            return `${item}${index + 1 === film.starring.length ? `` : `, `}`
           })
         } and other</strong></p>
     </div>
