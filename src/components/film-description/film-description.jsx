@@ -13,7 +13,6 @@ const FilmDescription = (props)=>{
       <p className="movie-card__starring"><strong>Starring:&nbsp;
         {
           film.starring.map((item, index)=>{
-            console.log(index);
             return `${item}${index + 1 === film.starring.length ? `` : `, `}`
           })
         } and other</strong></p>

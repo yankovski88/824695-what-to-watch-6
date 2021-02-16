@@ -30,6 +30,13 @@ const App = (props) => {
             onAnswer={() => {}}
           />
         </Route>
+        <Route exact path="/film/details">
+          <Film likeFilms={likeFilms} reviews={reviews} film={film}/>
+        </Route>
+        <Route exact path="/film/reviews">
+          <Film likeFilms={likeFilms} reviews={reviews} film={film}/>
+        </Route>
+
         {/* /films/:id?*/}
         <Route exact path="/film">
           <Film likeFilms={likeFilms} reviews={reviews} film={film}/>
