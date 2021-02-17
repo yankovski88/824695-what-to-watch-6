@@ -4,30 +4,26 @@ import PropTypes from "prop-types";
 
 
 const MovieNav = (props)=>{
-  const {filmType} = props;
-  debugger
-  const [activeNav, setActiveNav] = React.useState({name: ``}); // filmType
-  debugger
-  // console.log(filmType);
-  console.log(activeNav);
+  const {nav} = props;
+  const [activeNav, setActiveNav] = React.useState(nav);
+
 
   const handleNavChange = (evt) => {
-    const {value} = evt.target;
-    console.log(evt.target);
-    setActiveNav({name: value});
+    const {name} = evt.target;
+    setActiveNav({nav: name});
   };
 
   return (
     <nav className="movie-nav movie-card__nav">
       <ul className="movie-nav__list">
-        <li className={`movie-nav__item  ${activeNav.name === `Overview` ? `movie-nav__item--active` : ``}`} >
-          <Link to="/film" className="movie-nav__link" name="overview" value="Overview"  onClick={handleNavChange}>Overview</Link>
+        <li className={`movie-nav__item  ${activeNav.nav === `overview` ? `movie-nav__item--active` : ``}`} >
+          <Link to="/film" className="movie-nav__link" name="overview"  onClick={handleNavChange}>Overview</Link>
         </li>
-        <li className={`movie-nav__item  ${activeNav.name === `Overview` ? `movie-nav__item--active` : ``}`} >
-          <Link to="/film/details" className="movie-nav__link " name="details" value="Details" onClick={handleNavChange}>Details</Link>
+        <li className={`movie-nav__item  ${activeNav.nav === `details` ? `movie-nav__item--active` : ``}`} >
+          <Link to="/film/details" className="movie-nav__link " name="details" onClick={handleNavChange}>Details</Link>
         </li>
-        <li className={`movie-nav__item  ${activeNav.name === `Overview` ? `movie-nav__item--active` : ``}`} >
-          <Link to="/film/reviews" className="movie-nav__link " name="reviews" value="Reviews" onClick={handleNavChange}>Reviews</Link>
+        <li className={`movie-nav__item  ${activeNav.nav === `reviews` ? `movie-nav__item--active` : ``}`} >
+          <Link to="/film/reviews" className="movie-nav__link " name="reviews" onClick={handleNavChange}>Reviews</Link>
         </li>
       </ul>
     </nav>
@@ -35,7 +31,7 @@ const MovieNav = (props)=>{
 };
 
 MovieNav.propTypes = {
-  filmType: PropTypes.object.isRequired,
+  nav: PropTypes.object.isRequired,
 };
 
 export default MovieNav;

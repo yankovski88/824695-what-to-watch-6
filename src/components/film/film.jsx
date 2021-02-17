@@ -17,8 +17,8 @@ import FilmReviews from "../film-reviews/film-reviews";
 const Film = (props) => {
   const {likeFilms, film, reviews} = props;
   const {posterImage, name, genre, released} = film;
-  const [filmType, setFilmType] = React.useState({
-    filmType: `Overview`,
+  const [nav, setNav] = React.useState({
+    nav: `overview`,
   });
 
   return (
@@ -62,7 +62,7 @@ const Film = (props) => {
 
             <div className="movie-card__desc">
 
-              <MovieNav filmType = {filmType}/>
+              <MovieNav nav = {nav}/>
               <MovieRating film={film}/>
               <FilmDescription film={film}/>
 
