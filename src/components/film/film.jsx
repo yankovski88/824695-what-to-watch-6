@@ -8,16 +8,11 @@ import BtnAddMyList from "../btn-add-my-list/btn-add-my-list";
 import LinkAddReview from "../link-add-review/link-add-review";
 import MovieNav from "../movie-nav/movie-nav.jsx";
 import PropTypes from "prop-types";
-import FilmDetails from "../film-details/film-details";
-import FilmDescription from "../film-description/film-description";
-import MovieRating from "../movie-rating/movie-rating";
-import FilmReviews from "../film-reviews/film-reviews";
-
 
 const Film = (props) => {
   const {likeFilms, film, reviews} = props;
   const {posterImage, name, genre, released} = film;
-  const [nav, setNav] = React.useState({
+  const [nav] = React.useState({
     nav: `overview`,
   });
 
@@ -62,13 +57,7 @@ const Film = (props) => {
 
             <div className="movie-card__desc">
 
-              <MovieNav nav = {nav}/>
-              <MovieRating film={film}/>
-              <FilmDescription film={film}/>
-
-              {/* <FilmReviews reviews={reviews}/>*/}
-              {/* <FilmDetails film={film} />*/}
-
+              <MovieNav nav = {nav} film={film} reviews={reviews}/>
 
             </div>
           </div>
