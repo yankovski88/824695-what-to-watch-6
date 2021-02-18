@@ -11,12 +11,18 @@ import Error404 from "../error-404/error-404";
 
 
 const App = (props) => {
-  const {mainFilms, myListFilms, likeFilms, reviews, film} = props;
+  const {mainFilms, myListFilms, likeFilms, reviews, movie} = props;
+  const [film, setMovie] = React.useState(movie);
+
+  const updateData = (value) => {
+    setMovie(value);
+  };
+
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <Main mainFilms = {mainFilms} />
+          <Main mainFilms = {mainFilms} updateData={updateData}/>
         </Route>
         <Route exact path="/login">
           <SignIn />
@@ -30,18 +36,18 @@ const App = (props) => {
             onAnswer={() => {}}
           />
         </Route>
-        <Route exact path="/film/details">
+        <Route exact path={`/films/${film.id}/details`}>
           <Film likeFilms={likeFilms} reviews={reviews} film={film}/>
         </Route>
-        <Route exact path="/film/reviews">
+        <Route exact path={`/films/${film.id}/reviews`}>
           <Film likeFilms={likeFilms} reviews={reviews} film={film}/>
         </Route>
 
         {/* /films/:id?*/}
-        <Route exact path="/film">
+        <Route exact path={`/films/${film.id}`}>
           <Film likeFilms={likeFilms} reviews={reviews} film={film}/>
         </Route>
-        <Route exact path="/player/:id?">
+        <Route exact path="/player/:id">
           <Player film={film}/>
         </Route>
         <Route>
@@ -57,7 +63,7 @@ App.propTypes = {
   myListFilms: PropTypes.array.isRequired,
   likeFilms: PropTypes.array.isRequired, // PropTypes.arrayOf(PropTypes.bool)
   reviews: PropTypes.array.isRequired,
-  film: PropTypes.object.isRequired,
+  movie: PropTypes.object.isRequired,
 };
 
 export default App;

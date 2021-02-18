@@ -10,7 +10,7 @@ for (let i = 0; i < 8; i++) {
 }
 
 const myListFilms = mainFilms.slice(0, 2);
-const film = mainFilms[0];
+const movie = mainFilms[0];
 // const myListFilms = [];
 // for (let i = 0; i < 9; i++) {
 //   myListFilms.push(getFilmData());
@@ -23,6 +23,6 @@ for (let i = 0; i < 4; i++) {
 
 
 ReactDom.render(
-    <App mainFilms = {mainFilms} myListFilms = {myListFilms} likeFilms={likeFilms} reviews={reviews} film={film}/>,
+    <App mainFilms = {mainFilms} myListFilms = {myListFilms} likeFilms={likeFilms} reviews={reviews} movie={movie}/>,
     document.querySelector(`#root`)
 );

@@ -40,7 +40,6 @@ const AddReview = (props) => {
 AddReview.propTypes = {
   film: PropTypes.object.isRequired,
   onAnswer: PropTypes.func.isRequired,
-
 };
 
 export default AddReview;

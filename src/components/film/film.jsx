@@ -8,9 +8,14 @@ import BtnAddMyList from "../btn-add-my-list/btn-add-my-list";
 import LinkAddReview from "../link-add-review/link-add-review";
 import MovieNav from "../movie-nav/movie-nav.jsx";
 import PropTypes from "prop-types";
+// import {useHistory, useParams} from "react-router-dom";
 
 const Film = (props) => {
   const {likeFilms, film, reviews} = props;
+  // const params = useParams();
+  // const history = useHistory();
+
+
   const {posterImage, name, genre, released} = film;
   const [nav] = React.useState({
     nav: `overview`,

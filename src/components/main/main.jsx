@@ -6,7 +6,7 @@ import Copyright from "../copyright/copyright.jsx";
 import CatalogMainFilms from "../catalog-main-films/catalog-main-films";
 
 const Main = (props) => {
-  const {mainFilms} = props;
+  const {mainFilms, updateData} = props;
   return <React.Fragment>
     <Card mainFilms = {mainFilms}/>
     <div className="page-content">
@@ -47,7 +47,7 @@ const Main = (props) => {
         </ul>
 
         <div className="catalog__movies-list">
-          <CatalogMainFilms mainFilms={mainFilms}/>
+          <CatalogMainFilms mainFilms={mainFilms} updateData={updateData}/>
         </div>
 
         <div className="catalog__more">
@@ -67,6 +67,7 @@ const Main = (props) => {
 
 Main.propTypes = {
   mainFilms: PropTypes.array.isRequired,
+  updateData: PropTypes.func.isRequired,
 };
 
 export default Main;
