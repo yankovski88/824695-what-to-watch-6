@@ -5,9 +5,10 @@ import UserBlock from "../user-block/user-block.jsx";
 import CatalogLikeFilms from "../catalog-like-films/catalog-like-films";
 import BtnPlay from "../btn-play/btn-play";
 import BtnAddMyList from "../btn-add-my-list/btn-add-my-list";
-import LinkAddReview from "../link-add-review/link-add-review";
+// import LinkAddReview from "../link-add-review/link-add-review";
 import MovieNav from "../movie-nav/movie-nav.jsx";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 // import {useHistory, useParams} from "react-router-dom";
 
 const Film = (props) => {
@@ -47,7 +48,10 @@ const Film = (props) => {
               <div className="movie-card__buttons">
                 <BtnPlay/>
                 <BtnAddMyList/>
-                <LinkAddReview/>
+                <Link to={`/films/${film ? film.id : ``}/add-review`}
+                  className="btn movie-card__button">Add review</Link>
+
+                {/* <LinkAddReview film={film}/>*/}
               </div>
             </div>
           </div>

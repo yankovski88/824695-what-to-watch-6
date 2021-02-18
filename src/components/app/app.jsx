@@ -31,7 +31,7 @@ const App = (props) => {
           <MyList myListFilms={myListFilms}/>
         </Route>
         {/* "/films/:id/review?"*/}
-        <Route exact path="/films/review">
+        <Route exact path={`/films/${film.id}/add-review`}>
           <AddReview film={film}
             onAnswer={() => {}}
           />
