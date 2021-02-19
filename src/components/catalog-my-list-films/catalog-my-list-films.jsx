@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 
 const CatalogMyListFilms = (props)=>{
-  const {myListFilms} = props;
+  const {myListFilms, updateData} = props;
 
   return (
     <section className="catalog">
@@ -18,6 +18,7 @@ const CatalogMyListFilms = (props)=>{
             name = {myListFilm.name}
             posterImage = {myListFilm.posterImage}
             id={myListFilm.id}
+            updateData={updateData}
           />;
         })}
       </div>
@@ -26,7 +27,9 @@ const CatalogMyListFilms = (props)=>{
 };
 
 CatalogMyListFilms.propTypes = {
-  myListFilms: PropTypes.array.isRequired
+  myListFilms: PropTypes.array.isRequired,
+  updateData: PropTypes.func.isRequired,
+
 };
 
 export default CatalogMyListFilms;

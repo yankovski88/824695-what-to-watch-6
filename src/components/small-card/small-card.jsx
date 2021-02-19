@@ -7,12 +7,12 @@ const SmallCard = (props) => {
   const {posterImage, name, id, updateData} = props;
   return (
     <article className={`small-movie-card catalog__movies-card`} id={id}
-      onMouseEnter={() => {
+      onClick={() => {
         updateData(id);
       }}
-      onMouseLeave={() => {
-        updateData({});
-      }}
+      // onMouseLeave={() => {
+      //   updateData({});
+      // }}
     >
       <div className="small-movie-card__image">
         <img src={posterImage} alt={name} width="280" height="175"/>

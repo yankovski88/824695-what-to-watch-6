@@ -7,7 +7,7 @@ import CatalogMyListFilms from "../catalog-my-list-films/catalog-my-list-films.j
 import PropTypes from "prop-types";
 
 const MyList = (props) => {
-  const {myListFilms} = props;
+  const {myListFilms, updateData} = props;
   return (
     <>
       <div className="user-page">
@@ -21,7 +21,7 @@ const MyList = (props) => {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <div className="catalog__movies-list">
-            <CatalogMyListFilms myListFilms={myListFilms}/>
+            <CatalogMyListFilms myListFilms={myListFilms} updateData={updateData}/>
 
           </div>
         </section>
@@ -36,7 +36,8 @@ const MyList = (props) => {
 };
 
 MyList.propTypes = {
-  myListFilms: PropTypes.array.isRequired
+  myListFilms: PropTypes.array.isRequired,
+  updateData: PropTypes.func.isRequired,
 };
 
 export default MyList;
