@@ -12,18 +12,16 @@ import Error404 from "../error-404/error-404";
 
 const App = (props) => {
   const {mainFilms, myListFilms, likeFilms, reviews, movie} = props;
-  const [fi, setMovie] = React.useState(movie);
+  const [cinema, setMovie] = React.useState(movie);
 
-  let f = {};
+  let itemFilm = {};
   for (const item of mainFilms) {
-    if (item.id === fi) {
-      f = item;
+    if (item.id === cinema) {
+      itemFilm = item;
     }
   }
 
-
-  const fil = f;
-  const film = fil;
+  const film = itemFilm;
   const updateData = (value) => {
     setMovie(value);
   };
