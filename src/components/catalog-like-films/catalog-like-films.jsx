@@ -1,10 +1,18 @@
 import React from "react";
 import SmallCard from "../small-card/small-card.jsx";
 import PropTypes from "prop-types";
+import {getFilm} from "../../utils/utils";
 
 
 const CatalogLikeFilms = (props)=>{
   const {likeFilms, updateData} = props;
+  const [filmActive, setFilmActive] = React.useState(``);
+
+  const updateFilmActive = (value) => {
+    setFilmActive(value);
+  };
+
+  getFilm(filmActive, likeFilms);
 
   return (
     <section className="catalog catalog--like-this">
@@ -20,6 +28,7 @@ const CatalogLikeFilms = (props)=>{
             posterImage = {likeFilm.posterImage}
             id = {likeFilm.id}
             updateData={updateData}
+            updateFilmActive={updateFilmActive}
 
           />;
         })}

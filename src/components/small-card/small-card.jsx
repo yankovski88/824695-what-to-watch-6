@@ -4,15 +4,19 @@ import {Link} from "react-router-dom";
 
 
 const SmallCard = (props) => {
-  const {posterImage, name, id, updateData} = props;
+  const {posterImage, name, id, updateData, updateFilmActive} = props;
+
   return (
     <article className={`small-movie-card catalog__movies-card`} id={id}
       onClick={() => {
         updateData(id);
       }}
-      // onMouseLeave={() => {
-      //   updateData({});
-      // }}
+      onMouseEnter={()=>{
+        updateFilmActive(id);
+      }}
+      onMouseLeave={() => {
+        updateFilmActive({});
+      }}
     >
       <div className="small-movie-card__image">
         <img src={posterImage} alt={name} width="280" height="175"/>
@@ -30,6 +34,8 @@ SmallCard.propTypes = {
   id: PropTypes.string.isRequired,
   updateData: PropTypes.func.isRequired,
   mainFilm: PropTypes.object.isRequired,
+  updateFilmActive: PropTypes.func.isRequired,
+
 };
 
 

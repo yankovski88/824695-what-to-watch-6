@@ -1,10 +1,17 @@
 import React from "react";
 import SmallCard from "../small-card/small-card.jsx";
 import PropTypes from "prop-types";
-
+import {getFilm} from "../../utils/utils.js";
 
 const CatalogMainFilms = (props)=>{
   const {mainFilms, updateData} = props;
+  const [filmActive, setFilmActive] = React.useState(``);
+
+  const updateFilmActive = (value) => {
+    setFilmActive(value);
+  };
+
+  getFilm(filmActive, mainFilms);
 
   return (
     <div className="catalog__movies-list">
@@ -17,6 +24,7 @@ const CatalogMainFilms = (props)=>{
           posterImage = {mainFilm.posterImage}
           id = {mainFilm.id}
           updateData={updateData}
+          updateFilmActive={updateFilmActive}
         />;
       })}
     </div>

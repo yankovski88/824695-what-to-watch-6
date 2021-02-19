@@ -9,3 +9,14 @@ export const getTimeMovie = (timeMovie)=>{
   }
   return ``;
 };
+
+
+export const getFilm = (filmActive, films)=>{
+  let filmEnter = {};
+  for (const film of films) {
+    if (film.id === filmActive) {
+      filmEnter = film;
+    }
+  }
+  return filmEnter;
+};
