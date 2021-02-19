@@ -13,7 +13,6 @@ import Error404 from "../error-404/error-404";
 const App = (props) => {
   const {mainFilms, myListFilms, likeFilms, reviews, movie} = props;
   const [fi, setMovie] = React.useState(movie);
-  // console.log(fi);
 
   let f = {};
   for (const item of mainFilms) {
@@ -28,8 +27,6 @@ const App = (props) => {
   const updateData = (value) => {
     setMovie(value);
   };
-
-  // console.log(film);
 
   return (
     <BrowserRouter>
