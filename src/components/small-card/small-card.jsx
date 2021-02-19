@@ -12,7 +12,7 @@ const SmallCard = (props) => {
         updateData(mainFilm);
       }}
       onMouseOut={() => {
-        updateData(``);
+        updateData({});
       }}
     >
       <div className="small-movie-card__image">

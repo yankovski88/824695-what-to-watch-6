@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 
 const AddReview = (props) => {
   const {film, onAnswer} = props;
+
   const {name, posterImage} = film;
 
   return (
