@@ -8,20 +8,15 @@ import Player from "../player/player.jsx";
 import AddReview from "../add-review/add-review.jsx";
 import Film from "../film/film.jsx";
 import Error404 from "../error-404/error-404";
+import {getFilm} from "../../utils/utils";
 
 
 const App = (props) => {
   const {mainFilms, myListFilms, likeFilms, reviews, movie} = props;
   const [cinema, setMovie] = React.useState(movie);
 
-  let itemFilm = {};
-  for (const item of mainFilms) {
-    if (item.id === cinema) {
-      itemFilm = item;
-    }
-  }
+  const film = getFilm(cinema, mainFilms);
 
-  const film = itemFilm;
   const updateData = (value) => {
     setMovie(value);
   };
