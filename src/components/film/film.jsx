@@ -12,7 +12,7 @@ import {Link} from "react-router-dom";
 // import {useHistory, useParams} from "react-router-dom";
 
 const Film = (props) => {
-  const {likeFilms, film, reviews} = props;
+  const {likeFilms, film, reviews, updateData} = props;
   // const params = useParams();
   // const history = useHistory();
 
@@ -75,7 +75,7 @@ const Film = (props) => {
 
       <div className="page-content">
 
-        <CatalogLikeFilms likeFilms={likeFilms}/>
+        <CatalogLikeFilms likeFilms={likeFilms} updateData={updateData}/>
 
         <footer className="page-footer">
           <Logo/>
@@ -90,6 +90,7 @@ Film.propTypes = {
   likeFilms: PropTypes.array.isRequired,
   reviews: PropTypes.array.isRequired,
   film: PropTypes.object.isRequired,
+  updateData: PropTypes.func.isRequired,
 };
 
 export default Film;

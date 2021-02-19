@@ -46,9 +46,7 @@ const Main = (props) => {
           </li>
         </ul>
 
-        <div className="catalog__movies-list">
-          <CatalogMainFilms mainFilms={mainFilms} updateData={updateData}/>
-        </div>
+        <CatalogMainFilms mainFilms={mainFilms} updateData={updateData}/>
 
         <div className="catalog__more">
           <button className="catalog__button" type="button">Show more</button>

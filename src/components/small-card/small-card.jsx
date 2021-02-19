@@ -4,14 +4,13 @@ import {Link} from "react-router-dom";
 
 
 const SmallCard = (props) => {
-  const {posterImage, name, id, mainFilm, updateData} = props;
-
+  const {posterImage, name, id, updateData} = props;
   return (
     <article className={`small-movie-card catalog__movies-card`} id={id}
-      onMouseOver={() => {
-        updateData(mainFilm);
+      onMouseEnter={() => {
+        updateData(id);
       }}
-      onMouseOut={() => {
+      onMouseLeave={() => {
         updateData({});
       }}
     >

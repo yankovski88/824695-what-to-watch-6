@@ -4,13 +4,13 @@ import App from "./components/app/app.jsx";
 import {getFilmData} from "./components/mock/film";
 import {reviews} from "./components/mock/reviews";
 
-const mainFilms = [];
+const firstMainFilms = [];
 for (let i = 0; i < 8; i++) {
-  mainFilms.push(getFilmData());
+  firstMainFilms.push(getFilmData());
 }
 
-const myListFilms = mainFilms.slice(0, 2);
-const movie = mainFilms[0];
+const myListFilms = firstMainFilms.slice(0, 2);
+const movie = firstMainFilms[0];
 // const myListFilms = [];
 // for (let i = 0; i < 9; i++) {
 //   myListFilms.push(getFilmData());
@@ -21,6 +21,7 @@ for (let i = 0; i < 4; i++) {
   likeFilms.push(getFilmData());
 }
 
+const mainFilms = [...firstMainFilms, ...likeFilms];
 
 ReactDom.render(
     <App mainFilms = {mainFilms} myListFilms = {myListFilms} likeFilms={likeFilms} reviews={reviews} movie={movie}/>,

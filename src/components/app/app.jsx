@@ -12,11 +12,23 @@ import Error404 from "../error-404/error-404";
 
 const App = (props) => {
   const {mainFilms, myListFilms, likeFilms, reviews, movie} = props;
-  const [film, setMovie] = React.useState(movie);
+  const [fi, setMovie] = React.useState(movie);
 
+
+  let f = {};
+  for (const item of mainFilms) {
+    if (item.id === fi) {
+      f = item;
+    }
+  }
+
+
+  const fil = f;
+  const film = fil;
   const updateData = (value) => {
     setMovie(value);
   };
+
 
   return (
     <BrowserRouter>
@@ -45,7 +57,7 @@ const App = (props) => {
 
         {/* /films/:id?*/}
         <Route exact path={`/films/${film.id}`}>
-          <Film likeFilms={likeFilms} reviews={reviews} film={film}/>
+          <Film likeFilms={likeFilms} reviews={reviews} film={film} updateData={updateData}/>
         </Route>
         <Route exact path="/player/:id">
           <Player film={film}/>
