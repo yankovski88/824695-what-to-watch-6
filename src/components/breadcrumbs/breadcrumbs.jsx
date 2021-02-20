@@ -1,11 +1,15 @@
 import React from "react";
+import {Link} from "react-router-dom";
+import PropTypes from "prop-types";
 
-const Breadcrumbs = ()=>{
+const Breadcrumbs = (props) => {
+  const {film} = props;
+  const {name} = film;
   return (
     <nav className="breadcrumbs">
       <ul className="breadcrumbs__list">
         <li className="breadcrumbs__item">
-          <a href="movie-page.html" className="breadcrumbs__link">The Grand Budapest Hotel</a>
+          <Link to="/film" className="breadcrumbs__link">{name}</Link>
         </li>
         <li className="breadcrumbs__item">
           <a className="breadcrumbs__link">Add review</a>
@@ -13,6 +17,10 @@ const Breadcrumbs = ()=>{
       </ul>
     </nav>
   );
+};
+
+Breadcrumbs.propTypes = {
+  film: PropTypes.object.isRequired,
 };
 
 export default Breadcrumbs;

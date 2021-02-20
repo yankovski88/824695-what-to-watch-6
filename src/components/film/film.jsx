@@ -5,23 +5,29 @@ import UserBlock from "../user-block/user-block.jsx";
 import CatalogLikeFilms from "../catalog-like-films/catalog-like-films";
 import BtnPlay from "../btn-play/btn-play";
 import BtnAddMyList from "../btn-add-my-list/btn-add-my-list";
-import LinkAddReview from "../link-add-review/link-add-review";
+// import LinkAddReview from "../link-add-review/link-add-review";
 import MovieNav from "../movie-nav/movie-nav.jsx";
-import MovieRating from "../movie-rating/movie-rating.jsx";
-import FilmDescription from "../film-description/film-description";
 import PropTypes from "prop-types";
-
+import {Link} from "react-router-dom";
+// import {useHistory, useParams} from "react-router-dom";
 
 const Film = (props) => {
-  const {likeFilms} = props;
-  const [firstFilm] = likeFilms; // ...films
+  const {likeFilms, film, reviews, updateData} = props;
+  // const params = useParams();
+  // const history = useHistory();
+
+
+  const {posterImage, name, genre, released} = film;
+  const [nav] = React.useState({
+    nav: `overview`,
+  });
 
   return (
     <>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src="img/bg-the-grand-budapest-hotel.jpg" alt={firstFilm.name}/>
+            <img src="img/bg-the-grand-budapest-hotel.jpg" alt={name}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -33,16 +39,19 @@ const Film = (props) => {
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{firstFilm.name}</h2>
+              <h2 className="movie-card__title">{name}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{firstFilm.genre}</span>
-                <span className="movie-card__year">{firstFilm.released}</span>
+                <span className="movie-card__genre">{genre}</span>
+                <span className="movie-card__year">{released}</span>
               </p>
 
               <div className="movie-card__buttons">
                 <BtnPlay/>
                 <BtnAddMyList/>
-                <LinkAddReview/>
+                <Link to={`/films/${film ? film.id : ``}/add-review`}
+                  className="btn movie-card__button">Add review</Link>
+
+                {/* <LinkAddReview film={film}/>*/}
               </div>
             </div>
           </div>
@@ -51,16 +60,13 @@ const Film = (props) => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src={firstFilm.posterImage} alt={firstFilm.name} width="218"
+              <img src={posterImage} alt={name} width="218"
                 height="327"/>
             </div>
 
             <div className="movie-card__desc">
 
-              <MovieNav/>
-              <MovieRating firstFilm={firstFilm}/>
-              <FilmDescription firstFilm={firstFilm}/>
-
+              <MovieNav nav = {nav} film={film} reviews={reviews}/>
 
             </div>
           </div>
@@ -69,7 +75,8 @@ const Film = (props) => {
 
       <div className="page-content">
 
-        <CatalogLikeFilms likeFilms={likeFilms}/>
+        <CatalogLikeFilms likeFilms={likeFilms} updateData={updateData}/>
+
         <footer className="page-footer">
           <Logo/>
           <Copyright/>
@@ -78,7 +85,12 @@ const Film = (props) => {
     </>
   );
 };
+
 Film.propTypes = {
   likeFilms: PropTypes.array.isRequired,
+  reviews: PropTypes.array.isRequired,
+  film: PropTypes.object.isRequired,
+  updateData: PropTypes.func.isRequired,
 };
+
 export default Film;

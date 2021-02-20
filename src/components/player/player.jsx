@@ -1,12 +1,16 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-const Player = ()=>{
+
+const Player = (props)=>{
+  const {film} = props;
+
   const style = {
     left: `30%`
   };
   return (
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+      <video src={film.videoLink} className="player__video" poster={film.posterImage}></video>
 
       <button type="button" className="player__exit">Exit</button>
 
@@ -17,7 +21,8 @@ const Player = ()=>{
             <progress className="player__progress" value="30" max="100"></progress>
             <div className="player__toggler" style={style}>Toggler</div>
           </div>
-          <div className="player__time-value">1:30:29</div>
+          {/* 1:30:29*/}
+          <div className="player__time-value">{film.runTime}</div>
         </div>
 
         <div className="player__controls-row">
@@ -40,6 +45,10 @@ const Player = ()=>{
     </div>
 
   );
+};
+
+Player.propTypes = {
+  film: PropTypes.object.isRequired,
 };
 
 export default Player;

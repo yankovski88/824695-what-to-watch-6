@@ -8,39 +8,50 @@ import Player from "../player/player.jsx";
 import AddReview from "../add-review/add-review.jsx";
 import Film from "../film/film.jsx";
 import Error404 from "../error-404/error-404";
+import {getFilm} from "../../utils/utils";
 
-
-// {/*<>*/}
-// {/* <Main mainFilms = {mainFilms}/>*/}
-// {/* <MyList myListFilms={myListFilms}/>*/}
-// {/* <Player/>*/}
-// {/* <AddReview/>*/}
-// {/*<Film likeFilms={likeFilms}/>*/}
-// {/*<Error404/>*/}
-// {/*</>*/}
 
 const App = (props) => {
-  const {mainFilms, myListFilms, likeFilms} = props;
+  const {mainFilms, myListFilms, likeFilms, reviews, movie} = props;
+  const [cinema, setMovie] = React.useState(movie);
+
+  const film = getFilm(cinema, mainFilms);
+
+  const updateData = (value) => {
+    setMovie(value);
+  };
+
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <Main mainFilms = {mainFilms} />
+          <Main mainFilms = {mainFilms} updateData={updateData}/>
         </Route>
         <Route exact path="/login">
           <SignIn />
         </Route>
         <Route exact path="/mylist">
-          <MyList myListFilms={myListFilms}/>
+          <MyList myListFilms={myListFilms} updateData={updateData}/>
         </Route>
-        <Route exact path="/films/:id?">
-          <Film likeFilms={likeFilms}/>
+        {/* "/films/:id/review?"*/}
+        <Route exact path={`/films/${film.id}/add-review`}>
+          <AddReview film={film}
+            onAnswer={() => {}}
+          />
         </Route>
-        <Route exact path="/films/:id/review?">
-          <AddReview />
+        <Route exact path={`/films/${film.id}/details`}>
+          <Film likeFilms={likeFilms} reviews={reviews} film={film}/>
         </Route>
-        <Route exact path="/player/:id?">
-          <Player />
+        <Route exact path={`/films/${film.id}/reviews`}>
+          <Film likeFilms={likeFilms} reviews={reviews} film={film}/>
+        </Route>
+
+        {/* /films/:id?*/}
+        <Route exact path={`/films/${film.id}`}>
+          <Film likeFilms={likeFilms} reviews={reviews} film={film} updateData={updateData}/>
+        </Route>
+        <Route exact path="/player/:id">
+          <Player film={film}/>
         </Route>
         <Route>
           <Error404 />
@@ -53,7 +64,9 @@ const App = (props) => {
 App.propTypes = {
   mainFilms: PropTypes.array.isRequired,
   myListFilms: PropTypes.array.isRequired,
-  likeFilms: PropTypes.array.isRequired
+  likeFilms: PropTypes.array.isRequired, // PropTypes.arrayOf(PropTypes.bool)
+  reviews: PropTypes.array.isRequired,
+  movie: PropTypes.object.isRequired,
 };
 
 export default App;
