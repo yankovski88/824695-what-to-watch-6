@@ -1,10 +1,6 @@
 import PropTypes from "prop-types";
 
 export default PropTypes.shape({
-  likeFilms: PropTypes.array.isRequired,
-  reviews: PropTypes.array.isRequired,
-  // film: PropTypes.object.isRequired,
-  updateData: PropTypes.func.isRequired,
   film: PropTypes.shape({
     "id": PropTypes.number.isRequired,
     "name": PropTypes.string.isRequired,
