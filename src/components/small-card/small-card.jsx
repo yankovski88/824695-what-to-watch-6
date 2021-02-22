@@ -31,7 +31,7 @@ const SmallCard = (props) => {
 SmallCard.propTypes = {
   posterImage: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   updateData: PropTypes.func.isRequired,
   mainFilm: PropTypes.object.isRequired,
   updateFilmActive: PropTypes.func.isRequired,

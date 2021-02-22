@@ -40,10 +40,10 @@ const App = (props) => {
           />
         </Route>
         <Route exact path={`/films/${film.id}/details`}>
-          <Film likeFilms={likeFilms} reviews={reviews} film={film}/>
+          <Film likeFilms={likeFilms} reviews={reviews} film={film} updateData={updateData}/>
         </Route>
         <Route exact path={`/films/${film.id}/reviews`}>
-          <Film likeFilms={likeFilms} reviews={reviews} film={film}/>
+          <Film likeFilms={likeFilms} reviews={reviews} film={film} updateData={updateData}/>
         </Route>
 
         {/* /films/:id?*/}

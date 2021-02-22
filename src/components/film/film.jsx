@@ -10,6 +10,7 @@ import MovieNav from "../movie-nav/movie-nav.jsx";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 // import {useHistory, useParams} from "react-router-dom";
+// import filmProp from "./film.prop";
 
 const Film = (props) => {
   const {likeFilms, film, reviews, updateData} = props;
