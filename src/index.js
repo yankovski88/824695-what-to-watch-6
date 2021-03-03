@@ -14,7 +14,7 @@ const movie = firstMainFilms[0];
 const likeFilms = getFilmData().slice(9, 13);
 
 
-const mainFilms = [...firstMainFilms, ...likeFilms];
+export const mainFilms = [...firstMainFilms, ...likeFilms];
 
 ReactDom.render(
     <App mainFilms = {mainFilms} myListFilms = {myListFilms} likeFilms={likeFilms} reviews={reviews} movie={movie}/>,
