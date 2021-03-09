@@ -11,8 +11,20 @@ import Error404 from "../error-404/error-404";
 import {getFilm} from "../../utils/utils";
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 const App = (props) => {
-  const {mainFilms, myListFilms, likeFilms, reviews, movie} = props;
+  const {mainFilms, myListFilms, likeFilms, reviews, movie, itemGenres} = props;
   const [cinema, setMovie] = React.useState(movie);
 
   const film = getFilm(cinema, mainFilms);
@@ -25,7 +37,7 @@ const App = (props) => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <Main mainFilms = {mainFilms} updateData={updateData}/>
+          <Main mainFilms = {mainFilms} updateData={updateData} itemGenres={itemGenres}/>
         </Route>
         <Route exact path="/login">
           <SignIn />
