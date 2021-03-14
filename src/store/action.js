@@ -1,15 +1,15 @@
 // Определяем действия
 export const ActionType = {
-  ALL : `all`,
-  COMEDIES : `comedies`,
-  CRIME : `crime`,
-  DOCUMENTARY : `documentary`,
-  DRAMAS : `dramas`,
-  HORROR : `horror`,
-  KIDS : `kids`,
-  ROMANCE : `romance`,
-  SCI : `sci`,
-  THRILLERS : `thrillers`,
+  ALL : `All genres`,
+  COMEDIES : `Comedies`,
+  CRIME : `Crime`,
+  DOCUMENTARY : `Documentary`,
+  DRAMAS : `Dramas`,
+  HORROR : `Horror`,
+  KIDS : `Kids & Family`,
+  ROMANCE : `Romance`,
+  SCI : `Sci-Fi`,
+  THRILLERS : `Thrillers`,
 }
 
 // создаем объект функций которые возвращают тип экшина
@@ -19,6 +19,9 @@ export const ActionCreator = {
   }),
   comedies: ()=>({
     type: ActionType.COMEDIES
+  }),
+  crime: ()=>({
+    type: ActionType.CRIME
   }),
   documentary: ()=>({
     type: ActionType.DOCUMENTARY
