@@ -6,7 +6,7 @@ import VideoPlayer from "../videoPlayer/video-player";
 
 const SmallCard = (props) => {
   const {posterImage, name, id, updateData} = props; // mainFilms, updateFilmActive
-  const [filmActive, setFilmActive] = React.useState({});
+  // const [filmActive, setFilmActive] = React.useState({});
 
 
   const [isVideo, setVideo] = React.useState(false);
@@ -14,7 +14,7 @@ const SmallCard = (props) => {
 
 
   const _handleHoverCard = () => {
-    setFilmActive(id);
+    // setFilmActive(id)
     if (timeOutId !== null) {
       clearTimeout(timeOutId);
     }
@@ -30,7 +30,7 @@ const SmallCard = (props) => {
     clearTimeout(timeOutId);
     timeOutId = null;
     setVideo(false);
-    setFilmActive({});
+    // setFilmActive({})
   };
 
 
@@ -52,7 +52,7 @@ const SmallCard = (props) => {
       >
 
         <div className="small-movie-card__image">
-          {isVideo ? <VideoPlayer id={filmActive}/> : <img src={posterImage} alt={name} width="280" height="175"/>}
+          {isVideo ? <VideoPlayer id={id}/> : <img src={posterImage} alt={name} width="280" height="175"/>}
         </div>
         <h3 className="small-movie-card__title">
           <Link className="small-movie-card__link" to={`/films/${id}`}>{name}</Link>
@@ -72,3 +72,4 @@ SmallCard.propTypes = {
 
 
 export default SmallCard;
+
