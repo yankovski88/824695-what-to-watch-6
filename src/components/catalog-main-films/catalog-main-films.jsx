@@ -1,10 +1,8 @@
 import React from "react";
 import SmallCard from "../small-card/small-card.jsx";
 import PropTypes from "prop-types";
-// import {getFilm} from "../../utils/utils.js";
 import {connect} from 'react-redux';
-import {ActionType} from '../../store/action';
-import {GenresItem} from "../item/genres-item";
+
 
 const CatalogMainFilms = (props)=>{
   const {updateData, films} = props;
@@ -29,6 +27,7 @@ const CatalogMainFilms = (props)=>{
 CatalogMainFilms.propTypes = {
   mainFilms: PropTypes.array.isRequired,
   updateData: PropTypes.func.isRequired,
+  films: PropTypes.array.isRequired
 };
 
 

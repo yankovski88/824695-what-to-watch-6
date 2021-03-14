@@ -30,8 +30,6 @@ const Main = (props) => {
       </footer>
     </div>
   </React.Fragment>;
-
-
 };
 
 Main.propTypes = {
@@ -40,17 +38,4 @@ Main.propTypes = {
   itemGenres: PropTypes.array.isRequired,
 };
 
-// // код который достает пропс с фильмами
-// const mapStateToProps = (state)=>({
-//   FILMS: state.mainFilms,
-// })
-//
-// // код который получает диспач чтобы поменять пропсы
-// const mapDispatchToProps = (dispatch)=>({
-//   onUserAnswer(){
-//     dispatch(ActionCreator.all())
-//   }
-// })
-
 export default Main;
-// export default connect(mapStateToProps, mapDispatchToProps)(Main)
