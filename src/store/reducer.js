@@ -20,8 +20,8 @@ export const mainFilms = [...firstMainFilms, ...likeFilms];
 
 const initialState = {
 // Определяем действия
-  ALL: `All`,
-  FILMS: mainFilms
+  genreActive: `All`,
+  films: mainFilms
 }
 
 // const store = windows.Redux.createStore(updateStore, 0);
@@ -36,15 +36,15 @@ const reducer = (state = initialState, action) => {
         }
       }
       return {
-        COMEDY : `Comedy`,
-        state: filmComedys
+        genreActive : `Comedy`,
+        films: filmComedys
       };
 
     case ActionType.ALL:
-      console.log(mainFilms)
       return {
-        ALL: `All`,
-        FILMS: mainFilms
+        ...initialState
+        // genreActive: `All`,
+        // films: mainFilms
       };
     case ActionType.BOEVIC:
       const  filmBoevics = [];
@@ -54,8 +54,8 @@ const reducer = (state = initialState, action) => {
         }
       }
       return {
-        BOEVIC: `Boevic`,
-        FILMS: filmBoevics
+        genreActive: `Boevic`,
+        films: filmBoevics
       };
   }
 

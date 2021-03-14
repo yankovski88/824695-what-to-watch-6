@@ -2,6 +2,9 @@ import React from "react";
 import SmallCard from "../small-card/small-card.jsx";
 import PropTypes from "prop-types";
 // import {getFilm} from "../../utils/utils.js";
+import {connect} from 'react-redux';
+import {ActionType} from '../../store/action';
+import {GenresItem} from "../item/genres-item";
 
 const CatalogMainFilms = (props)=>{
   const {mainFilms, updateData} = props;
@@ -37,4 +40,6 @@ CatalogMainFilms.propTypes = {
   updateData: PropTypes.func.isRequired,
 };
 
+
 export default CatalogMainFilms;
+// export default connect(mapStateToProps, mapDispatchToProps)(CatalogMainFilms); // connect подружит наш компонент с провайдером

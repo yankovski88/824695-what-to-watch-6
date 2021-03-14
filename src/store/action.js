@@ -15,11 +15,24 @@ import mainFilms from "../index.js"
 //   }
 // }
 
+
 export const ActionType = {
 // Определяем действия
-  COMEDY : `Comedy`,
-  BOEVIC : `Boevic`,
-  ALL : `All`,
+  COMEDY : `main/comedy`,
+  BOEVIC : `main/boevic`,
+  ALL : `main/all`,
+}
+
+export const ActionCreator = {
+  Comedy: ()=>({
+    type: ActionType.COMEDY
+  }),
+  Boevic: ()=>({
+    type: ActionType.BOEVIC
+  }),
+  All: ()=>({
+    type: ActionType.ALL
+  })
 }
 
 

@@ -65,6 +65,21 @@ const App = (props) => {
         <Route exact path="/player/:id">
           <Player film={film}/>
         </Route>
+        {/*`Comedy`, `Boevic`, `All`*/}
+        <Route exact path="/player/:id">
+          <Player film={film}/>
+        </Route>
+
+        <Route exact path="/Comedy">
+          <Main mainFilms = {mainFilms} updateData={updateData} itemGenres={itemGenres}/>
+        </Route>
+        <Route exact path="/Boevic">
+          <Main mainFilms = {mainFilms} updateData={updateData} itemGenres={itemGenres}/>
+        </Route>
+        <Route exact path="/All">
+          <Main mainFilms = {mainFilms} updateData={updateData} itemGenres={itemGenres}/>
+        </Route>
+
         <Route>
           <Error404 />
         </Route>
