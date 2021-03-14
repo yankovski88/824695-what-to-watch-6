@@ -7,7 +7,8 @@ import {ActionType} from '../../store/action';
 import {GenresItem} from "../item/genres-item";
 
 const CatalogMainFilms = (props)=>{
-  const {mainFilms, updateData} = props;
+  const {mainFilms, updateData, films} = props;
+  console.log(props)
   // const [filmActive, setFilmActive] = React.useState(``);
 
   // const updateFilmActive = (value) => {
@@ -18,7 +19,7 @@ const CatalogMainFilms = (props)=>{
 
   return (
     <div className="catalog__movies-list">
-      {mainFilms.map((mainFilm)=> {
+      {films.map((mainFilm)=> {
         return <SmallCard
           mainFilm = {mainFilm}
           key = {mainFilm.id}
@@ -27,7 +28,7 @@ const CatalogMainFilms = (props)=>{
           posterImage = {mainFilm.posterImage}
           id = {mainFilm.id}
           updateData={updateData}
-          mainFilms = {mainFilms}
+          // mainFilms = {mainFilms}
           // updateFilmActive={updateFilmActive}
         />;
       })}
@@ -41,5 +42,9 @@ CatalogMainFilms.propTypes = {
 };
 
 
-export default CatalogMainFilms;
-// export default connect(mapStateToProps, mapDispatchToProps)(CatalogMainFilms); // connect подружит наш компонент с провайдером
+const mapStateToProps = (state)=>({
+  films: state.films
+})
+
+export {CatalogMainFilms};
+export default connect(mapStateToProps, null)(CatalogMainFilms); // connect подружит наш компонент с провайдером
