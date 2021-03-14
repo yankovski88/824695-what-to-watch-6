@@ -17,37 +17,29 @@ const GenresItem = (props) => {
     onUserAnswerRomance,
     onUserAnswerSci,
     onUserAnswerThrillers
-  } = props // onUserAnswer,
+  } = props; // onUserAnswer,
 
   let onUserAnswerGenre;
   if (itemGenre === `All genres`) {
-    onUserAnswerGenre = onUserAnswerAll
+    onUserAnswerGenre = onUserAnswerAll;
   } else if (itemGenre === `Comedies`) {
-    onUserAnswerGenre = onUserAnswerComedies
+    onUserAnswerGenre = onUserAnswerComedies;
   } else if (itemGenre === `Crime`) {
-    onUserAnswerGenre = onUserAnswerCrime
-  }
-
-  else if (itemGenre === `Documentary`) {
-    onUserAnswerGenre = onUserAnswerDocumentary
-  }
-  else if (itemGenre === `Dramas`) {
-    onUserAnswerGenre = onUserAnswerDramas
-  }
-  else if (itemGenre === `Horror`) {
-    onUserAnswerGenre = onUserAnswerHorror
-  }
-  else if (itemGenre === `Kids & Family`) {
-    onUserAnswerGenre = onUserAnswerKids
-  }
-  else if (itemGenre === `Romance`) {
-    onUserAnswerGenre = onUserAnswerRomance
-  }
-  else if (itemGenre === `Sci-Fi`) {
-    onUserAnswerGenre = onUserAnswerSci
-  }
-  else if (itemGenre === `Thrillers`) {
-    onUserAnswerGenre = onUserAnswerThrillers
+    onUserAnswerGenre = onUserAnswerCrime;
+  } else if (itemGenre === `Documentary`) {
+    onUserAnswerGenre = onUserAnswerDocumentary;
+  } else if (itemGenre === `Dramas`) {
+    onUserAnswerGenre = onUserAnswerDramas;
+  } else if (itemGenre === `Horror`) {
+    onUserAnswerGenre = onUserAnswerHorror;
+  } else if (itemGenre === `Kids & Family`) {
+    onUserAnswerGenre = onUserAnswerKids;
+  } else if (itemGenre === `Romance`) {
+    onUserAnswerGenre = onUserAnswerRomance;
+  } else if (itemGenre === `Sci-Fi`) {
+    onUserAnswerGenre = onUserAnswerSci;
+  } else if (itemGenre === `Thrillers`) {
+    onUserAnswerGenre = onUserAnswerThrillers;
   }
 
   console.log(props);
@@ -67,27 +59,27 @@ const GenresItem = (props) => {
 
     <li className={`catalog__genres-item ${genreActive === itemGenre ? `catalog__genres-item--active` : ``}`}
       // onAnswer={onUserAnswer}
-        onClick={onUserAnswerGenre}
+      onClick={onUserAnswerGenre}
     >
-      {/*<Link to={`/films/${film.id}`} className="movie-nav__link" name="overview" onClick={handleNavChange}>Overview</Link>*/}
+      {/* <Link to={`/films/${film.id}`} className="movie-nav__link" name="overview" onClick={handleNavChange}>Overview</Link>*/}
 
-      {/*{itemLinkGenres.map((itemLinkGenre)=>{*/}
+      {/* {itemLinkGenres.map((itemLinkGenre)=>{*/}
       {/*  return (*/}
       {/*    <Link to={`/${itemLinkGenre}`}  className="catalog__genres-link">{itemGenre}</Link>*/}
       {/*  )*/}
-      {/*})}*/}
-      <Link to={`/${itemGenre.toLowerCase().split(' ').join('-')}`} className="catalog__genres-link">{itemGenre}</Link>
+      {/* })}*/}
+      <Link to={`/${itemGenre.toLowerCase().split(` `).join(`-`)}`} className="catalog__genres-link">{itemGenre}</Link>
 
     </li>
-  )
-}
+  );
+};
 
 
 // код который достает пропс с фильмами
 const mapStateToProps = (state) => ({ // state это состояние хранилища
   genreActive: state.genreActive, // в объекте из этого состояния вытаскиваем данные и эти ключи станут пропсами
   films: state.films,
-})
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onUserAnswerAll() { // те ключи объекта которые вернет mapDispatchToProps станут пропсами ввиде функции т.е. колбеками
@@ -123,7 +115,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export {GenresItem}
+export {GenresItem};
 export default connect(mapStateToProps, mapDispatchToProps)(GenresItem); // connect подружит наш компонент с провайдером
 
 

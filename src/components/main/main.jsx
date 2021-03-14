@@ -13,7 +13,7 @@ import {ActionType} from "../../store/action";
 
 
 const Main = (props) => {
-  const {mainFilms, updateData, itemGenres, } = props; // itemLinkGenres
+  const {mainFilms, updateData, itemGenres} = props; // itemLinkGenres
 
   return <React.Fragment>
     <Card mainFilms = {mainFilms}/>
@@ -24,7 +24,7 @@ const Main = (props) => {
         <ListGenres itemGenres={itemGenres} mainFilms={mainFilms} updateData={updateData}/>
 
 
-        {/*<ul className="catalog__genres-list">*/}
+        {/* <ul className="catalog__genres-list">*/}
         {/*  <li className="catalog__genres-item catalog__genres-item--active">*/}
         {/*    <a href="#" className="catalog__genres-link">All genres</a>*/}
         {/*  </li>*/}
@@ -55,7 +55,7 @@ const Main = (props) => {
         {/*  <li className="catalog__genres-item">*/}
         {/*    <a href="#" className="catalog__genres-link">Thrillers</a>*/}
         {/*  </li>*/}
-        {/*</ul>*/}
+        {/* </ul>*/}
 
         <CatalogMainFilms mainFilms={mainFilms} updateData={updateData}/>
 

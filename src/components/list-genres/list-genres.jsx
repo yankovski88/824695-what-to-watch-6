@@ -6,24 +6,24 @@ import PropTypes from "prop-types";
 const ListGenres = (props)=>{
   const {itemGenres} = props; // mainFilms, updateData
 
-  console.log(props)
+  console.log(props);
 
   return (
     <>
       <ul className="catalog__genres-list">
-        {/*{  itemLinkGenres.map((itemLinkGenre)=>{*/}
+        {/* {  itemLinkGenres.map((itemLinkGenre)=>{*/}
         {/*    <GenresItem itemLinkGenre={itemLinkGenre}/>*/}
-        {/*})}*/}
-      {itemGenres.map((itemGenre, index)=>{
-        return (
-          <GenresItem key={index} itemGenre={itemGenre}/>
-        )
-      })}
-    </ul>
-      {/*<CatalogMainFilms mainFilms={mainFilms} updateData={updateData}/>*/}
+        {/* })}*/}
+        {itemGenres.map((itemGenre, index)=>{
+          return (
+            <GenresItem key={index} itemGenre={itemGenre}/>
+          );
+        })}
+      </ul>
+      {/* <CatalogMainFilms mainFilms={mainFilms} updateData={updateData}/>*/}
     </>
-  )
-}
+  );
+};
 
 ListGenres.propTypes = {
   mainFilms: PropTypes.array.isRequired,
@@ -31,4 +31,4 @@ ListGenres.propTypes = {
   // itemGenres: PropTypes.array.isRequired,
 };
 
-export default ListGenres
+export default ListGenres;

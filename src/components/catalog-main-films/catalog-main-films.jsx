@@ -8,7 +8,7 @@ import {GenresItem} from "../item/genres-item";
 
 const CatalogMainFilms = (props)=>{
   const {mainFilms, updateData, films} = props;
-  console.log(props)
+  console.log(props);
   // const [filmActive, setFilmActive] = React.useState(``);
 
   // const updateFilmActive = (value) => {
@@ -44,7 +44,7 @@ CatalogMainFilms.propTypes = {
 
 const mapStateToProps = (state)=>({
   films: state.films
-})
+});
 
 export {CatalogMainFilms};
 export default connect(mapStateToProps, null)(CatalogMainFilms); // connect подружит наш компонент с провайдером
