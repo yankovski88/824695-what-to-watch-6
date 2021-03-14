@@ -1,7 +1,8 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {connect} from 'react-redux';
-import {ActionCreator, ActionType} from '../../store/action';
+import {ActionCreator} from '../../store/action';
+import PropTypes from "prop-types";
 
 const GenresItem = (props) => {
   const {
@@ -42,34 +43,12 @@ const GenresItem = (props) => {
     onUserAnswerGenre = onUserAnswerThrillers;
   }
 
-  console.log(props);
-
-  // let itemLinkGenre = ``;
-  // switch (itemGenre){
-  //   case `All genres`:
-  //   itemLinkGenre = `all`
-  //   case `Comedies`:
-  //     itemLinkGenre = `comedies`
-  //   case `Crime`:
-  //     itemLinkGenre = `crime`
-  //
-  // }
-
   return (
 
     <li className={`catalog__genres-item ${genreActive === itemGenre ? `catalog__genres-item--active` : ``}`}
-      // onAnswer={onUserAnswer}
       onClick={onUserAnswerGenre}
     >
-      {/* <Link to={`/films/${film.id}`} className="movie-nav__link" name="overview" onClick={handleNavChange}>Overview</Link>*/}
-
-      {/* {itemLinkGenres.map((itemLinkGenre)=>{*/}
-      {/*  return (*/}
-      {/*    <Link to={`/${itemLinkGenre}`}  className="catalog__genres-link">{itemGenre}</Link>*/}
-      {/*  )*/}
-      {/* })}*/}
       <Link to={`/${itemGenre.toLowerCase().split(` `).join(`-`)}`} className="catalog__genres-link">{itemGenre}</Link>
-
     </li>
   );
 };
@@ -114,6 +93,21 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.thrillers()); // ActionCreator.Comedy()
   },
 });
+
+GenresItem.propTypes = {
+  itemGenre: PropTypes.string.isRequired,
+  genreActive: PropTypes.string.isRequired,
+  onUserAnswerAll: PropTypes.func.isRequired,
+  onUserAnswerComedies: PropTypes.func.isRequired,
+  onUserAnswerCrime: PropTypes.func.isRequired,
+  onUserAnswerDocumentary: PropTypes.func.isRequired,
+  onUserAnswerDramas: PropTypes.func.isRequired,
+  onUserAnswerHorror: PropTypes.func.isRequired,
+  onUserAnswerKids: PropTypes.func.isRequired,
+  onUserAnswerRomance: PropTypes.func.isRequired,
+  onUserAnswerSci: PropTypes.func.isRequired,
+  onUserAnswerThrillers: PropTypes.func.isRequired,
+};
 
 export {GenresItem};
 export default connect(mapStateToProps, mapDispatchToProps)(GenresItem); // connect подружит наш компонент с провайдером

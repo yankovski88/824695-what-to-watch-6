@@ -25,7 +25,7 @@ const CatalogMainFilms = (props)=>{
 };
 
 CatalogMainFilms.propTypes = {
-  mainFilms: PropTypes.array.isRequired,
+  // mainFilms: PropTypes.array.isRequired,
   updateData: PropTypes.func.isRequired,
   films: PropTypes.array.isRequired
 };
