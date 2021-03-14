@@ -13,7 +13,7 @@ import {ActionType} from "../../store/action";
 
 
 const Main = (props) => {
-  const {mainFilms, updateData, itemGenres} = props;
+  const {mainFilms, updateData, itemGenres, } = props; // itemLinkGenres
 
   return <React.Fragment>
     <Card mainFilms = {mainFilms}/>

@@ -26,3 +26,12 @@ export const getRandomInRange = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+export const getGenreFilms = (typeGenre, films)=>{
+  const  genreFilms = [];
+  for (const item of films){
+    if(item.genre === typeGenre){
+      genreFilms.push(item)
+    }
+  }
+  return genreFilms
+}

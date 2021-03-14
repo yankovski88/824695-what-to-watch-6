@@ -1,7 +1,7 @@
 import {getRandomInRange} from "../../utils/utils";
 
 const ids = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-const genres = [`Comedy`, `Boevic`];
+const genres = [`comedies`, `crime`, `documentary`, `dramas`, `horror`, `kids`, `romance`, `sci`, `thrillers`];
 
 export const getFilmData = ()=>{
   const films = [];
@@ -22,7 +22,7 @@ export const getFilmData = ()=>{
           "director": `Wes Andreson`,
           "starring": [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `Saoirse Ronan`],
           "runTime": 99,
-          "genre": genres[getRandomInRange(0, 1)],
+          "genre": genres[getRandomInRange(0, genres.length - 1)],
           "released": 2014,
           "isFavorite": false
         }

@@ -17,10 +17,9 @@ const likeFilms = getFilmData().slice(9, 13);
 export const mainFilms = [...firstMainFilms, ...likeFilms];
 
 
-
 const initialState = {
 // Определяем действия
-  genreActive: `All`,
+  genreActive: `all`,
   films: mainFilms
 }
 
@@ -28,16 +27,10 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.COMEDY:
-      const  filmComedys = [];
-      for (const item of mainFilms){
-        if(item.genre === `Comedy`){
-          filmComedys.push(item)
-        }
-      }
+    case ActionType.COMEDIES:
       return {
-        genreActive : `Comedy`,
-        films: filmComedys
+        genreActive : ActionType.COMEDIES,
+        films: getGenreFilms(ActionType.COMEDIES, mainFilms)
       };
 
     case ActionType.ALL:

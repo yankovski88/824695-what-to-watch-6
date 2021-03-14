@@ -32,9 +32,11 @@ const likeFilms = getFilmData().slice(9, 13);
 
 
 export const mainFilms = [...firstMainFilms, ...likeFilms]; // хранилище всех фильмов
+// [`All genres`, `Comedy`, `Boevic`, ]
+const itemGenres = [`All genres`, `Comedies`, `Crime`, `Documentary`, `Dramas`, `Horror`, `Kids & Family`, `Romance`, `Sci-Fi`, `Thrillers`]
+// const itemLinkGenres = [`all`, `comedies`, `crime`, `documentary`, `dramas`, `horror`, `kids`, `romance`, `sci`, `thrillers`];
 
-const itemGenres = [`All`, `Comedy`, `Boevic`, ]
-
+// `ALL GENRES`, `COMEDIES`, `CRIME`, `DOCUMENTARY`, `DRAMAS`, `HORROR`, `KIDS & FAMILY`, `ROMANCE`, `SCI-FI`, `THRILLERS`
 export const ActionType = {
 // Определяем действия
   COMEDY : `COMEDY`,

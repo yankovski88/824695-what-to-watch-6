@@ -70,16 +70,36 @@ const App = (props) => {
           <Player film={film}/>
         </Route>
 
-        <Route exact path="/Comedy">
+        <Route exact path="/all-genres">
+          <Main  mainFilms = {mainFilms} updateData={updateData} itemGenres={itemGenres}/>
+        </Route>
+        <Route exact path="/comedies">
           <Main mainFilms = {mainFilms} updateData={updateData} itemGenres={itemGenres}/>
         </Route>
-        <Route exact path="/Boevic">
+        <Route exact path="/crime">
           <Main mainFilms = {mainFilms} updateData={updateData} itemGenres={itemGenres}/>
         </Route>
-        <Route exact path="/All">
+        <Route exact path="/documentary">
           <Main mainFilms = {mainFilms} updateData={updateData} itemGenres={itemGenres}/>
         </Route>
-
+        <Route exact path="/dramas">
+          <Main mainFilms = {mainFilms} updateData={updateData} itemGenres={itemGenres}/>
+        </Route>
+        <Route exact path="/horror">
+          <Main mainFilms = {mainFilms} updateData={updateData} itemGenres={itemGenres}/>
+        </Route>
+        <Route exact path="/kids-&-family">
+          <Main mainFilms = {mainFilms} updateData={updateData} itemGenres={itemGenres}/>
+        </Route>
+        <Route exact path="/romance">
+          <Main mainFilms = {mainFilms} updateData={updateData} itemGenres={itemGenres}/>
+        </Route>
+        <Route exact path="/sci-fi">
+          <Main mainFilms = {mainFilms} updateData={updateData} itemGenres={itemGenres}/>
+        </Route>
+        <Route exact path="/thrillers">
+          <Main mainFilms = {mainFilms} updateData={updateData} itemGenres={itemGenres}/>
+        </Route>
         <Route>
           <Error404 />
         </Route>
@@ -94,6 +114,8 @@ App.propTypes = {
   likeFilms: PropTypes.array.isRequired, // PropTypes.arrayOf(PropTypes.bool)
   reviews: PropTypes.array.isRequired,
   movie: PropTypes.object.isRequired,
+  itemLinkGenres: PropTypes.array.isRequired,
+
 };
 
 export default App;

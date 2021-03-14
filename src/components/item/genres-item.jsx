@@ -6,16 +6,27 @@ import {ActionCreator, ActionType} from '../../store/action';
 const GenresItem = (props) =>{
   const {itemGenre,  genreActive, onUserAnswerComedy, onUserAnswerBoevic, onUserAnswerAll} = props // onUserAnswer,
   let a;
-  if(itemGenre === `Comedy`){
+  if(itemGenre === `comedies`){
     a = onUserAnswerComedy
   } else if(itemGenre === `Boevic`){
     a = onUserAnswerBoevic
-  }else if(itemGenre === `All`){
+  }else if(itemGenre === `all`){
     a = onUserAnswerAll
   }
 
-
   console.log(props);
+
+  // let itemLinkGenre = ``;
+  // switch (itemGenre){
+  //   case `All genres`:
+  //   itemLinkGenre = `all`
+  //   case `Comedies`:
+  //     itemLinkGenre = `comedies`
+  //   case `Crime`:
+  //     itemLinkGenre = `crime`
+  //
+  // }
+
     return (
 
   <li className={`catalog__genres-item ${genreActive === itemGenre ? `catalog__genres-item--active` : ``}`}
@@ -24,8 +35,14 @@ const GenresItem = (props) =>{
   >
     {/*<Link to={`/films/${film.id}`} className="movie-nav__link" name="overview" onClick={handleNavChange}>Overview</Link>*/}
 
-    <Link to={`/${itemGenre}`}  className="catalog__genres-link">{itemGenre}</Link>
-     </li>
+    {/*{itemLinkGenres.map((itemLinkGenre)=>{*/}
+    {/*  return (*/}
+    {/*    <Link to={`/${itemLinkGenre}`}  className="catalog__genres-link">{itemGenre}</Link>*/}
+    {/*  )*/}
+    {/*})}*/}
+        <Link to={`/${itemGenre.toLowerCase().split(' ').join('-')}`}  className="catalog__genres-link">{itemGenre}</Link>
+
+  </li>
     )
 }
 
@@ -38,46 +55,17 @@ const mapStateToProps = (state)=>({ // state это состояние хран�
 
 const mapDispatchToProps = (dispatch) => ({
   onUserAnswerComedy() { // те ключи объекта которые вернет mapDispatchToProps станут пропсами ввиде функции т.е. колбеками
-    dispatch(ActionCreator.Comedy()); // ActionCreator.Comedy()
+    dispatch(ActionCreator.comedies()); // ActionCreator.Comedy()
   },
   onUserAnswerBoevic() { // те ключи объекта которые вернет mapDispatchToProps станут пропсами ввиде функции т.е. колбеками
     dispatch(ActionCreator.Boevic()); // ActionCreator.Comedy()
   },
   onUserAnswerAll() { // те ключи объекта которые вернет mapDispatchToProps станут пропсами ввиде функции т.е. колбеками
-    dispatch(ActionCreator.All()); // ActionCreator.Comedy()
+    dispatch(ActionCreator.all()); // ActionCreator.Comedy()
   },
 });
 
 export {GenresItem}
 export default connect(mapStateToProps, mapDispatchToProps)(GenresItem); // connect подружит наш компонент с провайдером
 
-// <li className="catalog__genres-item catalog__genres-item--active">
-//   <a href="#" className="catalog__genres-link">All genres</a>
-// </li>
-// <li className="catalog__genres-item">
-//   <a href="#" className="catalog__genres-link">Comedies</a>
-// </li>
-// <li className="catalog__genres-item">
-//   <a href="#" className="catalog__genres-link">Crime</a>
-// </li>
-// <li className="catalog__genres-item">
-//   <a href="#" className="catalog__genres-link">Documentary</a>
-// </li>
-// <li className="catalog__genres-item">
-//   <a href="#" className="catalog__genres-link">Dramas</a>
-// </li>
-// <li className="catalog__genres-item">
-//   <a href="#" className="catalog__genres-link">Horror</a>
-// </li>
-// <li className="catalog__genres-item">
-//   <a href="#" className="catalog__genres-link">Kids & Family</a>
-// </li>
-// <li className="catalog__genres-item">
-//   <a href="#" className="catalog__genres-link">Romance</a>
-// </li>
-// <li className="catalog__genres-item">
-//   <a href="#" className="catalog__genres-link">Sci-Fi</a>
-// </li>
-// <li className="catalog__genres-item">
-//   <a href="#" className="catalog__genres-link">Thrillers</a>
-// </li>
+
