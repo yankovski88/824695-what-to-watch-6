@@ -7,15 +7,7 @@ import {ActionType} from '../../store/action';
 import {GenresItem} from "../item/genres-item";
 
 const CatalogMainFilms = (props)=>{
-  const {mainFilms, updateData, films} = props;
-  console.log(props);
-  // const [filmActive, setFilmActive] = React.useState(``);
-
-  // const updateFilmActive = (value) => {
-  //   setFilmActive(value);
-  // };
-
-  // getFilm(filmActive, mainFilms);
+  const {updateData, films} = props;
 
   return (
     <div className="catalog__movies-list">
@@ -28,8 +20,6 @@ const CatalogMainFilms = (props)=>{
           posterImage = {mainFilm.posterImage}
           id = {mainFilm.id}
           updateData={updateData}
-          // mainFilms = {mainFilms}
-          // updateFilmActive={updateFilmActive}
         />;
       })}
     </div>

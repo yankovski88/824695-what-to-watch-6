@@ -102,6 +102,7 @@ App.propTypes = {
   likeFilms: PropTypes.array.isRequired, // PropTypes.arrayOf(PropTypes.bool)
   reviews: PropTypes.array.isRequired,
   movie: PropTypes.object.isRequired,
+  itemGenres: PropTypes.array.isRequired,
 };
 
 export default App;

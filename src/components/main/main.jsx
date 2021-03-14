@@ -5,15 +5,10 @@ import Logo from "../logo/logo.jsx";
 import Copyright from "../copyright/copyright.jsx";
 import CatalogMainFilms from "../catalog-main-films/catalog-main-films";
 import ListGenres from "../list-genres/list-genres";
-import {mainFilms} from "../../store/reducer";
-import {ActionCreator} from "../../store/action";
-
-import {connect} from 'react-redux';
-import {ActionType} from "../../store/action";
 
 
 const Main = (props) => {
-  const {mainFilms, updateData, itemGenres} = props; // itemLinkGenres
+  const {mainFilms, updateData, itemGenres} = props;
 
   return <React.Fragment>
     <Card mainFilms = {mainFilms}/>
@@ -22,42 +17,7 @@ const Main = (props) => {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
         <ListGenres itemGenres={itemGenres} mainFilms={mainFilms} updateData={updateData}/>
-
-
-        {/* <ul className="catalog__genres-list">*/}
-        {/*  <li className="catalog__genres-item catalog__genres-item--active">*/}
-        {/*    <a href="#" className="catalog__genres-link">All genres</a>*/}
-        {/*  </li>*/}
-        {/*  <li className="catalog__genres-item">*/}
-        {/*    <a href="#" className="catalog__genres-link">Comedies</a>*/}
-        {/*  </li>*/}
-        {/*  <li className="catalog__genres-item">*/}
-        {/*    <a href="#" className="catalog__genres-link">Crime</a>*/}
-        {/*  </li>*/}
-        {/*  <li className="catalog__genres-item">*/}
-        {/*    <a href="#" className="catalog__genres-link">Documentary</a>*/}
-        {/*  </li>*/}
-        {/*  <li className="catalog__genres-item">*/}
-        {/*    <a href="#" className="catalog__genres-link">Dramas</a>*/}
-        {/*  </li>*/}
-        {/*  <li className="catalog__genres-item">*/}
-        {/*    <a href="#" className="catalog__genres-link">Horror</a>*/}
-        {/*  </li>*/}
-        {/*  <li className="catalog__genres-item">*/}
-        {/*    <a href="#" className="catalog__genres-link">Kids & Family</a>*/}
-        {/*  </li>*/}
-        {/*  <li className="catalog__genres-item">*/}
-        {/*    <a href="#" className="catalog__genres-link">Romance</a>*/}
-        {/*  </li>*/}
-        {/*  <li className="catalog__genres-item">*/}
-        {/*    <a href="#" className="catalog__genres-link">Sci-Fi</a>*/}
-        {/*  </li>*/}
-        {/*  <li className="catalog__genres-item">*/}
-        {/*    <a href="#" className="catalog__genres-link">Thrillers</a>*/}
-        {/*  </li>*/}
-        {/* </ul>*/}
-
-        <CatalogMainFilms mainFilms={mainFilms} updateData={updateData}/>
+        <CatalogMainFilms updateData={updateData}/>
 
         <div className="catalog__more">
           <button className="catalog__button" type="button">Show more</button>
@@ -77,6 +37,7 @@ const Main = (props) => {
 Main.propTypes = {
   mainFilms: PropTypes.array.isRequired,
   updateData: PropTypes.func.isRequired,
+  itemGenres: PropTypes.array.isRequired,
 };
 
 // // код который достает пропс с фильмами
