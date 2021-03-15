@@ -10,7 +10,7 @@ import {connect} from "react-redux";
 
 
 const Main = (props) => {
-  const {mainFilms, updateData, itemGenres, films, countFilm} = props;
+  const {mainFilms, updateData, itemGenres, films, countShowFilm} = props;
   console.log(props)
 const COUNT_MAIN_FILM = 8;
 
@@ -23,7 +23,7 @@ const COUNT_MAIN_FILM = 8;
         <ListGenres itemGenres={itemGenres} updateData={updateData}/>
         <CatalogMainFilms updateData={updateData}/>
 
-        {countFilm > 0 ? <BtnShowMore /> : ``}
+        {films.length > countShowFilm ? <BtnShowMore /> : ``}
       </section>
 
       <footer className="page-footer">
@@ -41,7 +41,7 @@ Main.propTypes = {
 };
 
 const mapStateToProps = (state)=>({
-  countFilm: state.countFilm,
+  countShowFilm: state.countShowFilm,
   films: state.films,
 })
 // mapDispatchToProps

@@ -4,6 +4,7 @@ import {getGenreFilms} from "../utils/utils";
 
 const firstMainFilms = getFilmData().slice(0, 8);
 const likeFilms = getFilmData().slice(8, 12);
+
 export const mainFilms = [...firstMainFilms, ...likeFilms]; // весь массив данных по фильмам
 
 const getFirstPartFilms = (films)=>{
@@ -15,13 +16,21 @@ const getFirstPartFilms = (films)=>{
   return films
 }
 
+// const getFilmsClickMoreBtn = (films, countMoreFilm= 0)=>{
+//   let countShowFilm = 8;
+//   countShowFilm += countMoreFilm;
+// }
+
 
 // начальное состояние хранилища store
 // Определяем действия
+// let countShowFilm = 8; // сколько фильмов надо показать
 const initialState = {
-  countFilm: mainFilms.length - 8,
+  countShowFilm: 8,
+  // countFilm: mainFilms.length - 8,
   genreActive: `All genres`,
-  films: getFirstPartFilms(mainFilms)
+  filmsFirst: getFirstPartFilms(mainFilms),
+  films: mainFilms,
 };
 
 // getFirstPartFilms()
@@ -41,7 +50,7 @@ const reducer = (state = initialState, action) => {
       return {
         countFilm: films.length - 8,
         genreActive: ActionType.COMEDIES,
-        films: films
+        films: getGenreFilms(ActionType.COMEDIES, mainFilms),
       };
 
     case ActionType.CRIME:
@@ -85,7 +94,33 @@ const reducer = (state = initialState, action) => {
         films: getGenreFilms(ActionType.THRILLERS, mainFilms)
       };
     case ActionType.MORE_FILM:
-      console.log(state.films.length)
+      if(state.films.length - state.countShowFilm > 8){
+        return {
+          genreActive: state.genreActive,
+          countShowFilm: state.countShowFilm + 8,
+          films: state.films,
+        }
+      } else {
+        return {
+          genreActive: state.genreActive,
+          films: state.films,
+          countShowFilm: state.countShowFilm + state.films.length - state.countShowFilm
+        }
+      }
+
+      // countShowFilm:
+      // console.log(state.films.length)
+      // if(state.films - 8 >= 8){
+      //   countShowFilm += 8;
+      // } else {
+      //   countShowFilm += state.countFilm
+      // }
+      //
+      // for(item of state.films){
+      //
+      // }
+
+      // console.log(countShowFilm)
       // return {
       //   films: state.films.length
       // };

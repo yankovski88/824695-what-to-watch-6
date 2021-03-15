@@ -5,16 +5,24 @@ import {connect} from 'react-redux';
 
 
 const CatalogMainFilms = (props)=>{
-  const {updateData, films} = props;
+  const {updateData, films, countShowFilm} = props;
   console.log(props)
-  // let startFilms;
-  // if(films.length > 8){
-  //   startFilms = films.slice(0, 8)
-  // }
-  // console.log(startFilms)
+  const arr = [];
+
+  if(films.length > 8){
+for(let i = 0; i < countShowFilm; i++){
+arr.push(films[i])
+}
+  } else {
+    for (let item of films){
+      arr.push(item)
+    }
+
+  }
+
   return (
     <div className="catalog__movies-list">
-      {films.map((mainFilm)=> {
+      {arr.map((mainFilm)=> {
         return <SmallCard
           mainFilm = {mainFilm}
           key = {mainFilm.id}
@@ -37,7 +45,7 @@ CatalogMainFilms.propTypes = {
 
 
 const mapStateToProps = (state)=>({
-  countFilm: state.countFilm,
+  countShowFilm: state.countShowFilm,
   films: state.films
 });
 
