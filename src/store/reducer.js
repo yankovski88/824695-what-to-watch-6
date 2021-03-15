@@ -29,47 +29,56 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.COMEDIES: // если пришло комедии, то изменяем хранилище на комедии
       return {
+        countShowFilm: 8,
         genreActive: ActionType.COMEDIES,
         films: getGenreFilms(ActionType.COMEDIES, mainFilms),
       };
 
     case ActionType.CRIME:
       return {
+        countShowFilm: 8,
         genreActive: ActionType.CRIME,
         films: getGenreFilms(ActionType.CRIME, mainFilms)
       };
     case ActionType.DOCUMENTARY:
       return {
+        countShowFilm: 8,
         genreActive: ActionType.DOCUMENTARY,
         films: getGenreFilms(ActionType.DOCUMENTARY, mainFilms)
       };
     case ActionType.DRAMAS:
       return {
+        countShowFilm: 8,
         genreActive: ActionType.DRAMAS,
         films: getGenreFilms(ActionType.DRAMAS, mainFilms)
       };
     case ActionType.HORROR:
       return {
+        countShowFilm: 8,
         genreActive: ActionType.HORROR,
         films: getGenreFilms(ActionType.HORROR, mainFilms)
       };
     case ActionType.KIDS:
       return {
+        countShowFilm: 8,
         genreActive: ActionType.KIDS,
         films: getGenreFilms(ActionType.KIDS, mainFilms)
       };
     case ActionType.ROMANCE:
       return {
+        countShowFilm: 8,
         genreActive: ActionType.ROMANCE,
         films: getGenreFilms(ActionType.ROMANCE, mainFilms)
       };
     case ActionType.SCI:
       return {
+        countShowFilm: 8,
         genreActive: ActionType.SCI,
         films: getGenreFilms(ActionType.SCI, mainFilms)
       };
     case ActionType.THRILLERS:
       return {
+        countShowFilm: 8,
         genreActive: ActionType.THRILLERS,
         films: getGenreFilms(ActionType.THRILLERS, mainFilms)
       };

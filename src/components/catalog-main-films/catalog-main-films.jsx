@@ -29,7 +29,8 @@ const CatalogMainFilms = (props) => {
 
 CatalogMainFilms.propTypes = {
   updateData: PropTypes.func.isRequired,
-  films: PropTypes.array.isRequired
+  films: PropTypes.array.isRequired,
+  countShowFilm: PropTypes.number.isRequired,
 };
 
 

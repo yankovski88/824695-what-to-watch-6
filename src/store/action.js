@@ -45,7 +45,7 @@ export const ActionCreator = {
   thrillers: ()=>({
     type: ActionType.THRILLERS
   }),
-  MORE_FILM: ()=>({
+  moreFilm: ()=>({
     type: ActionType.MORE_FILM
   })
 };

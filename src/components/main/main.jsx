@@ -35,12 +35,14 @@ Main.propTypes = {
   mainFilms: PropTypes.array.isRequired,
   updateData: PropTypes.func.isRequired,
   itemGenres: PropTypes.array.isRequired,
+  films: PropTypes.array.isRequired,
+  countShowFilm: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state)=>({
   countShowFilm: state.countShowFilm,
   films: state.films,
-})
+});
 
-export  {Main};
-export default connect(mapStateToProps, null)(Main)
+export {Main};
+export default connect(mapStateToProps, null)(Main);
