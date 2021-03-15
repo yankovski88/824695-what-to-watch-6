@@ -46,7 +46,7 @@ const GenresItem = (props) => {
   return (
 
     <li className={`catalog__genres-item ${genreActive === itemGenre ? `catalog__genres-item--active` : ``}`}
-      onClick={onUserAnswerGenre}
+      onClick={onUserAnswerGenre} // клик по меню
     >
       <Link to={`/${itemGenre.toLowerCase().split(` `).join(`-`)}`} className="catalog__genres-link">{itemGenre}</Link>
     </li>
@@ -62,35 +62,35 @@ const mapStateToProps = (state) => ({ // state это состояние хра�
 
 const mapDispatchToProps = (dispatch) => ({
   onUserAnswerAll() { // те ключи объекта которые вернет mapDispatchToProps станут пропсами ввиде функции т.е. колбеками
-    dispatch(ActionCreator.all()); // ActionCreator.Comedy()
+    dispatch(ActionCreator.all());
   },
   onUserAnswerComedies() { // те ключи объекта которые вернет mapDispatchToProps станут пропсами ввиде функции т.е. колбеками
-    dispatch(ActionCreator.comedies()); // ActionCreator.Comedy()
+    dispatch(ActionCreator.comedies()); //
   },
   onUserAnswerCrime() { // те ключи объекта которые вернет mapDispatchToProps станут пропсами ввиде функции т.е. колбеками
-    dispatch(ActionCreator.crime()); // ActionCreator.Comedy()
+    dispatch(ActionCreator.crime());
   },
 
   onUserAnswerDocumentary() { // те ключи объекта которые вернет mapDispatchToProps станут пропсами ввиде функции т.е. колбеками
-    dispatch(ActionCreator.documentary()); // ActionCreator.Comedy()
+    dispatch(ActionCreator.documentary());
   },
   onUserAnswerDramas() { // те ключи объекта которые вернет mapDispatchToProps станут пропсами ввиде функции т.е. колбеками
-    dispatch(ActionCreator.dramas()); // ActionCreator.Comedy()
+    dispatch(ActionCreator.dramas());
   },
   onUserAnswerHorror() { // те ключи объекта которые вернет mapDispatchToProps станут пропсами ввиде функции т.е. колбеками
-    dispatch(ActionCreator.horror()); // ActionCreator.Comedy()
+    dispatch(ActionCreator.horror());
   },
   onUserAnswerKids() { // те ключи объекта которые вернет mapDispatchToProps станут пропсами ввиде функции т.е. колбеками
-    dispatch(ActionCreator.kids()); // ActionCreator.Comedy()
+    dispatch(ActionCreator.kids());
   },
   onUserAnswerRomance() { // те ключи объекта которые вернет mapDispatchToProps станут пропсами ввиде функции т.е. колбеками
-    dispatch(ActionCreator.romance()); // ActionCreator.Comedy()
+    dispatch(ActionCreator.romance());
   },
   onUserAnswerSci() { // те ключи объекта которые вернет mapDispatchToProps станут пропсами ввиде функции т.е. колбеками
-    dispatch(ActionCreator.sci()); // ActionCreator.Comedy()
+    dispatch(ActionCreator.sci());
   },
   onUserAnswerThrillers() { // те ключи объекта которые вернет mapDispatchToProps станут пропсами ввиде функции т.е. колбеками
-    dispatch(ActionCreator.thrillers()); // ActionCreator.Comedy()
+    dispatch(ActionCreator.thrillers());
   },
 });
 

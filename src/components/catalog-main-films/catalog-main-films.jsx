@@ -36,4 +36,5 @@ const mapStateToProps = (state)=>({
 });
 
 export {CatalogMainFilms};
+// здесь ничего не передаем значит диспачь не нужен
 export default connect(mapStateToProps, null)(CatalogMainFilms); // connect подружит наш компонент с провайдером

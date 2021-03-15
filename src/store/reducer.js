@@ -4,22 +4,24 @@ import {getGenreFilms} from "../utils/utils";
 
 const firstMainFilms = getFilmData().slice(0, 8);
 const likeFilms = getFilmData().slice(9, 13);
-export const mainFilms = [...firstMainFilms, ...likeFilms];
+export const mainFilms = [...firstMainFilms, ...likeFilms]; // весь массив данных по фильмам
 
+// начальное состояние хранилища store
 const initialState = {
 // Определяем действия
   genreActive: `All genres`,
   films: mainFilms
 };
 
+// код который наосновании action изменяет хранилище(состояние) приложения
 const reducer = (state = initialState, action) => {
-  switch (action.type) {
+  switch (action.type) { // action.type приходит объект с название action что произашло
     case ActionType.ALL:
       return {
         ...initialState
       };
 
-    case ActionType.COMEDIES:
+    case ActionType.COMEDIES: // если пришло комедии, то изменяем хранилище на комедии
       return {
         genreActive: ActionType.COMEDIES,
         films: getGenreFilms(ActionType.COMEDIES, mainFilms)

@@ -18,7 +18,6 @@ const ListGenres = (props)=>{
 };
 
 ListGenres.propTypes = {
-  mainFilms: PropTypes.array.isRequired,
   // updateData: PropTypes.func.isRequired,
   itemGenres: PropTypes.array.isRequired,
 };

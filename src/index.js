@@ -3,11 +3,10 @@ import ReactDom from "react-dom";
 import App from "./components/app/app.jsx";
 import {getFilmData} from "./components/mock/film";
 import {reviews} from "./components/mock/reviews";
+import {composeWithDevTools} from 'redux-devtools-extension';
 import {createStore} from 'redux'; // создаем хранилище
 import {Provider} from 'react-redux'; // соединяем храниище и react
 import {reducer} from './store/reducer';
-import {composeWithDevTools} from 'redux-devtools-extension';
-
 
 // 1. создал reducer принимать значение action и выводит новый массив фильмов
 // 2. создал action который может приходить
@@ -21,13 +20,9 @@ const store = createStore(
 );
 
 const firstMainFilms = getFilmData().slice(0, 8);
-
 const myListFilms = firstMainFilms.slice(0, 2);
 const movie = firstMainFilms[0];
-
-
 const likeFilms = getFilmData().slice(9, 13);
-
 
 export const mainFilms = [...firstMainFilms, ...likeFilms]; // хранилище всех фильмов
 const itemGenres = [`All genres`, `Comedies`, `Crime`, `Documentary`, `Dramas`, `Horror`, `Kids & Family`, `Romance`, `Sci-Fi`, `Thrillers`];

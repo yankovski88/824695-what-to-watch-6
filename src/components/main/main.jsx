@@ -15,8 +15,8 @@ const Main = (props) => {
     <div className="page-content">
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-
-        <ListGenres itemGenres={itemGenres} mainFilms={mainFilms} updateData={updateData}/>
+        {/* mainFilms={mainFilms}*/}
+        <ListGenres itemGenres={itemGenres} updateData={updateData}/>
         <CatalogMainFilms updateData={updateData}/>
 
         <div className="catalog__more">
