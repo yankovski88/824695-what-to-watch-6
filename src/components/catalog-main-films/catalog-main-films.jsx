@@ -6,7 +6,12 @@ import {connect} from 'react-redux';
 
 const CatalogMainFilms = (props)=>{
   const {updateData, films} = props;
-
+  console.log(props)
+  // let startFilms;
+  // if(films.length > 8){
+  //   startFilms = films.slice(0, 8)
+  // }
+  // console.log(startFilms)
   return (
     <div className="catalog__movies-list">
       {films.map((mainFilm)=> {
@@ -32,6 +37,7 @@ CatalogMainFilms.propTypes = {
 
 
 const mapStateToProps = (state)=>({
+  countFilm: state.countFilm,
   films: state.films
 });
 

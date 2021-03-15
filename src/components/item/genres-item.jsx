@@ -70,7 +70,6 @@ const mapDispatchToProps = (dispatch) => ({
   onUserAnswerCrime() { // те ключи объекта которые вернет mapDispatchToProps станут пропсами ввиде функции т.е. колбеками
     dispatch(ActionCreator.crime());
   },
-
   onUserAnswerDocumentary() { // те ключи объекта которые вернет mapDispatchToProps станут пропсами ввиде функции т.е. колбеками
     dispatch(ActionCreator.documentary());
   },

@@ -3,15 +3,30 @@ import {getFilmData} from "../components/mock/film";
 import {getGenreFilms} from "../utils/utils";
 
 const firstMainFilms = getFilmData().slice(0, 8);
-const likeFilms = getFilmData().slice(9, 13);
+const likeFilms = getFilmData().slice(8, 12);
 export const mainFilms = [...firstMainFilms, ...likeFilms]; // весь массив данных по фильмам
 
+const getFirstPartFilms = (films)=>{
+  if(films.length / 8 > 1){
+    let a = 0;
+    let b = 8;
+    return films.slice(a, b)
+  }
+  return films
+}
+
+
 // начальное состояние хранилища store
-const initialState = {
 // Определяем действия
+const initialState = {
+  countFilm: mainFilms.length - 8,
   genreActive: `All genres`,
-  films: mainFilms
+  films: getFirstPartFilms(mainFilms)
 };
+
+// getFirstPartFilms()
+console.log(getGenreFilms(ActionType.COMEDIES, mainFilms))
+console.log(mainFilms)
 
 // код который наосновании action изменяет хранилище(состояние) приложения
 const reducer = (state = initialState, action) => {
@@ -22,9 +37,11 @@ const reducer = (state = initialState, action) => {
       };
 
     case ActionType.COMEDIES: // если пришло комедии, то изменяем хранилище на комедии
+      const films = getFirstPartFilms(getGenreFilms(ActionType.COMEDIES, mainFilms))
       return {
+        countFilm: films.length - 8,
         genreActive: ActionType.COMEDIES,
-        films: getGenreFilms(ActionType.COMEDIES, mainFilms)
+        films: films
       };
 
     case ActionType.CRIME:
@@ -67,6 +84,11 @@ const reducer = (state = initialState, action) => {
         genreActive: ActionType.THRILLERS,
         films: getGenreFilms(ActionType.THRILLERS, mainFilms)
       };
+    case ActionType.MORE_FILM:
+      console.log(state.films.length)
+      // return {
+      //   films: state.films.length
+      // };
   }
 
   return state;

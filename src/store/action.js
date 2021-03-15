@@ -10,6 +10,7 @@ export const ActionType = {
   ROMANCE: `Romance`,
   SCI: `Sci-Fi`,
   THRILLERS: `Thrillers`,
+  MORE_FILM: `MORE_FILM`
 };
 
 // создаем объект функций которые возвращают тип экшина
@@ -44,6 +45,9 @@ export const ActionCreator = {
   thrillers: ()=>({
     type: ActionType.THRILLERS
   }),
+  MORE_FILM: ()=>({
+    type: ActionType.MORE_FILM
+  })
 };
 
 

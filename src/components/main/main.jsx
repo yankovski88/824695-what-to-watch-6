@@ -5,10 +5,14 @@ import Logo from "../logo/logo.jsx";
 import Copyright from "../copyright/copyright.jsx";
 import CatalogMainFilms from "../catalog-main-films/catalog-main-films";
 import ListGenres from "../list-genres/list-genres";
+import BtnShowMore from "../btn-show-more/btn-show-more";
+import {connect} from "react-redux";
 
 
 const Main = (props) => {
-  const {mainFilms, updateData, itemGenres} = props;
+  const {mainFilms, updateData, itemGenres, films, countFilm} = props;
+  console.log(props)
+const COUNT_MAIN_FILM = 8;
 
   return <React.Fragment>
     <Card mainFilms = {mainFilms}/>
@@ -19,9 +23,7 @@ const Main = (props) => {
         <ListGenres itemGenres={itemGenres} updateData={updateData}/>
         <CatalogMainFilms updateData={updateData}/>
 
-        <div className="catalog__more">
-          <button className="catalog__button" type="button">Show more</button>
-        </div>
+        {countFilm > 0 ? <BtnShowMore /> : ``}
       </section>
 
       <footer className="page-footer">
@@ -38,4 +40,10 @@ Main.propTypes = {
   itemGenres: PropTypes.array.isRequired,
 };
 
-export default Main;
+const mapStateToProps = (state)=>({
+  countFilm: state.countFilm,
+  films: state.films,
+})
+// mapDispatchToProps
+export  {Main};
+export default connect(mapStateToProps, null)(Main)
