@@ -11,15 +11,12 @@ import {connect} from "react-redux";
 
 const Main = (props) => {
   const {mainFilms, updateData, itemGenres, films, countShowFilm} = props;
-  console.log(props)
-const COUNT_MAIN_FILM = 8;
 
   return <React.Fragment>
     <Card mainFilms = {mainFilms}/>
     <div className="page-content">
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-        {/* mainFilms={mainFilms}*/}
         <ListGenres itemGenres={itemGenres} updateData={updateData}/>
         <CatalogMainFilms updateData={updateData}/>
 
@@ -44,6 +41,6 @@ const mapStateToProps = (state)=>({
   countShowFilm: state.countShowFilm,
   films: state.films,
 })
-// mapDispatchToProps
+
 export  {Main};
 export default connect(mapStateToProps, null)(Main)

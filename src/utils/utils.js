@@ -35,3 +35,21 @@ export const getGenreFilms = (typeGenre, films)=>{
   }
   return genreFilms;
 };
+
+
+// функция которая возвраещь массив фильмов для рендера на основании числа фильмов сколько надо
+export const getActiveFilms = (films, countShowFilm)=>{
+  const activeFilms = [];
+
+  if (films.length > 8) {
+    for (let i = 0; i < countShowFilm; i++) {
+      activeFilms.push(films[i]);
+    }
+  } else {
+    for (let item of films) {
+      activeFilms.push(item);
+    }
+
+  }
+  return activeFilms;
+};

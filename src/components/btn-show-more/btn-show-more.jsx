@@ -7,24 +7,24 @@ const BtnShowMore = (props) => {
   return (
     <div className="catalog__more">
       <button className="catalog__button" type="button"
-      onClick={onClickMoreFilm}
+        onClick={onClickMoreFilm}
       >Show more</button>
     </div>
-  )
-}
+  );
+};
 
 
-export {BtnShowMore}
+export {BtnShowMore};
 
 const mapStateToProps = (state)=>({
   films: state.films
 });
 
 const mapDispatchToProps = (dispatch)=>({
-   onClickMoreFilm(){
-     dispatch(ActionCreator.MORE_FILM())
-   }
-})
+  onClickMoreFilm() {
+    dispatch(ActionCreator.MORE_FILM());
+  }
+});
 
 // здесь ничего не передаем значит диспачь не нужен
 export default connect(mapStateToProps, mapDispatchToProps)(BtnShowMore); // connect подружит наш компонент с провайдером
