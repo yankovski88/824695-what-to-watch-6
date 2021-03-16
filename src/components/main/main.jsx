@@ -38,6 +38,7 @@ Main.propTypes = {
   itemGenres: PropTypes.array.isRequired,
   films: PropTypes.array.isRequired,
   countShowFilm: PropTypes.number.isRequired,
+  setGenre: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state)=>({
@@ -48,10 +49,10 @@ const mapStateToProps = (state)=>({
 
 // если передать setGenre на клик меню жанр, то в aaction в payload попадет название жанра
 const mapDispatchToProps = (dispatch)=>({
-  setGenre(genre){
-    dispatch(ActionCreator.setGenre(genre)) // genre это payload дополнитеьная инфа
+  setGenre(genre) {
+    dispatch(ActionCreator.setGenre(genre)); // genre это payload дополнитеьная инфа
   }
-})
+});
 
 export {Main};
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

@@ -29,8 +29,8 @@ export const getRandomInRange = (min, max) => {
 };
 
 export const getGenreFilms = (typeGenre, films)=>{
-  if(typeGenre === ALL_GENRES){
-    return films
+  if (typeGenre === ALL_GENRES) {
+    return films;
   } else {
     const genreFilms = [];
     for (const item of films) {
@@ -55,7 +55,6 @@ export const getActiveFilms = (films, countShowFilm)=>{
     for (let item of films) {
       activeFilms.push(item);
     }
-
   }
   return activeFilms;
 };
