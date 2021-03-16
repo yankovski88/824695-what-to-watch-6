@@ -3,13 +3,13 @@ import GenresItem from "../item/genres-item";
 import PropTypes from "prop-types";
 
 const ListGenres = (props)=>{
-  const {itemGenres} = props;
+  const {itemGenres, films, setGenre} = props;
   return (
     <>
       <ul className="catalog__genres-list">
-        {itemGenres.map((itemGenre, index)=>{
+        {itemGenres.map((itemGenre)=>{
           return (
-            <GenresItem key={index} itemGenre={itemGenre}/>
+            <GenresItem key={itemGenre} itemGenre={itemGenre} setGenre={setGenre}/>
           );
         })}
       </ul>

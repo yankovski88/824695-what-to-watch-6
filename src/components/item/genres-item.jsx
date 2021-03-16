@@ -5,7 +5,10 @@ import PropTypes from "prop-types";
 
 const GenresItem = (props) => {
   const {
-    itemGenre,
+    setGenre,
+    itemGenre, // это item жанр меню
+    selectedGenre, // жанр который был кликнут
+
     genreActive,
     onUserAnswerAll,
     onUserAnswerComedies,
@@ -18,6 +21,8 @@ const GenresItem = (props) => {
     onUserAnswerSci,
     onUserAnswerThrillers
   } = props; // onUserAnswer,
+
+  console.log(props)
 
   let onUserAnswerGenre;
   if (itemGenre === `All genres`) {
@@ -43,9 +48,12 @@ const GenresItem = (props) => {
   }
 
   return (
-
-    <li className={`catalog__genres-item ${genreActive === itemGenre ? `catalog__genres-item--active` : ``}`}
-      onClick={onUserAnswerGenre} // клик по меню
+    // чтобы выделить жанр меню нужно его сравнить с кликнутым жанром
+    // где кликнутый жанр????????
+    <li
+      onClick={()=> setGenre(itemGenre)}
+      className={`catalog__genres-item ${selectedGenre === itemGenre ? `catalog__genres-item--active` : ``}`}
+      // onClick={onUserAnswerGenre} // клик по меню
     >
       <a href="#" className="catalog__genres-link">{itemGenre}</a>
     </li>
@@ -57,6 +65,7 @@ const GenresItem = (props) => {
 const mapStateToProps = (state) => ({ // state это состояние хранилища
   genreActive: state.genreActive, // в объекте из этого состояния вытаскиваем данные и эти ключи станут пропсами
   films: state.films,
+  selectedGenre: state.genre
 });
 
 const mapDispatchToProps = (dispatch) => ({
