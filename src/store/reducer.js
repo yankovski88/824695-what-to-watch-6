@@ -32,14 +32,12 @@ export const reducer = (state = initialState, action) => {
     case ActionType.MORE_FILM:
       if (state.films.length - state.countShowFilm > NUMBER_FILM) {
         return {
-          // genreActive: state.genreActive,
           genre: state.genre,
           countShowFilm: state.countShowFilm + NUMBER_FILM,
           films: state.films,
         };
       } else {
         return {
-          // genreActive: state.genreActive,
           genre: state.genre,
           films: state.films,
           countShowFilm: state.countShowFilm + state.films.length - state.countShowFilm
