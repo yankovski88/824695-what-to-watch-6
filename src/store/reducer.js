@@ -20,6 +20,7 @@ const initialState = {
   films: mainFilms,
 };
 
+
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.GENRE:
