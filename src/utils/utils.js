@@ -1,3 +1,5 @@
+import {ALL_GENRES} from "../constants/constants";
+
 export const getTimeMovie = (timeMovie)=>{
   const MINUTES_IN_HOUR = 60;
   if (timeMovie / MINUTES_IN_HOUR > 1) {
@@ -27,13 +29,17 @@ export const getRandomInRange = (min, max) => {
 };
 
 export const getGenreFilms = (typeGenre, films)=>{
-  const genreFilms = [];
-  for (const item of films) {
-    if (item.genre === typeGenre) {
-      genreFilms.push(item);
+  if(typeGenre === ALL_GENRES){
+    return films
+  } else {
+    const genreFilms = [];
+    for (const item of films) {
+      if (item.genre === typeGenre) {
+        genreFilms.push(item);
+      }
     }
+    return genreFilms;
   }
-  return genreFilms;
 };
 
 

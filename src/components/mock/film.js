@@ -12,6 +12,7 @@ export const getFilmData = ()=>{
         {
           "id": item,
           "name": `The Grand Budapest Hotel ${item}`,
+          "genre": genres[getRandomInRange(0, genres.length - 1)],
           "posterImage": `img/the-grand-budapest-hotel-poster.jpg`,
           "previewImage": `img/the-grand-budapest-hotel.jpg`,
           "backgroundImage": `img/the-grand-budapest-hotel-bg.jpg`,
@@ -24,7 +25,6 @@ export const getFilmData = ()=>{
           "director": `Wes Andreson`,
           "starring": [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `Saoirse Ronan`],
           "runTime": 99,
-          "genre": genres[getRandomInRange(0, genres.length - 1)],
           "released": 2014,
           "isFavorite": false
         }
