@@ -1,5 +1,4 @@
 import React from "react";
-import {Link} from "react-router-dom";
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../store/action';
 import PropTypes from "prop-types";
@@ -48,7 +47,7 @@ const GenresItem = (props) => {
     <li className={`catalog__genres-item ${genreActive === itemGenre ? `catalog__genres-item--active` : ``}`}
       onClick={onUserAnswerGenre} // клик по меню
     >
-      <Link to={`/${itemGenre.toLowerCase().split(` `).join(`-`)}`} className="catalog__genres-link">{itemGenre}</Link>
+      <a href="#" className="catalog__genres-link">{itemGenre}</a>
     </li>
   );
 };
