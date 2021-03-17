@@ -54,6 +54,7 @@ export const getActiveFilms = (films, countShowFilm)=>{
   return activeFilms;
 };
 
+
 // // функция которая возвраещь массив фильмов для рендера на основании числа фильмов сколько надо
 // export const getActiveFilms = (films, countShowFilm)=>{
 //   const activeFilms = [];
