@@ -8,7 +8,6 @@ const SmallCard = (props) => {
   const {posterImage, name, id, updateData} = props; // mainFilms, updateFilmActive
   // const [filmActive, setFilmActive] = React.useState({});
 
-
   const [isVideo, setVideo] = React.useState(false);
   let timeOutId = null;
 

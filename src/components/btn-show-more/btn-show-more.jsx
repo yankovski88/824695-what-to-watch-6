@@ -18,10 +18,6 @@ BtnShowMore.propTypes = {
   onClickMoreFilm: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state)=>({
-  films: state.films
-});
-
 const mapDispatchToProps = (dispatch)=>({
   onClickMoreFilm() {
     dispatch(ActionCreator.moreFilm());
@@ -30,4 +26,4 @@ const mapDispatchToProps = (dispatch)=>({
 
 export {BtnShowMore};
 // здесь ничего не передаем значит диспачь не нужен
-export default connect(mapStateToProps, mapDispatchToProps)(BtnShowMore); // connect подружит наш компонент с провайдером
+export default connect(null, mapDispatchToProps)(BtnShowMore); // connect подружит наш компонент с провайдером

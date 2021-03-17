@@ -57,37 +57,6 @@ const App = (props) => {
         <Route exact path="/player/:id">
           <Player film={film}/>
         </Route>
-
-        <Route exact path="/all-genres">
-          <Main mainFilms = {mainFilms} updateData={updateData} itemGenres={itemGenres}/>
-        </Route>
-        <Route exact path="/comedies">
-          <Main mainFilms = {mainFilms} updateData={updateData} itemGenres={itemGenres}/>
-        </Route>
-        <Route exact path="/crime">
-          <Main mainFilms = {mainFilms} updateData={updateData} itemGenres={itemGenres}/>
-        </Route>
-        <Route exact path="/documentary">
-          <Main mainFilms = {mainFilms} updateData={updateData} itemGenres={itemGenres}/>
-        </Route>
-        <Route exact path="/dramas">
-          <Main mainFilms = {mainFilms} updateData={updateData} itemGenres={itemGenres}/>
-        </Route>
-        <Route exact path="/horror">
-          <Main mainFilms = {mainFilms} updateData={updateData} itemGenres={itemGenres}/>
-        </Route>
-        <Route exact path="/kids-&-family">
-          <Main mainFilms = {mainFilms} updateData={updateData} itemGenres={itemGenres}/>
-        </Route>
-        <Route exact path="/romance">
-          <Main mainFilms = {mainFilms} updateData={updateData} itemGenres={itemGenres}/>
-        </Route>
-        <Route exact path="/sci-fi">
-          <Main mainFilms = {mainFilms} updateData={updateData} itemGenres={itemGenres}/>
-        </Route>
-        <Route exact path="/thrillers">
-          <Main mainFilms = {mainFilms} updateData={updateData} itemGenres={itemGenres}/>
-        </Route>
         <Route>
           <Error404 />
         </Route>
