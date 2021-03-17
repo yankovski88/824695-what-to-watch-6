@@ -26,6 +26,7 @@ export const reducer = (state = initialState, action) => {
         ...state,
         genre: action.payload,
         films: getGenreFilms(action.payload, mainFilms),
+        countShowFilm: 8,
       };
     case ActionType.MORE_FILM:
       if (state.films.length - state.countShowFilm > NUMBER_FILM) {
