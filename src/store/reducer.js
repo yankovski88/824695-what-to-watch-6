@@ -1,9 +1,7 @@
 import {ActionType} from "../store/action";
 import {getFilmData} from "../components/mock/film";
 import {getGenreFilms} from "../utils/utils";
-import {ALL_GENRES} from "../constants/constants";
-
-const NUMBER_FILM = 8; // число фильмов за раз
+import {ALL_GENRES, NUMBER_FILM} from "../constants/constants";
 
 
 const firstMainFilms = getFilmData().slice(0, 8);
