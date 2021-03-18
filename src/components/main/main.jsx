@@ -15,7 +15,7 @@ import {fetchMoviesList} from '../../store/api-actions';
 
 
 const Main = (props) => {
-  const {mainFilms, updateData, itemGenres, films, countShowFilm, setGenre, isDataLoaded, onLoadData} = props;
+  const {mainFilms, updateData, films, countShowFilm, setGenre, isDataLoaded, onLoadData} = props; // itemGenres
 
 
 
@@ -36,7 +36,7 @@ const Main = (props) => {
     <div className="page-content">
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <ListGenres itemGenres={itemGenres} films={films} updateData={updateData} setGenre={setGenre}/>
+        <ListGenres films={films} updateData={updateData} setGenre={setGenre}/>
         <CatalogMainFilms updateData={updateData}/>
 
         {films.length > countShowFilm ? <BtnShowMore /> : ``}
@@ -53,7 +53,7 @@ const Main = (props) => {
 Main.propTypes = {
   mainFilms: PropTypes.array.isRequired,
   updateData: PropTypes.func.isRequired,
-  itemGenres: PropTypes.array.isRequired,
+  // itemGenres: PropTypes.array.isRequired,
   films: PropTypes.array.isRequired,
   countShowFilm: PropTypes.number.isRequired,
   setGenre: PropTypes.func.isRequired,

@@ -5,25 +5,39 @@ import {ALL_GENRES, NUMBER_FILM} from "../constants/constants";
 
 
 // метод Адаптер который адоптирует данные от сервера на читаемые данные для клиента
-const adaptToClient = (point)=> { // получаем объект с неугодными нам полями изменили названия полей, удалили старые серверные и вернули отредоктированный объект
+const adaptToClient = (film)=> { // получаем объект с неугодными нам полями изменили названия полей, удалили старые серверные и вернули отредоктированный объект
 
   const adaptedPoint = Object.assign(
     {},
-    point,
+    film,
     {
       // в basePrice записали, то что пришло с сервера, плюс можно модифицировать данные как с датой
-      basePrice: point.base_price,
-      dateFrom: new Date(point.date_from),
-      dateTo: new Date(point.date_to),
-      isFavorite: point.is_favorite,
+      backgroundColor: film.background_color,
+      backgroundImage: film.background_image,
+      isFavorite: film.is_favorite,
+      posterImage: film.poster_image,
+      previewImage: film.preview_image,
+      previewVideoLink: film.preview_video_link,
+      runTime: film.run_time,
+      scoresCount: film.scores_count,
+      videoLink: film.video_link,
+
+      // dateFrom: new Date(point.date_from),
+      // dateTo: new Date(point.date_to),
+      // isFavorite: point.is_favorite,
     }
   );
 
   // Ненужные ключи мы удаляем
-  delete adaptedPoint.base_price;
-  delete adaptedPoint.date_from;
-  delete adaptedPoint.date_to;
+  delete adaptedPoint.background_color;
+  delete adaptedPoint.background_image;
   delete adaptedPoint.is_favorite;
+  delete adaptedPoint.poster_image;
+  delete adaptedPoint.preview_image;
+  delete adaptedPoint.preview_video_link;
+  delete adaptedPoint.run_time;
+  delete adaptedPoint.scores_count;
+  delete adaptedPoint.video_link;
 
   return adaptedPoint;
 }
@@ -70,14 +84,16 @@ const initialState = {
   isDataLoaded: false
 };
 
+let allFilms = [];
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.GENRE:
+      console.log(allFilms)
       return {
         ...state,
         genre: action.payload,
-        films: getGenreFilms(action.payload, mainFilms),
+        films: getGenreFilms(action.payload, allFilms),
         countShowFilm: 8,
       };
     case ActionType.MORE_FILM:
@@ -95,11 +111,23 @@ export const reducer = (state = initialState, action) => {
         };
       };
     case ActionType.GET_ALL_FILMS:
-      console.log(action.payload)
+      // console.log(action.payload)
+      allFilms = action.payload.map((film)=>{return adaptToClient(film) })
+      const genres = [];
+      for(const item of allFilms){
+      genres.push(item.genre)
+    }
+      console.log(genres)
+      console.log(allFilms)
+      // action.payload = []
       return {
         ...state,
         isDataLoaded: true,
-        films: action.payload
+        films: action.payload.map((film)=>{return adaptToClient(film) })
+        //   .map(
+        //   adaptToClient()
+        //   // points.map(PointsModel.adaptToClient))
+        // )
       };
 
     default:

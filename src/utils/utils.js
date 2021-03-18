@@ -54,6 +54,14 @@ export const getActiveFilms = (films, countShowFilm)=>{
   return activeFilms;
 };
 
+export const getUniqueGenres = (films)=>{
+  const genres = [];
+  for(const item of films){
+    genres.push(item.genre)
+  }
+  return Array.from(new Set(genres));
+}
+
 // // функция которая возвраещь массив фильмов для рендера на основании числа фильмов сколько надо
 // export const getActiveFilms = (films, countShowFilm)=>{
 //   const activeFilms = [];

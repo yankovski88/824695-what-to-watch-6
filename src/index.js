@@ -36,7 +36,7 @@ const likeFilms = getFilmData().slice(9, 13);
 
 
 export const mainFilms = [...firstMainFilms, ...likeFilms]; // хранилище всех фильмов
-const itemGenres = [`All genres`, `Comedies`, `Crime`, `Documentary`, `Dramas`, `Horror`, `Kids & Family`, `Romance`, `Sci-Fi`, `Thrillers`];
+// const itemGenres = [`All genres`, `Comedies`, `Crime`, `Documentary`, `Dramas`, `Horror`, `Kids & Family`, `Romance`, `Sci-Fi`, `Thrillers`];
 
 ReactDom.render(
     // обернули все приложение, теперь есть доступ к хранилищу
@@ -46,7 +46,7 @@ ReactDom.render(
         likeFilms={likeFilms}
         reviews={reviews}
         movie={movie}
-        itemGenres={itemGenres}
+        // itemGenres={itemGenres}
       />
     </Provider>,
 
