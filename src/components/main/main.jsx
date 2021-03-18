@@ -15,9 +15,16 @@ import {fetchMoviesList} from '../../store/api-actions';
 
 
 const Main = (props) => {
-  const {mainFilms, updateData, films, countShowFilm, setGenre, isDataLoaded, onLoadData} = props; // itemGenres
+  const {mainFilms, updateData, films, countShowFilm, setGenre, isDataLoaded, onLoadData, genreFilms} = props; // itemGenres
+let itemGenreFilms;
+if(!genreFilms){
+  itemGenreFilms = films
+} else {
+  itemGenreFilms = genreFilms
+}
 
 
+console.log(genreFilms)
 
   React.useEffect(() => {
     if (!isDataLoaded) {
@@ -38,8 +45,7 @@ const Main = (props) => {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
         <ListGenres films={films} updateData={updateData} setGenre={setGenre}/>
         <CatalogMainFilms updateData={updateData}/>
-
-        {films.length > countShowFilm ? <BtnShowMore /> : ``}
+        {itemGenreFilms.length > countShowFilm ? <BtnShowMore /> : ``}
       </section>
 
       <footer className="page-footer">
@@ -62,8 +68,8 @@ Main.propTypes = {
 const mapStateToProps = (state)=>({
   countShowFilm: state.countShowFilm, // взято из reduce
   selectedGenre: state.genre, // взято из reduce action.payload
-  // films: state.films, // взято из reduce
-  films: state.films,
+  films: state.films, // взято из reduce
+  genreFilms: state.genreFilms,
   isDataLoaded: state.isDataLoaded
 });
 
