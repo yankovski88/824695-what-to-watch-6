@@ -6,14 +6,14 @@ import VideoPlayer from "../videoPlayer/video-player";
 
 const SmallCard = (props) => {
   const {posterImage, name, id, updateData} = props; // mainFilms, updateFilmActive
-  // const [filmActive, setFilmActive] = React.useState({});
+  const [filmActive, setFilmActive] = React.useState({});
 
   const [isVideo, setVideo] = React.useState(false);
   let timeOutId = null;
 
 
   const _handleHoverCard = () => {
-    // setFilmActive(id)
+    setFilmActive(id)
     if (timeOutId !== null) {
       clearTimeout(timeOutId);
     }
@@ -29,7 +29,7 @@ const SmallCard = (props) => {
     clearTimeout(timeOutId);
     timeOutId = null;
     setVideo(false);
-    // setFilmActive({})
+    setFilmActive({})
   };
 
 
@@ -42,7 +42,7 @@ const SmallCard = (props) => {
     <>
       <article className="small-movie-card catalog__movies-card"
         id={id}
-        onMouseEnter={_handleHoverCard}
+        onMouseOver={_handleHoverCard}
         onMouseLeave={_handleHoverOutCard}
 
         onClick={() => {

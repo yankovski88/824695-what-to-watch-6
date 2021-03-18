@@ -32,4 +32,21 @@ export const getFilmData = ()=>{
   }
   return films;
 };
-
+//
+// background_color: "#F1E9CE"
+// background_image: "https://assets.htmlacademy.ru/intensives/javascript-3/film/background/Macbeth.jpg"
+// description: "Macbeth, the Thane of Glamis, receives a prophecy from a trio of witches that one day he will become King of Scotland. Consumed by ambition and spurred to action by his wife, Macbeth murders his king and takes the throne for himself."
+// director: "Justin Kurzel"
+// genre: "Drama"
+// id: 1
+// is_favorite: false
+// name: "Macbeth"
+// poster_image: "https://assets.htmlacademy.ru/intensives/javascript-3/film/poster/Macbeth.jpg"
+// preview_image: "https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/macbeth.jpg"
+// preview_video_link: "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+// rating: 3.3
+// released: 2015
+// run_time: 113
+// scores_count: 48798
+// starring: (3) ["Michael Fassbender", "Marion Cotillard", "Jack Madigan"]
+// video_link: "http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4"

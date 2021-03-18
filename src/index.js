@@ -4,9 +4,13 @@ import App from "./components/app/app.jsx";
 import {getFilmData} from "./components/mock/film";
 import {reviews} from "./components/mock/reviews";
 import {composeWithDevTools} from 'redux-devtools-extension';
-import {createStore} from 'redux'; // создаем хранилище
+import {createStore, applyMiddleware} from 'redux'; // создаем хранилище
 import {Provider} from 'react-redux'; // соединяем храниище и react
 import {reducer} from './store/reducer';
+import thunk from "redux-thunk";
+import {createApi} from "./services/api"
+
+const api = createApi();
 
 // 1. создал reducer принимать значение action и выводит новый массив фильмов
 // 2. создал action который может приходить
@@ -16,8 +20,14 @@ import {reducer} from './store/reducer';
 // создали stare хранилище
 const store = createStore(
     reducer, // функция которая обновляет хранилище по action
-    composeWithDevTools() // передали инструменты разработчика
+    composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api))) // передали инструменты разработчика
+      // composeWithDevTools () это девтулс для redux в браузере. Все переданное в него он к этому присоедиянется.
+// applyMiddleware это библиотека посредник, нужна если хотим сделать асинхронный код у нас пока везде был синхронный
+    // thunk это аргумент Middleware, если понадобятся еще аргументы, то добявятся чезез запятую (я думаю там где api)
 );
+console.log(store)
+console.log(store.getState())
+
 
 const firstMainFilms = getFilmData().slice(0, 8);
 const myListFilms = firstMainFilms.slice(0, 2);

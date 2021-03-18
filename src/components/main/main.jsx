@@ -9,9 +9,27 @@ import BtnShowMore from "../btn-show-more/btn-show-more";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../store/action";
 
+// import {Fragment, useEffect, useState} from 'react';
+import {fetchMoviesList} from '../../store/api-actions';
+// import Spinner from '../spinner/spinner';
+
 
 const Main = (props) => {
-  const {mainFilms, updateData, itemGenres, films, countShowFilm, setGenre} = props;
+  const {mainFilms, updateData, itemGenres, films, countShowFilm, setGenre, isDataLoaded, onLoadData} = props;
+
+
+
+  React.useEffect(() => {
+    if (!isDataLoaded) {
+      onLoadData();
+    }
+  }, [isDataLoaded]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  if (!isDataLoaded) {
+    return <h1>Loading...</h1>; // Spinner
+  }
+
+
 
   return <React.Fragment>
     <Card mainFilms = {mainFilms}/>
@@ -44,13 +62,18 @@ Main.propTypes = {
 const mapStateToProps = (state)=>({
   countShowFilm: state.countShowFilm, // взято из reduce
   selectedGenre: state.genre, // взято из reduce action.payload
-  films: state.films, // взято из reduce
+  // films: state.films, // взято из reduce
+  films: state.films,
+  isDataLoaded: state.isDataLoaded
 });
 
 // если передать setGenre на клик меню жанр, то в aaction в payload попадет название жанра
 const mapDispatchToProps = (dispatch)=>({
   setGenre(genre) {
     dispatch(ActionCreator.setGenre(genre)); // genre это payload дополнитеьная инфа
+  },
+  onLoadData() {
+    dispatch(fetchMoviesList());
   }
 });
 
