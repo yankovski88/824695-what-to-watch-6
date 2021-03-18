@@ -6,7 +6,8 @@ import {getUniqueGenres} from "../../utils/utils"
 
 const ListGenres = (props)=>{
   const {setGenre, films} = props;
-
+  console.log(films)
+console.log(getUniqueGenres(films))
   return (
     <>
       <ul className="catalog__genres-list">

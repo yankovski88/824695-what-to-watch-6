@@ -84,16 +84,19 @@ const initialState = {
   isDataLoaded: false
 };
 
-let allFilms = [];
-
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.GENRE:
-      console.log(allFilms)
+      console.log(state.films)
+      console.log(action.payload)
+console.log(getGenreFilms(action.payload, state.films))
+      console.log(state.films)
+
       return {
         ...state,
         genre: action.payload,
-        films: getGenreFilms(action.payload, allFilms),
+        // films: getGenreFilms(action.payload, state.films),
+        genreFilms: getGenreFilms(action.payload, state.films),
         countShowFilm: 8,
       };
     case ActionType.MORE_FILM:
@@ -111,15 +114,7 @@ export const reducer = (state = initialState, action) => {
         };
       };
     case ActionType.GET_ALL_FILMS:
-      // console.log(action.payload)
-      allFilms = action.payload.map((film)=>{return adaptToClient(film) })
-      const genres = [];
-      for(const item of allFilms){
-      genres.push(item.genre)
-    }
-      console.log(genres)
-      console.log(allFilms)
-      // action.payload = []
+
       return {
         ...state,
         isDataLoaded: true,

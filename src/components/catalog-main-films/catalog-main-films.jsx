@@ -6,9 +6,14 @@ import {getActiveFilms} from "../../utils/utils";
 
 
 const CatalogMainFilms = (props) => {
-  const {updateData, films, countShowFilm} = props;
-
-  const activeFilms = getActiveFilms(films, countShowFilm);
+  const {updateData, films, countShowFilm, genreFilms} = props;
+console.log(genreFilms)
+  let activeFilms;
+  if(genreFilms){
+     activeFilms = getActiveFilms(genreFilms, countShowFilm);
+  } else {
+     activeFilms = getActiveFilms(films, countShowFilm);
+  }
 
   return (
     <div className="catalog__movies-list">
@@ -30,13 +35,15 @@ const CatalogMainFilms = (props) => {
 CatalogMainFilms.propTypes = {
   updateData: PropTypes.func.isRequired,
   films: PropTypes.array.isRequired,
+  genreFilms: PropTypes.array.isRequired,
   countShowFilm: PropTypes.number.isRequired,
 };
 
 
 const mapStateToProps = (state) => ({
   countShowFilm: state.countShowFilm,
-  films: state.films
+  films: state.films,
+  genreFilms: state.genreFilms,
 });
 
 export {CatalogMainFilms};

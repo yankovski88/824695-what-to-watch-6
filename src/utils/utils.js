@@ -29,7 +29,8 @@ export const getRandomInRange = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-export const getGenreFilms = (typeGenre, films)=>{
+export const getGenreFilms = (typeGenre, itemFilms)=>{
+  const films = itemFilms.slice();
   if (typeGenre === ALL_GENRES) {
     return films;
   } else {
@@ -45,6 +46,7 @@ export const getGenreFilms = (typeGenre, films)=>{
 
 // функция которая возвращает массив фильмов для рендера на основании числа фильмов сколько надо
 export const getActiveFilms = (films, countShowFilm)=>{
+  console.log(films)
   let activeFilms;
   if (films.length > NUMBER_FILM) {
     activeFilms = films.slice(0, countShowFilm);
@@ -54,6 +56,8 @@ export const getActiveFilms = (films, countShowFilm)=>{
   return activeFilms;
 };
 
+
+// функция которая получает массив фильмов, а выводит все уникальный жанры для меню
 export const getUniqueGenres = (films)=>{
   const genres = [];
   for(const item of films){
