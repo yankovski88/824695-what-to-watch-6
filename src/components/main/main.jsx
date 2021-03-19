@@ -11,6 +11,7 @@ import {ActionCreator} from "../../store/action";
 
 // import {Fragment, useEffect, useState} from 'react';
 import {fetchMoviesList} from '../../store/api-actions';
+import Spinner from "../spinner/spinner";
 // import Spinner from '../spinner/spinner';
 
 
@@ -32,21 +33,24 @@ console.log(genreFilms)
     }
   }, [isDataLoaded]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (!isDataLoaded) {
-    return <h1>Loading...</h1>; // Spinner
-  }
 
 
 
   return <React.Fragment>
     <Card mainFilms = {mainFilms}/>
     <div className="page-content">
-      <section className="catalog">
-        <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <ListGenres films={films} updateData={updateData} setGenre={setGenre}/>
-        <CatalogMainFilms updateData={updateData}/>
+
+        {!isDataLoaded ? <Spinner /> :
+          <section className="catalog">
+            <h2 className="catalog__title visually-hidden">Catalog</h2>
+          <ListGenres films={films} updateData={updateData} setGenre={setGenre}/>
+          <CatalogMainFilms updateData={updateData}/>
         {itemGenreFilms.length > countShowFilm ? <BtnShowMore /> : ``}
-      </section>
+          </section>
+        }
+
+
+
 
       <footer className="page-footer">
         <Logo/>

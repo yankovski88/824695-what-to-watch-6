@@ -1,13 +1,4 @@
 import axios from "axios";
-// const axios = require('axios').default;
-
-
-
-// сделаю простой запрос на сервер, config можно писать после url
-// axios.get("https://6.react.pages.academy/wtw", ).then((response) =>{
-//   console.log(response.data)
-// }).catch((error)=>{console.log(error, `asdf`)})
-// https://6.react.pages.academy/guess-melody
 
 const BACKEND_URL = `https://6.react.pages.academy/wtw`; // url на который отправим запрос
 const REQUEST_TIMEOUT = 5000; // время для запроса
