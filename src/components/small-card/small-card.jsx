@@ -5,15 +5,15 @@ import VideoPlayer from "../videoPlayer/video-player";
 
 
 const SmallCard = (props) => {
-  const {posterImage, name, id, updateData} = props; // mainFilms, updateFilmActive
-  const [filmActive, setFilmActive] = React.useState({});
+  const {activeFilm, updateData} = props; // posterImage, name, id,
+  // const [filmActive, setFilmActive] = React.useState({});
 
   const [isVideo, setVideo] = React.useState(false);
   let timeOutId = null;
 
 
   const _handleHoverCard = () => {
-    setFilmActive(id)
+    // setFilmActive(id)
     if (timeOutId !== null) {
       clearTimeout(timeOutId);
     }
@@ -29,32 +29,32 @@ const SmallCard = (props) => {
     clearTimeout(timeOutId);
     timeOutId = null;
     setVideo(false);
-    setFilmActive({})
+    // setFilmActive({})
   };
 
 
   React.useEffect(() => {
-    return () => clearTimeout(timeOutId);
+    // return () => clearTimeout(timeOutId);
   });
 
 
   return (
     <>
       <article className="small-movie-card catalog__movies-card"
-        id={id}
+        id={activeFilm.id}
         onMouseOver={_handleHoverCard}
         onMouseLeave={_handleHoverOutCard}
 
         onClick={() => {
-          updateData(id);
+          updateData(activeFilm.id);
         }}
       >
 
         <div className="small-movie-card__image">
-          {isVideo ? <VideoPlayer id={id}/> : <img src={posterImage} alt={name} width="280" height="175"/>}
+          {isVideo ? <VideoPlayer activeFilm={activeFilm} id={activeFilm.id}/> : <img src={activeFilm.posterImage} alt={activeFilm.name} width="280" height="175"/>}
         </div>
         <h3 className="small-movie-card__title">
-          <Link className="small-movie-card__link" to={`/films/${id}`}>{name}</Link>
+          <Link className="small-movie-card__link" to={`/films/${activeFilm.id}`}>{activeFilm.name}</Link>
         </h3>
       </article>
     </>
@@ -62,9 +62,10 @@ const SmallCard = (props) => {
 };
 
 SmallCard.propTypes = {
-  posterImage: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
+  activeFilm: PropTypes.object.isRequired,
+  // posterImage: PropTypes.string.isRequired,
+  // name: PropTypes.string.isRequired,
+  // id: PropTypes.number.isRequired,
   updateData: PropTypes.func.isRequired,
   // updateFilmActive: PropTypes.func.isRequired,
 };

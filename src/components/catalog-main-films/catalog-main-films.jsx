@@ -17,14 +17,14 @@ console.log(genreFilms)
 
   return (
     <div className="catalog__movies-list">
-      {activeFilms.map((mainFilm) => {
+      {activeFilms.map((activeFilm) => {
         return <SmallCard
-          mainFilm={mainFilm}
-          key={mainFilm.id}
-          videoLink={mainFilm.videoLink}
-          name={mainFilm.name}
-          posterImage={mainFilm.posterImage}
-          id={mainFilm.id}
+          key={activeFilm.id}
+          activeFilm={activeFilm}
+          // videoLink={mainFilm.videoLink}
+          // name={mainFilm.name}
+          // posterImage={mainFilm.posterImage}
+          // id={mainFilm.id}
           updateData={updateData}
         />;
       })}
