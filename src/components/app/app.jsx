@@ -8,14 +8,16 @@ import Player from "../player/player.jsx";
 import AddReview from "../add-review/add-review.jsx";
 import Film from "../film/film.jsx";
 import Error404 from "../error-404/error-404";
-import {getFilm} from "../../utils/utils";
+import {getFilm, getGenreFilms} from "../../utils/utils";
+import {connect} from "react-redux";
 
 
 const App = (props) => {
-  const {mainFilms, myListFilms, likeFilms, reviews, movie, itemGenres} = props;
-  const [cinema, setMovie] = React.useState(movie);
+  const {mainFilms, myListFilms, reviews, movie, itemGenres, films} = props;
+  const [film, setMovie] = React.useState(movie);
 
-  const film = getFilm(cinema, mainFilms);
+  let likeFilms = getGenreFilms(film.genre, films) // выбираем похожие фильмы
+
 
   const updateData = (value) => {
     setMovie(value);
@@ -74,4 +76,10 @@ App.propTypes = {
   itemGenres: PropTypes.array.isRequired,
 };
 
-export default App;
+export {App};
+
+const mapStateToProps = (state)=>({
+films: state.films
+})
+
+export default connect(mapStateToProps, null)(App)

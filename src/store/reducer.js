@@ -81,16 +81,18 @@ const initialState = {
   countShowFilm: 8,
   genre: ALL_GENRES,
   films: [], // mainFilms
-  isDataLoaded: false
+  isDataLoaded: false,
+  likeGenre: ``,
+  likeFilms: [],
 };
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.GENRE:
-      console.log(state.films)
-      console.log(action.payload)
-console.log(getGenreFilms(action.payload, state.films))
-      console.log(state.films)
+//       console.log(state.films)
+//       console.log(action.payload)
+// console.log(getGenreFilms(action.payload, state.films))
+//       console.log(state.films)
 
       return {
         ...state,
@@ -125,6 +127,12 @@ console.log(getGenreFilms(action.payload, state.films))
         // )
       };
 
+    case ActionType.LIKE_FILMS:
+      return {
+        ...state,
+        likeGenre: action.payload,
+        likeFilms: []
+      }
     default:
       return state;
   }

@@ -14,6 +14,7 @@ import filmProp from "./film.prop";
 
 const Film = (props) => {
   const {likeFilms, film, reviews, updateData} = props;
+  console.log(film)
   // const params = useParams();
   // const history = useHistory();
 

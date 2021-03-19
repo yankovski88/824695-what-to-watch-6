@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 
 const CatalogLikeFilms = (props)=>{
   const {likeFilms, updateData} = props;
+  let activeFilms = likeFilms;
   // const [filmActive, setFilmActive] = React.useState(``);
 
   // const updateFilmActive = (value) => {
@@ -19,14 +20,14 @@ const CatalogLikeFilms = (props)=>{
       <h2 className="catalog__title">More like this</h2>
 
       <div className="catalog__movies-list">
-        {likeFilms.map((likeFilm)=> {
+        {activeFilms.map((activeFilm)=> {
           return <SmallCard
-            likeFilm={likeFilm}
-            key={likeFilm.id}
-            videoLink = {likeFilm.videoLink}
-            name = {likeFilm.name}
-            posterImage = {likeFilm.posterImage}
-            id = {likeFilm.id}
+            activeFilm={activeFilm}
+            key={activeFilm.id}
+            // videoLink = {likeFilm.videoLink}
+            // name = {likeFilm.name}
+            // posterImage = {likeFilm.posterImage}
+            // id = {likeFilm.id}
             updateData={updateData}
             // updateFilmActive={updateFilmActive}
 
