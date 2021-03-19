@@ -17,14 +17,14 @@ const SmallCard = (props) => {
 
     // не понимаю что здесь timeOutId, думаю это счетчик таймаута
     timeOutId = setTimeout(()=>{
-      setFilmActive(activeFilm) // выбрали активный фильм
-    }, 1000)
+      setFilmActive(activeFilm); // выбрали активный фильм
+    }, 1000);
   };
 
   const _handleHoverOutCard = () => {
     clearTimeout(timeOutId); // удалить натиканное время таймера
     timeOutId = null; // таймер сделать null
-    setFilmActive(``) // объект активного видео сделать пустым
+    setFilmActive(``); // объект активного видео сделать пустым
   };
 
   // useEffect обнуляет таймер если он был запущен
@@ -45,9 +45,9 @@ const SmallCard = (props) => {
         }}
       >
         <Link to={`/films/${activeFilm.id}`}>
-        <div className="small-movie-card__image">
-          {filmActive ? <VideoPlayer activeFilm={activeFilm}/> : <img src={activeFilm.posterImage} alt={activeFilm.name} width="280" height="175"/>}
-        </div>
+          <div className="small-movie-card__image">
+            {filmActive ? <VideoPlayer activeFilm={activeFilm}/> : <img src={activeFilm.posterImage} alt={activeFilm.name} width="280" height="175"/>}
+          </div>
         </Link>
 
         <h3 className="small-movie-card__title">

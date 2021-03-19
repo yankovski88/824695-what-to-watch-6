@@ -5,16 +5,15 @@ const REQUEST_TIMEOUT = 5000; // время для запроса
 
 
 // создадим функцию по конфигу
-export const createApi =()=>{
+export const createApi = ()=>{
   // чтобы постоянно не писать config можно создать функцию конфигурации экземпляра axios для запроса
   const api = axios.create({
     baseURL: BACKEND_URL, // url для запроса
     timeout: REQUEST_TIMEOUT, // время для запроса
     withCredentials: true, // межсайтовые запросы управления доступом
   });
-  return api
-}
-
+  return api;
+};
 
 
 //

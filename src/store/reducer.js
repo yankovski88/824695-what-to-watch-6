@@ -7,66 +7,58 @@ import {ALL_GENRES, NUMBER_FILM} from "../constants/constants";
 // метод Адаптер который адоптирует данные от сервера на читаемые данные для клиента
 const adaptToClient = (film)=> { // получаем объект с неугодными нам полями изменили названия полей, удалили старые серверные и вернули отредоктированный объект
 
-  const adaptedPoint = Object.assign(
-    {},
-    film,
-    {
+  const adaptedFilm = Object.assign(
+      {},
+      film,
+      {
       // в basePrice записали, то что пришло с сервера, плюс можно модифицировать данные как с датой
-      backgroundColor: film.background_color,
-      backgroundImage: film.background_image,
-      isFavorite: film.is_favorite,
-      posterImage: film.poster_image,
-      previewImage: film.preview_image,
-      previewVideoLink: film.preview_video_link,
-      runTime: film.run_time,
-      scoresCount: film.scores_count,
-      videoLink: film.video_link,
-
-      // dateFrom: new Date(point.date_from),
-      // dateTo: new Date(point.date_to),
-      // isFavorite: point.is_favorite,
-    }
+        backgroundColor: film.background_color,
+        backgroundImage: film.background_image,
+        isFavorite: film.is_favorite,
+        posterImage: film.poster_image,
+        previewImage: film.preview_image,
+        previewVideoLink: film.preview_video_link,
+        runTime: film.run_time,
+        scoresCount: film.scores_count,
+        videoLink: film.video_link,
+      }
   );
 
   // Ненужные ключи мы удаляем
-  delete adaptedPoint.background_color;
-  delete adaptedPoint.background_image;
-  delete adaptedPoint.is_favorite;
-  delete adaptedPoint.poster_image;
-  delete adaptedPoint.preview_image;
-  delete adaptedPoint.preview_video_link;
-  delete adaptedPoint.run_time;
-  delete adaptedPoint.scores_count;
-  delete adaptedPoint.video_link;
+  delete adaptedFilm.background_color;
+  delete adaptedFilm.background_image;
+  delete adaptedFilm.is_favorite;
+  delete adaptedFilm.poster_image;
+  delete adaptedFilm.preview_image;
+  delete adaptedFilm.preview_video_link;
+  delete adaptedFilm.run_time;
+  delete adaptedFilm.scores_count;
+  delete adaptedFilm.video_link;
 
-  return adaptedPoint;
-}
+  return adaptedFilm;
+};
 
-// и метод который адаптирует клиентские данные для сервера
-const adaptToServer = (point) => {
-  const adaptedPoint = Object.assign(
-    {},
-    point,
-    {
-      "date_from": new Date(point.dateFrom).toISOString(), // На сервере дата хранится в ISO формате
-      "date_to": new Date(point.dateTo).toISOString(),
-      "base_price": parseInt(point.basePrice, 10) ? parseInt(point.basePrice, 10) : 0,
-      "is_favorite": point.isFavorite,
-    }
-  );
-
-  // Ненужные ключи мы удаляем
-  delete adaptedPoint.dateFrom;
-  delete adaptedPoint.dateTo;
-  delete adaptedPoint.basePrice;
-  delete adaptedPoint.isFavorite;
-
-  return adaptedPoint;
-}
-
-
-
-
+// // и метод который адаптирует клиентские данные для сервера
+// const adaptToServer = (point) => {
+//   const adaptedFilm = Object.assign(
+//       {},
+//       point,
+//       {
+//         "date_from": new Date(point.dateFrom).toISOString(), // На сервере дата хранится в ISO формате
+//         "date_to": new Date(point.dateTo).toISOString(),
+//         "base_price": parseInt(point.basePrice, 10) ? parseInt(point.basePrice, 10) : 0,
+//         "is_favorite": point.isFavorite,
+//       }
+//   );
+//
+//   // Ненужные ключи мы удаляем
+//   delete adaptedPoint.dateFrom;
+//   delete adaptedPoint.dateTo;
+//   delete adaptedPoint.basePrice;
+//   delete adaptedPoint.isFavorite;
+//
+//   return adaptedFilm;
+// };
 
 
 const firstMainFilms = getFilmData().slice(0, 8);
@@ -112,12 +104,14 @@ export const reducer = (state = initialState, action) => { // второе ин�
           countShowFilm: state.countShowFilm + state.films.length - state.countShowFilm,
           genreFilms: [],
         };
-      };
+      }
     case ActionType.GET_ALL_FILMS: // первое загрузили все фильмы
       return {
         ...state,
         isDataLoaded: true,
-        films: action.payload.map((film)=>{return adaptToClient(film) })
+        films: action.payload.map((film)=>{
+          return adaptToClient(film);
+        })
       };
 
     case ActionType.LIKE_FILMS:
@@ -125,7 +119,7 @@ export const reducer = (state = initialState, action) => { // второе ин�
         ...state,
         likeGenre: action.payload,
         likeFilms: []
-      }
+      };
     default:
       return state;
   }

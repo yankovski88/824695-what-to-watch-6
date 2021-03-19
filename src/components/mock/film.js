@@ -6,8 +6,6 @@ const genres = [`Comedies`, `Crime`, `Documentary`, `Dramas`, `Horror`, `Kids & 
 // `All genres`,
 
 
-
-
 export const getFilmData = ()=>{
   const films = [];
   for (const item of ids) {

@@ -16,7 +16,7 @@ const App = (props) => {
   const {mainFilms, myListFilms, reviews, movie, films} = props; // itemGenres
   const [film, setMovie] = React.useState(movie); // фильм который хотим посмотреть
 
-  let likeFilms = getGenreFilms(film.genre, films) // выбираем похожие фильмы
+  let likeFilms = getGenreFilms(film.genre, films); // выбираем похожие фильмы
 
 
   const updateData = (value) => {
@@ -27,7 +27,7 @@ const App = (props) => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          {/*itemGenres={itemGenres}*/}
+          {/* itemGenres={itemGenres}*/}
           <Main mainFilms = {mainFilms} updateData={updateData} />
         </Route>
         <Route exact path="/login">
@@ -71,15 +71,15 @@ const App = (props) => {
 App.propTypes = {
   mainFilms: PropTypes.array.isRequired,
   myListFilms: PropTypes.array.isRequired,
-  // likeFilms: PropTypes.array.isRequired, // PropTypes.arrayOf(PropTypes.bool)
   reviews: PropTypes.array.isRequired,
   movie: PropTypes.object.isRequired,
+  films: PropTypes.array.isRequired,
 };
 
 export {App};
 
 const mapStateToProps = (state)=>({
-films: state.films
-})
+  films: state.films
+});
 
-export default connect(mapStateToProps, null)(App)
+export default connect(mapStateToProps, null)(App);

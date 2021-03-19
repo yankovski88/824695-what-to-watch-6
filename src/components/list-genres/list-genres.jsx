@@ -2,12 +2,11 @@ import React from "react";
 import GenresItem from "../item/genres-item";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {getUniqueGenres} from "../../utils/utils"
+import {getUniqueGenres} from "../../utils/utils";
 
 const ListGenres = (props)=>{
   const {setGenre, films} = props;
-  console.log(films)
-console.log(getUniqueGenres(films))
+
   return (
     <>
       <ul className="catalog__genres-list">
@@ -23,7 +22,7 @@ console.log(getUniqueGenres(films))
 
 ListGenres.propTypes = {
   // updateData: PropTypes.func.isRequired,
-  // itemGenres: PropTypes.array.isRequired,
+  films: PropTypes.array.isRequired,
   setGenre: PropTypes.func.isRequired,
 };
 

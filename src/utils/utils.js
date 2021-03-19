@@ -46,7 +46,6 @@ export const getGenreFilms = (typeGenre, itemFilms)=>{
 
 // функция которая возвращает массив фильмов для рендера на основании числа фильмов сколько надо
 export const getActiveFilms = (films, countShowFilm)=>{
-  console.log(films)
   let activeFilms;
   if (films.length > NUMBER_FILM) {
     activeFilms = films.slice(0, countShowFilm);
@@ -60,11 +59,11 @@ export const getActiveFilms = (films, countShowFilm)=>{
 // функция которая получает массив фильмов, а выводит все уникальный жанры для меню
 export const getUniqueGenres = (films)=>{
   const genres = [ALL_GENRES];
-  for(const item of films){
-    genres.push(item.genre)
+  for (const item of films) {
+    genres.push(item.genre);
   }
   return Array.from(new Set(genres));
-}
+};
 
 // // функция которая возвраещь массив фильмов для рендера на основании числа фильмов сколько надо
 // export const getActiveFilms = (films, countShowFilm)=>{

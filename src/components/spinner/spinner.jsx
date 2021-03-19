@@ -1,9 +1,9 @@
-import React from "react"
+import React from "react";
 
 const Spinner = ()=>{
-  return(
+  return (
     <h3>Loading...</h3>
-  )
-}
+  );
+};
 
-export default Spinner
+export default Spinner;

@@ -8,12 +8,8 @@ import ListGenres from "../list-genres/list-genres";
 import BtnShowMore from "../btn-show-more/btn-show-more";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../store/action";
-
-// import {Fragment, useEffect, useState} from 'react';
 import {fetchMoviesList} from '../../store/api-actions';
 import Spinner from "../spinner/spinner";
-import {getActiveFilms} from "../../utils/utils";
-// import Spinner from '../spinner/spinner';
 
 
 const Main = (props) => {
@@ -21,11 +17,10 @@ const Main = (props) => {
 
   // код решает показать btn more или нет
   let itemGenreFilms; // переменная которая смотрит показывать ли кнопку More Show
-  if(!genreFilms || genreFilms.length === 0){ // если не один из жанров не кликнули, то он равен всем фильмам
-    itemGenreFilms = films
-  }
-  else if(genreFilms){
-    itemGenreFilms = genreFilms
+  if (!genreFilms || genreFilms.length === 0) { // если не один из жанров не кликнули, то он равен всем фильмам
+    itemGenreFilms = films;
+  } else if (genreFilms) {
+    itemGenreFilms = genreFilms;
   }
 
 
@@ -33,26 +28,21 @@ const Main = (props) => {
     if (!isDataLoaded) {
       onLoadData();
     }
-  }, [isDataLoaded]); // eslint-disable-line react-hooks/exhaustive-deps
-
-
-
+  }, [isDataLoaded]);
 
   return <React.Fragment>
     <Card mainFilms = {mainFilms}/>
     <div className="page-content">
 
-        {!isDataLoaded ? <Spinner /> :
-          <section className="catalog">
-            <h2 className="catalog__title visually-hidden">Catalog</h2>
+      {!isDataLoaded ? <Spinner /> :
+        <section className="catalog">
+          <h2 className="catalog__title visually-hidden">Catalog</h2>
           <ListGenres films={films} updateData={updateData} setGenre={setGenre}/>
           <CatalogMainFilms updateData={updateData}/>
-            {/*itemGenreFilms*/}
+          {/* itemGenreFilms*/}
           {itemGenreFilms.length > countShowFilm ? <BtnShowMore /> : ``}
-          </section>
-        }
-
-
+        </section>
+      }
 
 
       <footer className="page-footer">
@@ -66,10 +56,13 @@ const Main = (props) => {
 Main.propTypes = {
   mainFilms: PropTypes.array.isRequired,
   updateData: PropTypes.func.isRequired,
-  // itemGenres: PropTypes.array.isRequired,
+  genreFilms: PropTypes.array.isRequired,
   films: PropTypes.array.isRequired,
   countShowFilm: PropTypes.number.isRequired,
   setGenre: PropTypes.func.isRequired,
+  isDataLoaded: PropTypes.bool.isRequired,
+  onLoadData: PropTypes.func.isRequired,
+
 };
 
 const mapStateToProps = (state)=>({
