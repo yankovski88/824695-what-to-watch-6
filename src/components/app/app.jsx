@@ -8,13 +8,13 @@ import Player from "../player/player.jsx";
 import AddReview from "../add-review/add-review.jsx";
 import Film from "../film/film.jsx";
 import Error404 from "../error-404/error-404";
-import {getFilm, getGenreFilms} from "../../utils/utils";
+import {getGenreFilms} from "../../utils/utils";
 import {connect} from "react-redux";
 
 
 const App = (props) => {
-  const {mainFilms, myListFilms, reviews, movie, itemGenres, films} = props;
-  const [film, setMovie] = React.useState(movie);
+  const {mainFilms, myListFilms, reviews, movie, films} = props; // itemGenres
+  const [film, setMovie] = React.useState(movie); // фильм который хотим посмотреть
 
   let likeFilms = getGenreFilms(film.genre, films) // выбираем похожие фильмы
 
@@ -27,7 +27,8 @@ const App = (props) => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <Main mainFilms = {mainFilms} updateData={updateData} itemGenres={itemGenres}/>
+          {/*itemGenres={itemGenres}*/}
+          <Main mainFilms = {mainFilms} updateData={updateData} />
         </Route>
         <Route exact path="/login">
           <SignIn />
@@ -70,10 +71,9 @@ const App = (props) => {
 App.propTypes = {
   mainFilms: PropTypes.array.isRequired,
   myListFilms: PropTypes.array.isRequired,
-  likeFilms: PropTypes.array.isRequired, // PropTypes.arrayOf(PropTypes.bool)
+  // likeFilms: PropTypes.array.isRequired, // PropTypes.arrayOf(PropTypes.bool)
   reviews: PropTypes.array.isRequired,
   movie: PropTypes.object.isRequired,
-  itemGenres: PropTypes.array.isRequired,
 };
 
 export {App};

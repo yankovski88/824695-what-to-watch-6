@@ -12,20 +12,22 @@ import {ActionCreator} from "../../store/action";
 // import {Fragment, useEffect, useState} from 'react';
 import {fetchMoviesList} from '../../store/api-actions';
 import Spinner from "../spinner/spinner";
+import {getActiveFilms} from "../../utils/utils";
 // import Spinner from '../spinner/spinner';
 
 
 const Main = (props) => {
   const {mainFilms, updateData, films, countShowFilm, setGenre, isDataLoaded, onLoadData, genreFilms} = props; // itemGenres
-let itemGenreFilms;
-if(!genreFilms){
-  itemGenreFilms = films
-} else {
-  itemGenreFilms = genreFilms
-}
 
+  // код решает показать btn more или нет
+  let itemGenreFilms; // переменная которая смотрит показывать ли кнопку More Show
+  if(!genreFilms || genreFilms.length === 0){ // если не один из жанров не кликнули, то он равен всем фильмам
+    itemGenreFilms = films
+  }
+  else if(genreFilms){
+    itemGenreFilms = genreFilms
+  }
 
-console.log(genreFilms)
 
   React.useEffect(() => {
     if (!isDataLoaded) {
@@ -45,7 +47,8 @@ console.log(genreFilms)
             <h2 className="catalog__title visually-hidden">Catalog</h2>
           <ListGenres films={films} updateData={updateData} setGenre={setGenre}/>
           <CatalogMainFilms updateData={updateData}/>
-        {itemGenreFilms.length > countShowFilm ? <BtnShowMore /> : ``}
+            {/*itemGenreFilms*/}
+          {itemGenreFilms.length > countShowFilm ? <BtnShowMore /> : ``}
           </section>
         }
 

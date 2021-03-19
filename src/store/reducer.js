@@ -80,20 +80,16 @@ export const mainFilms = [...firstMainFilms, ...likeFilms]; // весь масс
 const initialState = {
   countShowFilm: 8,
   genre: ALL_GENRES,
+  genreFilms: [],
   films: [], // mainFilms
   isDataLoaded: false,
   likeGenre: ``,
   likeFilms: [],
 };
 
-export const reducer = (state = initialState, action) => {
+export const reducer = (state = initialState, action) => { // второе инициализируем стейт чтобы загрузить начальный жанр т.е. все фильмы
   switch (action.type) {
-    case ActionType.GENRE:
-//       console.log(state.films)
-//       console.log(action.payload)
-// console.log(getGenreFilms(action.payload, state.films))
-//       console.log(state.films)
-
+    case ActionType.GENRE: // когда в main будет клик по жанру он сменится с undefined на выбранный
       return {
         ...state,
         genre: action.payload,
@@ -107,24 +103,21 @@ export const reducer = (state = initialState, action) => {
           genre: state.genre,
           countShowFilm: state.countShowFilm + NUMBER_FILM,
           films: state.films,
+          genreFilms: [],
         };
       } else {
         return {
           genre: state.genre,
           films: state.films,
-          countShowFilm: state.countShowFilm + state.films.length - state.countShowFilm
+          countShowFilm: state.countShowFilm + state.films.length - state.countShowFilm,
+          genreFilms: [],
         };
       };
-    case ActionType.GET_ALL_FILMS:
-
+    case ActionType.GET_ALL_FILMS: // первое загрузили все фильмы
       return {
         ...state,
         isDataLoaded: true,
         films: action.payload.map((film)=>{return adaptToClient(film) })
-        //   .map(
-        //   adaptToClient()
-        //   // points.map(PointsModel.adaptToClient))
-        // )
       };
 
     case ActionType.LIKE_FILMS:

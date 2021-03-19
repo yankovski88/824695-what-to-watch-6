@@ -23,7 +23,7 @@ console.log(getUniqueGenres(films))
 
 ListGenres.propTypes = {
   // updateData: PropTypes.func.isRequired,
-  itemGenres: PropTypes.array.isRequired,
+  // itemGenres: PropTypes.array.isRequired,
   setGenre: PropTypes.func.isRequired,
 };
 

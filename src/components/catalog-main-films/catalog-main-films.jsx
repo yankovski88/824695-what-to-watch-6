@@ -7,12 +7,13 @@ import {getActiveFilms} from "../../utils/utils";
 
 const CatalogMainFilms = (props) => {
   const {updateData, films, countShowFilm, genreFilms} = props;
-console.log(genreFilms)
+
+  // код который решает на основе массива с жанром сколько показать фильмов
   let activeFilms;
-  if(genreFilms){
-     activeFilms = getActiveFilms(genreFilms, countShowFilm);
-  } else {
-     activeFilms = getActiveFilms(films, countShowFilm);
+  if (!genreFilms || genreFilms.length === 0) { // если жанры ни разу не каликались, то массив будет underfind
+    activeFilms = getActiveFilms(films, countShowFilm); // значит передадим в него весь массив all genre
+  } else if (genreFilms) {
+    activeFilms = getActiveFilms(genreFilms, countShowFilm);
   }
 
   return (

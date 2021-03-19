@@ -59,7 +59,7 @@ export const getActiveFilms = (films, countShowFilm)=>{
 
 // функция которая получает массив фильмов, а выводит все уникальный жанры для меню
 export const getUniqueGenres = (films)=>{
-  const genres = [ALL_GENRES,];
+  const genres = [ALL_GENRES];
   for(const item of films){
     genres.push(item.genre)
   }

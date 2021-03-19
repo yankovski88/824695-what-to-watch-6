@@ -20,8 +20,8 @@ const SmallCard = (props) => {
     // через 1 секунду setVideo сделайся true и включись
     timeOutId = setTimeout(
         () => {
-          console.log(isVideo)
-          console.log(`вкл`)
+          // console.log(isVideo)
+          // console.log(`вкл`)
           setVideo(true);
         }, 1000
     );
@@ -36,13 +36,13 @@ const SmallCard = (props) => {
     setFilmActive({}) // объект активного видео сделать пустым
   };
 
-console.log(filmActive)
+// console.log(filmActive)
   // useEffect обнуляет таймер если он был запущен
   React.useEffect(() => {
     return () => clearTimeout(timeOutId);
   });
 
-console.log(activeFilm)
+// console.log(activeFilm)
   return (
     <>
 

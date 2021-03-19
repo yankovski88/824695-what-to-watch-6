@@ -43,7 +43,7 @@ ReactDom.render(
     <Provider store={store}>
       <App mainFilms = {mainFilms}
         myListFilms = {myListFilms}
-        likeFilms={likeFilms}
+        // likeFilms={likeFilms}
         reviews={reviews}
         movie={movie}
         // itemGenres={itemGenres}
