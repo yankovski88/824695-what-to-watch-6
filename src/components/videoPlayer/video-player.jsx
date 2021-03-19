@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 
 const VideoPlayer = (props)=>{
   const {activeFilm} = props;
-console.log(activeFilm)
   return (
     <video muted autoPlay src={activeFilm.previewVideoLink} alt={activeFilm.name} width="280" height="175"></video>
   );

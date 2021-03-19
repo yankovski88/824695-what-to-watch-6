@@ -6,43 +6,32 @@ import VideoPlayer from "../videoPlayer/video-player";
 
 const SmallCard = (props) => {
   const {activeFilm, updateData} = props; // posterImage, name, id,
-  const [filmActive, setFilmActive] = React.useState({});
+  const [filmActive, setFilmActive] = React.useState(``);
 
-  const [isVideo, setVideo] = React.useState(false);
   let timeOutId = null; // флаг, таймер не включен
-
 
   const _handleHoverCard = () => {
     if (timeOutId !== null) {
       clearTimeout(timeOutId);
     }
 
-    // через 1 секунду setVideo сделайся true и включись
-    timeOutId = setTimeout(
-        () => {
-          // console.log(isVideo)
-          // console.log(`вкл`)
-          setVideo(true);
-        }, 1000
-    );
-    setFilmActive(activeFilm) // выбрали активный фильм
-
+    // не понимаю что здесь timeOutId, думаю это счетчик таймаута
+    timeOutId = setTimeout(()=>{
+      setFilmActive(activeFilm) // выбрали активный фильм
+    }, 1000)
   };
 
   const _handleHoverOutCard = () => {
     clearTimeout(timeOutId); // удалить натиканное время таймера
     timeOutId = null; // таймер сделать null
-    setVideo(false); // активное видео убрать
-    setFilmActive({}) // объект активного видео сделать пустым
+    setFilmActive(``) // объект активного видео сделать пустым
   };
 
-// console.log(filmActive)
   // useEffect обнуляет таймер если он был запущен
   React.useEffect(() => {
     return () => clearTimeout(timeOutId);
   });
 
-// console.log(activeFilm)
   return (
     <>
 
@@ -57,7 +46,7 @@ const SmallCard = (props) => {
       >
         <Link to={`/films/${activeFilm.id}`}>
         <div className="small-movie-card__image">
-          {isVideo ? <VideoPlayer activeFilm={activeFilm} id={activeFilm.id}/> : <img src={activeFilm.posterImage} alt={activeFilm.name} width="280" height="175"/>}
+          {filmActive ? <VideoPlayer activeFilm={activeFilm}/> : <img src={activeFilm.posterImage} alt={activeFilm.name} width="280" height="175"/>}
         </div>
         </Link>
 
