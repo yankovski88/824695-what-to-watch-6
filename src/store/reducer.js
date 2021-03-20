@@ -59,8 +59,10 @@ export const reducer = (state = initialState, action) => { // второе ин�
       return {
         ...state,
         genre: action.payload,
+
         // films: getGenreFilms(action.payload, state.films),
         genreFilms: getGenreFilms(action.payload, state.films),
+
         countShowFilm: 8,
       };
     case ActionType.MORE_FILM:

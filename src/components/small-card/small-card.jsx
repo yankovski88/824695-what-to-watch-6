@@ -8,6 +8,7 @@ const SmallCard = (props) => {
   const {activeFilm, updateData} = props; // posterImage, name, id,
   const [filmActive, setFilmActive] = React.useState(``);
 
+
   let timeOutId = null; // флаг, таймер не включен
 
   const _handleHoverCard = () => {
