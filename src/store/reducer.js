@@ -1,7 +1,9 @@
 import {ActionType} from "../store/action";
-import {getFilmData} from "../components/mock/film";
 import {getGenreFilms} from "../utils/utils";
 import {ALL_GENRES, NUMBER_FILM} from "../constants/constants";
+
+
+// export const mainFilms = getFilmData().slice(0, 18);; // хранилище всех фильмов import {getFilmData} from "../components/mock/film";
 
 
 // метод Адаптер который адоптирует данные от сервера на читаемые данные для клиента
@@ -38,34 +40,6 @@ const adaptToClient = (film)=> { // получаем объект с неуго�
   return adaptedFilm;
 };
 
-// // и метод который адаптирует клиентские данные для сервера
-// const adaptToServer = (point) => {
-//   const adaptedFilm = Object.assign(
-//       {},
-//       point,
-//       {
-//         "date_from": new Date(point.dateFrom).toISOString(), // На сервере дата хранится в ISO формате
-//         "date_to": new Date(point.dateTo).toISOString(),
-//         "base_price": parseInt(point.basePrice, 10) ? parseInt(point.basePrice, 10) : 0,
-//         "is_favorite": point.isFavorite,
-//       }
-//   );
-//
-//   // Ненужные ключи мы удаляем
-//   delete adaptedPoint.dateFrom;
-//   delete adaptedPoint.dateTo;
-//   delete adaptedPoint.basePrice;
-//   delete adaptedPoint.isFavorite;
-//
-//   return adaptedFilm;
-// };
-
-
-const firstMainFilms = getFilmData().slice(0, 8);
-const likeFilms = getFilmData().slice(8, 12);
-
-
-export const mainFilms = [...firstMainFilms, ...likeFilms]; // весь массив данных по фильмам
 
 // начальное состояние хранилища store
 // Определяем действия
@@ -95,22 +69,22 @@ export const reducer = (state = initialState, action) => { // второе ин�
           genre: state.genre,
           countShowFilm: state.countShowFilm + NUMBER_FILM,
           films: state.films,
-          genreFilms: [],
+          genreFilms: state.genreFilms,
         };
       } else {
         return {
           genre: state.genre,
           films: state.films,
           countShowFilm: state.countShowFilm + state.films.length - state.countShowFilm,
-          genreFilms: [],
+          genreFilms: state.genreFilms,
         };
       }
     case ActionType.GET_ALL_FILMS: // первое загрузили все фильмы
       return {
         ...state,
         isDataLoaded: true,
-        films: action.payload.map((film)=>{
-          return adaptToClient(film);
+        films: action.payload.map((film)=>{ // по массиву объектов фильмов прошлись
+          return adaptToClient(film); // и каждый объект пропустили через адатпер и вернули этот массив
         })
       };
 
