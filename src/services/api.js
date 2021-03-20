@@ -2,7 +2,9 @@ import axios from "axios";
 
 const BACKEND_URL = `https://6.react.pages.academy/wtw`; // url на который отправим запрос
 const REQUEST_TIMEOUT = 5000; // время для запроса
-
+// const HttpCode = {
+//   UNAUTHORIZED: 401 // 401 ошибка означает, что в авторизации отказано
+// };
 
 // создадим функцию по конфигу, она возвращает объект с конфигом
 export const createApi = ()=>{
@@ -12,14 +14,30 @@ export const createApi = ()=>{
     timeout: REQUEST_TIMEOUT, // время для запроса
     withCredentials: true, // межсайтовые запросы управления доступом
   });
+
+  // // примерно понял, если успешный запрос, то верни данные еторые пришли
+  // const onSuccess = (response) => response;
+  //
+  // // если ошибка, то деструктуризируем ее, и берем от нее response
+  // const onFail = (err)=>{
+  //   const {response} = err;
+  // };
+  //
+  // if (response.status === HttpCode.UNAUTHORIZED) {
+  //   onUnauthorized();
+  //
+  //
+  //   throw err;
+  // }
+
+
   return api;
+
 };
 
 
-//
-// const HttpCode = {
-//   UNAUTHORIZED: 401
-// };
+// console.log(onSuccess)
+
 //
 // export const createAPI = (onUnauthorized) => {
 //   const api = axios.create({
