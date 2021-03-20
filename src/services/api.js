@@ -6,6 +6,15 @@ const REQUEST_TIMEOUT = 5000; // время для запроса
 //   UNAUTHORIZED: 401 // 401 ошибка означает, что в авторизации отказано
 // };
 
+// console.log(api.get(data))
+// console.log(axios.get(`https://6.react.pages.academy/wtw`))
+
+// axios.get("https://6.react.pages.academy/wtw/films/promo")
+//   .then(function (response) {
+//     console.log(response);
+//   })
+
+
 // создадим функцию по конфигу, она возвращает объект с конфигом
 export const createApi = ()=>{
   // чтобы постоянно не писать config можно создать функцию конфигурации экземпляра axios для запроса
@@ -14,6 +23,7 @@ export const createApi = ()=>{
     timeout: REQUEST_TIMEOUT, // время для запроса
     withCredentials: true, // межсайтовые запросы управления доступом
   });
+
 
   // // примерно понял, если успешный запрос, то верни данные еторые пришли
   // const onSuccess = (response) => response;
