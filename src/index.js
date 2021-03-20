@@ -10,7 +10,7 @@ import {reducer} from './store/reducer';
 import thunk from "redux-thunk";
 import {createApi} from "./services/api";
 
-const api = createApi();
+const api = createApi(); // переменная с конфигурацией api
 
 // 1. создал reducer принимать значение action и выводит новый массив фильмов
 // 2. создал action который может приходить

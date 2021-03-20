@@ -74,9 +74,9 @@ const initialState = {
   genre: ALL_GENRES,
   genreFilms: [],
   films: [], // mainFilms
-  isDataLoaded: false,
   likeGenre: ``,
   likeFilms: [],
+  isDataLoaded: false,
 };
 
 export const reducer = (state = initialState, action) => { // второе инициализируем стейт чтобы загрузить начальный жанр т.е. все фильмы

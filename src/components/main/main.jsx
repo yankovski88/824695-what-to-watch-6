@@ -23,12 +23,12 @@ const Main = (props) => {
     itemGenreFilms = genreFilms;
   }
 
-
+  // запускаем хук useEffect он запускается каждый раз когда открывается страница, он следит за флагом isDataLoaded
   React.useEffect(() => {
-    if (!isDataLoaded) {
-      onLoadData();
+    if (!isDataLoaded) { // если флаг false значит сайт запускается первый раз
+      onLoadData(); // тогда вызываем функцию которая делает запрос на сервер, отдает данные в dispatch, а тот меняет store
     }
-  }, [isDataLoaded]);
+  }, [isDataLoaded]); // useEffect сказали следи за этим флагом если он изменится, то делай запрос
 
   return <React.Fragment>
     <Card mainFilms = {mainFilms}/>
@@ -78,7 +78,7 @@ const mapDispatchToProps = (dispatch)=>({
   setGenre(genre) {
     dispatch(ActionCreator.setGenre(genre)); // genre это payload дополнитеьная инфа
   },
-  onLoadData() {
+  onLoadData() { // когда вызовится эта функция, то в dispatch попадает результат функции по запросу на сервер
     dispatch(fetchMoviesList());
   }
 });
