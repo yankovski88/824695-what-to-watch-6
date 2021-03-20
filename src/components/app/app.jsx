@@ -12,7 +12,7 @@ import {getFilm} from "../../utils/utils";
 
 
 const App = (props) => {
-  const {mainFilms, myListFilms, likeFilms, reviews, movie} = props;
+  const {mainFilms, myListFilms, likeFilms, reviews, movie, itemGenres} = props;
   const [cinema, setMovie] = React.useState(movie);
 
   const film = getFilm(cinema, mainFilms);
@@ -25,7 +25,7 @@ const App = (props) => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <Main mainFilms = {mainFilms} updateData={updateData}/>
+          <Main mainFilms = {mainFilms} updateData={updateData} itemGenres={itemGenres}/>
         </Route>
         <Route exact path="/login">
           <SignIn />
@@ -53,6 +53,10 @@ const App = (props) => {
         <Route exact path="/player/:id">
           <Player film={film}/>
         </Route>
+        {/* `Comedy`, `Boevic`, `All`*/}
+        <Route exact path="/player/:id">
+          <Player film={film}/>
+        </Route>
         <Route>
           <Error404 />
         </Route>
@@ -67,6 +71,7 @@ App.propTypes = {
   likeFilms: PropTypes.array.isRequired, // PropTypes.arrayOf(PropTypes.bool)
   reviews: PropTypes.array.isRequired,
   movie: PropTypes.object.isRequired,
+  itemGenres: PropTypes.array.isRequired,
 };
 
 export default App;

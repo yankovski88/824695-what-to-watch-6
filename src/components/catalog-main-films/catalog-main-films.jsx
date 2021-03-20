@@ -1,31 +1,26 @@
 import React from "react";
 import SmallCard from "../small-card/small-card.jsx";
 import PropTypes from "prop-types";
-// import {getFilm} from "../../utils/utils.js";
+import {connect} from 'react-redux';
+import {getActiveFilms} from "../../utils/utils";
 
-const CatalogMainFilms = (props)=>{
-  const {mainFilms, updateData} = props;
-  // const [filmActive, setFilmActive] = React.useState(``);
 
-  // const updateFilmActive = (value) => {
-  //   setFilmActive(value);
-  // };
+const CatalogMainFilms = (props) => {
+  const {updateData, films, countShowFilm} = props;
 
-  // getFilm(filmActive, mainFilms);
+  const activeFilms = getActiveFilms(films, countShowFilm);
 
   return (
     <div className="catalog__movies-list">
-      {mainFilms.map((mainFilm)=> {
+      {activeFilms.map((mainFilm) => {
         return <SmallCard
-          mainFilm = {mainFilm}
-          key = {mainFilm.id}
-          videoLink = {mainFilm.videoLink}
-          name = {mainFilm.name}
-          posterImage = {mainFilm.posterImage}
-          id = {mainFilm.id}
+          mainFilm={mainFilm}
+          key={mainFilm.id}
+          videoLink={mainFilm.videoLink}
+          name={mainFilm.name}
+          posterImage={mainFilm.posterImage}
+          id={mainFilm.id}
           updateData={updateData}
-          mainFilms = {mainFilms}
-          // updateFilmActive={updateFilmActive}
         />;
       })}
     </div>
@@ -33,8 +28,17 @@ const CatalogMainFilms = (props)=>{
 };
 
 CatalogMainFilms.propTypes = {
-  mainFilms: PropTypes.array.isRequired,
   updateData: PropTypes.func.isRequired,
+  films: PropTypes.array.isRequired,
+  countShowFilm: PropTypes.number.isRequired,
 };
 
-export default CatalogMainFilms;
+
+const mapStateToProps = (state) => ({
+  countShowFilm: state.countShowFilm,
+  films: state.films
+});
+
+export {CatalogMainFilms};
+// здесь ничего не передаем значит диспачь не нужен
+export default connect(mapStateToProps, null)(CatalogMainFilms); // connect подружит наш компонент с провайдером

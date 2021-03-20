@@ -1,3 +1,6 @@
+import {ALL_GENRES, NUMBER_FILM} from "../constants/constants";
+
+
 export const getTimeMovie = (timeMovie)=>{
   const MINUTES_IN_HOUR = 60;
   if (timeMovie / MINUTES_IN_HOUR > 1) {
@@ -20,3 +23,52 @@ export const getFilm = (filmActive, films)=>{
   }
   return filmEnter;
 };
+
+
+export const getRandomInRange = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+export const getGenreFilms = (typeGenre, films)=>{
+  if (typeGenre === ALL_GENRES) {
+    return films;
+  } else {
+    const genreFilms = [];
+    for (const item of films) {
+      if (item.genre === typeGenre) {
+        genreFilms.push(item);
+      }
+    }
+    return genreFilms;
+  }
+};
+
+// функция которая возвращает массив фильмов для рендера на основании числа фильмов сколько надо
+export const getActiveFilms = (films, countShowFilm)=>{
+  let activeFilms;
+  if (films.length > NUMBER_FILM) {
+    activeFilms = films.slice(0, countShowFilm);
+  } else {
+    activeFilms = films;
+  }
+  return activeFilms;
+};
+
+
+// // функция которая возвраещь массив фильмов для рендера на основании числа фильмов сколько надо
+// export const getActiveFilms = (films, countShowFilm)=>{
+//   const activeFilms = [];
+//
+//   if (films.length > NUMBER_FILM) {
+//     for (let i = 0; i < countShowFilm; i++) {
+//       activeFilms.push(films[i]);
+//     }
+//   } else {
+//     for (let item of films) {
+//       activeFilms.push(item);
+//     }
+//   }
+//   return activeFilms;
+// };
+
+

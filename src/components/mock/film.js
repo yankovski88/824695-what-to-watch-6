@@ -1,4 +1,10 @@
-const ids = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+import {getRandomInRange} from "../../utils/utils";
+
+const ids = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
+// const genres = [`comedies`, `crime`, `documentary`, `dramas`, `horror`, `kids`, `romance`, `sci`, `thrillers`];
+const genres = [`Comedies`, `Crime`, `Documentary`, `Dramas`, `Horror`, `Kids & Family`, `Romance`, `Sci-Fi`, `Thrillers`];
+// `All genres`,
+
 export const getFilmData = ()=>{
   const films = [];
   for (const item of ids) {
@@ -6,6 +12,7 @@ export const getFilmData = ()=>{
         {
           "id": item,
           "name": `The Grand Budapest Hotel ${item}`,
+          "genre": genres[getRandomInRange(0, genres.length - 1)],
           "posterImage": `img/the-grand-budapest-hotel-poster.jpg`,
           "previewImage": `img/the-grand-budapest-hotel.jpg`,
           "backgroundImage": `img/the-grand-budapest-hotel-bg.jpg`,
@@ -18,7 +25,6 @@ export const getFilmData = ()=>{
           "director": `Wes Andreson`,
           "starring": [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `Saoirse Ronan`],
           "runTime": 99,
-          "genre": `Comedy`,
           "released": 2014,
           "isFavorite": false
         }

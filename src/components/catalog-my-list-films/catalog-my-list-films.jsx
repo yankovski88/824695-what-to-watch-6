@@ -27,7 +27,6 @@ const CatalogMyListFilms = (props)=>{
             posterImage = {myListFilm.posterImage}
             id={myListFilm.id}
             updateData={updateData}
-            // updateFilmActive={updateFilmActive}
           />;
         })}
       </div>
