@@ -108,8 +108,8 @@ export const reducer = (state = initialState, action) => { // второе ин�
     case ActionType.GET_FILM_PROMO:
       return {
         ...state,
-        filmPromo: action.payload,
-      }
+        filmPromo: adaptToClient(action.payload), // и каждый объект пропустили через адатпер и вернули этот массив
+      };
 
     default:
       return state;

@@ -13,9 +13,9 @@ export const fetchMoviesList = () => (dispatch, _getState, api) => (
 export const login = ()=>(dispatch, _getState, api)=>(
   api.get(`/login`)
     .then((body)=> console.log(body))
-)
+);
 
 export const fetchPromo = ()=>(dispatch, _getState, api)=>(
   api.get(`/films/promo`)
-    .then((response) => dispatch(ActionCreator.getFilmPromo(response.filmPromo)))
-)
+    .then((response) => dispatch(ActionCreator.getFilmPromo(response.data)))
+);
