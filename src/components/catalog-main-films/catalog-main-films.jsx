@@ -6,20 +6,26 @@ import {getActiveFilms} from "../../utils/utils";
 
 
 const CatalogMainFilms = (props) => {
-  const {updateData, films, countShowFilm} = props;
+  const {updateData, films, countShowFilm, genreFilms} = props;
 
-  const activeFilms = getActiveFilms(films, countShowFilm);
+  // код который решает на основе массива с жанром сколько показать фильмов
+  let activeFilms;
+  if (!genreFilms || genreFilms.length === 0) { // если жанры ни разу не каликались, то массив будет underfind
+    activeFilms = getActiveFilms(films, countShowFilm); // значит передадим в него весь массив all genre
+  } else if (genreFilms) {
+    activeFilms = getActiveFilms(genreFilms, countShowFilm);
+  }
 
   return (
     <div className="catalog__movies-list">
-      {activeFilms.map((mainFilm) => {
+      {activeFilms.map((activeFilm) => {
         return <SmallCard
-          mainFilm={mainFilm}
-          key={mainFilm.id}
-          videoLink={mainFilm.videoLink}
-          name={mainFilm.name}
-          posterImage={mainFilm.posterImage}
-          id={mainFilm.id}
+          key={activeFilm.id}
+          activeFilm={activeFilm}
+          // videoLink={mainFilm.videoLink}
+          // name={mainFilm.name}
+          // posterImage={mainFilm.posterImage}
+          // id={mainFilm.id}
           updateData={updateData}
         />;
       })}
@@ -30,13 +36,15 @@ const CatalogMainFilms = (props) => {
 CatalogMainFilms.propTypes = {
   updateData: PropTypes.func.isRequired,
   films: PropTypes.array.isRequired,
+  genreFilms: PropTypes.array.isRequired,
   countShowFilm: PropTypes.number.isRequired,
 };
 
 
 const mapStateToProps = (state) => ({
   countShowFilm: state.countShowFilm,
-  films: state.films
+  films: state.films,
+  genreFilms: state.genreFilms,
 });
 
 export {CatalogMainFilms};
