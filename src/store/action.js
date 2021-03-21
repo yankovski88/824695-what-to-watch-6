@@ -4,7 +4,7 @@ export const ActionType = {
   MORE_FILM: `MORE_FILM`,
   GET_ALL_FILMS: `main/getAllFilms`,
   LIKE_FILMS: `card/like-films`, // создал тип экшина по которому сделаем функцию по его возврату
-  AUTHORIZATION: `main/authorization`,
+  REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
   GET_FILM_PROMO: `main/promo`,
 };
 
@@ -25,13 +25,13 @@ export const ActionCreator = {
     type: ActionType.LIKE_FILMS,
     payload: data
   }),
-  authorization: (data) => ({
-    type: ActionType.AUTHORIZATION,
-    payload: data,
-  }),
   getFilmPromo: (filmPromo)=>({
     type: ActionType.GET_FILM_PROMO,
     payload: filmPromo,
-  })
+  }),
+  requireAuthorization: (status) => ({
+    type: ActionType.REQUIRED_AUTHORIZATION,
+    payload: status,
+  }),
 
 };

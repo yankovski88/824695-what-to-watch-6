@@ -15,6 +15,12 @@ const HttpCode = {
 //   }).catch((a)=>{console.log(a)})
 
 
+// axios.get("https://6.react.pages.academy/wtw/login")
+//   .then(function (response) {
+//     console.log(response);
+//   }).catch((a)=>{console.log(a)})
+
+
 // создадим функцию по конфигу, она возвращает объект с конфигом
 export const createApi = (onUnauthorized)=>{
   // чтобы постоянно не писать config можно создать функцию конфигурации экземпляра axios для запроса

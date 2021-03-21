@@ -12,6 +12,7 @@ const Card = (props) => {
   React.useEffect(()=>{
     if (Object.keys(filmPromo).length === 0) {
       onLoadFilmPromo();
+
     }
   }, [filmPromo]);
 
@@ -62,7 +63,6 @@ const Card = (props) => {
 Card.propTypes = {
   filmPromo: PropTypes.object.isRequired,
   onLoadFilmPromo: PropTypes.func.isRequired,
-
 };
 
 const mapStateToProps = (state)=>({

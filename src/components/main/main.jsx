@@ -8,7 +8,7 @@ import ListGenres from "../list-genres/list-genres";
 import BtnShowMore from "../btn-show-more/btn-show-more";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../store/action";
-import {fetchMoviesList, login} from '../../store/api-actions';
+import {fetchMoviesList} from '../../store/api-actions';
 import Spinner from "../spinner/spinner";
 
 
@@ -26,7 +26,6 @@ const Main = (props) => {
   // запускаем хук useEffect он запускается каждый раз когда открывается страница, он следит за флагом isDataLoaded
   React.useEffect(() => {
     if (!isDataLoaded) { // если флаг false значит сайт запускается первый раз
-      // login();
 
       onLoadData(); // тогда вызываем функцию которая делает запрос на сервер, отдает данные в dispatch, а тот меняет store
     }

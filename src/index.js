@@ -9,8 +9,15 @@ import {Provider} from 'react-redux'; // соединяем храниище и 
 import {reducer} from './store/reducer';
 import thunk from "redux-thunk";
 import {createApi} from "./services/api";
+import {ActionCreator} from "./store/action";
+import {AuthorizationStatus} from "./constants/constants";
+import {checkAuth} from "./store/api-actions";
 
-const api = createApi(); // переменная с конфигурацией api
+// переменная с конфигурацией api
+const api = createApi(
+  // передаем в reduce при загрузке приложения, что авторизации не было
+  ()=> store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH))
+);
 
 // 1. создал reducer принимать значение action и выводит новый массив фильмов
 // 2. создал action который может приходить
@@ -25,6 +32,8 @@ const store = createStore(
     // applyMiddleware это библиотека посредник, нужна если хотим сделать асинхронный код у нас пока везде был синхронный
     // thunk это аргумент Middleware, если понадобятся еще аргументы, то добявятся чезез запятую (я думаю там где api)
 );
+
+store.dispatch(checkAuth()); // при загрузке сайта проверяем или авторизирован юзер и отправляем данные в reduce
 
 
 const firstMainFilms = getFilmData().slice(0, 8);
