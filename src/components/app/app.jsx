@@ -13,8 +13,8 @@ import {connect} from "react-redux";
 
 
 const App = (props) => {
-  const {mainFilms, myListFilms, reviews, movie, films} = props; // itemGenres
-  const [film, setMovie] = React.useState(movie); // фильм который хотим посмотреть
+  const {mainFilms, myListFilms, reviews, films} = props; // itemGenres , movie,
+  const [film, setMovie] = React.useState({}); // фильм который хотим посмотреть // movie
 
   let likeFilms = getGenreFilms(film.genre, films); // выбираем похожие фильмы
 
@@ -72,7 +72,7 @@ App.propTypes = {
   mainFilms: PropTypes.array.isRequired,
   myListFilms: PropTypes.array.isRequired,
   reviews: PropTypes.array.isRequired,
-  movie: PropTypes.object.isRequired,
+  // movie: PropTypes.object.isRequired,
   films: PropTypes.array.isRequired,
 };
 

@@ -3,10 +3,20 @@ import PropTypes from "prop-types";
 import Logo from "../logo/logo.jsx";
 import UserBlock from "../user-block/user-block.jsx";
 import BtnAddMyList from "../btn-add-my-list/btn-add-my-list";
+import {connect} from "react-redux";
+import {fetchPromo} from "../../store/api-actions";
 
 const Card = (props) => {
-  const {mainFilms} = props;
+  const {filmPromo, onLoadFilmPromo} = props;
+console.log(filmPromo)
 
+  // React.useEffect(()=>{
+  //   if(Object.keys(filmPromo).length === 0){
+  //     // onLoadFilmPromo()
+  //   }
+  // }, [filmPromo])
+
+console.log(filmPromo)
   return (
     <section className="movie-card">
       <div className="movie-card__bg">
@@ -27,11 +37,11 @@ const Card = (props) => {
           </div>
 
           <div className="movie-card__desc">
-            <h2 className="movie-card__title">{mainFilms[0].name}</h2>
-            <p className="movie-card__meta">
-              <span className="movie-card__genre">{mainFilms[0].genre}</span>
-              <span className="movie-card__year">{mainFilms[0].released}</span>
-            </p>
+            {/*<h2 className="movie-card__title">{filmPromo.name}</h2>*/}
+            {/*<p className="movie-card__meta">*/}
+            {/*  <span className="movie-card__genre">{filmPromo.genre}</span>*/}
+            {/*  <span className="movie-card__year">{filmPromo.released}</span>*/}
+            {/*</p>*/}
 
             <div className="movie-card__buttons">
               <button className="btn btn--play movie-card__button" type="button">
@@ -52,7 +62,20 @@ const Card = (props) => {
 };
 
 Card.propTypes = {
-  mainFilms: PropTypes.array.isRequired,
+  filmPromo: PropTypes.object.isRequired,
 };
 
-export default Card;
+const mapStateToProps = (state)=>({
+  filmPromo: state.filmPromo,
+})
+
+const mapDispatchToProps = (dispatch)=>({
+  onLoadFilmPromo(){
+    dispatch(fetchPromo())
+  }
+})
+
+export {Card};
+export default  connect (mapStateToProps, mapDispatchToProps)(Card)
+
+

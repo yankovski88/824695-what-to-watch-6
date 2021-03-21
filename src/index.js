@@ -29,7 +29,7 @@ const store = createStore(
 
 const firstMainFilms = getFilmData().slice(0, 8);
 const myListFilms = firstMainFilms.slice(0, 2);
-const movie = firstMainFilms[0];
+// const movie = firstMainFilms[0];
 const likeFilms = getFilmData().slice(9, 13);
 
 
@@ -41,7 +41,7 @@ ReactDom.render(
       <App mainFilms={mainFilms}
         myListFilms={myListFilms}
         reviews={reviews}
-        movie={movie}
+        // movie={movie}
       />
     </Provider>,
 

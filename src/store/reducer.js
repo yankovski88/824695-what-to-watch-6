@@ -44,13 +44,15 @@ const adaptToClient = (film)=> { // получаем объект с неуго�
 // начальное состояние хранилища store
 // Определяем действия
 const initialState = {
-  countShowFilm: 8,
-  genre: ALL_GENRES,
-  genreFilms: [],
-  films: [], // mainFilms
-  likeGenre: ``,
-  likeFilms: [],
-  isDataLoaded: false,
+  countShowFilm: 8, // число сколько фильмов отрендерить
+  genre: ALL_GENRES, // начальный жанр для main.jsx
+  genreFilms: [], // фильмы отсортированные по жанру
+  films: [], // загруженные фильмы с сервера все
+  likeGenre: ``, // жанр по умолчанию пустой для похожих фильмов
+  likeFilms: [], // похожие фильмы, появятся только после клика жанра
+  isDataLoaded: false, // загрузились ли фильмы с сервера
+  authorizationStatus: false, // поле чтобы знать авторизирован ли пользователь
+  filmPromo: {}, // фильм на главной странице
 };
 
 export const reducer = (state = initialState, action) => { // второе инициализируем стейт чтобы загрузить начальный жанр т.е. все фильмы
@@ -98,6 +100,17 @@ export const reducer = (state = initialState, action) => { // второе ин�
         likeGenre: action.payload,
         likeFilms: []
       };
+    case ActionType.AUTHORIZATION:
+      return {
+        ...state,
+        authorizationStatus: true,
+      };
+    case ActionType.GET_FILM_PROMO:
+      return {
+        ...state,
+        filmPromo: action.payload,
+      }
+
     default:
       return state;
   }

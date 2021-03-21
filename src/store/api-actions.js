@@ -10,3 +10,12 @@ export const fetchMoviesList = () => (dispatch, _getState, api) => (
 
 // далее в диспачь для store попадает пришедшие с запроса data фильмы
 
+export const login = ()=>(dispatch, _getState, api)=>(
+  api.get(`/login`)
+    .then((body)=> console.log(body))
+)
+
+export const fetchPromo = ()=>(dispatch, _getState, api)=>(
+  api.get(`/films/promo`)
+    .then((response) => dispatch(ActionCreator.getFilmPromo(response.filmPromo)))
+)

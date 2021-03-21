@@ -8,12 +8,12 @@ import ListGenres from "../list-genres/list-genres";
 import BtnShowMore from "../btn-show-more/btn-show-more";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../store/action";
-import {fetchMoviesList} from '../../store/api-actions';
+import {fetchMoviesList, login} from '../../store/api-actions';
 import Spinner from "../spinner/spinner";
 
 
 const Main = (props) => {
-  const {mainFilms, updateData, films, countShowFilm, setGenre, isDataLoaded, onLoadData, genreFilms} = props; // itemGenres
+  const {updateData, films, countShowFilm, setGenre, isDataLoaded, onLoadData, genreFilms} = props; // itemGenres, mainFilms,
 
   // код решает показать btn more или нет
   let itemGenreFilms; // переменная которая смотрит показывать ли кнопку More Show
@@ -26,12 +26,14 @@ const Main = (props) => {
   // запускаем хук useEffect он запускается каждый раз когда открывается страница, он следит за флагом isDataLoaded
   React.useEffect(() => {
     if (!isDataLoaded) { // если флаг false значит сайт запускается первый раз
+      login();
+
       onLoadData(); // тогда вызываем функцию которая делает запрос на сервер, отдает данные в dispatch, а тот меняет store
     }
   }, [isDataLoaded]); // useEffect сказали следи за этим флагом если он изменится, то делай запрос
 
   return <React.Fragment>
-    <Card mainFilms = {mainFilms}/>
+    <Card />
     <div className="page-content">
 
       {!isDataLoaded ? <Spinner /> :
@@ -54,7 +56,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  mainFilms: PropTypes.array.isRequired,
+  // mainFilms: PropTypes.array.isRequired,
   updateData: PropTypes.func.isRequired,
   genreFilms: PropTypes.array.isRequired,
   films: PropTypes.array.isRequired,
