@@ -13,7 +13,7 @@ import {connect} from "react-redux";
 
 
 const App = (props) => {
-  const {mainFilms, myListFilms, reviews, films} = props; // itemGenres , movie,
+  const {myListFilms, reviews, films} = props;
   const [film, setMovie] = React.useState({}); // фильм который хотим посмотреть // movie
 
   let likeFilms = getGenreFilms(film.genre, films); // выбираем похожие фильмы
@@ -27,8 +27,7 @@ const App = (props) => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          {/* itemGenres={itemGenres}*/}
-          <Main mainFilms = {mainFilms} updateData={updateData} />
+          <Main updateData={updateData} />
         </Route>
         <Route exact path="/login">
           <SignIn />
@@ -56,7 +55,6 @@ const App = (props) => {
         <Route exact path="/player/:id">
           <Player film={film}/>
         </Route>
-        {/* `Comedy`, `Boevic`, `All`*/}
         <Route exact path="/player/:id">
           <Player film={film}/>
         </Route>
@@ -69,10 +67,8 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  mainFilms: PropTypes.array.isRequired,
   myListFilms: PropTypes.array.isRequired,
   reviews: PropTypes.array.isRequired,
-  // movie: PropTypes.object.isRequired,
   films: PropTypes.array.isRequired,
 };
 

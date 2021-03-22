@@ -12,6 +12,7 @@ const SignInForm = (props)=>{
   const passwordRef = React.useRef(); // сохранили пароль
 
   // const history = useHistory(); // нужно для маршрутизации, но здесь не используется
+// <button onClick={()=> history.push(`/game`)}></button>
 
   // пропишем функцию на отправку формы на авторизацию
   const handleSubmit = (evt)=>{
