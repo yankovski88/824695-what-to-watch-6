@@ -6,6 +6,7 @@ export const ActionType = {
   LIKE_FILMS: `card/like-films`, // создал тип экшина по которому сделаем функцию по его возврату
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
   GET_FILM_PROMO: `main/promo`,
+  REDIRECT_TO_ROUTE: `user/redirectToRoute`,
 };
 
 // создаем объект функция которые возвращают экшин
@@ -33,5 +34,8 @@ export const ActionCreator = {
     type: ActionType.REQUIRED_AUTHORIZATION,
     payload: status,
   }),
-
+  redirectToRoute: (url) => ({
+    type: ActionType.REDIRECT_TO_ROUTE,
+    payload: url,
+  })
 };

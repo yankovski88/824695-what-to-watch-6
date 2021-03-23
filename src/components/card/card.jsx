@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Logo from "../logo/logo.jsx";
-import UserBlock from "../user-block/user-block.jsx";
+// import Logo from "../logo/logo.jsx";
+// import UserBlock from "../user-block/user-block.jsx";
 import BtnAddMyList from "../btn-add-my-list/btn-add-my-list";
 import {connect} from "react-redux";
 import {fetchPromo} from "../../store/api-actions";
 import Header from "../header/header";
+import BtnPlay from "../btn-play/btn-play";
 
 const Card = (props) => {
   const {filmPromo, onLoadFilmPromo} = props;
@@ -41,13 +42,8 @@ const Card = (props) => {
             </p>
 
             <div className="movie-card__buttons">
-              <button className="btn btn--play movie-card__button" type="button">
-                <svg viewBox="0 0 19 19" width="19" height="19">
-                  <use xlinkHref="#play-s"></use>
-                </svg>
-                <span>Play</span>
-              </button>
-
+              {/*anyFilm={filmPromo}*/}
+              <BtnPlay />
               <BtnAddMyList />
             </div>
           </div>

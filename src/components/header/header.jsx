@@ -2,18 +2,32 @@ import React from 'react';
 import Logo from "../logo/logo";
 import SignInLink from "../sign-in-link/sign-in-link";
 import UserBlock from "../user-block/user-block";
+import {connect} from "react-redux";
+import PropTypes from "prop-types";
+import {AuthorizationStatus} from "../../constants/constants";
 
 
-const Header = ()=>{
+const Header = (props)=>{
+  const {authorizationStatus} = props;
+  console.log(authorizationStatus)
   return(
     <>
       <header className="page-header movie-card__head">
         <Logo/>
-        <SignInLink/>
-        {/*<UserBlock/>*/}
+        {authorizationStatus === AuthorizationStatus.AUTH ? <UserBlock/> : <SignInLink/>}
       </header>
     </>
   )
 }
 
-export default Header;
+Header.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
+}
+
+const mapStateToProps = (state)=>({
+  authorizationStatus: state.authorizationStatus,
+})
+
+export {Header};
+
+export default connect(mapStateToProps, null)(Header)

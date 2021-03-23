@@ -46,7 +46,7 @@ const Film = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <BtnPlay/>
+                <BtnPlay anyFilm={film}/>
                 <BtnAddMyList/>
                 <Link to={`/films/${film ? film.id : ``}/add-review`}
                   className="btn movie-card__button">Add review</Link>

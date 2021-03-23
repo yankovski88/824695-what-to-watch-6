@@ -1,5 +1,6 @@
 import React from "react";
-import {Switch, Route, BrowserRouter} from "react-router-dom";
+// импортируем Router как BrowserRouter это для history
+import {Switch, Route, Router as BrowserRouter} from "react-router-dom";
 import Main from "../main/main.jsx";
 import PropTypes from "prop-types";
 import SignIn from "../sign-in/sign-in.jsx";
@@ -26,6 +27,7 @@ const App = (props) => {
   };
 
   return (
+    // теперь вся знаю об экземпляре класса истории
     <BrowserRouter history={browserHistory}>
       <Switch>
         <Route exact path="/">
@@ -42,9 +44,10 @@ const App = (props) => {
         {/*<Route exact path="/mylist">*/}
         {/*  <MyList myListFilms={myListFilms} updateData={updateData}/>*/}
         {/*</Route>*/}
-        {/* "/films/:id/review?"*/}
+         {/*"/films/:id/review?"*/}
+
         <PrivateRoute exact
-                      path={""}
+                      path={`/films/${film.id}/add-review`}
                       render={()=><AddReview film={film} onAnswer={() => {}}/>}
         >
         </PrivateRoute>
@@ -62,9 +65,6 @@ const App = (props) => {
         {/* /films/:id?*/}
         <Route exact path={`/films/${film.id}`}>
           <Film likeFilms={likeFilms} reviews={reviews} film={film} updateData={updateData}/>
-        </Route>
-        <Route exact path="/player/:id">
-          <Player film={film}/>
         </Route>
         <Route exact path="/player/:id">
           <Player film={film}/>

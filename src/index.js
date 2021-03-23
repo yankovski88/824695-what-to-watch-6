@@ -12,6 +12,7 @@ import {createApi} from "./services/api";
 import {ActionCreator} from "./store/action";
 import {AuthorizationStatus} from "./constants/constants";
 import {checkAuth} from "./store/api-actions";
+import {redirect} from "./store/middlewares/redirect";
 
 // переменная с конфигурацией api
 const api = createApi(
@@ -24,10 +25,14 @@ const api = createApi(
 // 3. создал store это хранилище
 // 4. нужно создать createAction научим все компоненты которые оборачивает Provider обращаться к store
 
+
 // создали stare хранилище
 const store = createStore(
     reducer, // функция которая обновляет хранилище по action
-    composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api))) // передали инструменты разработчика
+    composeWithDevTools( // передали инструменты разработчика
+      applyMiddleware(thunk.withExtraArgument(api)),
+      applyMiddleware(redirect)
+      ),
     // composeWithDevTools () это девтулс для redux в браузере. Все переданное в него он к этому присоедиянется.
     // applyMiddleware это библиотека посредник, нужна если хотим сделать асинхронный код у нас пока везде был синхронный
     // thunk это аргумент Middleware, если понадобятся еще аргументы, то добавятся через запятую (я думаю там где api)
