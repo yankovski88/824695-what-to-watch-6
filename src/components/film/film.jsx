@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "../logo/logo";
 import Copyright from "../copyright/copyright";
-import UserBlock from "../user-block/user-block.jsx";
+// import UserBlock from "../user-block/user-block.jsx";
 import CatalogLikeFilms from "../catalog-like-films/catalog-like-films";
 import BtnPlay from "../btn-play/btn-play";
 import BtnAddMyList from "../btn-add-my-list/btn-add-my-list";
@@ -11,6 +11,7 @@ import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 // import {useHistory, useParams} from "react-router-dom";
 import filmProp from "./film.prop";
+import Header from "../header/header";
 
 const Film = (props) => {
   const {likeFilms, film, reviews, updateData} = props;
@@ -34,10 +35,7 @@ const Film = (props) => {
 
           <h1 className="visually-hidden">WTW</h1>
 
-          <header className="page-header movie-card__head">
-            <Logo/>
-            <UserBlock/>
-          </header>
+         <Header/>
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">

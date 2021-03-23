@@ -10,6 +10,8 @@ import Film from "../film/film.jsx";
 import Error404 from "../error-404/error-404";
 import {getGenreFilms} from "../../utils/utils";
 import {connect} from "react-redux";
+import {PrivateRoute} from "../private-route/private-route";
+import browserHistory from "../../browser-history";
 
 
 const App = (props) => {
@@ -24,7 +26,7 @@ const App = (props) => {
   };
 
   return (
-    <BrowserRouter>
+    <BrowserRouter history={browserHistory}>
       <Switch>
         <Route exact path="/">
           <Main updateData={updateData} />
@@ -32,15 +34,24 @@ const App = (props) => {
         <Route exact path="/login">
           <SignIn />
         </Route>
-        <Route exact path="/mylist">
-          <MyList myListFilms={myListFilms} updateData={updateData}/>
-        </Route>
+        <PrivateRoute exact
+                      path={"/mylist"}
+                      render={()=><MyList myListFilms={myListFilms} updateData={updateData}/>}
+        >
+                      </PrivateRoute>
+        {/*<Route exact path="/mylist">*/}
+        {/*  <MyList myListFilms={myListFilms} updateData={updateData}/>*/}
+        {/*</Route>*/}
         {/* "/films/:id/review?"*/}
-        <Route exact path={`/films/${film.id}/add-review`}>
-          <AddReview film={film}
-            onAnswer={() => {}}
-          />
-        </Route>
+        <PrivateRoute exact
+                      path={""}
+                      render={()=><AddReview film={film} onAnswer={() => {}}/>}
+        >
+        </PrivateRoute>
+
+        {/*<Route exact path={`/films/${film.id}/add-review`}>*/}
+        {/*  <AddReview film={film} onAnswer={() => {}}/>*/}
+        {/*</Route>*/}
         <Route exact path={`/films/${film.id}/details`}>
           <Film likeFilms={likeFilms} reviews={reviews} film={film} updateData={updateData}/>
         </Route>

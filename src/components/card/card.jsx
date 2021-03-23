@@ -5,6 +5,7 @@ import UserBlock from "../user-block/user-block.jsx";
 import BtnAddMyList from "../btn-add-my-list/btn-add-my-list";
 import {connect} from "react-redux";
 import {fetchPromo} from "../../store/api-actions";
+import Header from "../header/header";
 
 const Card = (props) => {
   const {filmPromo, onLoadFilmPromo} = props;
@@ -24,10 +25,7 @@ const Card = (props) => {
 
       <h1 className="visually-hidden">WTW</h1>
 
-      <header className="page-header movie-card__head">
-        <Logo/>
-        <UserBlock/>
-      </header>
+     <Header/>
 
       <div className="movie-card__wrap">
         <div className="movie-card__info">
