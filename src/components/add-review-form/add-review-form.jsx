@@ -94,7 +94,6 @@ const AddReviewForm = (props) => {
 };
 
 AddReviewForm.propTypes = {
-  film: PropTypes.object.isRequired,
   onAnswer: PropTypes.func.isRequired,
 
 };

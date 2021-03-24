@@ -22,10 +22,7 @@ const CatalogMyListFilms = (props)=>{
         {myListFilms.map((myListFilm)=> {
           return <SmallCard
             key={myListFilm.id}
-            videoLink = {myListFilm.videoLink}
-            name = {myListFilm.name}
-            posterImage = {myListFilm.posterImage}
-            id={myListFilm.id}
+            activeFilm = {myListFilm}
             updateData={updateData}
           />;
         })}

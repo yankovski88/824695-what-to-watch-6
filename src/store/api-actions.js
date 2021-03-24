@@ -1,4 +1,5 @@
 import {ActionCreator} from "./action";
+import {AuthorizationStatus} from "../constants/constants";
 
 export const fetchMoviesList = () => (dispatch, _getState, api) => (
   api.get(`/films`)
@@ -10,3 +11,29 @@ export const fetchMoviesList = () => (dispatch, _getState, api) => (
 
 // далее в диспачь для store попадает пришедшие с запроса data фильмы
 
+export const fetchPromo = ()=>(dispatch, _getState, api)=>(
+  api.get(`/films/promo`)
+    .then((response) => dispatch(ActionCreator.getFilmPromo(response.data)))
+);
+
+
+// проверка авторизован ли пользователь
+export const checkAuth = () => (dispatch, _getState, api) => (
+  api.get(`/login`)
+    .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
+    .catch(() => {})
+);
+
+// проверка авторизован ли пользователь
+export const checkAuthNo = () => (dispatch, _getState, api) => (
+  api.get(`/logout`)
+    .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)))
+    .catch(() => {})
+);
+
+// отправка данных для авторизации
+export const login = ({login: email, password}) => (dispatch, getState, api) => (
+  api.post(`/login`, {email, password})
+    .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
+    .then(() => dispatch(ActionCreator.redirectToRoute(getState().requestedRoute))) // если пользователь логинится, то закинь его на главную страницу
+);

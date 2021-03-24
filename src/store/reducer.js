@@ -1,6 +1,6 @@
 import {ActionType} from "../store/action";
 import {getGenreFilms} from "../utils/utils";
-import {ALL_GENRES, NUMBER_FILM} from "../constants/constants";
+import {ALL_GENRES, NUMBER_FILM, AuthorizationStatus, RoutePaths} from "../constants/constants";
 
 
 // export const mainFilms = getFilmData().slice(0, 18);; // хранилище всех фильмов import {getFilmData} from "../components/mock/film";
@@ -44,20 +44,23 @@ const adaptToClient = (film)=> { // получаем объект с неуго�
 // начальное состояние хранилища store
 // Определяем действия
 const initialState = {
-  countShowFilm: 8,
-  genre: ALL_GENRES,
-  genreFilms: [],
-  films: [], // mainFilms
-  likeGenre: ``,
-  likeFilms: [],
-  isDataLoaded: false,
+  countShowFilm: 8, // число сколько фильмов отрендерить
+  genre: ALL_GENRES, // начальный жанр для main.jsx
+  genreFilms: [], // фильмы отсортированные по жанру
+  films: [], // загруженные фильмы с сервера все
+  likeGenre: ``, // жанр по умолчанию пустой для похожих фильмов
+  likeFilms: [], // похожие фильмы, появятся только после клика жанра
+  isDataLoaded: false, // загрузились ли фильмы с сервера
+  filmPromo: {}, // фильм на главной странице
+  authorizationStatus: AuthorizationStatus.NO_AUTH, // поле чтобы знать авторизирован ли пользователь
+  requestedRoute: RoutePaths.MAIN
 };
 
 export const reducer = (state = initialState, action) => { // второе инициализируем стейт чтобы загрузить начальный жанр т.е. все фильмы
   switch (action.type) {
     case ActionType.GENRE: // когда в main будет клик по жанру он сменится с undefined на выбранный
       return {
-        ...state,
+        ...state, // это нужно чтобы вывесте все данные и не писать все построчно
         genre: action.payload,
 
         // films: getGenreFilms(action.payload, state.films),
@@ -68,6 +71,7 @@ export const reducer = (state = initialState, action) => { // второе ин�
     case ActionType.MORE_FILM:
       if (state.films.length - state.countShowFilm > NUMBER_FILM) {
         return {
+          ...state,
           genre: state.genre,
           countShowFilm: state.countShowFilm + NUMBER_FILM,
           films: state.films,
@@ -76,6 +80,7 @@ export const reducer = (state = initialState, action) => { // второе ин�
         };
       } else {
         return {
+          ...state,
           genre: state.genre,
           films: state.films,
           countShowFilm: state.countShowFilm + state.films.length - state.countShowFilm,
@@ -98,6 +103,22 @@ export const reducer = (state = initialState, action) => { // второе ин�
         likeGenre: action.payload,
         likeFilms: []
       };
+    case ActionType.GET_FILM_PROMO:
+      return {
+        ...state,
+        filmPromo: adaptToClient(action.payload), // и каждый объект пропустили через адатпер и вернули этот массив
+      };
+    case ActionType.REQUIRED_AUTHORIZATION:
+      return {
+        ...state,
+        authorizationStatus: action.payload,
+      };
+    case ActionType.ADD_REQUESTED_ROUTE:
+      return {
+        ...state,
+        requestedRoute: action.payload,
+      };
+
     default:
       return state;
   }

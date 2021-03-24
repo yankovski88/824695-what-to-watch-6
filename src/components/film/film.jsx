@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "../logo/logo";
 import Copyright from "../copyright/copyright";
-import UserBlock from "../user-block/user-block.jsx";
+// import UserBlock from "../user-block/user-block.jsx";
 import CatalogLikeFilms from "../catalog-like-films/catalog-like-films";
 import BtnPlay from "../btn-play/btn-play";
 import BtnAddMyList from "../btn-add-my-list/btn-add-my-list";
@@ -11,9 +11,12 @@ import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 // import {useHistory, useParams} from "react-router-dom";
 import filmProp from "./film.prop";
+import Header from "../header/header";
+import {connect} from "react-redux";
+
 
 const Film = (props) => {
-  const {likeFilms, film, reviews, updateData} = props;
+  const {likeFilms, film, reviews, updateData} = props; // authorizationStatus
 
   // const params = useParams();
   // const history = useHistory();
@@ -29,15 +32,12 @@ const Film = (props) => {
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src="img/bg-the-grand-budapest-hotel.jpg" alt={name}/>
+            <img src={film.backgroundImage} alt={name}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
 
-          <header className="page-header movie-card__head">
-            <Logo/>
-            <UserBlock/>
-          </header>
+          <Header/>
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
@@ -48,11 +48,14 @@ const Film = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <BtnPlay/>
+                <BtnPlay anyFilm={film}/>
                 <BtnAddMyList/>
+                {/* {authorizationStatus === authorizationStatus.AUTH ?*/}
                 <Link to={`/films/${film ? film.id : ``}/add-review`}
                   className="btn movie-card__button">Add review</Link>
+                {/* :*/}
 
+                {/* // }*/}
                 {/* <LinkAddReview film={film}/>*/}
               </div>
             </div>
@@ -96,4 +99,10 @@ Film.propTypes = {
   updateData: PropTypes.func.isRequired,
 };
 
-export default Film;
+const mapStateToProps = ()=>({
+  // authorizationStatus: state.authorizationStatus,
+});
+
+export {Film};
+
+export default connect(mapStateToProps, null)(Film);

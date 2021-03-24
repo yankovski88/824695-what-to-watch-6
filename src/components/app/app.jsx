@@ -1,5 +1,6 @@
 import React from "react";
-import {Switch, Route, BrowserRouter} from "react-router-dom";
+// импортируем Router как BrowserRouter это для history
+import {Switch, Route, Router as BrowserRouter} from "react-router-dom";
 import Main from "../main/main.jsx";
 import PropTypes from "prop-types";
 import SignIn from "../sign-in/sign-in.jsx";
@@ -10,11 +11,15 @@ import Film from "../film/film.jsx";
 import Error404 from "../error-404/error-404";
 import {getGenreFilms} from "../../utils/utils";
 import {connect} from "react-redux";
+// import {PrivateRoute} from "../private-route/private-route";
+import browserHistory from "../../browser-history";
+import {ActionCreator} from "../../store/action";
+import PrivateRoute from "../private-route/private-route";
 
 
 const App = (props) => {
-  const {mainFilms, myListFilms, reviews, movie, films} = props; // itemGenres
-  const [film, setMovie] = React.useState(movie); // фильм который хотим посмотреть
+  const {myListFilms, reviews, films, authorizationStatus, onPrivateRouteRequest} = props;
+  const [film, setMovie] = React.useState({}); // фильм который хотим посмотреть // movie
 
   let likeFilms = getGenreFilms(film.genre, films); // выбираем похожие фильмы
 
@@ -24,24 +29,44 @@ const App = (props) => {
   };
 
   return (
-    <BrowserRouter>
+    // теперь вся знаю об экземпляре класса истории
+    <BrowserRouter history={browserHistory}>
       <Switch>
         <Route exact path="/">
-          {/* itemGenres={itemGenres}*/}
-          <Main mainFilms = {mainFilms} updateData={updateData} />
+          <Main updateData={updateData} />
         </Route>
         <Route exact path="/login">
           <SignIn />
         </Route>
-        <Route exact path="/mylist">
-          <MyList myListFilms={myListFilms} updateData={updateData}/>
-        </Route>
+
+
+        <PrivateRoute
+          exact
+          path={`/mylist`}
+          authorizationStatus={authorizationStatus}
+          onPrivateRouteRequest={onPrivateRouteRequest}
+          render={()=><MyList myListFilms={myListFilms} updateData={updateData}
+          />}
+        >
+        </PrivateRoute>
+
+
+        {/* <Route exact path="/mylist">*/}
+        {/*  <MyList myListFilms={myListFilms} updateData={updateData}/>*/}
+        {/* </Route>*/}
         {/* "/films/:id/review?"*/}
-        <Route exact path={`/films/${film.id}/add-review`}>
-          <AddReview film={film}
-            onAnswer={() => {}}
-          />
-        </Route>
+
+        <PrivateRoute exact
+          path={`/films/${film.id}/add-review`}
+          onPrivateRouteRequest={onPrivateRouteRequest}
+          render={()=><AddReview film={film} onAnswer={() => {}}/>}
+          authorizationStatus={authorizationStatus}
+        >
+        </PrivateRoute>
+
+        {/* <Route exact path={`/films/${film.id}/add-review`}>*/}
+        {/*  <AddReview film={film} onAnswer={() => {}}/>*/}
+        {/* </Route>*/}
         <Route exact path={`/films/${film.id}/details`}>
           <Film likeFilms={likeFilms} reviews={reviews} film={film} updateData={updateData}/>
         </Route>
@@ -56,10 +81,6 @@ const App = (props) => {
         <Route exact path="/player/:id">
           <Player film={film}/>
         </Route>
-        {/* `Comedy`, `Boevic`, `All`*/}
-        <Route exact path="/player/:id">
-          <Player film={film}/>
-        </Route>
         <Route>
           <Error404 />
         </Route>
@@ -69,17 +90,25 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  mainFilms: PropTypes.array.isRequired,
   myListFilms: PropTypes.array.isRequired,
   reviews: PropTypes.array.isRequired,
-  movie: PropTypes.object.isRequired,
   films: PropTypes.array.isRequired,
+
+  authorizationStatus: PropTypes.string.isRequired,
+  onPrivateRouteRequest: PropTypes.func.isRequired,
 };
 
 export {App};
 
 const mapStateToProps = (state)=>({
-  films: state.films
+  films: state.films,
+  authorizationStatus: state.authorizationStatus
 });
 
-export default connect(mapStateToProps, null)(App);
+const mapDispatchToProps = (dispatch)=>({
+  onPrivateRouteRequest(route) {
+    dispatch(ActionCreator.addRequestedRoute(route)); // закидываем роуте в диспач он закидывает в action и далее reducer поменяет вместо пути "/" на главную на путь route
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
