@@ -36,25 +36,30 @@ const App = (props) => {
         <Route exact path="/login">
           <SignIn />
         </Route>
-        <PrivateRoute exact
-                      path={"/mylist"}
-                      render={()=><MyList myListFilms={myListFilms} updateData={updateData}/>}
-        >
-                      </PrivateRoute>
-        {/*<Route exact path="/mylist">*/}
-        {/*  <MyList myListFilms={myListFilms} updateData={updateData}/>*/}
-        {/*</Route>*/}
-         {/*"/films/:id/review?"*/}
 
-        <PrivateRoute exact
-                      path={`/films/${film.id}/add-review`}
-                      render={()=><AddReview film={film} onAnswer={() => {}}/>}
+
+        <PrivateRoute
+          exact
+          path={`/mylist`}
+          render={()=><MyList myListFilms={myListFilms} updateData={updateData}/>}
         >
         </PrivateRoute>
 
-        {/*<Route exact path={`/films/${film.id}/add-review`}>*/}
+
+        {/* <Route exact path="/mylist">*/}
+        {/*  <MyList myListFilms={myListFilms} updateData={updateData}/>*/}
+        {/* </Route>*/}
+        {/* "/films/:id/review?"*/}
+
+        <PrivateRoute exact
+          path={`/films/${film.id}/add-review`}
+          render={()=><AddReview film={film} onAnswer={() => {}}/>}
+        >
+        </PrivateRoute>
+
+        {/* <Route exact path={`/films/${film.id}/add-review`}>*/}
         {/*  <AddReview film={film} onAnswer={() => {}}/>*/}
-        {/*</Route>*/}
+        {/* </Route>*/}
         <Route exact path={`/films/${film.id}/details`}>
           <Film likeFilms={likeFilms} reviews={reviews} film={film} updateData={updateData}/>
         </Route>

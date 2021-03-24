@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 // import {SignInForm} from "../sign-in-form/sign-in-form";
 
 const UserBlock = (props)=>{
-  const{onClickLeave} = props;
+  const {onClickLeave} = props;
   return (
     <div className="user-block">
       <div className="user-block__avatar">
@@ -22,13 +22,13 @@ const UserBlock = (props)=>{
 // export default UserBlock;
 UserBlock.propTypes = {
   onClickLeave: PropTypes.func.isRequired,
-}
+};
 
 const mapDispatchToProps = (dispatch)=>({
-  onClickLeave(){
-    dispatch(checkAuthNo())
+  onClickLeave() {
+    dispatch(checkAuthNo());
   }
-})
+});
 
 export {UserBlock};
-export default connect (null, mapDispatchToProps)(UserBlock) // mapStateToProps
+export default connect(null, mapDispatchToProps)(UserBlock); // mapStateToProps

@@ -16,8 +16,8 @@ import {redirect} from "./store/middlewares/redirect";
 
 // переменная с конфигурацией api
 const api = createApi(
-  // передаем в reduce при загрузке приложения, что авторизации не было
-  ()=> store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)) // по умолчанию передали колбек, что юзер не авторизован
+    // передаем в reduce при загрузке приложения, что авторизации не было
+    ()=> store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)) // по умолчанию передали колбек, что юзер не авторизован
 );
 
 // 1. создал reducer принимать значение action и выводит новый массив фильмов
@@ -30,35 +30,27 @@ const api = createApi(
 const store = createStore(
     reducer, // функция которая обновляет хранилище по action
     composeWithDevTools( // передали инструменты разработчика
-      applyMiddleware(thunk.withExtraArgument(api)),
-      applyMiddleware(redirect)
-      ),
+        applyMiddleware(thunk.withExtraArgument(api)),
+        applyMiddleware(redirect)
+    ),
     // composeWithDevTools () это девтулс для redux в браузере. Все переданное в него он к этому присоедиянется.
     // applyMiddleware это библиотека посредник, нужна если хотим сделать асинхронный код у нас пока везде был синхронный
     // thunk это аргумент Middleware, если понадобятся еще аргументы, то добавятся через запятую (я думаю там где api)
 // withExtraArgument если нужно добавлять аргумент типа api, то пишем чтобы добавить аргументы
 );
 
-//?
+// ?
 store.dispatch(checkAuth()); // при загрузке сайта проверяем или авторизирован юзер и отправляем данные в reduce
 // это нужно если пользователь захотел сразу перейте по ссылке в которой не авторизовался
 
-// const firstMainFilms = getFilmData().slice(0, 8);
 const myListFilms = getFilmData().slice(0, 2);
-// const movie = firstMainFilms[0];
-// const likeFilms = getFilmData().slice(9, 13);
-//
-//
-// export const mainFilms = [...firstMainFilms, ...likeFilms]; // хранилище всех фильмов
 
 ReactDom.render(
     // обернули все приложение, теперь есть доступ к хранилищу
     <Provider store={store}>
       <App
-        // mainFilms={mainFilms}
         myListFilms={myListFilms}
         reviews={reviews}
-        // movie={movie}
       />
     </Provider>,
 

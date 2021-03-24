@@ -9,25 +9,24 @@ import {AuthorizationStatus} from "../../constants/constants";
 
 const Header = (props)=>{
   const {authorizationStatus} = props;
-  console.log(authorizationStatus)
-  return(
+  return (
     <>
       <header className="page-header movie-card__head">
         <Logo/>
         {authorizationStatus === AuthorizationStatus.AUTH ? <UserBlock/> : <SignInLink/>}
       </header>
     </>
-  )
-}
+  );
+};
 
 Header.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
-}
+};
 
 const mapStateToProps = (state)=>({
   authorizationStatus: state.authorizationStatus,
-})
+});
 
 export {Header};
 
-export default connect(mapStateToProps, null)(Header)
+export default connect(mapStateToProps, null)(Header);

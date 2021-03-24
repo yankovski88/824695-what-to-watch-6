@@ -7,6 +7,7 @@ export const ActionType = {
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
   GET_FILM_PROMO: `main/promo`,
   REDIRECT_TO_ROUTE: `user/redirectToRoute`,
+  ADD_REQUESTED_ROUTE: `user/addRequestedRoute`,
 };
 
 // создаем объект функция которые возвращают экшин
@@ -37,5 +38,9 @@ export const ActionCreator = {
   redirectToRoute: (url) => ({
     type: ActionType.REDIRECT_TO_ROUTE,
     payload: url,
-  })
+  }),
+  addRequestedRoute: (route) => ({
+    type: ActionType.ADD_REQUESTED_ROUTE,
+    payload: route,
+  }),
 };

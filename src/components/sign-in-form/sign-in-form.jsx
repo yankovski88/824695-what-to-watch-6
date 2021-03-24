@@ -12,7 +12,7 @@ const SignInForm = (props)=>{
   const passwordRef = React.useRef(); // сохранили пароль
 
   // const history = useHistory(); // нужно для маршрутизации, но здесь не используется
-// <button onClick={()=> history.push(`/game`)}></button>
+  // <button onClick={()=> history.push(`/game`)}></button>
 
   // пропишем функцию на отправку формы на авторизацию
   const handleSubmit = (evt)=>{
@@ -21,8 +21,8 @@ const SignInForm = (props)=>{
     onSubmit({ // вызываем функцию для диспача передадим туда введенные данные с полей юзера
       login: loginRef.current.value, // данные с полей инпута. current текущее значение(пишется всегда)
       password: passwordRef.current.value,
-    })
-  }
+    });
+  };
 
 
   return (
@@ -41,10 +41,10 @@ const SignInForm = (props)=>{
           </div>
           <div className="sign-in__field">
             <input ref={passwordRef}
-                   className="sign-in__input"
-                   type="password"
-                   placeholder="Password"
-                   name="user-password"
+              className="sign-in__input"
+              type="password"
+              placeholder="Password"
+              name="user-password"
               id="user-password"/>
             <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
           </div>
@@ -60,14 +60,14 @@ const SignInForm = (props)=>{
 
 SignInForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-}
+};
 
 const mapDispatchToProps = (dispatch)=>({
-  onSubmit(authData){
-    dispatch(login(authData))
+  onSubmit(authData) {
+    dispatch(login(authData));
   }
-})
+});
 
 export {SignInForm};
-export default connect (null, mapDispatchToProps)(SignInForm) // mapStateToProps
+export default connect(null, mapDispatchToProps)(SignInForm); // mapStateToProps
 

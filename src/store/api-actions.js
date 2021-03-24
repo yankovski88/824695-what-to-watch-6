@@ -32,9 +32,8 @@ export const checkAuthNo = () => (dispatch, _getState, api) => (
 );
 
 // отправка данных для авторизации
-// если пользователь логинится, то закинь его на главную страницу getState().requestedRoute
-export const login = ({login: email, password}) => (dispatch, _getState, api) => (
+export const login = ({login: email, password}) => (dispatch, getState, api) => (
   api.post(`/login`, {email, password})
     .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
-    .then(() => dispatch(ActionCreator.redirectToRoute(`/`)))
+    .then(() => dispatch(ActionCreator.redirectToRoute(getState().requestedRoute))) // если пользователь логинится, то закинь его на главную страницу
 );

@@ -26,7 +26,7 @@ const Card = (props) => {
 
       <h1 className="visually-hidden">WTW</h1>
 
-     <Header/>
+      <Header/>
 
       <div className="movie-card__wrap">
         <div className="movie-card__info">
@@ -42,7 +42,7 @@ const Card = (props) => {
             </p>
 
             <div className="movie-card__buttons">
-              {/*anyFilm={filmPromo}*/}
+              {/* anyFilm={filmPromo}*/}
               <BtnPlay />
               <BtnAddMyList />
             </div>

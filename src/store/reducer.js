@@ -1,6 +1,6 @@
 import {ActionType} from "../store/action";
 import {getGenreFilms} from "../utils/utils";
-import {ALL_GENRES, NUMBER_FILM, AuthorizationStatus} from "../constants/constants";
+import {ALL_GENRES, NUMBER_FILM, AuthorizationStatus, RoutePaths} from "../constants/constants";
 
 
 // export const mainFilms = getFilmData().slice(0, 18);; // хранилище всех фильмов import {getFilmData} from "../components/mock/film";
@@ -53,6 +53,7 @@ const initialState = {
   isDataLoaded: false, // загрузились ли фильмы с сервера
   filmPromo: {}, // фильм на главной странице
   authorizationStatus: AuthorizationStatus.NO_AUTH, // поле чтобы знать авторизирован ли пользователь
+  requestedRoute: RoutePaths.MAIN
 };
 
 export const reducer = (state = initialState, action) => { // второе инициализируем стейт чтобы загрузить начальный жанр т.е. все фильмы
@@ -112,8 +113,14 @@ export const reducer = (state = initialState, action) => { // второе ин�
         ...state,
         authorizationStatus: action.payload,
       };
+    case ActionType.ADD_REQUESTED_ROUTE:
+      return {
+        ...state,
+        requestedRoute: action.payload,
+      };
 
     default:
       return state;
   }
 };
+

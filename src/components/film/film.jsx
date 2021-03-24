@@ -12,9 +12,11 @@ import {Link} from "react-router-dom";
 // import {useHistory, useParams} from "react-router-dom";
 import filmProp from "./film.prop";
 import Header from "../header/header";
+import {connect} from "react-redux";
+
 
 const Film = (props) => {
-  const {likeFilms, film, reviews, updateData} = props;
+  const {likeFilms, film, reviews, updateData} = props; // authorizationStatus
 
   // const params = useParams();
   // const history = useHistory();
@@ -35,7 +37,7 @@ const Film = (props) => {
 
           <h1 className="visually-hidden">WTW</h1>
 
-         <Header/>
+          <Header/>
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
@@ -48,9 +50,12 @@ const Film = (props) => {
               <div className="movie-card__buttons">
                 <BtnPlay anyFilm={film}/>
                 <BtnAddMyList/>
+                {/* {authorizationStatus === authorizationStatus.AUTH ?*/}
                 <Link to={`/films/${film ? film.id : ``}/add-review`}
                   className="btn movie-card__button">Add review</Link>
+                {/* :*/}
 
+                {/* // }*/}
                 {/* <LinkAddReview film={film}/>*/}
               </div>
             </div>
@@ -94,4 +99,10 @@ Film.propTypes = {
   updateData: PropTypes.func.isRequired,
 };
 
-export default Film;
+const mapStateToProps = ()=>({
+  // authorizationStatus: state.authorizationStatus,
+});
+
+export {Film};
+
+export default connect(mapStateToProps, null)(Film);
