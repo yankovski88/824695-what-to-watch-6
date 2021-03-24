@@ -8,4 +8,4 @@ export const AuthorizationStatus = {
 
 export const RoutePaths = {
   MAIN: `/`,
-  SIGN_IN: `login`};
+  SIGN_IN: `/login`};

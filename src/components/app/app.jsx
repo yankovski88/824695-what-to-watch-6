@@ -11,12 +11,14 @@ import Film from "../film/film.jsx";
 import Error404 from "../error-404/error-404";
 import {getGenreFilms} from "../../utils/utils";
 import {connect} from "react-redux";
-import {PrivateRoute} from "../private-route/private-route";
+// import {PrivateRoute} from "../private-route/private-route";
 import browserHistory from "../../browser-history";
+import {ActionCreator} from "../../store/action";
+import PrivateRoute from "../private-route/private-route";
 
 
 const App = (props) => {
-  const {myListFilms, reviews, films} = props;
+  const {myListFilms, reviews, films, authorizationStatus, onPrivateRouteRequest} = props;
   const [film, setMovie] = React.useState({}); // фильм который хотим посмотреть // movie
 
   let likeFilms = getGenreFilms(film.genre, films); // выбираем похожие фильмы
@@ -41,7 +43,10 @@ const App = (props) => {
         <PrivateRoute
           exact
           path={`/mylist`}
-          render={()=><MyList myListFilms={myListFilms} updateData={updateData}/>}
+          authorizationStatus={authorizationStatus}
+          onPrivateRouteRequest={onPrivateRouteRequest}
+          render={()=><MyList myListFilms={myListFilms} updateData={updateData}
+          />}
         >
         </PrivateRoute>
 
@@ -53,7 +58,9 @@ const App = (props) => {
 
         <PrivateRoute exact
           path={`/films/${film.id}/add-review`}
+          onPrivateRouteRequest={onPrivateRouteRequest}
           render={()=><AddReview film={film} onAnswer={() => {}}/>}
+          authorizationStatus={authorizationStatus}
         >
         </PrivateRoute>
 
@@ -86,12 +93,22 @@ App.propTypes = {
   myListFilms: PropTypes.array.isRequired,
   reviews: PropTypes.array.isRequired,
   films: PropTypes.array.isRequired,
+
+  authorizationStatus: PropTypes.string.isRequired,
+  onPrivateRouteRequest: PropTypes.func.isRequired,
 };
 
 export {App};
 
 const mapStateToProps = (state)=>({
-  films: state.films
+  films: state.films,
+  authorizationStatus: state.authorizationStatus
 });
 
-export default connect(mapStateToProps, null)(App);
+const mapDispatchToProps = (dispatch)=>({
+  onPrivateRouteRequest(route) {
+    dispatch(ActionCreator.addRequestedRoute(route)); // закидываем роуте в диспач он закидывает в action и далее reducer поменяет вместо пути "/" на главную на путь route
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
