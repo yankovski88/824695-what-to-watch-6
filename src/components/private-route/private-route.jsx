@@ -40,14 +40,14 @@ import {ActionCreator} from "../../store/action";
 // export default connect(mapStateToProps, mapDispatchToProps)(PrivateRoute);
 
 
-const handleUserNotAuthtorized = (route)=>{
-  // onPrivateRouteRequest эта функция которая получит rout(маршрут вместо `/`)
-  // route это маршрут вместо `/`
-  mapDispatchToProps(route);
-  // console.log(store.requestedRoute)
-  // console.log(mapDispatchToProps())
-  return <Redirect to={RoutePaths.SIGN_IN}/>; // вернуть редирект с маршрутом на `login`
-};
+// const handleUserNotAuthtorized = (route)=>{
+//   // onPrivateRouteRequest эта функция которая получит rout(маршрут вместо `/`)
+//   // route это маршрут вместо `/`
+//   mapDispatchToProps(route);
+//   // console.log(store.requestedRoute)
+//   // console.log(mapDispatchToProps())
+//   return <Redirect to={RoutePaths.SIGN_IN}/>; // вернуть редирект с маршрутом на `login`
+// };
 
 
 const PrivateRoute = ({render, path, exact, authorizationStatus}) =>{
@@ -58,8 +58,8 @@ const PrivateRoute = ({render, path, exact, authorizationStatus}) =>{
       exact={exact}
       render={(routeProps)=>(
         authorizationStatus === AuthorizationStatus.AUTH ? render(routeProps) :
-          handleUserNotAuthtorized(path)
-        // <Redirect to={`/login`} /> // иначе типо верни на путь с регистрацией
+          // handleUserNotAuthtorized(path)
+          <Redirect to={RoutePaths.SIGN_IN} /> // иначе типо верни на путь с регистрацией
         // onPrivateRouteRequest(path)
         // mapDispatchToProps(route);
 
