@@ -53,7 +53,8 @@ const initialState = {
   isDataLoaded: false, // загрузились ли фильмы с сервера
   filmPromo: {}, // фильм на главной странице
   authorizationStatus: AuthorizationStatus.NO_AUTH, // поле чтобы знать авторизирован ли пользователь
-  requestedRoute: RoutePaths.MAIN
+  requestedRoute: RoutePaths.MAIN,
+  filmById: {},
 };
 
 export const reducer = (state = initialState, action) => { // второе инициализируем стейт чтобы загрузить начальный жанр т.е. все фильмы
@@ -118,6 +119,13 @@ export const reducer = (state = initialState, action) => { // второе ин�
         ...state,
         requestedRoute: action.payload,
       };
+    case ActionType.FILM_BY_ID:
+      console.log(`action is`)
+      console.log(action)
+      return {
+        ...state,
+        filmById: adaptToClient(action.payload)
+      }
 
     default:
       return state;

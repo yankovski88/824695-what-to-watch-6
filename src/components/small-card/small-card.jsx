@@ -2,12 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import VideoPlayer from "../videoPlayer/video-player";
+import {connect} from "react-redux";
+import {fetchFilmById} from "../../store/api-actions";
 
 
 const SmallCard = (props) => {
-  const {activeFilm, updateData} = props; // posterImage, name, id,
+  const {activeFilm, updateData, filmById, loadFilmById} = props; // posterImage, name, id,
   const [filmActive, setFilmActive] = React.useState(``);
-
+// console.log(activeFilm)
 
   let timeOutId = null; // флаг, таймер не включен
 
@@ -41,6 +43,10 @@ const SmallCard = (props) => {
         onMouseOver={_handleHoverCard}
         onMouseLeave={_handleHoverOutCard}
 
+               // onClick={() => {
+               //   loadFilmById(activeFilm.id);
+               // }}
+
         onClick={() => {
           updateData(activeFilm);
         }}
@@ -66,8 +72,22 @@ SmallCard.propTypes = {
   // id: PropTypes.number.isRequired,
   updateData: PropTypes.func.isRequired,
   // updateFilmActive: PropTypes.func.isRequired,
+
+  // loadFilmById: PropTypes.func.isRequired,
 };
 
+const mapStateToProps = (state)=>({
+  filmById: state.filmById,
+  })
 
-export default SmallCard;
+// const mapDispatchToProps =(dispatch)=>({
+//   loadFilmById(id){
+//     dispatch(fetchFilmById(id))
+//   }
+// });
+
+// export default SmallCard;
+export {SmallCard};
+// mapDispatchToProps
+export default connect (mapStateToProps, )(SmallCard)
 

@@ -18,13 +18,14 @@ import PrivateRoute from "../private-route/private-route";
 
 
 const App = (props) => {
-  const {myListFilms, reviews, films, authorizationStatus, onPrivateRouteRequest} = props;
+  const {myListFilms, reviews, films, authorizationStatus, onPrivateRouteRequest, filmById} = props;
   const [film, setMovie] = React.useState({}); // фильм который хотим посмотреть // movie
-
+console.log(authorizationStatus)
   let likeFilms = getGenreFilms(film.genre, films); // выбираем похожие фильмы
 
 
   const updateData = (value) => {
+
     setMovie(value);
   };
 
@@ -76,8 +77,10 @@ const App = (props) => {
 
         {/* /films/:id?*/}
         <Route exact path={`/films/${film.id}`}>
-          <Film likeFilms={likeFilms} reviews={reviews} film={film} updateData={updateData}/>
+          <Film likeFilms={likeFilms} reviews={reviews} film={film} updateData={updateData} />
         </Route>
+
+
         <Route exact path="/player/:id">
           <Player film={film}/>
         </Route>
@@ -102,7 +105,8 @@ export {App};
 
 const mapStateToProps = (state)=>({
   films: state.films,
-  authorizationStatus: state.authorizationStatus
+  authorizationStatus: state.authorizationStatus,
+  filmById: state.filmById,
 });
 
 const mapDispatchToProps = (dispatch)=>({

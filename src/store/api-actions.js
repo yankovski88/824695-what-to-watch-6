@@ -37,3 +37,8 @@ export const login = ({login: email, password}) => (dispatch, getState, api) => 
     .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
     .then(() => dispatch(ActionCreator.redirectToRoute(getState().requestedRoute))) // если пользователь логинится, то закинь его на главную страницу
 );
+
+export const fetchFilmById = (id)=>(dispatch, _getState, api)=>(
+  api.get(`/films/${id}`)
+    .then((response)=>dispatch(ActionCreator.getFilmById(response.data)))
+);

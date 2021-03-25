@@ -13,16 +13,29 @@ import {Link} from "react-router-dom";
 import filmProp from "./film.prop";
 import Header from "../header/header";
 import {connect} from "react-redux";
+import {fetchFilmById} from "../../store/api-actions";
 
 
 const Film = (props) => {
-  const {likeFilms, film, reviews, updateData} = props; // authorizationStatus
-
+  const {likeFilms, film, reviews, updateData, filmById, loadFilmById} = props; // authorizationStatus
+console.log(props)
+  console.log(filmById)
   // const params = useParams();
   // const history = useHistory();
 
 
-  const {posterImage, name, genre, released} = film;
+  // запускаем хук useEffect он запускается каждый раз когда открывается страница, он следит за флагом isDataLoaded
+  React.useEffect(() => {
+    // if (!isDataLoaded) { // если флаг false значит сайт запускается первый раз
+
+    loadFilmById(film.id); // тогда вызываем функцию которая делает запрос на сервер, отдает данные в dispatch, а тот меняет store
+    // }
+  }, [film.id]); // useEffect сказали следи за этим флагом если он изменится, то делай запрос
+
+
+
+
+  const {posterImage, name, genre, released} = filmById;
   const [nav] = React.useState({
     nav: `overview`,
   });
@@ -32,7 +45,7 @@ const Film = (props) => {
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src={film.backgroundImage} alt={name}/>
+            <img src={filmById.backgroundImage} alt={name}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -48,10 +61,10 @@ const Film = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <BtnPlay anyFilm={film}/>
+                <BtnPlay anyFilm={filmById}/>
                 <BtnAddMyList/>
                 {/* {authorizationStatus === authorizationStatus.AUTH ?*/}
-                <Link to={`/films/${film ? film.id : ``}/add-review`}
+                <Link to={`/films/${filmById ? filmById.id : ``}/add-review`}
                   className="btn movie-card__button">Add review</Link>
                 {/* :*/}
 
@@ -71,7 +84,7 @@ const Film = (props) => {
 
             <div className="movie-card__desc">
 
-              <MovieNav nav = {nav} film={film} reviews={reviews}/>
+              <MovieNav nav = {nav} film={filmById} reviews={reviews}/>
 
             </div>
           </div>
@@ -99,10 +112,17 @@ Film.propTypes = {
   updateData: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ()=>({
-  // authorizationStatus: state.authorizationStatus,
+const mapStateToProps = (state)=>({
+  filmById: state.filmById,
 });
 
+const mapDispatchToProps = (dispatch)=>({
+  loadFilmById(id){
+    dispatch(fetchFilmById(id))
+  }
+})
+
+// export default Film;
 export {Film};
 
-export default connect(mapStateToProps, null)(Film);
+export default connect(mapStateToProps, mapDispatchToProps)(Film);
