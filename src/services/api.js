@@ -9,7 +9,7 @@ const HttpCode = {
 // console.log(api.get(data))
 // console.log(axios.get(`https://6.react.pages.academy/wtw`))
 
-// axios.get("https://6.react.pages.academy/wtw/films/promo")
+// axios.get("https://6.react.pages.academy/wtw/comments/2")
 //   .then(function (response) {
 //     console.log(response);
 //   }).catch((a)=>{console.log(a)})
@@ -20,12 +20,12 @@ const HttpCode = {
 //     console.log(response);
 //   }).catch((a)=>{console.log(a)})
 
-axios.get(`https://6.react.pages.academy/wtw/films/2`)
-  .then(function (response) {
-    console.log(response);
-  }).catch((a)=>{
-    console.log(a);
-  });
+// axios.get(`https://6.react.pages.academy/wtw/films/2`)
+//   .then(function (response) {
+//     console.log(response);
+//   }).catch((a)=>{
+//     console.log(a);
+//   });
 
 
 // создадим функцию по конфигу, она возвращает объект с конфигом

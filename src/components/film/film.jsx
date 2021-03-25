@@ -13,9 +13,9 @@ import {Link, useParams} from "react-router-dom";
 import filmProp from "./film.prop";
 import Header from "../header/header";
 import {connect} from "react-redux";
-import {fetchFilmById, fetchMoviesList} from "../../store/api-actions";
+import {fetchFilmById, fetchMoviesList, fetchAllComments} from "../../store/api-actions";
 import Error404 from "../error-404/error-404";
-import {getGenreFilms} from "../../utils/utils";
+import {getGenreById, getGenreFilms} from "../../utils/utils";
 
 
 const Film = (props) => {
@@ -31,7 +31,10 @@ const Film = (props) => {
     onLoadData,
     films,
     genreFilms,
-    likeGenre
+    likeGenre,
+    isAllComments,
+    allComments,
+    loadAllComments,
   } = props; // authorizationStatus
   let {id} = useParams(); // берем данные с маршрута из app.js
   const {posterImage, name, genre, released} = filmById;
@@ -39,38 +42,11 @@ const Film = (props) => {
     nav: `overview`,
   });
 
-  //написать функцию которая из массива с фильмами по id найдет жанр
-  const getGenreById = (idFilm, itemFilms) => {
-    const films = itemFilms.slice();
 
-    console.log(idFilm)
-    console.log(films)
-let genre = `All genre`
-    for (let item of films) {
-      console.log(item.id)
-      if (+idFilm === item.id) {
-        genre = item.genre
-      }
-    }
-    return genre;
-  }
-
-  console.log(likeGenre)
-  const genreById = getGenreById(id, films);
-  const likeFilms = getGenreFilms(genreById, films).slice(0, 4)
-  console.log(likeFilms)
-
-  // // код решает показать btn more или нет
-  // let itemGenreFilms; // переменная которая смотрит показывать ли кнопку More Show
-  // if (!genreFilms || genreFilms.length === 0) { // если не один из жанров не кликнули, то он равен всем фильмам
-  //   itemGenreFilms = films;
-  // } else if (genreFilms) {
-  //   itemGenreFilms = genreFilms;
-  // }
+  const genreById = getGenreById(id, films); // нашли жанр фильма по id маршрута
+  const likeFilms = getGenreFilms(genreById, films).slice(0, 4) // нашли все похожие фильмы по жанру
 
 
-  console.log(isFilmFound)
-  console.log(films)
 
   // запускаем хук useEffect он запускается каждый раз когда открывается страница, он следит за флагом isDataLoaded
   React.useEffect(() => {
@@ -86,19 +62,19 @@ let genre = `All genre`
     }
   }, [isDataLoaded])
 
+  React.useEffect(() => {
+    if (!isAllComments) { // елси флаг false, то никогда коменты не загружались
+      console.log(`я тут`)
+      loadAllComments(id); // делаем запрос на коменты
+    }
+  }, [isAllComments]) // ставим слежку за флагом коментов
+
 
   if (!isFilmFound) {
     return (<Error404/>);
   }
 
-
-  // const getMoviesBySelectedGenre = (movies, selectedGenre) => {
-  //   return selectedGenre === `All genres`
-  //     ? movies
-  //     : movies.filter((movie) => movie.genre === selectedGenre);
-  // };
-  // const relatedMovies = getMoviesBySelectedGenre(films, film.genre).filter(({id}) => id !== +id).slice(0, 4);
-
+  console.log(allComments)
 
   return (
     <>
@@ -144,7 +120,7 @@ let genre = `All genre`
 
             <div className="movie-card__desc">
 
-              <MovieNav nav={nav} film={filmById} reviews={reviews}/>
+              <MovieNav nav={nav} film={filmById} reviews={allComments}/>
 
             </div>
           </div>
@@ -180,6 +156,8 @@ const mapStateToProps = (state) => ({
   films: state.films,
   genreFilms: state.genreFilms,
   likeGenre: state.likeGenre,
+  isAllComments: state.isAllComments,
+  allComments: state.allComments,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -188,8 +166,10 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onLoadData() { // когда вызовится эта функция, то в dispatch попадает результат функции по запросу на сервер
     dispatch(fetchMoviesList());
-  }
-
+  },
+  loadAllComments(id) {
+    dispatch(fetchAllComments(id));
+  },
 });
 
 

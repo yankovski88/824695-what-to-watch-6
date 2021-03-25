@@ -42,3 +42,8 @@ export const fetchFilmById = (id)=>(dispatch, _getState, api)=>(
   api.get(`/films/${id}`)
     .then((response)=>dispatch(ActionCreator.getFilmById(response.data)))
 );
+
+export const fetchAllComments = (id)=>(dispatch, _getState, api)=>(
+  api.get(`/comments/${id}`)
+    .then((response)=>dispatch(ActionCreator.getAllComments(response.data)))
+);

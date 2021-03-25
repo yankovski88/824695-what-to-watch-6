@@ -53,9 +53,12 @@ const initialState = {
   isDataLoaded: false, // загрузились ли фильмы с сервера
   filmPromo: {}, // фильм на главной странице
   authorizationStatus: AuthorizationStatus.NO_AUTH, // поле чтобы знать авторизирован ли пользователь
-  requestedRoute: RoutePaths.MAIN,
-  filmById: {},
-  isFilmFound: false,
+  requestedRoute: RoutePaths.MAIN, // маршрут подставляется если пришел юзер не авторизованный
+  filmById: {}, // фильм полученный с помощью маршрута id
+  isFilmFound: false, // флаг если фильм получили т.е. через поиск напрямую id верный
+
+  isAllComments: false, // все коменты полученны
+  allComments: [], // массив комментов пуст
 };
 
 export const reducer = (state = initialState, action) => { // второе инициализируем стейт чтобы загрузить начальный жанр т.е. все фильмы
@@ -125,6 +128,15 @@ export const reducer = (state = initialState, action) => { // второе ин�
         ...state,
         filmById: adaptToClient(action.payload),
         isFilmFound: true,
+      };
+    case ActionType.GET_ALL_COMMENTS:
+      console.log(action)
+      return {
+        ...state,
+        // здесь должен быть объект с комментами
+        allComments: action.payload,
+        isFilmFound: true,
+        isAllComments: true,
       };
 
     default:
