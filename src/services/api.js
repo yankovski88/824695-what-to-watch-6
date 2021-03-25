@@ -20,10 +20,12 @@ const HttpCode = {
 //     console.log(response);
 //   }).catch((a)=>{console.log(a)})
 
-axios.get("https://6.react.pages.academy/wtw/films/2")
+axios.get(`https://6.react.pages.academy/wtw/films/2`)
   .then(function (response) {
     console.log(response);
-  }).catch((a)=>{console.log(a)})
+  }).catch((a)=>{
+    console.log(a);
+  });
 
 
 // создадим функцию по конфигу, она возвращает объект с конфигом
@@ -34,7 +36,6 @@ export const createApi = (onUnauthorized)=>{
     timeout: REQUEST_TIMEOUT, // время для запроса
     withCredentials: true, // межсайтовые запросы управления доступом. Это куки, а куками нужно делиться у нас на них построена авторихация.
   });
-
 
 
   // примерно понял, если успешный запрос, то верни данные каторые пришли

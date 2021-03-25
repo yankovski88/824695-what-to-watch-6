@@ -9,7 +9,7 @@ import {fetchFilmById} from "../../store/api-actions";
 const SmallCard = (props) => {
   const {activeFilm, updateData, filmById, loadFilmById} = props; // posterImage, name, id,
   const [filmActive, setFilmActive] = React.useState(``);
-// console.log(activeFilm)
+  // console.log(activeFilm)
 
   let timeOutId = null; // флаг, таймер не включен
 
@@ -43,9 +43,9 @@ const SmallCard = (props) => {
         onMouseOver={_handleHoverCard}
         onMouseLeave={_handleHoverOutCard}
 
-               // onClick={() => {
-               //   loadFilmById(activeFilm.id);
-               // }}
+        // onClick={() => {
+        //   loadFilmById(activeFilm.id);
+        // }}
 
         onClick={() => {
           updateData(activeFilm);
@@ -78,7 +78,7 @@ SmallCard.propTypes = {
 
 const mapStateToProps = (state)=>({
   filmById: state.filmById,
-  })
+});
 
 // const mapDispatchToProps =(dispatch)=>({
 //   loadFilmById(id){
@@ -89,5 +89,5 @@ const mapStateToProps = (state)=>({
 // export default SmallCard;
 export {SmallCard};
 // mapDispatchToProps
-export default connect (mapStateToProps, )(SmallCard)
+export default connect(mapStateToProps)(SmallCard);
 

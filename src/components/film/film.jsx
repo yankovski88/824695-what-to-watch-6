@@ -8,7 +8,7 @@ import BtnAddMyList from "../btn-add-my-list/btn-add-my-list";
 // import LinkAddReview from "../link-add-review/link-add-review";
 import MovieNav from "../movie-nav/movie-nav.jsx";
 import PropTypes from "prop-types";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 // import {useHistory, useParams} from "react-router-dom";
 import filmProp from "./film.prop";
 import Header from "../header/header";
@@ -17,22 +17,27 @@ import {fetchFilmById} from "../../store/api-actions";
 
 
 const Film = (props) => {
-  const {likeFilms, film, reviews, updateData, filmById, loadFilmById} = props; // authorizationStatus
-console.log(props)
-  console.log(filmById)
+  const {likeFilms, film, reviews, updateData, filmById, loadFilmById, match} = props; // authorizationStatus
+  let { id } = useParams(); // берем данные с маршрута из app.js
+  console.log(id)
+  // console.log(props.match.id)
+  // console.log(match)
+  console.log(props);
+  console.log(filmById);
   // const params = useParams();
   // const history = useHistory();
 
 
   // запускаем хук useEffect он запускается каждый раз когда открывается страница, он следит за флагом isDataLoaded
   React.useEffect(() => {
+    if(id){
+      loadFilmById(id);
+    }
     // if (!isDataLoaded) { // если флаг false значит сайт запускается первый раз
 
     loadFilmById(film.id); // тогда вызываем функцию которая делает запрос на сервер, отдает данные в dispatch, а тот меняет store
     // }
   }, [film.id]); // useEffect сказали следи за этим флагом если он изменится, то делай запрос
-
-
 
 
   const {posterImage, name, genre, released} = filmById;
@@ -117,10 +122,10 @@ const mapStateToProps = (state)=>({
 });
 
 const mapDispatchToProps = (dispatch)=>({
-  loadFilmById(id){
-    dispatch(fetchFilmById(id))
+  loadFilmById(id) {
+    dispatch(fetchFilmById(id));
   }
-})
+});
 
 // export default Film;
 export {Film};

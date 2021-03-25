@@ -120,12 +120,12 @@ export const reducer = (state = initialState, action) => { // второе ин�
         requestedRoute: action.payload,
       };
     case ActionType.FILM_BY_ID:
-      console.log(`action is`)
-      console.log(action)
+      console.log(`action is`);
+      console.log(action);
       return {
         ...state,
         filmById: adaptToClient(action.payload)
-      }
+      };
 
     default:
       return state;

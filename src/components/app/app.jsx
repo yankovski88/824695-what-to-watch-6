@@ -20,7 +20,7 @@ import PrivateRoute from "../private-route/private-route";
 const App = (props) => {
   const {myListFilms, reviews, films, authorizationStatus, onPrivateRouteRequest, filmById} = props;
   const [film, setMovie] = React.useState({}); // фильм который хотим посмотреть // movie
-console.log(authorizationStatus)
+  console.log(authorizationStatus);
   let likeFilms = getGenreFilms(film.genre, films); // выбираем похожие фильмы
 
 
@@ -68,16 +68,18 @@ console.log(authorizationStatus)
         {/* <Route exact path={`/films/${film.id}/add-review`}>*/}
         {/*  <AddReview film={film} onAnswer={() => {}}/>*/}
         {/* </Route>*/}
-        <Route exact path={`/films/${film.id}/details`}>
+        {/*${film.id}*/}
+        <Route exact path={`/films/:id/details`}>
           <Film likeFilms={likeFilms} reviews={reviews} film={film} updateData={updateData}/>
         </Route>
-        <Route exact path={`/films/${film.id}/reviews`}>
+        {/*${film.id}*/}
+        <Route exact path={`/films/:id/reviews`}>
           <Film likeFilms={likeFilms} reviews={reviews} film={film} updateData={updateData}/>
         </Route>
 
         {/* /films/:id?*/}
-        <Route exact path={`/films/${film.id}`}>
-          <Film likeFilms={likeFilms} reviews={reviews} film={film} updateData={updateData} />
+        <Route exact path={`/films/:id`}>
+         <Film likeFilms={likeFilms} reviews={reviews} film={film} updateData={updateData} />
         </Route>
 
 
