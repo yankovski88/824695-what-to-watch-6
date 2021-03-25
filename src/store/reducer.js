@@ -55,6 +55,7 @@ const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH, // поле чтобы знать авторизирован ли пользователь
   requestedRoute: RoutePaths.MAIN,
   filmById: {},
+  isFilmFound: false,
 };
 
 export const reducer = (state = initialState, action) => { // второе инициализируем стейт чтобы загрузить начальный жанр т.е. все фильмы
@@ -124,7 +125,8 @@ export const reducer = (state = initialState, action) => { // второе ин�
       console.log(action);
       return {
         ...state,
-        filmById: adaptToClient(action.payload)
+        filmById: adaptToClient(action.payload),
+        isFilmFound: true,
       };
 
     default:

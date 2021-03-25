@@ -14,31 +14,33 @@ import filmProp from "./film.prop";
 import Header from "../header/header";
 import {connect} from "react-redux";
 import {fetchFilmById} from "../../store/api-actions";
+import Error404 from "../error-404/error-404";
 
 
 const Film = (props) => {
-  const {likeFilms, film, reviews, updateData, filmById, loadFilmById, match} = props; // authorizationStatus
+  const {isFilmFound, likeFilms, film, reviews, updateData, filmById, loadFilmById, match} = props; // authorizationStatus
   let { id } = useParams(); // берем данные с маршрута из app.js
-  console.log(id)
-  // console.log(props.match.id)
-  // console.log(match)
-  console.log(props);
-  console.log(filmById);
-  // const params = useParams();
-  // const history = useHistory();
+
+  console.log(isFilmFound)
 
 
   // запускаем хук useEffect он запускается каждый раз когда открывается страница, он следит за флагом isDataLoaded
   React.useEffect(() => {
     if(id){
-      loadFilmById(id);
+      loadFilmById(id)
     }
+
     // if (!isDataLoaded) { // если флаг false значит сайт запускается первый раз
 
     loadFilmById(film.id); // тогда вызываем функцию которая делает запрос на сервер, отдает данные в dispatch, а тот меняет store
     // }
-  }, [film.id]); // useEffect сказали следи за этим флагом если он изменится, то делай запрос
 
+
+  }, [id, film.id]); // useEffect сказали следи за этим флагом если он изменится, то делай запрос
+
+  if (!isFilmFound) {
+    return (<Error404 />);
+  }
 
   const {posterImage, name, genre, released} = filmById;
   const [nav] = React.useState({
@@ -119,13 +121,21 @@ Film.propTypes = {
 
 const mapStateToProps = (state)=>({
   filmById: state.filmById,
+  isFilmFound: state.isFilmFound,
 });
 
 const mapDispatchToProps = (dispatch)=>({
   loadFilmById(id) {
     dispatch(fetchFilmById(id));
-  }
+  },
+
+  // redirectToNotFound() {
+  //   dispatch(ActionCreator.redirectToRoute(RoutePaths.NOT_FOUND));
+  // },
+
 });
+
+
 
 // export default Film;
 export {Film};
