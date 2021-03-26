@@ -20,7 +20,6 @@ import PrivateRoute from "../private-route/private-route";
 const App = (props) => {
   const {myListFilms, reviews, films, authorizationStatus, onPrivateRouteRequest, filmById} = props;
   const [film, setMovie] = React.useState({}); // фильм который хотим посмотреть // movie
-  console.log(authorizationStatus);
   let likeFilms = getGenreFilms(film.genre, films); // выбираем похожие фильмы
 
 

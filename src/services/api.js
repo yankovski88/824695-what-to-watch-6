@@ -64,5 +64,3 @@ export const createApi = (onUnauthorized)=>{
   return api;
 
 };
-
-// createApi.get(`/films/1`).then((response)=>console.log(response))

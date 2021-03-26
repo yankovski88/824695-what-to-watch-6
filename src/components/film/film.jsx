@@ -1,15 +1,12 @@
 import React from "react";
 import Logo from "../logo/logo";
 import Copyright from "../copyright/copyright";
-// import UserBlock from "../user-block/user-block.jsx";
 import CatalogLikeFilms from "../catalog-like-films/catalog-like-films";
 import BtnPlay from "../btn-play/btn-play";
 import BtnAddMyList from "../btn-add-my-list/btn-add-my-list";
-// import LinkAddReview from "../link-add-review/link-add-review";
 import MovieNav from "../movie-nav/movie-nav.jsx";
 import PropTypes from "prop-types";
 import {Link, useParams} from "react-router-dom";
-// import {useHistory, useParams} from "react-router-dom";
 import filmProp from "./film.prop";
 import Header from "../header/header";
 import {connect} from "react-redux";
@@ -22,17 +19,13 @@ import {AuthorizationStatus} from "../../constants/constants";
 const Film = (props) => {
   const {
     isFilmFound,
-    // likeFilms,
     film,
-    reviews,
     updateData,
     filmById,
     loadFilmById,
     isDataLoaded,
     onLoadData,
     films,
-    genreFilms,
-    likeGenre,
     isAllComments,
     allComments,
     loadAllComments,
@@ -153,6 +146,8 @@ Film.propTypes = {
   reviews: PropTypes.array.isRequired,
   // film: PropTypes.object.isRequired,
   updateData: PropTypes.func.isRequired,
+  loadAllComments: PropTypes.func.isRequired,
+
 };
 
 const mapStateToProps = (state) => ({
@@ -180,7 +175,5 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 
-// export default Film;
 export {Film};
-
 export default connect(mapStateToProps, mapDispatchToProps)(Film);

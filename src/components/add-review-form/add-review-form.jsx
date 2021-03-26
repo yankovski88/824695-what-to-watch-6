@@ -28,9 +28,6 @@ const AddReviewForm = (props) => {
   // };
 
 
-  console.log(review);
-
-
   const stars = new Array(10).fill().map((el, index) =>
     <Fragment key={`star-${index}`}>
       <input

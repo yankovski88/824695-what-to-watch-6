@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 
 const FilmDescription = (props)=>{
   const {film} = props;
-  console.log(film);
   return (
     <div className="movie-card__text">
       {/* <p>{film.description}</p>*/}

@@ -7,7 +7,6 @@ import {connect} from "react-redux";
 
 const CatalogLikeFilms = (props)=>{
   const {updateData, likeFilms} = props; // likeFilms,
-  console.log(likeFilms);
   let activeFilms = likeFilms;
   // const [filmActive, setFilmActive] = React.useState(``);
 

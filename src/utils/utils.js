@@ -87,8 +87,6 @@ export const getUniqueGenres = (films)=>{
 export const getGenreById = (idFilm, itemFilms) => {
   const films = itemFilms.slice();
 
-  console.log(idFilm);
-  console.log(films);
   let genre = `All genre`;
   for (let item of films) {
     // console.log(item.id)
