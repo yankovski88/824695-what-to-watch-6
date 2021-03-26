@@ -56,7 +56,7 @@ const App = (props) => {
         {/*  <MyList myListFilms={myListFilms} updateData={updateData}/>*/}
         {/* </Route>*/}
         {/* "/films/:id/review?"*/}
-        {/*${film.id}*/}
+        {/* ${film.id}*/}
         <PrivateRoute exact
           path={`/films/:id/add-review`}
           onPrivateRouteRequest={onPrivateRouteRequest}
@@ -68,18 +68,18 @@ const App = (props) => {
         {/* <Route exact path={`/films/${film.id}/add-review`}>*/}
         {/*  <AddReview film={film} onAnswer={() => {}}/>*/}
         {/* </Route>*/}
-        {/*${film.id}*/}
+        {/* ${film.id}*/}
         <Route exact path={`/films/:id/details`}>
           <Film likeFilms={likeFilms} reviews={reviews} film={film} updateData={updateData} onPrivateRouteRequest={onPrivateRouteRequest}/>
         </Route>
-        {/*${film.id}*/}
+        {/* ${film.id}*/}
         <Route exact path={`/films/:id/reviews`}>
           <Film likeFilms={likeFilms} reviews={reviews} film={film} updateData={updateData} onPrivateRouteRequest={onPrivateRouteRequest}/>
         </Route>
 
         {/* /films/:id?*/}
         <Route exact path={`/films/:id`}>
-         <Film path={`/films/:id`} likeFilms={likeFilms} reviews={reviews} film={film} updateData={updateData} onPrivateRouteRequest={onPrivateRouteRequest}/>
+          <Film path={`/films/:id`} likeFilms={likeFilms} reviews={reviews} film={film} updateData={updateData} onPrivateRouteRequest={onPrivateRouteRequest}/>
         </Route>
 
 

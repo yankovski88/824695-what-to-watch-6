@@ -16,9 +16,8 @@ const AddReview = (props) => {
   let {id} = useParams();
 
   const handleGetRatingComment = (rating, comment)=>{
-    postCommentItem(id, rating, comment)
-  }
-
+    postCommentItem(id, rating, comment);
+  };
 
 
   // React.useEffect(()=>{
@@ -30,12 +29,12 @@ const AddReview = (props) => {
   // },[isFilmFound])
 
   React.useEffect(()=>{
-    if(!isFilmFound){
-      loadFilmById(id)
+    if (!isFilmFound) {
+      loadFilmById(id);
     }
     loadFilmById(film.id); // тогда вызываем функцию которая делает запрос на сервер, отдает данные в dispatch, а тот меняет store
 
-  },[isFilmFound])
+  }, [isFilmFound]);
 
   return (
     <section className="movie-card movie-card--full">
@@ -54,7 +53,7 @@ const AddReview = (props) => {
 
         <div className="movie-card__poster movie-card__poster--small">
           <img src={posterImage} alt={name} width="218"
-               height="327"/>
+            height="327"/>
         </div>
       </div>
 
@@ -73,17 +72,17 @@ const mapStateToProps = (state) => ({
   isFilmFound: state.isFilmFound,
   filmById: state.filmById,
   authorizationStatus: state.authorizationStatus,
-})
+});
 
 const mapDispatchToProps = (dispatch) => ({
   loadFilmById(id) {
     dispatch(fetchFilmById(id));
   },
-  postCommentItem(id, rating, comment){
-    dispatch(fetchPostComment(id, rating, comment))
+  postCommentItem(id, rating, comment) {
+    dispatch(fetchPostComment(id, rating, comment));
   }
-})
+});
 
 export {AddReview};
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddReview)
+export default connect(mapStateToProps, mapDispatchToProps)(AddReview);

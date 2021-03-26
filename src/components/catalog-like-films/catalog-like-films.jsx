@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 
 const CatalogLikeFilms = (props)=>{
   const {updateData, likeFilms} = props; // likeFilms,
-  console.log(likeFilms)
+  console.log(likeFilms);
   let activeFilms = likeFilms;
   // const [filmActive, setFilmActive] = React.useState(``);
 
@@ -47,8 +47,8 @@ CatalogLikeFilms.propTypes = {
 
 const mapStateToProps = (state)=>({
   // likeFilms: state.likeFilms,
-})
+});
 
 export {CatalogLikeFilms};
 
-export default connect(mapStateToProps, null)(CatalogLikeFilms)
+export default connect(mapStateToProps, null)(CatalogLikeFilms);

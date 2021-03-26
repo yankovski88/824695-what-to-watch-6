@@ -47,36 +47,36 @@ const Film = (props) => {
   });
 
   const genreById = getGenreById(id, films); // нашли жанр фильма по id маршрута
-  const likeFilms = getGenreFilms(genreById, films).slice(0, 4) // нашли все похожие фильмы по жанру
+  const likeFilms = getGenreFilms(genreById, films).slice(0, 4); // нашли все похожие фильмы по жанру
 
 
   // запускаем хук useEffect он запускается каждый раз когда открывается страница, он следит за флагом isDataLoaded
   React.useEffect(() => {
     if (id) {
-      loadFilmById(id)
+      loadFilmById(id);
     }
     loadFilmById(film.id); // тогда вызываем функцию которая делает запрос на сервер, отдает данные в dispatch, а тот меняет store
   }, [id, film.id]); // useEffect сказали следи за этим флагом если он изменится, то делай запрос
 
   React.useEffect(() => {
     if (!isDataLoaded) {
-      onLoadData()
+      onLoadData();
     }
-  }, [isDataLoaded])
+  }, [isDataLoaded]);
 
   React.useEffect(() => {
     if (!isAllComments) { // елси флаг false, то никогда коменты не загружались
       loadAllComments(id); // делаем запрос на коменты
     }
-  }, [isAllComments]) // ставим слежку за флагом коментов
+  }, [isAllComments]); // ставим слежку за флагом коментов
 
 
   // код следит если не авторизован, то после авторизации останется на этой же страницу с фильмом
   React.useEffect(() => {
     if (authorizationStatus !== AuthorizationStatus.AUTH) {
-      onPrivateRouteRequest(`/films/${id}`) // передал маршрут чтобы оставался на странице с фильмом
+      onPrivateRouteRequest(`/films/${id}`); // передал маршрут чтобы оставался на странице с фильмом
     }
-  }, [authorizationStatus])
+  }, [authorizationStatus]);
 
 
   if (!isFilmFound) {
@@ -109,9 +109,9 @@ const Film = (props) => {
                 <BtnAddMyList/>
                 {authorizationStatus === AuthorizationStatus.AUTH ?
                   <Link to={`/films/${filmById ? filmById.id : ``}/add-review`}
-                        className="btn movie-card__button">Add review</Link>
+                    className="btn movie-card__button">Add review</Link>
                   : ``}
-                {/*<LinkAddReview film={film}/>*/}
+                {/* <LinkAddReview film={film}/>*/}
               </div>
             </div>
           </div>
@@ -121,7 +121,7 @@ const Film = (props) => {
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
               <img src={posterImage} alt={name} width="218"
-                   height="327"/>
+                height="327"/>
             </div>
 
             <div className="movie-card__desc">
@@ -135,7 +135,7 @@ const Film = (props) => {
 
       <div className="page-content">
 
-        {/*likeFilms={likeFilms}*/}
+        {/* likeFilms={likeFilms}*/}
         <CatalogLikeFilms likeFilms={likeFilms} updateData={updateData}/>
 
         <footer className="page-footer">
