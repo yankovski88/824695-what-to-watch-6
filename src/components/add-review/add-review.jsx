@@ -7,11 +7,11 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {fetchFilmById, fetchPostComment} from "../../store/api-actions";
 import {useParams} from "react-router-dom";
-import {AuthorizationStatus} from "../../constants/constants";
+// import {AuthorizationStatus} from "../../constants/constants";
 
 
 const AddReview = (props) => {
-  const {film, filmById, onAnswer, isFilmFound, loadFilmById, authorizationStatus, postCommentItem} = props;
+  const {film, filmById, isFilmFound, loadFilmById, postCommentItem} = props; // authorizationStatus
   const {name, posterImage} = filmById;
   let {id} = useParams();
 
@@ -57,7 +57,7 @@ const AddReview = (props) => {
         </div>
       </div>
 
-      <AddReviewForm onSubmit={handleGetRatingComment} onAnswer={onAnswer}/>
+      <AddReviewForm onSubmit={handleGetRatingComment}/>
     </section>
 
   );
@@ -66,12 +66,16 @@ const AddReview = (props) => {
 AddReview.propTypes = {
   film: PropTypes.object.isRequired,
   onAnswer: PropTypes.func.isRequired,
+  filmById: PropTypes.object.isRequired,
+  isFilmFound: PropTypes.bool.isRequired,
+  postCommentItem: PropTypes.func.isRequired,
+  loadFilmById: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   isFilmFound: state.isFilmFound,
   filmById: state.filmById,
-  authorizationStatus: state.authorizationStatus,
+  // authorizationStatus: state.authorizationStatus,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -82,6 +86,18 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchPostComment(id, rating, comment));
   }
 });
+
+// 'AuthorizationStatus' is defined but never used            no-unused-vars
+// 14:16  error  'filmById' is missing in props validation                  react/prop-types
+// 14:36  error  'isFilmFound' is missing in props validation               react/prop-types
+// 14:49  error  'loadFilmById' is missing in props validation              react/prop-types
+// 14:63  error  'authorizationStatus' is missing in props validation       react/prop-types
+// 14:63  error  'authorizationStatus' is assigned a value but never used   no-unused-vars
+// 14:84  error  'postCommentItem' is missing in props validation           react/prop-types
+// 15:10  error  'filmById.name' is missing in props validation             react/prop-types
+// 15:16  error  'filmById.posterImage' is missing in props validation      react/prop-types
+// 43:30  error  'filmById.backgroundImage' is missing in props validation
+
 
 export {AddReview};
 

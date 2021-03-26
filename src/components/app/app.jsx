@@ -9,18 +9,15 @@ import Player from "../player/player.jsx";
 import AddReview from "../add-review/add-review.jsx";
 import Film from "../film/film.jsx";
 import Error404 from "../error-404/error-404";
-import {getGenreFilms} from "../../utils/utils";
 import {connect} from "react-redux";
-// import {PrivateRoute} from "../private-route/private-route";
 import browserHistory from "../../browser-history";
 import {ActionCreator} from "../../store/action";
 import PrivateRoute from "../private-route/private-route";
 
 
 const App = (props) => {
-  const {myListFilms, films, authorizationStatus, onPrivateRouteRequest} = props; // reviews,
+  const {myListFilms, authorizationStatus, onPrivateRouteRequest} = props; // reviews,
   const [film, setMovie] = React.useState({}); // фильм который хотим посмотреть // movie
-  let likeFilms = getGenreFilms(film.genre, films); // выбираем похожие фильмы
 
 
   const updateData = (value) => {
@@ -97,8 +94,6 @@ const App = (props) => {
 
 App.propTypes = {
   myListFilms: PropTypes.array.isRequired,
-  films: PropTypes.array.isRequired,
-
   authorizationStatus: PropTypes.string.isRequired,
   onPrivateRouteRequest: PropTypes.func.isRequired,
 };
@@ -106,7 +101,6 @@ App.propTypes = {
 export {App};
 
 const mapStateToProps = (state)=>({
-  films: state.films,
   authorizationStatus: state.authorizationStatus,
 });
 
