@@ -87,18 +87,6 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-// 'AuthorizationStatus' is defined but never used            no-unused-vars
-// 14:16  error  'filmById' is missing in props validation                  react/prop-types
-// 14:36  error  'isFilmFound' is missing in props validation               react/prop-types
-// 14:49  error  'loadFilmById' is missing in props validation              react/prop-types
-// 14:63  error  'authorizationStatus' is missing in props validation       react/prop-types
-// 14:63  error  'authorizationStatus' is assigned a value but never used   no-unused-vars
-// 14:84  error  'postCommentItem' is missing in props validation           react/prop-types
-// 15:10  error  'filmById.name' is missing in props validation             react/prop-types
-// 15:16  error  'filmById.posterImage' is missing in props validation      react/prop-types
-// 43:30  error  'filmById.backgroundImage' is missing in props validation
-
-
 export {AddReview};
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddReview);

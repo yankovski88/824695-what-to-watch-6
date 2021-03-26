@@ -142,11 +142,10 @@ const Film = (props) => {
 
 Film.propTypes = {
   film: filmProp,
-  reviews: PropTypes.array.isRequired,
   updateData: PropTypes.func.isRequired,
   loadAllComments: PropTypes.func.isRequired,
   filmById: PropTypes.object.isRequired,
-  loadFilmById: PropTypes.object.isRequired,
+  loadFilmById: PropTypes.func.isRequired,
   isDataLoaded: PropTypes.bool.isRequired,
   onLoadData: PropTypes.func.isRequired,
   films: PropTypes.array.isRequired,
