@@ -59,7 +59,6 @@ const Film = (props) => {
 
   React.useEffect(() => {
     if (!isAllComments) { // елси флаг false, то никогда коменты не загружались
-      console.log(`загружаю коменты`,id)
       loadAllComments(id); // делаем запрос на коменты
     }
   }, [id]); // ставим слежку за флагом коментов
