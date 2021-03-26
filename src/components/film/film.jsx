@@ -142,11 +142,19 @@ const Film = (props) => {
 
 Film.propTypes = {
   film: filmProp,
-  // likeFilms: PropTypes.array.isRequired,
   reviews: PropTypes.array.isRequired,
-  // film: PropTypes.object.isRequired,
   updateData: PropTypes.func.isRequired,
   loadAllComments: PropTypes.func.isRequired,
+  filmById: PropTypes.object.isRequired,
+  loadFilmById: PropTypes.object.isRequired,
+  isDataLoaded: PropTypes.bool.isRequired,
+  onLoadData: PropTypes.func.isRequired,
+  films: PropTypes.array.isRequired,
+  isAllComments: PropTypes.bool.isRequired,
+  allComments: PropTypes.array.isRequired,
+  isFilmFound: PropTypes.bool.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
+  onPrivateRouteRequest: PropTypes.func.isRequired,
 
 };
 

@@ -18,13 +18,12 @@ import PrivateRoute from "../private-route/private-route";
 
 
 const App = (props) => {
-  const {myListFilms, reviews, films, authorizationStatus, onPrivateRouteRequest, filmById} = props;
+  const {myListFilms, films, authorizationStatus, onPrivateRouteRequest} = props; // reviews,
   const [film, setMovie] = React.useState({}); // фильм который хотим посмотреть // movie
   let likeFilms = getGenreFilms(film.genre, films); // выбираем похожие фильмы
 
 
   const updateData = (value) => {
-
     setMovie(value);
   };
 
@@ -68,17 +67,20 @@ const App = (props) => {
         {/*  <AddReview film={film} onAnswer={() => {}}/>*/}
         {/* </Route>*/}
         {/* ${film.id}*/}
+        {/* /!*reviews={reviews}*!/ likeFilms={likeFilms}*/}
         <Route exact path={`/films/:id/details`}>
-          <Film likeFilms={likeFilms} reviews={reviews} film={film} updateData={updateData} onPrivateRouteRequest={onPrivateRouteRequest}/>
+          <Film film={film} updateData={updateData} onPrivateRouteRequest={onPrivateRouteRequest}/>
         </Route>
         {/* ${film.id}*/}
+        {/* /!*reviews={reviews}*!/likeFilms={likeFilms}*/}
         <Route exact path={`/films/:id/reviews`}>
-          <Film likeFilms={likeFilms} reviews={reviews} film={film} updateData={updateData} onPrivateRouteRequest={onPrivateRouteRequest}/>
+          <Film film={film} updateData={updateData} onPrivateRouteRequest={onPrivateRouteRequest}/>
         </Route>
 
         {/* /films/:id?*/}
+        {/* /!*reviews={reviews}*!/likeFilms={likeFilms}*/}
         <Route exact path={`/films/:id`}>
-          <Film path={`/films/:id`} likeFilms={likeFilms} reviews={reviews} film={film} updateData={updateData} onPrivateRouteRequest={onPrivateRouteRequest}/>
+          <Film path={`/films/:id`} film={film} updateData={updateData} onPrivateRouteRequest={onPrivateRouteRequest}/>
         </Route>
 
 
@@ -95,7 +97,6 @@ const App = (props) => {
 
 App.propTypes = {
   myListFilms: PropTypes.array.isRequired,
-  reviews: PropTypes.array.isRequired,
   films: PropTypes.array.isRequired,
 
   authorizationStatus: PropTypes.string.isRequired,
@@ -107,7 +108,6 @@ export {App};
 const mapStateToProps = (state)=>({
   films: state.films,
   authorizationStatus: state.authorizationStatus,
-  filmById: state.filmById,
 });
 
 const mapDispatchToProps = (dispatch)=>({
