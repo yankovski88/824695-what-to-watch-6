@@ -70,16 +70,16 @@ const App = (props) => {
         {/* </Route>*/}
         {/*${film.id}*/}
         <Route exact path={`/films/:id/details`}>
-          <Film likeFilms={likeFilms} reviews={reviews} film={film} updateData={updateData}/>
+          <Film likeFilms={likeFilms} reviews={reviews} film={film} updateData={updateData} onPrivateRouteRequest={onPrivateRouteRequest}/>
         </Route>
         {/*${film.id}*/}
         <Route exact path={`/films/:id/reviews`}>
-          <Film likeFilms={likeFilms} reviews={reviews} film={film} updateData={updateData}/>
+          <Film likeFilms={likeFilms} reviews={reviews} film={film} updateData={updateData} onPrivateRouteRequest={onPrivateRouteRequest}/>
         </Route>
 
         {/* /films/:id?*/}
         <Route exact path={`/films/:id`}>
-         <Film likeFilms={likeFilms} reviews={reviews} film={film} updateData={updateData} />
+         <Film path={`/films/:id`} likeFilms={likeFilms} reviews={reviews} film={film} updateData={updateData} onPrivateRouteRequest={onPrivateRouteRequest}/>
         </Route>
 
 

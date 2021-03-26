@@ -13,7 +13,6 @@ const handleUserNotAuthtorized = (route, onPrivateRouteRequest)=>{
 
 
 const PrivateRoute = ({render, path, exact, authorizationStatus, onPrivateRouteRequest}) =>{
-  console.log(authorizationStatus);
   return (
     <Route
       path={path}

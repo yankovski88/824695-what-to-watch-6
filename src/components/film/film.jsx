@@ -16,6 +16,7 @@ import {connect} from "react-redux";
 import {fetchFilmById, fetchMoviesList, fetchAllComments} from "../../store/api-actions";
 import Error404 from "../error-404/error-404";
 import {getGenreById, getGenreFilms} from "../../utils/utils";
+import {AuthorizationStatus} from "../../constants/constants";
 
 
 const Film = (props) => {
@@ -35,17 +36,20 @@ const Film = (props) => {
     isAllComments,
     allComments,
     loadAllComments,
+    authorizationStatus,
+    onPrivateRouteRequest,
+    path,
   } = props; // authorizationStatus
+  console.log(path)
   let {id} = useParams(); // берем данные с маршрута из app.js
   const {posterImage, name, genre, released} = filmById;
   const [nav] = React.useState({
     nav: `overview`,
   });
-
+  console.log(authorizationStatus)
 
   const genreById = getGenreById(id, films); // нашли жанр фильма по id маршрута
   const likeFilms = getGenreFilms(genreById, films).slice(0, 4) // нашли все похожие фильмы по жанру
-
 
 
   // запускаем хук useEffect он запускается каждый раз когда открывается страница, он следит за флагом isDataLoaded
@@ -64,17 +68,23 @@ const Film = (props) => {
 
   React.useEffect(() => {
     if (!isAllComments) { // елси флаг false, то никогда коменты не загружались
-      console.log(`я тут`)
       loadAllComments(id); // делаем запрос на коменты
     }
   }, [isAllComments]) // ставим слежку за флагом коментов
+
+
+  // код следит если не авторизован, то после авторизации останется на этой же страницу с фильмом
+  React.useEffect(() => {
+    if (authorizationStatus !== AuthorizationStatus.AUTH) {
+      onPrivateRouteRequest(`/films/${id}`) // передал маршрут чтобы оставался на странице с фильмом
+    }
+  }, [authorizationStatus])
 
 
   if (!isFilmFound) {
     return (<Error404/>);
   }
 
-  console.log(allComments)
 
   return (
     <>
@@ -99,13 +109,11 @@ const Film = (props) => {
               <div className="movie-card__buttons">
                 <BtnPlay anyFilm={filmById}/>
                 <BtnAddMyList/>
-                {/* {authorizationStatus === authorizationStatus.AUTH ?*/}
-                <Link to={`/films/${filmById ? filmById.id : ``}/add-review`}
-                      className="btn movie-card__button">Add review</Link>
-                {/* :*/}
-
-                {/* // }*/}
-                {/* <LinkAddReview film={film}/>*/}
+                {authorizationStatus === AuthorizationStatus.AUTH ?
+                  <Link to={`/films/${filmById ? filmById.id : ``}/add-review`}
+                        className="btn movie-card__button">Add review</Link>
+                  : ``}
+                {/*<LinkAddReview film={film}/>*/}
               </div>
             </div>
           </div>
@@ -158,6 +166,7 @@ const mapStateToProps = (state) => ({
   likeGenre: state.likeGenre,
   isAllComments: state.isAllComments,
   allComments: state.allComments,
+  authorizationStatus: state.authorizationStatus,
 });
 
 const mapDispatchToProps = (dispatch) => ({

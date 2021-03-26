@@ -130,7 +130,6 @@ export const reducer = (state = initialState, action) => { // второе ин�
         isFilmFound: true,
       };
     case ActionType.GET_ALL_COMMENTS:
-      console.log(action)
       return {
         ...state,
         // здесь должен быть объект с комментами
