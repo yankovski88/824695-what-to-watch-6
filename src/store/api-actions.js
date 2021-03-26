@@ -47,3 +47,8 @@ export const fetchAllComments = (id)=>(dispatch, _getState, api)=>(
   api.get(`/comments/${id}`)
     .then((response)=>dispatch(ActionCreator.getAllComments(response.data)))
 );
+
+export const fetchPostComment = (id, rating, comment)=>(dispatch, getState, api)=>(
+  api.post(`/comments/${id}`, {rating, comment})
+    .then(()=>dispatch(ActionCreator.redirectToRoute(getState().requestedRoute)))
+);

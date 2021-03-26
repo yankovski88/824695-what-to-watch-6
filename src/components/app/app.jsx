@@ -56,11 +56,11 @@ const App = (props) => {
         {/*  <MyList myListFilms={myListFilms} updateData={updateData}/>*/}
         {/* </Route>*/}
         {/* "/films/:id/review?"*/}
-
+        {/*${film.id}*/}
         <PrivateRoute exact
-          path={`/films/${film.id}/add-review`}
+          path={`/films/:id/add-review`}
           onPrivateRouteRequest={onPrivateRouteRequest}
-          render={()=><AddReview film={film} onAnswer={() => {}}/>}
+          render={()=><AddReview path={`/films/:id/add-review`} film={film} onAnswer={() => {}}/>}
           authorizationStatus={authorizationStatus}
         >
         </PrivateRoute>

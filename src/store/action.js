@@ -52,5 +52,5 @@ export const ActionCreator = {
   getAllComments: (comments)=>({
     type: ActionType.GET_ALL_COMMENTS,
     payload: comments,
-  })
+  }),
 };

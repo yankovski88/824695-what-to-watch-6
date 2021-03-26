@@ -38,15 +38,13 @@ const Film = (props) => {
     loadAllComments,
     authorizationStatus,
     onPrivateRouteRequest,
-    path,
-  } = props; // authorizationStatus
-  console.log(path)
+  } = props;
+
   let {id} = useParams(); // берем данные с маршрута из app.js
   const {posterImage, name, genre, released} = filmById;
   const [nav] = React.useState({
     nav: `overview`,
   });
-  console.log(authorizationStatus)
 
   const genreById = getGenreById(id, films); // нашли жанр фильма по id маршрута
   const likeFilms = getGenreFilms(genreById, films).slice(0, 4) // нашли все похожие фильмы по жанру
