@@ -38,7 +38,7 @@ const Main = (props) => {
       {!isDataLoaded ? <Spinner /> :
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <ListGenres films={films} updateData={updateData} setGenre={setGenre}/>
+          <ListGenres films={films} setGenre={setGenre}/>
           <CatalogMainFilms updateData={updateData}/>
           {/* itemGenreFilms*/}
           {itemGenreFilms.length > countShowFilm ? <BtnShowMore /> : ``}

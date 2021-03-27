@@ -10,6 +10,7 @@ const MovieNav = (props) => {
   const {nav, film, reviews} = props;
   const [activeNav, setActiveNav] = React.useState(nav);
 
+
   const handleNavChange = (evt) => {
     const {name} = evt.target;
     setActiveNav({nav: name});

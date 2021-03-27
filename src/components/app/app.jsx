@@ -9,19 +9,15 @@ import Player from "../player/player.jsx";
 import AddReview from "../add-review/add-review.jsx";
 import Film from "../film/film.jsx";
 import Error404 from "../error-404/error-404";
-import {getGenreFilms} from "../../utils/utils";
 import {connect} from "react-redux";
-// import {PrivateRoute} from "../private-route/private-route";
 import browserHistory from "../../browser-history";
 import {ActionCreator} from "../../store/action";
 import PrivateRoute from "../private-route/private-route";
 
 
 const App = (props) => {
-  const {myListFilms, reviews, films, authorizationStatus, onPrivateRouteRequest} = props;
+  const {myListFilms, authorizationStatus, onPrivateRouteRequest} = props; // reviews,
   const [film, setMovie] = React.useState({}); // фильм который хотим посмотреть // movie
-
-  let likeFilms = getGenreFilms(film.genre, films); // выбираем похожие фильмы
 
 
   const updateData = (value) => {
@@ -55,11 +51,11 @@ const App = (props) => {
         {/*  <MyList myListFilms={myListFilms} updateData={updateData}/>*/}
         {/* </Route>*/}
         {/* "/films/:id/review?"*/}
-
+        {/* ${film.id}*/}
         <PrivateRoute exact
-          path={`/films/${film.id}/add-review`}
+          path={`/films/:id/add-review`}
           onPrivateRouteRequest={onPrivateRouteRequest}
-          render={()=><AddReview film={film} onAnswer={() => {}}/>}
+          render={()=><AddReview path={`/films/:id/add-review`} film={film} onAnswer={() => {}}/>}
           authorizationStatus={authorizationStatus}
         >
         </PrivateRoute>
@@ -67,17 +63,24 @@ const App = (props) => {
         {/* <Route exact path={`/films/${film.id}/add-review`}>*/}
         {/*  <AddReview film={film} onAnswer={() => {}}/>*/}
         {/* </Route>*/}
-        <Route exact path={`/films/${film.id}/details`}>
-          <Film likeFilms={likeFilms} reviews={reviews} film={film} updateData={updateData}/>
+        {/* ${film.id}*/}
+        {/* /!*reviews={reviews}*!/ likeFilms={likeFilms}*/}
+        <Route exact path={`/films/:id/details`}>
+          <Film film={film} updateData={updateData} onPrivateRouteRequest={onPrivateRouteRequest}/>
         </Route>
-        <Route exact path={`/films/${film.id}/reviews`}>
-          <Film likeFilms={likeFilms} reviews={reviews} film={film} updateData={updateData}/>
+        {/* ${film.id}*/}
+        {/* /!*reviews={reviews}*!/likeFilms={likeFilms}*/}
+        <Route exact path={`/films/:id/reviews`}>
+          <Film film={film} updateData={updateData} onPrivateRouteRequest={onPrivateRouteRequest}/>
         </Route>
 
         {/* /films/:id?*/}
-        <Route exact path={`/films/${film.id}`}>
-          <Film likeFilms={likeFilms} reviews={reviews} film={film} updateData={updateData}/>
+        {/* /!*reviews={reviews}*!/likeFilms={likeFilms}*/}
+        <Route exact path={`/films/:id`}>
+          <Film path={`/films/:id`} film={film} updateData={updateData} onPrivateRouteRequest={onPrivateRouteRequest}/>
         </Route>
+
+
         <Route exact path="/player/:id">
           <Player film={film}/>
         </Route>
@@ -91,9 +94,6 @@ const App = (props) => {
 
 App.propTypes = {
   myListFilms: PropTypes.array.isRequired,
-  reviews: PropTypes.array.isRequired,
-  films: PropTypes.array.isRequired,
-
   authorizationStatus: PropTypes.string.isRequired,
   onPrivateRouteRequest: PropTypes.func.isRequired,
 };
@@ -101,8 +101,7 @@ App.propTypes = {
 export {App};
 
 const mapStateToProps = (state)=>({
-  films: state.films,
-  authorizationStatus: state.authorizationStatus
+  authorizationStatus: state.authorizationStatus,
 });
 
 const mapDispatchToProps = (dispatch)=>({

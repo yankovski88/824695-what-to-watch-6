@@ -8,6 +8,8 @@ export const ActionType = {
   GET_FILM_PROMO: `main/promo`,
   REDIRECT_TO_ROUTE: `user/redirectToRoute`,
   ADD_REQUESTED_ROUTE: `user/addRequestedRoute`,
+  FILM_BY_ID: `user/film`,
+  GET_ALL_COMMENTS: `film/comments`,
 };
 
 // создаем объект функция которые возвращают экшин
@@ -42,5 +44,13 @@ export const ActionCreator = {
   addRequestedRoute: (route) => ({
     type: ActionType.ADD_REQUESTED_ROUTE,
     payload: route,
+  }),
+  getFilmById: (film)=>({
+    type: ActionType.FILM_BY_ID,
+    payload: film,
+  }),
+  getAllComments: (comments)=>({
+    type: ActionType.GET_ALL_COMMENTS,
+    payload: comments,
   }),
 };

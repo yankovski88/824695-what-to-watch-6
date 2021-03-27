@@ -2,7 +2,6 @@ import React from "react";
 import ReactDom from "react-dom";
 import App from "./components/app/app.jsx";
 import {getFilmData} from "./components/mock/film";
-import {reviews} from "./components/mock/reviews";
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {createStore, applyMiddleware} from 'redux'; // создаем хранилище
 import {Provider} from 'react-redux'; // соединяем храниище и react
@@ -50,7 +49,6 @@ ReactDom.render(
     <Provider store={store}>
       <App
         myListFilms={myListFilms}
-        reviews={reviews}
       />
     </Provider>,
 
