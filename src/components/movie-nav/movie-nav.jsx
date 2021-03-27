@@ -38,7 +38,7 @@ const MovieNav = (props) => {
   // };
 
 
-  const IsActiveNav = (activeNav) => {
+  const Tabs = (activeNav) => {
     if (activeNav.path === `/films/:id`) {
       return (
         <>
@@ -80,7 +80,7 @@ const MovieNav = (props) => {
           </li>
         </ul>
       </nav>
-      <IsActiveNav path = {path}/>
+      <Tabs path = {path}/>
     </>
   );
 };
