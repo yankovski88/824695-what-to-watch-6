@@ -7,7 +7,7 @@ import BtnAddMyList from "../btn-add-my-list/btn-add-my-list";
 import MovieNav from "../movie-nav/movie-nav.jsx";
 import PropTypes from "prop-types";
 import {Link, useParams} from "react-router-dom";
-import filmProp from "./film.prop";
+// import filmProp from "./film.prop";
 import Header from "../header/header";
 import {connect} from "react-redux";
 import {fetchFilmById, fetchMoviesList, fetchAllComments} from "../../store/api-actions";
@@ -19,7 +19,7 @@ import {AuthorizationStatus} from "../../constants/constants";
 const Film = (props) => {
   const {
     isFilmFound,
-    film,
+    // film,
     updateData,
     filmById,
     loadFilmById,
@@ -48,9 +48,9 @@ const Film = (props) => {
     if (id) {
       loadFilmById(id);
     }
-    loadFilmById(film.id); // тогда вызываем функцию которая делает запрос на сервер, отдает данные в dispatch, а тот меняет store
-  }, [id, film.id]); // useEffect сказали следи за этим флагом если он изменится, то делай запрос
-
+    // loadFilmById(film.id); // тогда вызываем функцию которая делает запрос на сервер, отдает данные в dispatch, а тот меняет store
+  }, [id]); // useEffect сказали следи за этим флагом если он изменится, то делай запрос
+  // film.id
   React.useEffect(() => {
     if (!isDataLoaded) {
       onLoadData();
@@ -143,7 +143,7 @@ const Film = (props) => {
 };
 
 Film.propTypes = {
-  film: filmProp,
+  // film: filmProp,
   updateData: PropTypes.func.isRequired,
   loadAllComments: PropTypes.func.isRequired,
   filmById: PropTypes.object.isRequired,

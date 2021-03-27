@@ -1,18 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+
 
 const FilmDescription = (props)=>{
-  const {film} = props;
+  const {filmById} = props;
+
   return (
     <div className="movie-card__text">
-      <p>{film.description}</p>
+      <p>{filmById.description}</p>
 
-      <p className="movie-card__director"><strong>Director: {film.director}</strong></p>
+      <p className="movie-card__director"><strong>Director: {filmById.director}</strong></p>
 
       <p className="movie-card__starring"><strong>Starring:&nbsp;
         {
-          film.starring.map((item, index)=>{
-            return `${item}${index + 1 === film.starring.length ? `` : `, `}`;
+          filmById.starring.map((item, index)=>{
+            return `${item}${index + 1 === filmById.starring.length ? `` : `, `}`;
           })
         } and other</strong></p>
     </div>
@@ -20,7 +23,14 @@ const FilmDescription = (props)=>{
 };
 
 FilmDescription.propTypes = {
-  film: PropTypes.object.isRequired
+  filmById: PropTypes.object.isRequired
 };
 
-export default FilmDescription;
+const mapStateToProps = (state)=>({
+  filmById: state.filmById,
+});
+
+
+export {FilmDescription};
+
+export default connect(mapStateToProps, null)(FilmDescription);
