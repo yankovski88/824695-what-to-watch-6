@@ -7,9 +7,10 @@ import {connect} from "react-redux";
 import {fetchPromo} from "../../store/api-actions";
 import Header from "../header/header";
 import BtnPlay from "../btn-play/btn-play";
+import {AuthorizationStatus} from "../../constants/constants";
 
 const Card = (props) => {
-  const {filmPromo, onLoadFilmPromo} = props;
+  const {filmPromo, onLoadFilmPromo, authorizationStatus} = props;
 
   React.useEffect(()=>{
     if (Object.keys(filmPromo).length === 0) {
@@ -44,7 +45,7 @@ const Card = (props) => {
             <div className="movie-card__buttons">
               {/* anyFilm={filmPromo}*/}
               <BtnPlay />
-              <BtnAddMyList />
+              {authorizationStatus === AuthorizationStatus.AUTH ? <BtnAddMyList /> : ``}
             </div>
           </div>
         </div>
@@ -57,10 +58,13 @@ const Card = (props) => {
 Card.propTypes = {
   filmPromo: PropTypes.object.isRequired,
   onLoadFilmPromo: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
+
 };
 
 const mapStateToProps = (state)=>({
   filmPromo: state.filmPromo,
+  authorizationStatus: state.authorizationStatus,
 });
 
 const mapDispatchToProps = (dispatch)=>({

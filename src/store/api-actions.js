@@ -52,3 +52,7 @@ export const fetchPostComment = (id, rating, comment)=>(dispatch, getState, api)
   api.post(`/comments/${id}`, {rating, comment})
     .then(()=>dispatch(ActionCreator.redirectToRoute(getState().requestedRoute)))
 );
+
+export const fetchFavorite = (idFilm, isFavorite)=>(dispatch, _getState, api)=>(
+  api.post(`/favorite/${idFilm}/${isFavorite}`, {idFilm, isFavorite})
+);
