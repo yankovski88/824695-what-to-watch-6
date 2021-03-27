@@ -31,13 +31,14 @@ const Film = (props) => {
     loadAllComments,
     authorizationStatus,
     onPrivateRouteRequest,
+    path,
   } = props;
 
   let {id} = useParams(); // берем данные с маршрута из app.js
   const {posterImage, name, genre, released} = filmById;
-  const [nav] = React.useState({
-    nav: `overview`,
-  });
+  // const [nav] = React.useState({
+  //   nav: `overview`,
+  // });
 
   const genreById = getGenreById(id, films); // нашли жанр фильма по id маршрута
   const likeFilms = getGenreFilms(genreById, films).slice(0, 4); // нашли все похожие фильмы по жанру
@@ -120,8 +121,8 @@ const Film = (props) => {
             </div>
 
             <div className="movie-card__desc">
-
-              <MovieNav nav={nav} film={filmById} reviews={allComments}/>
+              {/* nav={nav}*/}
+              <MovieNav path={path} film={filmById} reviews={allComments}/>
 
             </div>
           </div>
@@ -156,6 +157,7 @@ Film.propTypes = {
   isFilmFound: PropTypes.bool.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   onPrivateRouteRequest: PropTypes.func.isRequired,
+  path: PropTypes.string.isRequired,
 
 };
 
