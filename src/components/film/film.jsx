@@ -26,7 +26,7 @@ const Film = (props) => {
     isDataLoaded,
     onLoadData,
     films,
-    // isAllComments,
+    isAllComments,
     allComments,
     loadAllComments,
     authorizationStatus,
@@ -58,12 +58,12 @@ const Film = (props) => {
   }, [isDataLoaded]);
 
   React.useEffect(() => {
-    // if (!isAllComments) { // елси флаг false, то никогда коменты не загружались
-    //   loadAllComments(id); // делаем запрос на коменты
-    // }
-    loadAllComments(id); // делаем запрос на коменты
+    if (!isAllComments) { // елси флаг false, то никогда коменты не загружались
+      loadAllComments(id); // делаем запрос на коменты
+    }
+    // loadAllComments(id); // делаем запрос на коменты
 
-  }, [id]); // ставим слежку за флагом коментов
+  }, [isAllComments]); // ставим слежку за флагом коментов
 
 
   // код следит если не авторизован, то после авторизации останется на этой же страницу с фильмом
@@ -151,7 +151,7 @@ Film.propTypes = {
   isDataLoaded: PropTypes.bool.isRequired,
   onLoadData: PropTypes.func.isRequired,
   films: PropTypes.array.isRequired,
-  // isAllComments: PropTypes.bool.isRequired,
+  isAllComments: PropTypes.bool.isRequired,
   allComments: PropTypes.array.isRequired,
   isFilmFound: PropTypes.bool.isRequired,
   authorizationStatus: PropTypes.string.isRequired,

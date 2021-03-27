@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import Spinner from "../spinner/spinner";
 
 
 const FilmDescription = (props)=>{
   const {filmById} = props;
 
   return (
-    <div className="movie-card__text">
+    Object.keys(filmById).length !== 0 ? <div className="movie-card__text">
       <p>{filmById.description}</p>
 
       <p className="movie-card__director"><strong>Director: {filmById.director}</strong></p>
@@ -18,7 +19,7 @@ const FilmDescription = (props)=>{
             return `${item}${index + 1 === filmById.starring.length ? `` : `, `}`;
           })
         } and other</strong></p>
-    </div>
+    </div> : <Spinner/>
   );
 };
 
