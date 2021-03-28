@@ -1,16 +1,39 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {useParams} from "react-router-dom";
+import {ActionCreator} from "../../store/action";
+import {fetchFilmById, fetchMoviesList} from "../../store/api-actions";
+import {connect} from "react-redux";
+import Error404 from "../error-404/error-404";
 
 
 const Player = (props)=>{
-  const {film} = props;
+  const {loadFilmById, isFilmFound, filmById} = props; // film,
+  const params = useParams();
+
+
+  // запускаем хук useEffect он запускается каждый раз когда открывается страница, он следит за флагом isDataLoaded
+  React.useEffect(() => {
+    if (params.id) { // если флаг false значит сайт запускается первый раз
+
+      loadFilmById(params.id); // тогда вызываем функцию которая делает запрос на сервер, отдает данные в dispatch, а тот меняет store
+    }
+  }, [params.id]); // useEffect сказали следи за этим флагом если он изменится, то делай запрос
+
+
+
+  if (!isFilmFound) {
+    return (<Error404/>);
+  }
+
 
   const style = {
     left: `30%`
   };
+
   return (
     <div className="player">
-      <video src={film.videoLink} className="player__video" poster={film.posterImage}></video>
+      <video src={filmById.videoLink} className="player__video" poster={filmById.posterImage}></video>
 
       <button type="button" className="player__exit">Exit</button>
 
@@ -22,7 +45,7 @@ const Player = (props)=>{
             <div className="player__toggler" style={style}>Toggler</div>
           </div>
           {/* 1:30:29*/}
-          <div className="player__time-value">{film.runTime}</div>
+          <div className="player__time-value">{filmById.runTime}</div>
         </div>
 
         <div className="player__controls-row">
@@ -51,4 +74,21 @@ Player.propTypes = {
   film: PropTypes.object.isRequired,
 };
 
-export default Player;
+export {Player};
+
+const mapStateToProps = (state)=>({
+  films: state.films, // взято из reduce
+  isFilmFound: state.isFilmFound,
+  filmById: state.filmById,
+
+  isDataLoaded: state.isDataLoaded,
+});
+
+// если передать setGenre на клик меню жанр, то в aaction в payload попадет название жанра
+const mapDispatchToProps = (dispatch)=>({
+  loadFilmById(id) {
+    dispatch(fetchFilmById(id));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Player)

@@ -97,3 +97,16 @@ export const getGenreById = (idFilm, itemFilms) => {
   return genre;
 };
 
+// написать функцию которая из массива с фильмами по id найдет жанр
+export const getFilmById = (idFilm, itemFilms) => {
+  const films = itemFilms.slice();
+
+  let film = ``;
+  for (let item of films) {
+    // console.log(item.id)
+    if (+idFilm === item.id) {
+      film = item;
+    }
+  }
+  return film;
+};

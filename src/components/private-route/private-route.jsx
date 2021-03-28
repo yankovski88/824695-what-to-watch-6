@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Route, Redirect, Switch} from 'react-router-dom';
 import {AuthorizationStatus, RoutePaths} from "../../constants/constants";
+// import {connect} from "react-redux";
 
 const handleUserNotAuthtorized = (route, onPrivateRouteRequest)=>{
   // onPrivateRouteRequest эта функция которая получит rout(маршрут вместо `/`)
@@ -13,8 +14,9 @@ const handleUserNotAuthtorized = (route, onPrivateRouteRequest)=>{
 
 
 const PrivateRoute = ({render, path, exact, authorizationStatus, onPrivateRouteRequest}) =>{
+  console.log(path)
   console.log(authorizationStatus)
-
+  // authorizationStatus = `AUTH`
   return (
     <Route
       path={path}
