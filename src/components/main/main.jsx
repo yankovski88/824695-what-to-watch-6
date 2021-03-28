@@ -13,11 +13,9 @@ import Spinner from "../spinner/spinner";
 
 
 const Main = (props) => {
-  const {updateData, films, countShowFilm, setGenre, isDataLoaded, onLoadData, genreFilms, loadFavorite} = props; // itemGenres, mainFilms,
+  const {updateData, films, countShowFilm, setGenre, isDataLoaded, onLoadData, genreFilms} = props; // itemGenres, mainFilms, loadFavorite
 
-  const hendleLoadFilmFavorite = (idFilm, isFavorite)=>{
-    loadFavorite(idFilm, isFavorite)
-  }
+
 
   // код решает показать btn more или нет
   let itemGenreFilms; // переменная которая смотрит показывать ли кнопку More Show
@@ -36,10 +34,11 @@ const Main = (props) => {
   }, [isDataLoaded]); // useEffect сказали следи за этим флагом если он изменится, то делай запрос
 
   return <React.Fragment>
-    <Card loadFilmFavorite={hendleLoadFilmFavorite}/>
+    {/*loadFilmFavorite={hendleLoadFilmFavorite}*/}
+    <Card />
     <div className="page-content">
 
-      {!isDataLoaded ? <Spinner /> :
+      {/*{!isDataLoaded ? <Spinner /> :*/}
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <ListGenres films={films} setGenre={setGenre}/>
@@ -47,7 +46,7 @@ const Main = (props) => {
           {/* itemGenreFilms*/}
           {itemGenreFilms.length > countShowFilm ? <BtnShowMore /> : ``}
         </section>
-      }
+      {/*// }*/}
 
 
       <footer className="page-footer">
@@ -75,7 +74,7 @@ const mapStateToProps = (state)=>({
   selectedGenre: state.genre, // взято из reduce action.payload
   films: state.films, // взято из reduce
   genreFilms: state.genreFilms,
-  isDataLoaded: state.isDataLoaded,
+  // isDataLoaded: state.isDataLoaded,
 });
 
 // если передать setGenre на клик меню жанр, то в aaction в payload попадет название жанра
@@ -86,9 +85,6 @@ const mapDispatchToProps = (dispatch)=>({
   onLoadData() { // когда вызовится эта функция, то в dispatch попадает результат функции по запросу на сервер
     dispatch(fetchMoviesList());
   },
-  loadFavorite(idFilm, isFavorite){
-    dispatch(fetchFavorite(idFilm, isFavorite))
-  }
 });
 
 export {Main};

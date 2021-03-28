@@ -2,14 +2,14 @@ import React from "react";
 import {useParams} from "react-router-dom";
 
 const BtnAddMyList = (props) => {
-  const {loadFilmFavorite} = props;
+  const {loadFavorite, filmById} = props;
   console.log(props)
   const {id} = useParams();
 // const a = 1
 
  const hendleOnClickFilmFavorite =(evt)=>{
    evt.preventDefault();
-   loadFilmFavorite(1, 1)
+   loadFavorite(1, 1)
  }
   // onClick={hendleLoadFavorite(id, 1)}
   return (

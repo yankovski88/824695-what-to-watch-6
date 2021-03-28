@@ -61,7 +61,7 @@ const initialState = {
   allComments: [], // массив комментов пуст
 
   isAllFavoriteFilms: false,
-  routeMyList: `/mylist`,
+  allFavoriteFilms: [],
 };
 
 export const reducer = (state = initialState, action) => { // второе инициализируем стейт чтобы загрузить начальный жанр т.е. все фильмы
@@ -149,9 +149,12 @@ export const reducer = (state = initialState, action) => { // второе ин�
         // здесь должен быть объект с комментами
         allFavoriteFilms: action.payload,
         isAllFavoriteFilms: true,
+        isDataLoaded: true,
       };
 
     default:
       return state;
   }
 };
+
+console.log(initialState.authorizationStatus)

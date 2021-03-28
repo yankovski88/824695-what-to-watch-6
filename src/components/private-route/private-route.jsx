@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Route, Redirect} from 'react-router-dom';
+import {Route, Redirect, Switch} from 'react-router-dom';
 import {AuthorizationStatus, RoutePaths} from "../../constants/constants";
 
 const handleUserNotAuthtorized = (route, onPrivateRouteRequest)=>{
@@ -13,6 +13,8 @@ const handleUserNotAuthtorized = (route, onPrivateRouteRequest)=>{
 
 
 const PrivateRoute = ({render, path, exact, authorizationStatus, onPrivateRouteRequest}) =>{
+  console.log(authorizationStatus)
+
   return (
     <Route
       path={path}

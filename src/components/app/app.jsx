@@ -13,11 +13,13 @@ import {connect} from "react-redux";
 import browserHistory from "../../browser-history";
 import {ActionCreator} from "../../store/action";
 import PrivateRoute from "../private-route/private-route";
+import axios from "axios";
 
 
 const App = (props) => {
-  const {myListFilms, authorizationStatus, onPrivateRouteRequest} = props; // reviews,
+  const {authorizationStatus, onPrivateRouteRequest} = props; // reviews, myListFilms,
   const [film, setMovie] = React.useState({}); // фильм который хотим посмотреть // movie
+
 
 
   const updateData = (value) => {
@@ -35,14 +37,12 @@ const App = (props) => {
           <SignIn />
         </Route>
 
-
-        <PrivateRoute
-          exact
+        {/*myListFilms={myListFilms}*/}
+        <PrivateRoute exact
           path={`/mylist`}
-          authorizationStatus={authorizationStatus}
           onPrivateRouteRequest={onPrivateRouteRequest}
-          render={()=><MyList myListFilms={myListFilms} updateData={updateData}
-          />}
+          render={()=><MyList updateData={updateData}/>}
+          authorizationStatus={authorizationStatus}
         >
         </PrivateRoute>
 
@@ -55,7 +55,7 @@ const App = (props) => {
         <PrivateRoute exact
           path={`/films/:id/add-review`}
           onPrivateRouteRequest={onPrivateRouteRequest}
-          render={()=><AddReview path={`/films/:id/add-review`} film={film} onAnswer={() => {}}/>}
+          render={()=><AddReview  film={film}/>}// path={`/films/:id/add-review`}
           authorizationStatus={authorizationStatus}
         >
         </PrivateRoute>

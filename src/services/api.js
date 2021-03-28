@@ -20,7 +20,7 @@ const HttpCode = {
 //     console.log(response);
 //   }).catch((a)=>{console.log(a)})
 
-// axios.get(`https://6.react.pages.academy/wtw/films/2`)
+// axios.get(`https://6.react.pages.academy/wtw/favorite`)
 //   .then(function (response) {
 //     console.log(response);
 //   }).catch((a)=>{

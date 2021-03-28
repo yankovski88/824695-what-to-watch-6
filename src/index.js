@@ -12,6 +12,7 @@ import {ActionCreator} from "./store/action";
 import {AuthorizationStatus} from "./constants/constants";
 import {checkAuth} from "./store/api-actions";
 import {redirect} from "./store/middlewares/redirect";
+import axios from "axios";
 
 // переменная с конфигурацией api
 const api = createApi(
@@ -44,6 +45,10 @@ store.dispatch(checkAuth()); // при загрузке сайта провер�
 
 const myListFilms = getFilmData().slice(0, 2);
 
+
+
+
+
 ReactDom.render(
     // обернули все приложение, теперь есть доступ к хранилищу
     <Provider store={store}>
@@ -54,5 +59,6 @@ ReactDom.render(
 
     document.querySelector(`#root`)
 );
+
 
 

@@ -5,9 +5,16 @@ import UserBlock from "../user-block/user-block.jsx";
 import Copyright from "../copyright/copyright.jsx";
 import CatalogMyListFilms from "../catalog-my-list-films/catalog-my-list-films.jsx";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {fetchAllFavoriteFilms} from "../../store/api-actions";
+import Spinner from "../spinner/spinner";
+
 
 const MyList = (props) => {
-  const {myListFilms, updateData} = props;
+  const {updateData} = props;
+
+
+  console.log(props)
   return (
     <>
       <div className="user-page">
@@ -21,8 +28,7 @@ const MyList = (props) => {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <div className="catalog__movies-list">
-            <CatalogMyListFilms myListFilms={myListFilms} updateData={updateData}/>
-
+            <CatalogMyListFilms updateData={updateData}/>
           </div>
         </section>
 
@@ -36,9 +42,16 @@ const MyList = (props) => {
 };
 
 MyList.propTypes = {
-  myListFilms: PropTypes.array.isRequired,
   updateData: PropTypes.func.isRequired,
 };
 
-export default MyList;
+const mapStateToProps = (state)=>({
+  // isAllFavoriteFilms: state.isAllFavoriteFilms,
+  // allFavoriteFilms: state.allFavoriteFilms,
+})
 
+
+
+export {MyList};
+
+export default connect(mapStateToProps, null)(MyList) // mapDispatchToProps

@@ -4,13 +4,17 @@ import PropTypes from "prop-types";
 // import UserBlock from "../user-block/user-block.jsx";
 import BtnAddMyList from "../btn-add-my-list/btn-add-my-list";
 import {connect} from "react-redux";
-import {fetchPromo} from "../../store/api-actions";
+import {fetchFavorite, fetchPromo} from "../../store/api-actions";
 import Header from "../header/header";
 import BtnPlay from "../btn-play/btn-play";
 import {AuthorizationStatus} from "../../constants/constants";
 
 const Card = (props) => {
-  const {filmPromo, onLoadFilmPromo, authorizationStatus, loadFilmFavorite} = props;
+  const {filmPromo, onLoadFilmPromo, authorizationStatus, loadFilmFavorite, loadFavorite} = props;
+
+  const hendleLoadFilmFavorite = (idFilm, isFavorite)=>{
+    loadFavorite(idFilm, isFavorite)
+  }
 
   React.useEffect(()=>{
     if (Object.keys(filmPromo).length === 0) {
@@ -51,7 +55,7 @@ const Card = (props) => {
               {/*</button>*/}
 
               <BtnPlay />
-              {authorizationStatus === AuthorizationStatus.AUTH ? <BtnAddMyList loadFilmFavorite={loadFilmFavorite}/> : ``}
+              {authorizationStatus === AuthorizationStatus.AUTH ? <BtnAddMyList loadFavorite={loadFavorite}/> : ``}
             </div>
           </div>
         </div>
@@ -76,6 +80,9 @@ const mapStateToProps = (state)=>({
 const mapDispatchToProps = (dispatch)=>({
   onLoadFilmPromo() {
     dispatch(fetchPromo());
+  },
+  loadFavorite(idFilm, isFavorite){
+    dispatch(fetchFavorite(idFilm, isFavorite))
   }
 });
 
