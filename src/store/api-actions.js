@@ -24,12 +24,7 @@ export const checkAuth = () => (dispatch, _getState, api) => (
     .catch(() => {})
 );
 
-// проверка авторизован ли пользователь
-export const checkAuthNo = () => (dispatch, _getState, api) => (
-  api.get(`/logout`)
-    .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)))
-    .catch(() => {})
-);
+
 
 // отправка данных для авторизации
 export const login = ({login: email, password}) => (dispatch, getState, api) => (
@@ -56,3 +51,16 @@ export const fetchPostComment = (id, rating, comment)=>(dispatch, getState, api)
 export const fetchFavorite = (idFilm, isFavorite)=>(dispatch, _getState, api)=>(
   api.post(`/favorite/${idFilm}/${isFavorite}`, {idFilm, isFavorite})
 );
+
+// проверка авторизован ли пользователь
+export const checkAuthNo = () => (dispatch, _getState, api) => (
+  api.get(`/logout`)
+    .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)))
+    .catch(() => {})
+);
+
+export const fetchAllFavoriteFilms = ()=>(dispatch, getState, api)=>(
+  api.get(`/favorite`)
+    .then((response)=>dispatch(ActionCreator.getAllFavoriteFilms(response.data)))
+    // .then(() => dispatch(ActionCreator.redirectToRoute(getState().routeMyList))) // если пользователь логинится, то закинь его на главную страницу
+)

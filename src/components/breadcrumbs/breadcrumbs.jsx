@@ -2,11 +2,14 @@ import React from "react";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 
+
+
+
 const Breadcrumbs = (props) => {
   const {film} = props;
   const {name} = film;
   return (
-    <nav className="breadcrumbs">
+    <nav className="breadcrumbs" >
       <ul className="breadcrumbs__list">
         <li className="breadcrumbs__item">
           <Link to="/film" className="breadcrumbs__link">{name}</Link>
@@ -19,8 +22,17 @@ const Breadcrumbs = (props) => {
   );
 };
 
+
 Breadcrumbs.propTypes = {
   film: PropTypes.object.isRequired,
 };
 
 export default Breadcrumbs;
+
+
+
+
+
+
+
+

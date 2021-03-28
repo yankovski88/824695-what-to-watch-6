@@ -1,15 +1,17 @@
 import React from "react";
-import {checkAuthNo} from "../../store/api-actions";
+import {fetchAllFavoriteFilms} from "../../store/api-actions";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
+import {ActionCreator} from "../../store/action";
 // import {SignInForm} from "../sign-in-form/sign-in-form";
 
 const UserBlock = (props)=>{
-  const {onClickLeave} = props;
+  const {redirectToMyList} = props; //
   return (
-    <div className="user-block">
+    //
+    <div className="user-block" onClick={redirectToMyList}>
       <div className="user-block__avatar">
-        <a href="#" onClick={onClickLeave}>
+        <a href="#" >
           <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
 
 
@@ -21,13 +23,19 @@ const UserBlock = (props)=>{
 
 // export default UserBlock;
 UserBlock.propTypes = {
-  onClickLeave: PropTypes.func.isRequired,
+  redirectToMyList: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch)=>({
-  onClickLeave() {
-    dispatch(checkAuthNo());
-  }
+  // loadAllFavoriteFilms() {
+  //   dispatch(fetchAllFavoriteFilms());
+  // },
+
+
+  redirectToMyList(){
+    dispatch(ActionCreator.redirectToRoute(`/mylist`))
+  },
+
 });
 
 export {UserBlock};

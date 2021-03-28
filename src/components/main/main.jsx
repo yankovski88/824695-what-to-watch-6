@@ -15,6 +15,10 @@ import Spinner from "../spinner/spinner";
 const Main = (props) => {
   const {updateData, films, countShowFilm, setGenre, isDataLoaded, onLoadData, genreFilms, loadFavorite} = props; // itemGenres, mainFilms,
 
+  const hendleLoadFilmFavorite = (idFilm, isFavorite)=>{
+    loadFavorite(idFilm, isFavorite)
+  }
+
   // код решает показать btn more или нет
   let itemGenreFilms; // переменная которая смотрит показывать ли кнопку More Show
   if (!genreFilms || genreFilms.length === 0) { // если не один из жанров не кликнули, то он равен всем фильмам
@@ -32,7 +36,7 @@ const Main = (props) => {
   }, [isDataLoaded]); // useEffect сказали следи за этим флагом если он изменится, то делай запрос
 
   return <React.Fragment>
-    <Card />
+    <Card loadFilmFavorite={hendleLoadFilmFavorite}/>
     <div className="page-content">
 
       {!isDataLoaded ? <Spinner /> :
@@ -63,6 +67,7 @@ Main.propTypes = {
   setGenre: PropTypes.func.isRequired,
   isDataLoaded: PropTypes.bool.isRequired,
   onLoadData: PropTypes.func.isRequired,
+  loadFavorite: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state)=>({

@@ -59,9 +59,13 @@ const initialState = {
 
   isAllComments: false, // все коменты полученны
   allComments: [], // массив комментов пуст
+
+  isAllFavoriteFilms: false,
+  routeMyList: `/mylist`,
 };
 
 export const reducer = (state = initialState, action) => { // второе инициализируем стейт чтобы загрузить начальный жанр т.е. все фильмы
+  console.log(action)
   switch (action.type) {
     case ActionType.GENRE: // когда в main будет клик по жанру он сменится с undefined на выбранный
       return {
@@ -136,6 +140,15 @@ export const reducer = (state = initialState, action) => { // второе ин�
         allComments: action.payload,
         isFilmFound: true,
         isAllComments: true,
+      }
+
+    case ActionType.GET_ALL_FAVORITE_FILMS:
+      console.log(action)
+      return {
+        ...state,
+        // здесь должен быть объект с комментами
+        allFavoriteFilms: action.payload,
+        isAllFavoriteFilms: true,
       };
 
     default:

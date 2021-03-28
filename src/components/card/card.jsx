@@ -10,12 +10,11 @@ import BtnPlay from "../btn-play/btn-play";
 import {AuthorizationStatus} from "../../constants/constants";
 
 const Card = (props) => {
-  const {filmPromo, onLoadFilmPromo, authorizationStatus} = props;
+  const {filmPromo, onLoadFilmPromo, authorizationStatus, loadFilmFavorite} = props;
 
   React.useEffect(()=>{
     if (Object.keys(filmPromo).length === 0) {
       onLoadFilmPromo();
-
     }
   }, [filmPromo]);
 
@@ -44,8 +43,15 @@ const Card = (props) => {
 
             <div className="movie-card__buttons">
               {/* anyFilm={filmPromo}*/}
+              {/*<button className="btn btn--list movie-card__button" type="button">*/}
+              {/*  <svg viewBox="0 0 18 14" width="18" height="14">*/}
+              {/*    <use xlink:href="#in-list"></use>*/}
+              {/*  </svg>*/}
+              {/*  <span>My list</span>*/}
+              {/*</button>*/}
+
               <BtnPlay />
-              {authorizationStatus === AuthorizationStatus.AUTH ? <BtnAddMyList /> : ``}
+              {authorizationStatus === AuthorizationStatus.AUTH ? <BtnAddMyList loadFilmFavorite={loadFilmFavorite}/> : ``}
             </div>
           </div>
         </div>
