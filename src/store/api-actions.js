@@ -46,7 +46,7 @@ export const fetchAllComments = (id)=>(dispatch, _getState, api)=>(
 export const fetchPostComment = (id, rating, comment)=>(dispatch, getState, api)=>(
   api.post(`/comments/${id}`, {rating, comment})
     .then(()=>dispatch(ActionCreator.addReview(false)))
-    .then(()=>dispatch(ActionCreator.redirectToRoute(getState().requestedRoute)))
+    .then(()=>dispatch(ActionCreator.redirectToRoute(`/films/${id}`))) // getState().requestedRoute
     .then(()=>dispatch(ActionCreator.addReview(true)))
 );
 
@@ -61,8 +61,3 @@ export const checkAuthNo = () => (dispatch, _getState, api) => (
     .catch(() => {})
 );
 
-export const fetchAllFavoriteFilms = ()=>(dispatch, getState, api)=>(
-  api.get(`/favorite`)
-    .then((response)=>dispatch(ActionCreator.getAllFavoriteFilms(response.data)))
-    // .then(() => dispatch(ActionCreator.redirectToRoute(getState().routeMyList))) // если пользователь логинится, то закинь его на главную страницу
-)
