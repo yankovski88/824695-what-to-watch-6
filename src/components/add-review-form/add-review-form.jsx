@@ -25,15 +25,18 @@ const AddReviewForm = (props) => {
   const [rating, setRating] = React.useState(1);
   const [review, setReview] = React.useState(``);
 
-  let isAddReviewItem = isAddReview
+  // let isAddReviewItem = isAddReview
 
-  console.log(isAddReviewItem)
+  // console.log(isAddReviewItem)
   const handleSubmitClick = (evt) => {
     evt.preventDefault();
-    isAddReviewItem = false;
+    // isAddReviewItem = false;
+    // changeIsAddReview()
     onSubmit(rating, review); // review
 
   };
+
+
 
   const checkReview = (review)=>{
     if(review.length < COMMENT_LENGTH_MIN || review.length > COMMENT_LENGTH_MAX){
@@ -66,7 +69,7 @@ const AddReviewForm = (props) => {
     </Fragment>
   );
 
-
+console.log(isAddReview)
 
   return (
     <div className="add-review">
@@ -88,7 +91,7 @@ const AddReviewForm = (props) => {
           <div className="add-review__submit">
             <button
               ref={textareaBtn}
-              disabled = {checkReview(review) && isAddReviewItem ? false : true}
+              disabled = {checkReview(review) && isAddReview ? false : true}
               className="add-review__btn" type="submit"
               onClick={handleSubmitClick}>Post</button>
           </div>
@@ -109,9 +112,9 @@ const mapStateToProps = (state)=>({
 });
 
 const mapDispatchToProps = (dispatch)=>({
-  changeIsAddReview (){
-    dispatch(ActionCreator.changeIsAddReview(false))
-}
+//   changeIsAddReview (){
+//     dispatch(ActionCreator.changeIsAddReview(false))
+// }
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(AddReviewForm) // mapDispatchToProps
