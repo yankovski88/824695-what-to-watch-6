@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 const AddReviewForm = (props) => {
   const {onSubmit} = props;
+  const textarea = React.useRef();
   // const [review, addReview] = React.useState({
   //   rating: ``,
   //   review: ``,
@@ -11,9 +12,9 @@ const AddReviewForm = (props) => {
   const COMMENT_LENGTH_MIN = 50;
   const COMMENT_LENGTH_MAX = 400;
 
-  const isRatingInvalid = (rating) => !rating || isNaN(rating) || !RATING_STARS.includes(parseInt(rating, 10));
-
-  const isCommentInvalid = (comment) => !comment || comment.length < COMMENT_LENGTH_MIN || comment.length > COMMENT_LENGTH_MAX;
+  // const isRatingInvalid = (rating) => !rating || isNaN(rating) || !RATING_STARS.includes(parseInt(rating, 10));
+  //
+  // const isCommentInvalid = (comment) => !comment || comment.length < COMMENT_LENGTH_MIN || comment.length > COMMENT_LENGTH_MAX;
 
 
   const [rating, setRating] = React.useState(1);
@@ -24,6 +25,17 @@ const AddReviewForm = (props) => {
     onSubmit(rating, review); // review
   };
 
+
+  const checkReview = (review)=>{
+    console.log(review.length)
+    if(review.length < COMMENT_LENGTH_MIN || review.length > COMMENT_LENGTH_MAX){
+      return false
+    }
+    return true
+  };
+
+  const isTextarea = checkReview(review);
+console.log(checkReview(review))
 
   // const handleSubmit = (evt) => {
   //   evt.preventDefault();
@@ -62,14 +74,17 @@ const AddReviewForm = (props) => {
         </div>
 
         <div className="add-review__text">
-          <textarea className="add-review__textarea" name="review" id="review-text"
+          <textarea ref={textarea} className="add-review__textarea" name="review" id="review-text"
             placeholder="Review text"
             // onChange={handleReviewChange}
             onChange={(evt) => setReview(evt.target.value)}
 
           ></textarea>
           <div className="add-review__submit">
-            <button className="add-review__btn" type="submit" onClick={handleSubmitClick}>Post</button>
+            <button
+              disabled = {checkReview(review) ? false : true}
+              className="add-review__btn" type="submit"
+              onClick={handleSubmitClick}>Post</button>
           </div>
 
         </div>
