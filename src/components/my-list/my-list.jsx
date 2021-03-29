@@ -13,8 +13,6 @@ import Spinner from "../spinner/spinner";
 const MyList = (props) => {
   const {updateData} = props;
 
-
-  console.log(props)
   return (
     <>
       <div className="user-page">

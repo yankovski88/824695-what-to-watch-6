@@ -104,10 +104,13 @@ const Film = (props) => {
 
               <div className="movie-card__buttons">
                 <BtnPlay anyFilm={filmById}/>
-                <BtnAddMyList filmById={filmById}/>
+
                 {authorizationStatus === AuthorizationStatus.AUTH ?
+                  <>
+                <BtnAddMyList filmById={filmById}/>
                   <Link to={`/films/${filmById ? filmById.id : ``}/add-review`}
                     className="btn movie-card__button">Add review</Link>
+                  </>
                   : ``}
                 {/* <LinkAddReview film={film}/>*/}
               </div>
