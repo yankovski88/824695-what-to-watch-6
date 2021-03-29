@@ -7,6 +7,8 @@ import {connect} from "react-redux";
 const BtnAddMyList = (props) => {
   const {loadFavorite, filmById, onLoadData, loadFilmById, filmPromo} = props;
   console.log(props)
+  console.log(filmPromo)
+
   const {id} = useParams();
 console.log(id)
 
@@ -25,25 +27,27 @@ console.log(id)
 
   const hendleOnClickFilmFavorite =(evt)=>{
     evt.preventDefault();
+    console.log(filmForBtn)
     let numberStatus = 0;
-    if(filmById.isFavorite === false){
+    if(filmForBtn.isFavorite === false){
       numberStatus = 1;
-    } else if(filmById.isFavorite === true){
+    } else if(filmForBtn.isFavorite === true){
       numberStatus = 0;
     }
-    loadFavorite(id, numberStatus)
+    loadFavorite(filmForBtn.id, numberStatus)
   }
 
-  React.useEffect(()=>{
-
-  }, [filmById]
-)
+//   React.useEffect(()=>{
+//
+//   }, [filmById]
+// )
   let filmForBtn;
   if(filmById){
     filmForBtn = filmById
   } else {
     filmForBtn = filmPromo
   }
+  console.log(filmForBtn)
   // onClick={hendleLoadFavorite(id, 1)}
   return (
     <button  className="btn btn--list movie-card__button" type="button" onClick={hendleOnClickFilmFavorite}>
@@ -72,6 +76,7 @@ const mapDispatchToProps = (dispatch)=>({
     dispatch(fetchMoviesList());
   },
   loadFavorite(idFilm, isFavorite){
+    console.log(idFilm, isFavorite)
     dispatch(fetchFavorite(idFilm, isFavorite))
   },
   loadFilmById(id) {
