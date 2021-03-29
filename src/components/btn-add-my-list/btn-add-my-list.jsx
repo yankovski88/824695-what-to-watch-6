@@ -1,18 +1,31 @@
 import React from "react";
 import {useParams} from "react-router-dom";
 import {ActionCreator} from "../../store/action";
-import {fetchFavorite, fetchMoviesList} from "../../store/api-actions";
+import {fetchFavorite, fetchFilmById, fetchMoviesList} from "../../store/api-actions";
 import {connect} from "react-redux";
 
 const BtnAddMyList = (props) => {
-  const {loadFavorite, filmById, onLoadData} = props;
+  const {loadFavorite, filmById, onLoadData, loadFilmById, filmPromo} = props;
   console.log(props)
   const {id} = useParams();
 console.log(id)
 
+
+  // запускаем хук useEffect он запускается каждый раз когда открывается страница, он следит за флагом isDataLoaded
+  React.useEffect(() => {
+    if (id) {
+      loadFilmById(id);
+    }
+    // loadFilmById(film.id); // тогда вызываем функцию которая делает запрос на сервер, отдает данные в dispatch, а тот меняет store
+  }, [id]); // useEffect сказали следи за этим флагом если он изменится, то делай запрос
+  // film.id
+
+
+
+
   const hendleOnClickFilmFavorite =(evt)=>{
     evt.preventDefault();
-    let numberStatus;
+    let numberStatus = 0;
     if(filmById.isFavorite === false){
       numberStatus = 1;
     } else if(filmById.isFavorite === true){
@@ -25,10 +38,16 @@ console.log(id)
 
   }, [filmById]
 )
+  let filmForBtn;
+  if(filmById){
+    filmForBtn = filmById
+  } else {
+    filmForBtn = filmPromo
+  }
   // onClick={hendleLoadFavorite(id, 1)}
   return (
     <button  className="btn btn--list movie-card__button" type="button" onClick={hendleOnClickFilmFavorite}>
-      { filmById.isFavorite === true ?
+      { filmForBtn.isFavorite === true ?
         <svg viewBox="0 0 18 14" width="18" height="14">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M2.40513 5.35353L6.1818 8.90902L15.5807 0L18 2.80485L6.18935 14L0 8.17346L2.40513 5.35353Z" fill="#EEE5B5"></path>
         </svg>
@@ -44,7 +63,8 @@ console.log(id)
 export {BtnAddMyList};
 
 const mapStateToProps = (state)=>({
-  films: state.films
+  films: state.films,
+  filmPromo: state.filmPromo,
 })
 
 const mapDispatchToProps = (dispatch)=>({
@@ -53,7 +73,10 @@ const mapDispatchToProps = (dispatch)=>({
   },
   loadFavorite(idFilm, isFavorite){
     dispatch(fetchFavorite(idFilm, isFavorite))
-  }
+  },
+  loadFilmById(id) {
+    dispatch(fetchFilmById(id));
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BtnAddMyList)

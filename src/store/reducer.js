@@ -62,6 +62,8 @@ const initialState = {
 
   isAllFavoriteFilms: false,
   allFavoriteFilms: [],
+
+  isAddReview: true,
 };
 
 export const reducer = (state = initialState, action) => { // второе инициализируем стейт чтобы загрузить начальный жанр т.е. все фильмы
@@ -150,6 +152,13 @@ export const reducer = (state = initialState, action) => { // второе ин�
         allFavoriteFilms: action.payload,
         isAllFavoriteFilms: true,
         isDataLoaded: true,
+      };
+
+    case ActionType.ADD_REVIEW:
+      console.log(action)
+      return {
+        ...state,
+        isAddReview: action.payload,
       };
 
     default:

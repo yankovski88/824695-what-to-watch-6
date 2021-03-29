@@ -1,9 +1,13 @@
 import React, {Fragment} from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+
 
 const AddReviewForm = (props) => {
-  const {onSubmit} = props;
+  const {onSubmit, isAddReview} = props;
   const textarea = React.useRef();
+  const textareaBtn = React.useRef();
+
   // const [review, addReview] = React.useState({
   //   rating: ``,
   //   review: ``,
@@ -20,22 +24,19 @@ const AddReviewForm = (props) => {
   const [rating, setRating] = React.useState(1);
   const [review, setReview] = React.useState(``);
 
+  console.log(isAddReview)
   const handleSubmitClick = (evt) => {
     evt.preventDefault();
     onSubmit(rating, review); // review
+
   };
 
-
   const checkReview = (review)=>{
-    console.log(review.length)
     if(review.length < COMMENT_LENGTH_MIN || review.length > COMMENT_LENGTH_MAX){
       return false
     }
     return true
   };
-
-  const isTextarea = checkReview(review);
-console.log(checkReview(review))
 
   // const handleSubmit = (evt) => {
   //   evt.preventDefault();
@@ -47,20 +48,20 @@ console.log(checkReview(review))
   //   addReview({...review, [name]: value});
   // };
 
-
   const stars = new Array(10).fill().map((el, index) =>
     <Fragment key={`star-${index}`}>
       <input
         className="rating__input"
         id={`star-${index}`}
         type="radio" name="rating"
-        value={index + 1}
-        checked={index + 1 === rating}
+        value={index + 1} //
+        checked={index + 1 === rating} // index + 1 === rating
         onChange={() => setRating(index + 1)}
       />
       <label className="rating__label" htmlFor={`star-${index}`}>Rating {index + 1} </label>
     </Fragment>
   );
+
 
 
   return (
@@ -82,7 +83,8 @@ console.log(checkReview(review))
           ></textarea>
           <div className="add-review__submit">
             <button
-              disabled = {checkReview(review) ? false : true}
+              ref={textareaBtn}
+              disabled = {checkReview(review) && isAddReview ? false : true}
               className="add-review__btn" type="submit"
               onClick={handleSubmitClick}>Post</button>
           </div>
@@ -97,4 +99,9 @@ console.log(checkReview(review))
 AddReviewForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
-export default AddReviewForm;
+export {AddReviewForm};
+const mapStateToProps = (state)=>({
+  isAddReview: state.isAddReview,
+});
+
+export default connect (mapStateToProps, null)(AddReviewForm) // mapDispatchToProps

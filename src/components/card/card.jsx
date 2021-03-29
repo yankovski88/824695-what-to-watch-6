@@ -12,6 +12,8 @@ import {AuthorizationStatus} from "../../constants/constants";
 const Card = (props) => {
   const {filmPromo, onLoadFilmPromo, authorizationStatus, loadFilmFavorite, loadFavorite} = props;
 
+  console.log(filmPromo)
+
   const hendleLoadFilmFavorite = (idFilm, isFavorite)=>{
     loadFavorite(idFilm, isFavorite)
   }
