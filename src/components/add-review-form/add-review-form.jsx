@@ -1,6 +1,7 @@
 import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import {ActionCreator} from "../../store/action";
 
 
 const AddReviewForm = (props) => {
@@ -24,9 +25,12 @@ const AddReviewForm = (props) => {
   const [rating, setRating] = React.useState(1);
   const [review, setReview] = React.useState(``);
 
-  console.log(isAddReview)
+  let isAddReviewItem = isAddReview
+
+  console.log(isAddReviewItem)
   const handleSubmitClick = (evt) => {
     evt.preventDefault();
+    isAddReviewItem = false;
     onSubmit(rating, review); // review
 
   };
@@ -84,7 +88,7 @@ const AddReviewForm = (props) => {
           <div className="add-review__submit">
             <button
               ref={textareaBtn}
-              disabled = {checkReview(review) && isAddReview ? false : true}
+              disabled = {checkReview(review) && isAddReviewItem ? false : true}
               className="add-review__btn" type="submit"
               onClick={handleSubmitClick}>Post</button>
           </div>
@@ -104,4 +108,10 @@ const mapStateToProps = (state)=>({
   isAddReview: state.isAddReview,
 });
 
-export default connect (mapStateToProps, null)(AddReviewForm) // mapDispatchToProps
+const mapDispatchToProps = (dispatch)=>({
+  changeIsAddReview (){
+    dispatch(ActionCreator.changeIsAddReview(false))
+}
+})
+
+export default connect (mapStateToProps, mapDispatchToProps)(AddReviewForm) // mapDispatchToProps

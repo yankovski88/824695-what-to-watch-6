@@ -45,9 +45,9 @@ export const fetchAllComments = (id)=>(dispatch, _getState, api)=>(
 
 export const fetchPostComment = (id, rating, comment)=>(dispatch, getState, api)=>(
   api.post(`/comments/${id}`, {rating, comment})
-    .then(()=>dispatch(ActionCreator.addReview(false)))
+    // .then(()=>dispatch(ActionCreator.addReview(false)))
     .then(()=>dispatch(ActionCreator.redirectToRoute(getState().requestedRoute)))
-    .then(()=>dispatch(ActionCreator.addReview(true)))
+    // .then(()=>dispatch(ActionCreator.addReview(true)))
 );
 
 export const fetchFavorite = (idFilm, isFavorite)=>(dispatch, _getState, api)=>(

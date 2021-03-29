@@ -10,8 +10,9 @@ export const ActionType = {
   ADD_REQUESTED_ROUTE: `user/addRequestedRoute`,
   FILM_BY_ID: `user/film`,
   GET_ALL_COMMENTS: `film/comments`,
-  GET_ALL_FAVORITE_FILMS: `user/getAllFavoriteFilms`,
-  ADD_REVIEW: `user/ADD_REVIEW`
+
+  ADD_REVIEW: `user/ADD_REVIEW`,
+  CHANGE_IS_ADD_REVIEW: `user/CHANGE_IS_ADD_REVIEW`
 };
 
 // создаем объект функция которые возвращают экшин
@@ -55,12 +56,12 @@ export const ActionCreator = {
     type: ActionType.GET_ALL_COMMENTS,
     payload: comments,
   }),
-  getAllFavoriteFilms: (favoriteFilms)=>({
-    type: ActionType.GET_ALL_FAVORITE_FILMS,
-    payload: favoriteFilms,
-  }),
   addReview: (data)=>({
-    type: ActionType.GET_ALL_FAVORITE_FILMS,
+    type: ActionType.ADD_REVIEW,
+    payload: data,
+  }),
+  changeIsAddReview: (data)=>({
+    type: ActionType.CHANGE_IS_ADD_REVIEW,
     payload: data,
   }),
 };

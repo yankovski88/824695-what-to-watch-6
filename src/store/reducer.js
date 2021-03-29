@@ -144,18 +144,14 @@ export const reducer = (state = initialState, action) => { // второе ин�
         isAllComments: true,
       }
 
-    case ActionType.GET_ALL_FAVORITE_FILMS:
-      console.log(action)
-      return {
-        ...state,
-        // здесь должен быть объект с комментами
-        allFavoriteFilms: action.payload,
-        isAllFavoriteFilms: true,
-        isDataLoaded: true,
-      };
 
     case ActionType.ADD_REVIEW:
-      console.log(action)
+      return {
+        ...state,
+        isAddReview: action.payload,
+      };
+
+    case ActionType.CHANGE_IS_ADD_REVIEW:
       return {
         ...state,
         isAddReview: action.payload,
