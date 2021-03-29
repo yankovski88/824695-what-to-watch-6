@@ -55,7 +55,7 @@ const Card = (props) => {
               {/*</button>*/}
 
               <BtnPlay />
-              {authorizationStatus === AuthorizationStatus.AUTH ? <BtnAddMyList loadFavorite={loadFavorite}/> : ``}
+              {authorizationStatus === AuthorizationStatus.AUTH ? <BtnAddMyList /> : ``}
             </div>
           </div>
         </div>

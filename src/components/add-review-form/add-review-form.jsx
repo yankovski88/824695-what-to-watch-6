@@ -8,6 +8,14 @@ const AddReviewForm = (props) => {
   //   review: ``,
   // });
 
+  const COMMENT_LENGTH_MIN = 50;
+  const COMMENT_LENGTH_MAX = 400;
+
+  const isRatingInvalid = (rating) => !rating || isNaN(rating) || !RATING_STARS.includes(parseInt(rating, 10));
+
+  const isCommentInvalid = (comment) => !comment || comment.length < COMMENT_LENGTH_MIN || comment.length > COMMENT_LENGTH_MAX;
+
+
   const [rating, setRating] = React.useState(1);
   const [review, setReview] = React.useState(``);
 

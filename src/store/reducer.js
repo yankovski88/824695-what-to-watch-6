@@ -52,7 +52,7 @@ const initialState = {
   likeFilms: [], // похожие фильмы, появятся только после клика жанра
   isDataLoaded: false, // загрузились ли фильмы с сервера
   filmPromo: {}, // фильм на главной странице
-  authorizationStatus: AuthorizationStatus.NO_AUTH, // поле чтобы знать авторизирован ли пользователь
+  authorizationStatus: null, // поле чтобы знать авторизирован ли пользователь
   requestedRoute: RoutePaths.MAIN, // маршрут подставляется если пришел юзер не авторизованный
   filmById: {}, // фильм полученный с помощью маршрута id
   isFilmFound: false, // флаг если фильм получили т.е. через поиск напрямую id верный

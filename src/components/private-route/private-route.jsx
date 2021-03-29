@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Route, Redirect, Switch} from 'react-router-dom';
 import {AuthorizationStatus, RoutePaths} from "../../constants/constants";
+import Spinner from "../spinner/spinner";
 // import {connect} from "react-redux";
 
 const handleUserNotAuthtorized = (route, onPrivateRouteRequest)=>{
@@ -18,6 +19,7 @@ const PrivateRoute = ({render, path, exact, authorizationStatus, onPrivateRouteR
   console.log(authorizationStatus)
   // authorizationStatus = `AUTH`
   return (
+    authorizationStatus === null ? <Spinner/> :
     <Route
       path={path}
       exact={exact}
