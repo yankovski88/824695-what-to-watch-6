@@ -9,9 +9,12 @@ import Error404 from "../error-404/error-404";
 
 const Player = (props)=>{
   const {loadFilmById, isFilmFound, filmById} = props; // film,
+  const videoPlayer = React.useRef();
+  const playPlayer = React.useRef();
+  const pause = React.useRef();
+  const fullScreen = React.useRef(); // requestFullscreen()
+
   const params = useParams();
-
-
   // запускаем хук useEffect он запускается каждый раз когда открывается страница, он следит за флагом isDataLoaded
   React.useEffect(() => {
     if (params.id) { // если флаг false значит сайт запускается первый раз
@@ -31,11 +34,33 @@ const Player = (props)=>{
     left: `30%`
   };
 
+  let isPlaing = false;
+  const hendlePlayPlayer = ()=>{
+      if(isPlaing){
+        videoPlayer.current.pause();
+        isPlaing = false;
+      } else {
+        videoPlayer.current.play();
+        isPlaing = true;
+      }
+}
+  const hendleFullScreen = ()=>{
+    videoPlayer.current.requestFullscreen();
+  }
+  const hendleExit = ()=>{
+    videoPlayer.current.pause();
+    videoPlayer.current.currentTime = 0;
+  }
   return (
     <div className="player">
-      <video src={filmById.videoLink} className="player__video" poster={filmById.posterImage}></video>
+      {/*ref={videoPlayer}*/}
+      <video ref={videoPlayer}
+             src={filmById.videoLink}
+             className="player__video"
+             poster={filmById.posterImage}
+             ></video>
 
-      <button type="button" className="player__exit">Exit</button>
+      <button onClick={hendleExit} type="button" className="player__exit">Exit</button>
 
       <div className="player__controls">
 
@@ -44,12 +69,15 @@ const Player = (props)=>{
             <progress className="player__progress" value="30" max="100"></progress>
             <div className="player__toggler" style={style}>Toggler</div>
           </div>
-          {/* 1:30:29*/}
+          {/*filmById.runTime -*!/videoPlayer.current.currentTime =*/}
           <div className="player__time-value">{filmById.runTime}</div>
         </div>
 
         <div className="player__controls-row">
-          <button type="button" className="player__play">
+
+          <button
+            onClick={hendlePlayPlayer} ref={playPlayer}
+            type="button" className="player__play">
             <svg viewBox="0 0 19 19" width="19" height="19">
               <use xlinkHref="#play-s"></use>
             </svg>
@@ -57,7 +85,10 @@ const Player = (props)=>{
           </button>
           <div className="player__name">Transpotting</div>
 
-          <button type="button" className="player__full-screen">
+          <button           ref={fullScreen}
+                            onClick={hendleFullScreen}
+                            type="button"
+                            className="player__full-screen">
             <svg viewBox="0 0 27 27" width="27" height="27">
               <use xlinkHref="#full-screen"></use>
             </svg>
