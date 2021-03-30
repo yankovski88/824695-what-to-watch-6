@@ -56,6 +56,7 @@ const initialState = {
   requestedRoute: RoutePaths.MAIN, // маршрут подставляется если пришел юзер не авторизованный
   filmById: {}, // фильм полученный с помощью маршрута id
   isFilmFound: false, // флаг если фильм получили т.е. через поиск напрямую id верный
+  isFilmLoaded: false,
 
   isAllComments: false, // все коменты полученны
   allComments: [], // массив комментов пуст
@@ -134,6 +135,7 @@ export const reducer = (state = initialState, action) => { // второе ин�
         ...state,
         filmById: adaptToClient(action.payload),
         isFilmFound: true,
+        isFilmLoaded: true,
       };
     case ActionType.GET_ALL_COMMENTS:
       return {

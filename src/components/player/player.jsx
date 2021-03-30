@@ -7,13 +7,17 @@ import {connect} from "react-redux";
 import Error404 from "../error-404/error-404";
 import {useHistory} from "react-router-dom";
 import {formatTime} from "../../utils/utils";
+import Spinner from "../spinner/spinner";
 
 
 const Player = (props) => {
-  const {loadFilmById, isFilmFound, filmById} = props; // film,
+  const {loadFilmById, isFilmFound, filmById, isFilmLoaded} = props; // film,
   const [isPlaying, setPlaing] = React.useState(false);
   const [duration, setDuration] = React.useState(0);
   const [currentTime, setCurrentTime] = React.useState(0);
+
+  console.log(isFilmLoaded)
+
 
   const timeElapsed = duration - currentTime;
   // React.useEffect(() => {
@@ -30,17 +34,15 @@ const Player = (props) => {
     }, 100);
   }, [isPlaying]);
 
-  // if (!isMovieLoaded) {
-  //   return <Spinner />;
-  // }
+
 
   // const [hour, setHour] = React.useState(0);
   // const [minute, setMinute] = React.useState(0);
   // const [second, setSecond] = React.useState(0);
   //
   // // let timeOutId = null; // флаг, таймер не включен
-
-
+  //
+  //
   // React.useEffect(() => {
   //   // timeOutId =
   //     setInterval(() => {
@@ -78,6 +80,9 @@ const Player = (props) => {
   const history = useHistory();
   const params = useParams();
 
+
+
+
   // запускаем хук useEffect он запускается каждый раз когда открывается страница, он следит за флагом isDataLoaded
   React.useEffect(() => {
     if (params.id) { // если флаг false значит сайт запускается первый раз
@@ -88,11 +93,8 @@ const Player = (props) => {
 
   if (!isFilmFound) {
     return (<Error404/>);
-  }
-
-  const style = {
-    left: `30%`
   };
+
 
   const hendlePlayPlayer = () => {
     if (isPlaying) {
@@ -128,8 +130,16 @@ const Player = (props) => {
   //   return () => clearInterval(timeOutId);
   // });
 
-  return (
-    <div className="player">
+  // Object.keys(filmById).length = 0
+  // if (!isFilmLoaded) {
+  //   console.log(`спиннеерррр`)
+  //   return <Spinner />;
+  // }
+
+  const progress = currentTime / duration * 100;
+
+
+  return (!isFilmLoaded ? <Spinner /> : <div className="player">
       {/*ref={videoRef}*/}
       <video ref={videoRef}
              src={filmById.videoLink}
@@ -145,8 +155,8 @@ const Player = (props) => {
 
         <div className="player__controls-row">
           <div className="player__time">
-            <progress className="player__progress" value="30" max="100"></progress>
-            <div className="player__toggler" style={style}>Toggler</div>
+            <progress className="player__progress" value={progress.toString()} max="100"></progress>
+            <div className="player__toggler" style={{left: `${progress}%`}}>Toggler</div>
           </div>
           {/*videoRef.current.currentTime = filmById.runTime {`${hour}:${minute}:${second}`}*/}
           <div className="player__time-value">{formatTime(timeElapsed)}</div>
@@ -185,7 +195,6 @@ const Player = (props) => {
         </div>
       </div>
     </div>
-
   );
 };
 
@@ -200,6 +209,7 @@ const mapStateToProps = (state) => ({
   films: state.films, // взято из reduce
   isFilmFound: state.isFilmFound,
   filmById: state.filmById,
+  isFilmLoaded: state.isFilmLoaded,
 
   isDataLoaded: state.isDataLoaded,
 });
