@@ -46,7 +46,6 @@ const BtnAddMyList = (props) => {
   } else {
     filmForBtn = filmPromo;
   }
-  console.log(filmForBtn);
   // onClick={hendleLoadFavorite(id, 1)}
   return (
     <button className="btn btn--list movie-card__button" type="button" onClick={hendleOnClickFilmFavorite}>

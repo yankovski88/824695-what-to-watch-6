@@ -56,18 +56,15 @@ const initialState = {
   requestedRoute: RoutePaths.MAIN, // маршрут подставляется если пришел юзер не авторизованный
   filmById: {}, // фильм полученный с помощью маршрута id
   isFilmFound: false, // флаг если фильм получили т.е. через поиск напрямую id верный
-  isFilmLoaded: false,
+  isFilmLoaded: false, // нужный фильм загрузился
 
   isAllComments: false, // все коменты полученны
   allComments: [], // массив комментов пуст
 
-  isAllFavoriteFilms: false,
-  allFavoriteFilms: [],
-
   isAddReview: true,
   hasError: false,
 
-  hasErrorLogin: false,
+  hasErrorLogin: false, // логин не проходит
 };
 
 export const reducer = (state = initialState, action) => { // второе инициализируем стейт чтобы загрузить начальный жанр т.е. все фильмы

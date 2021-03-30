@@ -5,9 +5,6 @@ import UserBlock from "../user-block/user-block.jsx";
 import Copyright from "../copyright/copyright.jsx";
 import CatalogMyListFilms from "../catalog-my-list-films/catalog-my-list-films.jsx";
 import PropTypes from "prop-types";
-import {connect} from "react-redux";
-import {fetchAllFavoriteFilms} from "../../store/api-actions";
-import Spinner from "../spinner/spinner";
 
 
 const MyList = (props) => {
@@ -43,12 +40,5 @@ MyList.propTypes = {
   updateData: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state)=>({
-  // isAllFavoriteFilms: state.isAllFavoriteFilms,
-  // allFavoriteFilms: state.allFavoriteFilms,
-});
+export default MyList;
 
-
-export {MyList};
-
-export default connect(mapStateToProps, null)(MyList); // mapDispatchToProps

@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {login} from "../../store/api-actions";
 import {isValidEmail} from "../../utils/utils";
-// import {useHistory} from 'react-router-dom';
 import classNames from 'classnames';
 
 
@@ -100,6 +99,7 @@ const SignInForm = (props)=>{
 
 SignInForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  hasErrorLogin: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state)=>({

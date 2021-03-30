@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Route, Redirect, Switch} from 'react-router-dom';
+import {Route, Redirect} from 'react-router-dom';
 import {AuthorizationStatus, RoutePaths} from "../../constants/constants";
 import Spinner from "../spinner/spinner";
 // import {connect} from "react-redux";

@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {useParams} from "react-router-dom";
-import {ActionCreator} from "../../store/action";
-import {fetchFilmById, fetchMoviesList} from "../../store/api-actions";
+import {fetchFilmById} from "../../store/api-actions";
 import {connect} from "react-redux";
 import Error404 from "../error-404/error-404";
 import {useHistory} from "react-router-dom";
@@ -11,14 +10,13 @@ import Spinner from "../spinner/spinner";
 
 
 const Player = (props) => {
-  const {loadFilmById, isFilmFound, filmById, isFilmLoaded} = props; // film,
-  const [isPlaying, setPlaing] = React.useState(false);
+  const {loadFilmById, isFilmFound, filmById, isFilmLoaded} = props;
+  const [isPlaying, setPlaying] = React.useState(false);
   const [duration, setDuration] = React.useState(0);
   const [currentTime, setCurrentTime] = React.useState(0);
 
   const videoRef = React.useRef();
   const playPlayer = React.useRef();
-  const pause = React.useRef();
   const fullScreen = React.useRef();
   const history = useHistory();
   const params = useParams();
@@ -50,17 +48,17 @@ const Player = (props) => {
   const hendlePlayPlayer = () => {
     if (isPlaying) {
       videoRef.current.pause();
-      setPlaing(false);
+      setPlaying(false);
     } else {
       videoRef.current.play();
-      setPlaing(true);
+      setPlaying(true);
     }
   };
   const hendleFullScreen = () => {
     videoRef.current.requestFullscreen();
   };
   const hendleExit = () => {
-    setPlaing(false);
+    setPlaying(false);
     videoRef.current.pause();
     videoRef.current.currentTime = 0;
     history.goBack();
@@ -126,9 +124,11 @@ const Player = (props) => {
   );
 };
 
-
 Player.propTypes = {
-  film: PropTypes.object.isRequired,
+  loadFilmById: PropTypes.func.isRequired,
+  isFilmFound: PropTypes.bool.isRequired,
+  filmById: PropTypes.object.isRequired,
+  isFilmLoaded: PropTypes.bool.isRequired,
 };
 
 export {Player};
@@ -138,7 +138,6 @@ const mapStateToProps = (state) => ({
   isFilmFound: state.isFilmFound,
   filmById: state.filmById,
   isFilmLoaded: state.isFilmLoaded,
-
   isDataLoaded: state.isDataLoaded,
 });
 

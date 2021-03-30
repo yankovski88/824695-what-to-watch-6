@@ -1,16 +1,13 @@
 import React from "react";
 import SmallCard from "../small-card/small-card.jsx";
 import PropTypes from "prop-types";
-// import {getFilm} from "../../utils/utils";
 import {connect} from "react-redux";
 import Spinner from "../spinner/spinner";
-import {fetchAllFavoriteFilms, fetchMoviesList} from "../../store/api-actions";
-import {ActionCreator} from "../../store/action";
-import {AuthorizationStatus} from "../../constants/constants";
+import {fetchMoviesList} from "../../store/api-actions";
 
 
 const CatalogMyListFilms = (props) => {
-  const {updateData, isAllFavoriteFilms, loadMoviesList, allFavoriteFilms, isDataLoaded, films, loadAllFavoriteFilms} = props;
+  const {updateData, loadMoviesList, isDataLoaded, films} = props;
 
 
   React.useEffect(
@@ -48,6 +45,7 @@ const CatalogMyListFilms = (props) => {
 CatalogMyListFilms.propTypes = {
   films: PropTypes.array.isRequired,
   updateData: PropTypes.func.isRequired,
+  loadMoviesList: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
