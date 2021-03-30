@@ -68,8 +68,6 @@ const AddReviewForm = (props) => {
     </Fragment>
   );
 
-  console.log(isAddReview);
-
   return (
     <div className="add-review">
       <form
