@@ -3,8 +3,6 @@ import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 
 
-
-
 const Breadcrumbs = (props) => {
   const {film} = props;
   const {name} = film;
@@ -28,11 +26,5 @@ Breadcrumbs.propTypes = {
 };
 
 export default Breadcrumbs;
-
-
-
-
-
-
 
 

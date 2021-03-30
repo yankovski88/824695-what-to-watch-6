@@ -46,10 +46,9 @@ MyList.propTypes = {
 const mapStateToProps = (state)=>({
   // isAllFavoriteFilms: state.isAllFavoriteFilms,
   // allFavoriteFilms: state.allFavoriteFilms,
-})
-
+});
 
 
 export {MyList};
 
-export default connect(mapStateToProps, null)(MyList) // mapDispatchToProps
+export default connect(mapStateToProps, null)(MyList); // mapDispatchToProps

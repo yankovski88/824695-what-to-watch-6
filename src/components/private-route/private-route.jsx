@@ -15,20 +15,20 @@ const handleUserNotAuthtorized = (route, onPrivateRouteRequest)=>{
 
 
 const PrivateRoute = ({render, path, exact, authorizationStatus, onPrivateRouteRequest}) =>{
-  console.log(path)
-  console.log(authorizationStatus)
+  console.log(path);
+  console.log(authorizationStatus);
   // authorizationStatus = `AUTH`
   return (
     authorizationStatus === null ? <Spinner/> :
-    <Route
-      path={path}
-      exact={exact}
-      render={(routeProps)=>(
-        authorizationStatus === AuthorizationStatus.AUTH ? render(routeProps) :
-          handleUserNotAuthtorized(path, onPrivateRouteRequest)
+      <Route
+        path={path}
+        exact={exact}
+        render={(routeProps)=>(
+          authorizationStatus === AuthorizationStatus.AUTH ? render(routeProps) :
+            handleUserNotAuthtorized(path, onPrivateRouteRequest)
           // <Redirect to={RoutePaths.SIGN_IN} /> // иначе типо верни на путь с регистрацией
-      )}
-    />
+        )}
+      />
 
   // <Route
   //   path={path} // думаю это путь

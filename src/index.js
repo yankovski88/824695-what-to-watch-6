@@ -46,9 +46,6 @@ store.dispatch(checkAuth()); // при загрузке сайта провер�
 const myListFilms = getFilmData().slice(0, 2);
 
 
-
-
-
 ReactDom.render(
     // обернули все приложение, теперь есть доступ к хранилищу
     <Provider store={store}>
@@ -59,6 +56,5 @@ ReactDom.render(
 
     document.querySelector(`#root`)
 );
-
 
 

@@ -16,7 +16,6 @@ const Main = (props) => {
   const {updateData, films, countShowFilm, setGenre, isDataLoaded, onLoadData, genreFilms} = props; // itemGenres, mainFilms, loadFavorite
 
 
-
   // код решает показать btn more или нет
   let itemGenreFilms; // переменная которая смотрит показывать ли кнопку More Show
   if (!genreFilms || genreFilms.length === 0) { // если не один из жанров не кликнули, то он равен всем фильмам
@@ -34,19 +33,19 @@ const Main = (props) => {
   }, [isDataLoaded]); // useEffect сказали следи за этим флагом если он изменится, то делай запрос
 
   return <React.Fragment>
-    {/*loadFilmFavorite={hendleLoadFilmFavorite}*/}
+    {/* loadFilmFavorite={hendleLoadFilmFavorite}*/}
     <Card />
     <div className="page-content">
 
-      {/*{!isDataLoaded ? <Spinner /> :*/}
-        <section className="catalog">
-          <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <ListGenres films={films} setGenre={setGenre}/>
-          <CatalogMainFilms updateData={updateData}/>
-          {/* itemGenreFilms*/}
-          {itemGenreFilms.length > countShowFilm ? <BtnShowMore /> : ``}
-        </section>
-      {/*// }*/}
+      {/* {!isDataLoaded ? <Spinner /> :*/}
+      <section className="catalog">
+        <h2 className="catalog__title visually-hidden">Catalog</h2>
+        <ListGenres films={films} setGenre={setGenre}/>
+        <CatalogMainFilms updateData={updateData}/>
+        {/* itemGenreFilms*/}
+        {itemGenreFilms.length > countShowFilm ? <BtnShowMore /> : ``}
+      </section>
+      {/* // }*/}
 
 
       <footer className="page-footer">

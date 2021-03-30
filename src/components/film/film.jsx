@@ -43,7 +43,8 @@ const Film = (props) => {
   const likeFilms = React.useMemo(()=>{
     const genreById = getGenreById(id, films); // нашли жанр фильма по id маршрута
 
-    return getGenreFilms(genreById, films).slice(0, 4)}, [films, id]); // нашли все похожие фильмы по жанру
+    return getGenreFilms(genreById, films).slice(0, 4);
+  }, [films, id]); // нашли все похожие фильмы по жанру
 
 
   // запускаем хук useEffect он запускается каждый раз когда открывается страница, он следит за флагом isDataLoaded
@@ -103,14 +104,14 @@ const Film = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                {/*anyFilm={filmById}*/}
+                {/* anyFilm={filmById}*/}
                 <BtnPlay />
 
                 {authorizationStatus === AuthorizationStatus.AUTH ?
                   <>
-                <BtnAddMyList filmById={filmById}/>
-                  <Link to={`/films/${filmById ? filmById.id : ``}/add-review`}
-                    className="btn movie-card__button">Add review</Link>
+                    <BtnAddMyList filmById={filmById}/>
+                    <Link to={`/films/${filmById ? filmById.id : ``}/add-review`}
+                      className="btn movie-card__button">Add review</Link>
                   </>
                   : ``}
                 {/* <LinkAddReview film={film}/>*/}

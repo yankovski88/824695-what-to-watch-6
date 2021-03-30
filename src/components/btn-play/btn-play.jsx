@@ -5,12 +5,12 @@ import {connect} from "react-redux";
 import {ActionCreator} from "../../store/action";
 
 const BtnPlay = (props) => {
-  const {filmById, filmPromo} = props
-  console.log(props)
+  const {filmById, filmPromo} = props;
+  console.log(props);
   const history = useHistory();
 
   let activeFilm;
-  if(Object.keys(filmById).length === 0){
+  if (Object.keys(filmById).length === 0) {
     activeFilm = filmPromo;
   } else {
     activeFilm = filmById;
@@ -44,7 +44,7 @@ const mapDispatchToProps = (dispatch)=>({
   // onAddRequestedRoute (route){
   //   dispatch(ActionCreator.addRequestedRoute(route)); // закидываем роуте в диспач он закидывает в action и далее reducer поменяет вместо пути "/" на главную на путь route
   // }
-})
+});
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(BtnPlay)
+export default connect(mapStateToProps, mapDispatchToProps)(BtnPlay);

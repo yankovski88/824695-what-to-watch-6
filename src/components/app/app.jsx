@@ -20,7 +20,7 @@ const App = (props) => {
   const {authorizationStatus, onPrivateRouteRequest} = props; // reviews, myListFilms,
   const [film, setMovie] = React.useState({}); // фильм который хотим посмотреть // movie
 
-console.log(authorizationStatus)
+  console.log(authorizationStatus);
 
   const updateData = (value) => {
     setMovie(value);
@@ -37,7 +37,7 @@ console.log(authorizationStatus)
           <SignIn />
         </Route>
 
-        {/*myListFilms={myListFilms}*/}
+        {/* myListFilms={myListFilms}*/}
         <PrivateRoute exact
           path={`/mylist`}
           onPrivateRouteRequest={onPrivateRouteRequest}
@@ -55,7 +55,7 @@ console.log(authorizationStatus)
         <PrivateRoute exact
           path={`/films/:id/add-review`}
           onPrivateRouteRequest={onPrivateRouteRequest}
-          render={()=><AddReview  film={film}/>}// path={`/films/:id/add-review`}
+          render={()=><AddReview film={film}/>}// path={`/films/:id/add-review`}
           authorizationStatus={authorizationStatus}
         >
         </PrivateRoute>

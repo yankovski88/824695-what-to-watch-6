@@ -25,7 +25,6 @@ export const checkAuth = () => (dispatch, _getState, api) => (
 );
 
 
-
 // отправка данных для авторизации
 export const login = ({login: email, password}) => (dispatch, getState, api) => (
   api.post(`/login`, {email, password})
@@ -44,10 +43,10 @@ export const fetchAllComments = (id)=>(dispatch, _getState, api)=>(
 );
 
 export const fetchPostComment = (id, rating, comment)=>(dispatch, getState, api)=> {
-  dispatch(ActionCreator.addReview(false))
+  dispatch(ActionCreator.addReview(false));
   api.post(`/comments/${id}`, {rating, comment})
     .then(() => dispatch(ActionCreator.redirectToRoute(`/films/${id}`))) // getState().requestedRoute
-    .then(() => dispatch(ActionCreator.addReview(true)))
+    .then(() => dispatch(ActionCreator.addReview(true)));
 };
 
 export const fetchFavorite = (idFilm, isFavorite)=>(dispatch, _getState, api)=>(

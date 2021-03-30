@@ -37,12 +37,11 @@ const AddReviewForm = (props) => {
   };
 
 
-
   const checkReview = (review)=>{
-    if(review.length < COMMENT_LENGTH_MIN || review.length > COMMENT_LENGTH_MAX){
-      return false
+    if (review.length < COMMENT_LENGTH_MIN || review.length > COMMENT_LENGTH_MAX) {
+      return false;
     }
-    return true
+    return true;
   };
 
   // const handleSubmit = (evt) => {
@@ -69,7 +68,7 @@ const AddReviewForm = (props) => {
     </Fragment>
   );
 
-console.log(isAddReview)
+  console.log(isAddReview);
 
   return (
     <div className="add-review">
@@ -115,6 +114,6 @@ const mapDispatchToProps = (dispatch)=>({
 //   changeIsAddReview (){
 //     dispatch(ActionCreator.changeIsAddReview(false))
 // }
-})
+});
 
-export default connect (mapStateToProps, mapDispatchToProps)(AddReviewForm) // mapDispatchToProps
+export default connect(mapStateToProps, mapDispatchToProps)(AddReviewForm); // mapDispatchToProps

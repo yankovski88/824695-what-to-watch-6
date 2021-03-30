@@ -3,7 +3,7 @@ import {fetchAllFavoriteFilms} from "../../store/api-actions";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {ActionCreator} from "../../store/action";
-import {Link, useHistory } from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 // import {SignInForm} from "../sign-in-form/sign-in-form";
 
 const UserBlock = (props)=>{
@@ -11,8 +11,8 @@ const UserBlock = (props)=>{
   let history = useHistory();
 
   function handleClick(evt) {
-    evt.preventDefault()
-    history.push("/mylist");
+    evt.preventDefault();
+    history.push(`/mylist`);
   }
 
   // function handleClickByRedax(evt) {
@@ -24,7 +24,7 @@ const UserBlock = (props)=>{
 
     <div className="user-block" >
       <div className="user-block__avatar">
-        {/*to={"/mylist"}*/}
+        {/* to={"/mylist"}*/}
         <a
           href="#"
           // onClick={handleClickByRedax}
