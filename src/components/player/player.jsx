@@ -8,7 +8,7 @@ import Error404 from "../error-404/error-404";
 
 
 const Player = (props)=>{
-  const {loadFilmById, isFilmFound, filmById} = props; // film,
+  const {loadFilmById, isFilmFound, filmById, onRedirectToRoute} = props; // film,
   const videoPlayer = React.useRef();
   const playPlayer = React.useRef();
   const pause = React.useRef();
@@ -29,7 +29,7 @@ const Player = (props)=>{
     return (<Error404/>);
   }
 
-
+console.log(params)
   const style = {
     left: `30%`
   };
@@ -50,7 +50,23 @@ const Player = (props)=>{
   const hendleExit = ()=>{
     videoPlayer.current.pause();
     videoPlayer.current.currentTime = 0;
+    if(params.id === "1"){
+      onRedirectToRoute(`/`);
+    } else {
+      onRedirectToRoute(`/films/${params.id}`);
+    }
+    }
+
+  const progressUpdate = ()=>{
+    console.log(videoPlayer.duration)
   }
+  // videoPlayer.current.ontimeupdate  = progressUpdate;
+  // if(videoPlayer.current && videoPlayer.current.currentTime){
+  //   console.log(videoPlayer.current.currentTime)
+  //
+  // }
+
+
   return (
     <div className="player">
       {/*ref={videoPlayer}*/}
@@ -69,7 +85,7 @@ const Player = (props)=>{
             <progress className="player__progress" value="30" max="100"></progress>
             <div className="player__toggler" style={style}>Toggler</div>
           </div>
-          {/*filmById.runTime -*!/videoPlayer.current.currentTime =*/}
+          {/*videoPlayer.current.currentTime = filmById.runTime*/}
           <div className="player__time-value">{filmById.runTime}</div>
         </div>
 
@@ -101,6 +117,7 @@ const Player = (props)=>{
   );
 };
 
+
 Player.propTypes = {
   film: PropTypes.object.isRequired,
 };
@@ -120,6 +137,9 @@ const mapDispatchToProps = (dispatch)=>({
   loadFilmById(id) {
     dispatch(fetchFilmById(id));
   },
+  onRedirectToRoute(route) {
+    dispatch(ActionCreator.redirectToRoute(route)); // закидываем роуте в диспач он закидывает в action и далее reducer поменяет вместо пути "/" на главную на путь route
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Player)
