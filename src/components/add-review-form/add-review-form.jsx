@@ -31,7 +31,6 @@ const AddReviewForm = (props) => {
     // isAddReviewItem = false;
     // changeIsAddReview()
     onSubmit(rating, review); // review
-
   };
 
 
