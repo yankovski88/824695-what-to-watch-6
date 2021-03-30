@@ -21,7 +21,8 @@ export const fetchPromo = ()=>(dispatch, _getState, api)=>(
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(`/login`)
     .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
-    .catch(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)))
+    .catch(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)),
+        () => dispatch(ActionCreator.hasErrorLogin(true)))
 );
 
 
@@ -47,7 +48,7 @@ export const fetchPostComment = (id, rating, comment)=>(dispatch, getState, api)
   api.post(`/comments/${id}`, {rating, comment})
     .then(() => dispatch(ActionCreator.redirectToRoute(`/films/${id}`))) // getState().requestedRoute
     .then(() => dispatch(ActionCreator.addReview(true)))
-    .catch(()=> dispatch(ActionCreator.hasError(true)))
+    .catch(()=> dispatch(ActionCreator.hasError(true)));
 };
 
 export const fetchFavorite = (idFilm, isFavorite)=>(dispatch, _getState, api)=>(

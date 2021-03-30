@@ -2,11 +2,16 @@ import React from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {login} from "../../store/api-actions";
+import {isValidEmail} from "../../utils/utils";
 // import {useHistory} from 'react-router-dom';
+import classNames from 'classnames';
 
 
 const SignInForm = (props)=>{
-  const {onSubmit} = props;
+  const {onSubmit, hasErrorLogin} = props;
+  const [emailHasError, setEmailHasError] = React.useState(false);
+  const [passwordHasError, setPasswordHasError] = React.useState(false);
+
 
   const loginRef = React.useRef(); // useRef сохраняет в себе элемент разметки
   const passwordRef = React.useRef(); // сохранили пароль
@@ -17,20 +22,55 @@ const SignInForm = (props)=>{
   // пропишем функцию на отправку формы на авторизацию
   const handleSubmit = (evt)=>{
     evt.preventDefault();
+    setEmailHasError(false);
+    setPasswordHasError(false);
+
+
+    const email = loginRef.current.value;
+    const password = passwordRef.current.value;
+
+    if (!email || !isValidEmail(email)) {
+      setEmailHasError(true);
+      return;
+    }
+
+    if (!password) {
+      setPasswordHasError(true);
+      return;
+    }
+
 
     onSubmit({ // вызываем функцию для диспача передадим туда введенные данные с полей юзера
-      login: loginRef.current.value, // данные с полей инпута. current текущее значение(пишется всегда)
-      password: passwordRef.current.value,
+      login: email, // данные с полей инпута. current текущее значение(пишется всегда)
+      password,
     });
   };
 
+  const getErrorMessage = () => {
+    if (hasErrorLogin) { // hasError
+      return <p>We can’t recognize this email and password combination. Please try again.</p>;
+    }
+
+    if (emailHasError) {
+      return <p>Please enter a valid email address</p>;
+    }
+
+    if (passwordHasError) {
+      return <p>Password cannot be empty</p>;
+    }
+
+    return null;
+  };
 
   return (
     <div className="sign-in user-page__content">
 
       <form onSubmit={handleSubmit} action="" className="sign-in__form">
+        <div className="sign-in__message">
+          {getErrorMessage()}
+        </div>
         <div className="sign-in__fields">
-          <div className="sign-in__field">
+          <div className={classNames(`sign-in__field`, {"sign-in__field--error": emailHasError})}>
             <input
               ref={loginRef}
               className="sign-in__input"
@@ -39,7 +79,7 @@ const SignInForm = (props)=>{
               name="user-email" id="user-email"/>
             <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
           </div>
-          <div className="sign-in__field">
+          <div className={classNames(`sign-in__field`, {"sign-in__field--error": passwordHasError})}>
             <input ref={passwordRef}
               className="sign-in__input"
               type="password"
@@ -62,6 +102,10 @@ SignInForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
 
+const mapStateToProps = (state)=>({
+  hasErrorLogin: state.hasErrorLogin,
+});
+
 const mapDispatchToProps = (dispatch)=>({
   onSubmit(authData) {
     dispatch(login(authData));
@@ -69,5 +113,5 @@ const mapDispatchToProps = (dispatch)=>({
 });
 
 export {SignInForm};
-export default connect(null, mapDispatchToProps)(SignInForm); // mapStateToProps
+export default connect(mapStateToProps, mapDispatchToProps)(SignInForm); // mapStateToProps
 

@@ -28,7 +28,7 @@ const Player = (props) => {
   React.useEffect(() => {
     setInterval(() => {
       if (isPlaying) {
-        if(videoRef.current !== null){
+        if (videoRef.current !== null) {
           setCurrentTime(videoRef.current.currentTime);
         }
       }

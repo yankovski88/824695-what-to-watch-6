@@ -15,6 +15,7 @@ export const ActionType = {
   CHANGE_IS_ADD_REVIEW: `user/CHANGE_IS_ADD_REVIEW`,
 
   HAS_ERROR: `addReview/hasError`,
+  HAS_ERROR_LOGIN: `login/hasErrorLogin`,
 };
 
 // создаем объект функция которые возвращают экшин
@@ -68,6 +69,10 @@ export const ActionCreator = {
   }),
   hasError: (data)=>({
     type: ActionType.HAS_ERROR,
+    payload: data,
+  }),
+  hasErrorLogin: (data)=>({
+    type: ActionType.HAS_ERROR_LOGIN,
     payload: data,
   })
 };

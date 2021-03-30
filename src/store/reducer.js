@@ -66,6 +66,8 @@ const initialState = {
 
   isAddReview: true,
   hasError: false,
+
+  hasErrorLogin: false,
 };
 
 export const reducer = (state = initialState, action) => { // второе инициализируем стейт чтобы загрузить начальный жанр т.е. все фильмы
@@ -164,6 +166,11 @@ export const reducer = (state = initialState, action) => { // второе ин�
       return {
         ...state,
         hasError: action.payload,
+      };
+    case ActionType.HAS_ERROR_LOGIN:
+      return {
+        ...state,
+        hasErrorLogin: action.payload,
       };
 
     default:

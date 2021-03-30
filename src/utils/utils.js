@@ -1,4 +1,4 @@
-import {ALL_GENRES, NUMBER_FILM} from "../constants/constants";
+import {ALL_GENRES, EMAIL_REGEX, NUMBER_FILM} from "../constants/constants";
 
 
 export const getTimeMovie = (timeMovie)=>{
@@ -122,3 +122,6 @@ export const formatTime = (seconds) => {
 
   return `${fullHours.toString().padStart(2, `0`)}:${fullMinutes.toString().padStart(2, `0`)}:${fullSeconds.toString().padStart(2, `0`)}`;
 };
+
+
+export const isValidEmail = (email) => EMAIL_REGEX.test(email);

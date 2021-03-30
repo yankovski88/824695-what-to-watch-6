@@ -11,9 +11,11 @@ import {useHistory} from "react-router-dom";
 const SignIn = (props) => {
   const {authorizationStatus} = props;
   const history = useHistory();
-  if(authorizationStatus === AuthorizationStatus.AUTH){
-    history.push(`/`)
+  if (authorizationStatus === AuthorizationStatus.AUTH) {
+    history.push(`/`);
   }
+
+
   return <React.Fragment>
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -21,7 +23,7 @@ const SignIn = (props) => {
         <PageTitle/>
       </header>
 
-      <SignInForm/>
+      <SignInForm />
 
       <footer className="page-footer">
         <Logo/>
@@ -33,7 +35,7 @@ const SignIn = (props) => {
 
 const mapStateToProps = (state)=>({
   authorizationStatus: state.authorizationStatus
-})
+});
 
 export {SignIn};
-export default connect(mapStateToProps)(SignIn) // mapDispatchToProps
+export default connect(mapStateToProps)(SignIn); // mapDispatchToProps
