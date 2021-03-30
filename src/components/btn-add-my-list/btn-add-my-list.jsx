@@ -8,11 +8,7 @@ import {AuthorizationStatus} from "../../constants/constants";
 const BtnAddMyList = (props) => {
   const {loadFavorite, filmById, onLoadData, loadFilmById, filmPromo, authorizationStatus} = props;
   const history = useHistory();
-  console.log(props);
-  console.log(filmPromo);
-
   const {id} = useParams();
-  console.log(id);
 
 
   // запускаем хук useEffect он запускается каждый раз когда открывается страница, он следит за флагом isDataLoaded
@@ -82,7 +78,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchMoviesList());
   },
   loadFavorite(idFilm, isFavorite) {
-    console.log(idFilm, isFavorite);
     dispatch(fetchFavorite(idFilm, isFavorite));
   },
   loadFilmById(id) {

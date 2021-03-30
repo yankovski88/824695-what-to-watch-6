@@ -89,7 +89,6 @@ export const getGenreById = (idFilm, itemFilms) => {
 
   let genre = `All genre`;
   for (let item of films) {
-    // console.log(item.id)
     if (+idFilm === item.id) {
       genre = item.genre;
     }

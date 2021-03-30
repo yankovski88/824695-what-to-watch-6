@@ -29,7 +29,6 @@ const MovieRating = (props)=>{
     textRating = TextRating.AWESOME;
   }
 
-  console.log(props);
   return (
     <div className="movie-rating">
       <div className="movie-rating__score">{film.rating.toFixed(1)}</div>

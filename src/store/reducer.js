@@ -71,7 +71,6 @@ const initialState = {
 };
 
 export const reducer = (state = initialState, action) => { // второе инициализируем стейт чтобы загрузить начальный жанр т.е. все фильмы
-  console.log(action);
   switch (action.type) {
     case ActionType.GENRE: // когда в main будет клик по жанру он сменится с undefined на выбранный
       return {
@@ -178,4 +177,3 @@ export const reducer = (state = initialState, action) => { // второе ин�
   }
 };
 
-console.log(initialState.authorizationStatus);

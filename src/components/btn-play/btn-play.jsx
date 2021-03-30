@@ -6,7 +6,6 @@ import {ActionCreator} from "../../store/action";
 
 const BtnPlay = (props) => {
   const {filmById, filmPromo} = props;
-  console.log(props);
   const history = useHistory();
 
   let activeFilm;

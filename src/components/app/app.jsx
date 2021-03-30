@@ -20,8 +20,6 @@ const App = (props) => {
   const {authorizationStatus, onPrivateRouteRequest} = props; // reviews, myListFilms,
   const [film, setMovie] = React.useState({}); // фильм который хотим посмотреть // movie
 
-  console.log(authorizationStatus);
-
   const updateData = (value) => {
     setMovie(value);
   };

@@ -27,7 +27,6 @@ const AddReviewForm = (props) => {
 
   // let isAddReviewItem = isAddReview
 
-  // console.log(isAddReviewItem)
   const handleSubmitClick = (evt) => {
     evt.preventDefault();
     // isAddReviewItem = false;

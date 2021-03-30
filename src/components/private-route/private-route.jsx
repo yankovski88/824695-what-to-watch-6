@@ -15,9 +15,6 @@ const handleUserNotAuthtorized = (route, onPrivateRouteRequest)=>{
 
 
 const PrivateRoute = ({render, path, exact, authorizationStatus, onPrivateRouteRequest}) =>{
-  console.log(path);
-  console.log(authorizationStatus);
-  // authorizationStatus = `AUTH`
   return (
     authorizationStatus === null ? <Spinner/> :
       <Route

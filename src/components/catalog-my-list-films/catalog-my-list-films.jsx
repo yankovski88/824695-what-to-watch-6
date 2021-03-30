@@ -56,10 +56,6 @@ const mapStateToProps = (state) => ({
   films: state.films,
 });
 const mapDispatchToProps = (dispatch) => ({
-  // loadAllFavoriteFilms(favoriteFilms) {
-  //   console.log(favoriteFilms)
-  //   dispatch(ActionCreator.getAllFavoriteFilms(favoriteFilms))
-  // },
   loadMoviesList() { // когда вызовится эта функция, то в dispatch попадает результат функции по запросу на сервер
     dispatch(fetchMoviesList());
   },
