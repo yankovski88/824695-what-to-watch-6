@@ -11,6 +11,8 @@ import {useHistory} from "react-router-dom";
 
 const Player = (props)=>{
   const {loadFilmById, isFilmFound, filmById, onRedirectToRoute} = props; // film,
+  const [isPlaing, setPlaing] = React.useState(false);
+  console.log(isPlaing)
   const videoPlayer = React.useRef();
   const playPlayer = React.useRef();
   const pause = React.useRef();
@@ -25,6 +27,17 @@ const history = useHistory();
     }
   }, [params.id]); // useEffect сказали следи за этим флагом если он изменится, то делай запрос
 
+  React.useEffect(()=>{
+    setInterval(()=>{
+      // if(videoPlayer.current && videoPlayer.current.currentTime){
+      let time = videoPlayer.current.duration - videoPlayer.current.currentTime;
+      let hour = time % 3600;
+      let minute = (time - hour * 3600) % 60;
+      let second = Math.round(time - hour *3600 - minute * 60)
+      // }
+    }, 1000)
+  }, [])
+
 
 
   if (!isFilmFound) {
@@ -36,14 +49,16 @@ console.log(params)
     left: `30%`
   };
 
-  let isPlaing = false;
+  // let isPlaing = false;
   const hendlePlayPlayer = ()=>{
       if(isPlaing){
         videoPlayer.current.pause();
-        isPlaing = false;
+        // isPlaing = false;
+        setPlaing(false)
       } else {
         videoPlayer.current.play();
-        isPlaing = true;
+        // isPlaing = true;
+        setPlaing(true)
       }
 }
   const hendleFullScreen = ()=>{
@@ -64,11 +79,10 @@ console.log(params)
     console.log(videoPlayer.duration)
   }
   // videoPlayer.current.ontimeupdate  = progressUpdate;
-  // if(videoPlayer.current && videoPlayer.current.currentTime){
-  //   console.log(videoPlayer.current.currentTime)
-  //
-  // }
 
+
+
+  console.log(videoPlayer.current)
 
   return (
     <div className="player">
@@ -94,14 +108,23 @@ console.log(params)
 
         <div className="player__controls-row">
 
-          <button
+          {!isPlaing ? <button
             onClick={hendlePlayPlayer} ref={playPlayer}
             type="button" className="player__play">
             <svg viewBox="0 0 19 19" width="19" height="19">
               <use xlinkHref="#play-s"></use>
             </svg>
             <span>Play</span>
-          </button>
+          </button> :
+          <button
+            onClick={hendlePlayPlayer}
+            type="button" className="player__play">
+            <svg viewBox="0 0 14 21" width="14" height="21">
+              <use xlinkHref="#pause"></use>
+            </svg>
+            <span>Pause</span>
+          </button>}
+
           <div className="player__name">Transpotting</div>
 
           <button           ref={fullScreen}

@@ -22,7 +22,7 @@ const AddReviewForm = (props) => {
   // const isCommentInvalid = (comment) => !comment || comment.length < COMMENT_LENGTH_MIN || comment.length > COMMENT_LENGTH_MAX;
 
 
-  const [rating, setRating] = React.useState(1);
+  const [rating, setRating] = React.useState(0);
   const [review, setReview] = React.useState(``);
 
   // let isAddReviewItem = isAddReview
@@ -61,7 +61,7 @@ const AddReviewForm = (props) => {
         className="rating__input"
         id={`star-${index}`}
         type="radio" name="rating"
-        value={index + 1} //
+        // value={index + 1} //
         checked={index + 1 === rating} // index + 1 === rating
         onChange={() => setRating(index + 1)}
       />
