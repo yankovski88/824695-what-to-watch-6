@@ -6,6 +6,7 @@ import SignInForm from "../sign-in-form/sign-in-form.jsx";
 import {connect} from "react-redux";
 import {AuthorizationStatus} from "../../constants/constants";
 import {useHistory} from "react-router-dom";
+import PropTypes from "prop-types";
 
 
 const SignIn = (props) => {
@@ -31,6 +32,10 @@ const SignIn = (props) => {
       </footer>
     </div>
   </React.Fragment>;
+};
+
+SignIn.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state)=>({

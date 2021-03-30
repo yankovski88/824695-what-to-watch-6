@@ -8,7 +8,7 @@ import ListGenres from "../list-genres/list-genres";
 import BtnShowMore from "../btn-show-more/btn-show-more";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../store/action";
-import {fetchFavorite, fetchMoviesList} from '../../store/api-actions';
+import {fetchMoviesList} from '../../store/api-actions';
 import Spinner from "../spinner/spinner";
 
 
@@ -37,15 +37,14 @@ const Main = (props) => {
     <Card />
     <div className="page-content">
 
-      {/* {!isDataLoaded ? <Spinner /> :*/}
-      <section className="catalog">
+      {!isDataLoaded ? <Spinner /> : <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
         <ListGenres films={films} setGenre={setGenre}/>
         <CatalogMainFilms updateData={updateData}/>
         {/* itemGenreFilms*/}
         {itemGenreFilms.length > countShowFilm ? <BtnShowMore /> : ``}
       </section>
-      {/* // }*/}
+      }
 
 
       <footer className="page-footer">
@@ -73,7 +72,7 @@ const mapStateToProps = (state)=>({
   selectedGenre: state.genre, // взято из reduce action.payload
   films: state.films, // взято из reduce
   genreFilms: state.genreFilms,
-  // isDataLoaded: state.isDataLoaded,
+  isDataLoaded: state.isDataLoaded,
 });
 
 // если передать setGenre на клик меню жанр, то в aaction в payload попадет название жанра

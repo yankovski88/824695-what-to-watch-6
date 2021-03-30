@@ -1,6 +1,6 @@
 import {ActionType} from "../store/action";
 import {getGenreFilms} from "../utils/utils";
-import {ALL_GENRES, NUMBER_FILM, AuthorizationStatus, RoutePaths} from "../constants/constants";
+import {ALL_GENRES, NUMBER_FILM, RoutePaths} from "../constants/constants";
 
 
 // export const mainFilms = getFilmData().slice(0, 18);; // хранилище всех фильмов import {getFilmData} from "../components/mock/film";

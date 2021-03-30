@@ -12,7 +12,6 @@ import {ActionCreator} from "./store/action";
 import {AuthorizationStatus} from "./constants/constants";
 import {checkAuth} from "./store/api-actions";
 import {redirect} from "./store/middlewares/redirect";
-import axios from "axios";
 
 // переменная с конфигурацией api
 const api = createApi(
