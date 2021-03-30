@@ -2,7 +2,6 @@ import React from "react";
 import {useHistory} from "react-router-dom";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../store/action";
 
 const BtnPlay = (props) => {
   const {filmById, filmPromo} = props;
@@ -29,7 +28,9 @@ const BtnPlay = (props) => {
 };
 
 BtnPlay.propTypes = {
-  anyFilm: PropTypes.object.isRequired,
+  filmById: PropTypes.object.isRequired,
+  filmPromo: PropTypes.object.isRequired,
+
 };
 
 export {BtnPlay};
@@ -39,11 +40,4 @@ const mapStateToProps = (state)=>({
   filmById: state.filmById,
 });
 
-const mapDispatchToProps = (dispatch)=>({
-  // onAddRequestedRoute (route){
-  //   dispatch(ActionCreator.addRequestedRoute(route)); // закидываем роуте в диспач он закидывает в action и далее reducer поменяет вместо пути "/" на главную на путь route
-  // }
-});
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(BtnPlay);
+export default connect(mapStateToProps, null)(BtnPlay);

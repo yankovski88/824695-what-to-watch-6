@@ -1,12 +1,12 @@
 import React from "react";
 import {useHistory, useParams} from "react-router-dom";
-import {ActionCreator} from "../../store/action";
 import {fetchFavorite, fetchFilmById, fetchMoviesList} from "../../store/api-actions";
 import {connect} from "react-redux";
 import {AuthorizationStatus} from "../../constants/constants";
+import PropTypes from "prop-types";
 
 const BtnAddMyList = (props) => {
-  const {loadFavorite, filmById, onLoadData, loadFilmById, filmPromo, authorizationStatus} = props;
+  const {loadFavorite, filmById, loadFilmById, filmPromo, authorizationStatus} = props;
   const history = useHistory();
   const {id} = useParams();
 
@@ -16,9 +16,7 @@ const BtnAddMyList = (props) => {
     if (id) {
       loadFilmById(id);
     }
-    // loadFilmById(film.id); // тогда вызываем функцию которая делает запрос на сервер, отдает данные в dispatch, а тот меняет store
   }, [id]); // useEffect сказали следи за этим флагом если он изменится, то делай запрос
-  // film.id
 
 
   const hendleOnClickFilmFavorite = (evt) => {
@@ -36,17 +34,14 @@ const BtnAddMyList = (props) => {
     loadFavorite(filmForBtn.id, numberStatus);
   };
 
-  //   React.useEffect(()=>{
-  //
-  //   }, [filmById]
-  // )
+
   let filmForBtn;
   if (filmById) {
     filmForBtn = filmById;
   } else {
     filmForBtn = filmPromo;
   }
-  // onClick={hendleLoadFavorite(id, 1)}
+
   return (
     <button className="btn btn--list movie-card__button" type="button" onClick={hendleOnClickFilmFavorite}>
       {filmForBtn.isFavorite === true ?
@@ -65,6 +60,14 @@ const BtnAddMyList = (props) => {
 };
 
 export {BtnAddMyList};
+
+BtnAddMyList.propTypes = {
+  loadFavorite: PropTypes.func.isRequired,
+  filmPromo: PropTypes.object.isRequired,
+  filmById: PropTypes.object.isRequired,
+  loadFilmById: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   films: state.films,
