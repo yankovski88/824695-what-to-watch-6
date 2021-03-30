@@ -62,7 +62,7 @@ const initialState = {
   allComments: [], // массив комментов пуст
 
   isAddReview: true,
-  hasError: false,
+  hasError: false, // флаг на форму комента
 
   hasErrorLogin: false, // логин не проходит
 };

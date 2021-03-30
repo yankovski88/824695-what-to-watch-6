@@ -1,7 +1,6 @@
 import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../store/action";
 
 
 const AddReviewForm = (props) => {
@@ -36,8 +35,8 @@ const AddReviewForm = (props) => {
   };
 
 
-  const checkReview = (review)=>{
-    if (review.length < COMMENT_LENGTH_MIN || review.length > COMMENT_LENGTH_MAX) {
+  const checkReview = (reviewText)=>{
+    if (reviewText.length < COMMENT_LENGTH_MIN || reviewText.length > COMMENT_LENGTH_MAX) {
       return false;
     }
     return true;
@@ -59,7 +58,7 @@ const AddReviewForm = (props) => {
         className="rating__input"
         id={`star-${index}`}
         type="radio" name="rating"
-        // value={index + 1} //
+        value={index + 1} //
         checked={index + 1 === rating} // index + 1 === rating
         onChange={() => setRating(index + 1)}
       />
@@ -106,16 +105,14 @@ const AddReviewForm = (props) => {
 
 AddReviewForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  isAddReview: PropTypes.bool.isRequired,
+  hasError: PropTypes.bool.isRequired,
 };
+
 export {AddReviewForm};
+
 const mapStateToProps = (state)=>({
   isAddReview: state.isAddReview,
 });
 
-const mapDispatchToProps = (dispatch)=>({
-//   changeIsAddReview (){
-//     dispatch(ActionCreator.changeIsAddReview(false))
-// }
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddReviewForm); // mapDispatchToProps
+export default connect(mapStateToProps, null)(AddReviewForm);
