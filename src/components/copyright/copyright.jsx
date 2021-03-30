@@ -2,6 +2,7 @@ import React from "react";
 
 import {checkAuthNo} from "../../store/api-actions";
 import {connect} from "react-redux";
+import PropTypes from "prop-types";
 
 
 const Copyright = (props)=>{
@@ -12,6 +13,9 @@ const Copyright = (props)=>{
 
 // export default Copyright;
 
+Copyright.propTypes = {
+  onClickLeave: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = (dispatch)=>({
   onClickLeave() {

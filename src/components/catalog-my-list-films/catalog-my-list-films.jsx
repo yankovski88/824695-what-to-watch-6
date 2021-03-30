@@ -46,13 +46,16 @@ CatalogMyListFilms.propTypes = {
   films: PropTypes.array.isRequired,
   updateData: PropTypes.func.isRequired,
   loadMoviesList: PropTypes.func.isRequired,
+  isDataLoaded: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   allFavoriteFilms: state.allFavoriteFilms,
   isDataLoaded: state.isDataLoaded,
   films: state.films,
+
 });
+
 const mapDispatchToProps = (dispatch) => ({
   loadMoviesList() { // когда вызовится эта функция, то в dispatch попадает результат функции по запросу на сервер
     dispatch(fetchMoviesList());
