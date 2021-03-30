@@ -5,7 +5,7 @@ import {ActionCreator} from "../../store/action";
 
 
 const AddReviewForm = (props) => {
-  const {onSubmit, isAddReview} = props;
+  const {onSubmit, isAddReview, hasError} = props;
   const textarea = React.useRef();
   const textareaBtn = React.useRef();
 
@@ -22,7 +22,7 @@ const AddReviewForm = (props) => {
   // const isCommentInvalid = (comment) => !comment || comment.length < COMMENT_LENGTH_MIN || comment.length > COMMENT_LENGTH_MAX;
 
 
-  const [rating, setRating] = React.useState(0);
+  const [rating, setRating] = React.useState(1);
   const [review, setReview] = React.useState(``);
 
   // let isAddReviewItem = isAddReview
@@ -97,6 +97,11 @@ const AddReviewForm = (props) => {
 
         </div>
       </form>
+      {hasError &&
+      <p className="add-review__error">
+        An error occurred while sending the review. Please try again later.
+      </p>
+      }
     </div>
 
   );

@@ -12,7 +12,9 @@ export const ActionType = {
   GET_ALL_COMMENTS: `film/comments`,
 
   ADD_REVIEW: `user/ADD_REVIEW`,
-  CHANGE_IS_ADD_REVIEW: `user/CHANGE_IS_ADD_REVIEW`
+  CHANGE_IS_ADD_REVIEW: `user/CHANGE_IS_ADD_REVIEW`,
+
+  HAS_ERROR: `addReview/hasError`,
 };
 
 // создаем объект функция которые возвращают экшин
@@ -64,4 +66,8 @@ export const ActionCreator = {
     type: ActionType.CHANGE_IS_ADD_REVIEW,
     payload: data,
   }),
+  hasError: (data)=>({
+    type: ActionType.HAS_ERROR,
+    payload: data,
+  })
 };
