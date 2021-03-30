@@ -32,7 +32,7 @@ const MovieRating = (props)=>{
   console.log(props);
   return (
     <div className="movie-rating">
-      <div className="movie-rating__score">{film.rating}</div>
+      <div className="movie-rating__score">{film.rating.toFixed(1)}</div>
       <p className="movie-rating__meta">
         <span className="movie-rating__level">{textRating}</span>
         <span className="movie-rating__count">{film.scoresCount} ratings</span>
