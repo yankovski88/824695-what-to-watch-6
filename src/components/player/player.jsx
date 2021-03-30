@@ -5,6 +5,8 @@ import {ActionCreator} from "../../store/action";
 import {fetchFilmById, fetchMoviesList} from "../../store/api-actions";
 import {connect} from "react-redux";
 import Error404 from "../error-404/error-404";
+import {useHistory} from "react-router-dom";
+
 
 
 const Player = (props)=>{
@@ -13,7 +15,7 @@ const Player = (props)=>{
   const playPlayer = React.useRef();
   const pause = React.useRef();
   const fullScreen = React.useRef(); // requestFullscreen()
-
+const history = useHistory();
   const params = useParams();
   // запускаем хук useEffect он запускается каждый раз когда открывается страница, он следит за флагом isDataLoaded
   React.useEffect(() => {
@@ -50,11 +52,12 @@ console.log(params)
   const hendleExit = ()=>{
     videoPlayer.current.pause();
     videoPlayer.current.currentTime = 0;
-    if(params.id === "1"){
-      onRedirectToRoute(`/`);
-    } else {
-      onRedirectToRoute(`/films/${params.id}`);
-    }
+    history.goBack()
+    // if(params.id === "1"){
+    //   onRedirectToRoute(`/`);
+    // } else {
+    //   onRedirectToRoute(`/films/${params.id}`);
+    // }
     }
 
   const progressUpdate = ()=>{

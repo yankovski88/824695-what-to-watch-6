@@ -103,7 +103,8 @@ const Film = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <BtnPlay anyFilm={filmById}/>
+                {/*anyFilm={filmById}*/}
+                <BtnPlay />
 
                 {authorizationStatus === AuthorizationStatus.AUTH ?
                   <>

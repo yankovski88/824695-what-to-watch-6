@@ -8,6 +8,7 @@ import {fetchFavorite, fetchPromo} from "../../store/api-actions";
 import Header from "../header/header";
 import BtnPlay from "../btn-play/btn-play";
 import {AuthorizationStatus} from "../../constants/constants";
+import {ActionCreator} from "../../store/action";
 
 const Card = (props) => {
   const {filmPromo, onLoadFilmPromo, authorizationStatus, loadFilmFavorite, loadFavorite} = props;
@@ -85,7 +86,7 @@ const mapDispatchToProps = (dispatch)=>({
   },
   loadFavorite(idFilm, isFavorite){
     dispatch(fetchFavorite(idFilm, isFavorite))
-  }
+  },
 });
 
 export {Card};
