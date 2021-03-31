@@ -21,7 +21,7 @@ const AddReviewForm = (props) => {
   // const isCommentInvalid = (comment) => !comment || comment.length < COMMENT_LENGTH_MIN || comment.length > COMMENT_LENGTH_MAX;
 
 
-  const [rating, setRating] = React.useState(1);
+  const [rating, setRating] = React.useState(0);
   const [review, setReview] = React.useState(``);
 
   // let isAddReviewItem = isAddReview

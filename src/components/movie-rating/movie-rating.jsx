@@ -31,7 +31,7 @@ const MovieRating = (props)=>{
 
   return (
     <div className="movie-rating">
-      {/*// .toFixed(1)*/}
+      {/* // .toFixed(1)*/}
       <div className="movie-rating__score">{film.rating}</div>
       <p className="movie-rating__meta">
         <span className="movie-rating__level">{textRating}</span>
