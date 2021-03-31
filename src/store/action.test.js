@@ -1,4 +1,4 @@
-// import {AuthorizationStatus} from "../constants/constants";
+import {AuthorizationStatus} from "../constants/constants";
 import {ActionCreator, ActionType} from "../store/action";
 
 export const mockMovie = {
@@ -53,22 +53,108 @@ export const mockReviews = [
 describe(`Action creators work correctly`, () => {
   it(`Action creator for setting genre returns correct action`, () => {
     // it функция для тестового случая в `Action creator` это название случая что проверяем
-    const expectedAction = {
+    const expectedAction = { // expectedAction создали объект
       type: ActionType.GENRE,
       payload: `comedy`
     };
 
-    expect(ActionCreator.setGenre(`comedy`)).toEqual(expectedAction);
+    expect(ActionCreator.setGenre(`comedy`)).toEqual(expectedAction); // в нашу функцию послали payload `comedy`
+    // и ожидаем что вернется объект как в expectedAction
+    // expect это ожидание,
     // toEqual это проверка объекта на соответствие
     // toBe вроде проверка на true
   });
 
-  // it(`Action creator for getting all movies returns correct action`, () => {
-  //   const expectedAction = {
-  //     type: ActionType.GET_ALL_MOVIES,
-  //     payload: [mockMovie]
-  //   };
-  //
-  //   expect(getAllFilms([mockMovie])).toEqual(expectedAction);
-  // });
+
+  it(`check btn more film`, ()=>{
+    const expectedAction = {
+      type: ActionType.MORE_FILM
+    }
+    expect(ActionCreator.moreFilm()).toEqual(expectedAction)
+  })
+
+  it(`check btn more getAllFilms`, ()=>{
+    const expectedAction = {
+      type: ActionType.GET_ALL_FILMS,
+      payload: [mockMovie]
+    }
+    expect(ActionCreator.getAllFilms([mockMovie])).toEqual(expectedAction)
+  })
+
+
+
+
+  it(`check btn more likeFilms`, ()=>{
+    const expectedAction = {
+      type: ActionType.LIKE_FILMS,
+      payload: [mockMovie]
+    }
+    expect(ActionCreator.likeFilms([mockMovie])).toEqual(expectedAction)
+  });
+
+  it(`check btn more getFilmPromo`, ()=>{
+    const expectedAction = {
+      type: ActionType.GET_FILM_PROMO,
+      payload: mockMovie
+    }
+    expect(ActionCreator.getFilmPromo(mockMovie)).toEqual(expectedAction)
+  });
+  it(`check btn more requireAuthorization`, ()=>{
+    const expectedAction = {
+      type: ActionType.REQUIRED_AUTHORIZATION,
+      payload: AuthorizationStatus.AUTH
+    }
+    expect(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)).toEqual(expectedAction)
+  });
+    it(`check btn more redirectToRoute`, ()=>{
+    const expectedAction = {
+      type: ActionType.REDIRECT_TO_ROUTE,
+      payload: `/redirected-route`
+    }
+    expect(ActionCreator.redirectToRoute(`/redirected-route`)).toEqual(expectedAction)
+  });
+  it(`check btn more addRequestedRoute`, ()=>{
+    const expectedAction = {
+      type: ActionType.ADD_REQUESTED_ROUTE,
+      payload: `/add-requeste-route`
+    }
+    expect(ActionCreator.addRequestedRoute(`/add-requeste-route`)).toEqual(expectedAction)
+  });
+
+  it(`check btn more getFilmById`, ()=>{
+    const expectedAction = {
+      type: ActionType.FILM_BY_ID,
+      payload: mockMovie
+    }
+    expect(ActionCreator.getFilmById(mockMovie)).toEqual(expectedAction)
+  });
+  it(`check btn more getAllComments`, ()=>{
+    const expectedAction = {
+      type: ActionType.GET_ALL_COMMENTS,
+      payload: mockReviews
+    }
+    expect(ActionCreator.getAllComments(mockReviews)).toEqual(expectedAction)
+  });
+
+  it(`check btn more addReview`, ()=>{
+    const expectedAction = {
+      type: ActionType.ADD_REVIEW,
+      payload: true
+    }
+    expect(ActionCreator.addReview(true)).toEqual(expectedAction)
+  });
+  it(`check btn more hasError`, ()=>{
+    const expectedAction = {
+      type: ActionType.HAS_ERROR,
+      payload: true
+    }
+    expect(ActionCreator.hasError(true)).toEqual(expectedAction)
+  });
+  it(`check btn more hasErrorLogin`, ()=>{
+    const expectedAction = {
+      type: ActionType.HAS_ERROR_LOGIN,
+      payload: true
+    }
+    expect(ActionCreator.hasErrorLogin(true)).toEqual(expectedAction)
+  })
 });

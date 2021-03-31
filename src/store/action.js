@@ -59,7 +59,8 @@ export const ActionCreator = {
     type: ActionType.GET_ALL_COMMENTS,
     payload: comments,
   }),
-  addReview: (data)=>({
+
+  addReview: (data)=>({ // булеан на отправку формы и блокировки кнопки
     type: ActionType.ADD_REVIEW,
     payload: data,
   }),
