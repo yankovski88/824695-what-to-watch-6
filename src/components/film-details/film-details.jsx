@@ -1,9 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {getTimeMovie} from "../../utils/utils";
+import Spinner from "../spinner/spinner";
 
 const FilmDetails = (props) => {
   const {film} = props;
+  if(Object.keys(film).length === 0){
+    return <Spinner/>
+  }
 
   return (
     <div className="movie-card__text movie-card__row">

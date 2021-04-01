@@ -8,6 +8,7 @@ import FilmReviews from "../film-reviews/film-reviews";
 
 const MovieNav = (props) => {
   const {film, reviews, path} = props; // nav,
+  console.log(film)
   // const [activeNav, setActiveNav] = React.useState(nav);
 
 
@@ -80,7 +81,7 @@ const MovieNav = (props) => {
           </li>
         </ul>
       </nav>
-      {/*<Tabs path = {path}/>*/}
+      <Tabs path = {path}/>
     </>
   );
 };
