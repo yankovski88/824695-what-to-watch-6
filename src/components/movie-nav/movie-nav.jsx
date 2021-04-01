@@ -80,7 +80,7 @@ const MovieNav = (props) => {
           </li>
         </ul>
       </nav>
-      <Tabs path = {path}/>
+      {/*<Tabs path = {path}/>*/}
     </>
   );
 };
