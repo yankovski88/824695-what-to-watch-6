@@ -69,92 +69,90 @@ describe(`Action creators work correctly`, () => {
   it(`check btn more film`, ()=>{
     const expectedAction = {
       type: ActionType.MORE_FILM
-    }
-    expect(ActionCreator.moreFilm()).toEqual(expectedAction)
-  })
+    };
+    expect(ActionCreator.moreFilm()).toEqual(expectedAction);
+  });
 
   it(`check btn more getAllFilms`, ()=>{
     const expectedAction = {
       type: ActionType.GET_ALL_FILMS,
       payload: [mockMovie]
-    }
-    expect(ActionCreator.getAllFilms([mockMovie])).toEqual(expectedAction)
-  })
-
-
+    };
+    expect(ActionCreator.getAllFilms([mockMovie])).toEqual(expectedAction);
+  });
 
 
   it(`check btn more likeFilms`, ()=>{
     const expectedAction = {
       type: ActionType.LIKE_FILMS,
       payload: [mockMovie]
-    }
-    expect(ActionCreator.likeFilms([mockMovie])).toEqual(expectedAction)
+    };
+    expect(ActionCreator.likeFilms([mockMovie])).toEqual(expectedAction);
   });
 
   it(`check btn more getFilmPromo`, ()=>{
     const expectedAction = {
       type: ActionType.GET_FILM_PROMO,
       payload: mockMovie
-    }
-    expect(ActionCreator.getFilmPromo(mockMovie)).toEqual(expectedAction)
+    };
+    expect(ActionCreator.getFilmPromo(mockMovie)).toEqual(expectedAction);
   });
   it(`check btn more requireAuthorization`, ()=>{
     const expectedAction = {
       type: ActionType.REQUIRED_AUTHORIZATION,
       payload: AuthorizationStatus.AUTH
-    }
-    expect(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)).toEqual(expectedAction)
+    };
+    expect(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)).toEqual(expectedAction);
   });
-    it(`check btn more redirectToRoute`, ()=>{
+  it(`check btn more redirectToRoute`, ()=>{
     const expectedAction = {
       type: ActionType.REDIRECT_TO_ROUTE,
       payload: `/redirected-route`
-    }
-    expect(ActionCreator.redirectToRoute(`/redirected-route`)).toEqual(expectedAction)
+    };
+    expect(ActionCreator.redirectToRoute(`/redirected-route`)).toEqual(expectedAction);
   });
   it(`check btn more addRequestedRoute`, ()=>{
     const expectedAction = {
       type: ActionType.ADD_REQUESTED_ROUTE,
       payload: `/add-requeste-route`
-    }
-    expect(ActionCreator.addRequestedRoute(`/add-requeste-route`)).toEqual(expectedAction)
+    };
+    expect(ActionCreator.addRequestedRoute(`/add-requeste-route`)).toEqual(expectedAction);
   });
 
   it(`check btn more getFilmById`, ()=>{
     const expectedAction = {
       type: ActionType.FILM_BY_ID,
       payload: mockMovie
-    }
-    expect(ActionCreator.getFilmById(mockMovie)).toEqual(expectedAction)
+    };
+    expect(ActionCreator.getFilmById(mockMovie)).toEqual(expectedAction);
   });
   it(`check btn more getAllComments`, ()=>{
     const expectedAction = {
       type: ActionType.GET_ALL_COMMENTS,
       payload: mockReviews
-    }
-    expect(ActionCreator.getAllComments(mockReviews)).toEqual(expectedAction)
+    };
+    expect(ActionCreator.getAllComments(mockReviews)).toEqual(expectedAction);
   });
 
   it(`check btn more addReview`, ()=>{
     const expectedAction = {
       type: ActionType.ADD_REVIEW,
       payload: true
-    }
-    expect(ActionCreator.addReview(true)).toEqual(expectedAction)
+    };
+    expect(ActionCreator.addReview(true)).toEqual(expectedAction);
   });
   it(`check btn more hasError`, ()=>{
     const expectedAction = {
       type: ActionType.HAS_ERROR,
       payload: true
-    }
-    expect(ActionCreator.hasError(true)).toEqual(expectedAction)
+    };
+    expect(ActionCreator.hasError(true)).toEqual(expectedAction);
   });
   it(`check btn more hasErrorLogin`, ()=>{
     const expectedAction = {
       type: ActionType.HAS_ERROR_LOGIN,
       payload: true
-    }
-    expect(ActionCreator.hasErrorLogin(true)).toEqual(expectedAction)
-  })
+    };
+    expect(ActionCreator.hasErrorLogin(true)).toEqual(expectedAction);
+  });
 });

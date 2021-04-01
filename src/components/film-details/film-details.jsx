@@ -5,8 +5,8 @@ import Spinner from "../spinner/spinner";
 
 const FilmDetails = (props) => {
   const {film} = props;
-  if(Object.keys(film).length === 0){
-    return <Spinner/>
+  if (Object.keys(film).length === 0) {
+    return <Spinner/>;
   }
 
   return (

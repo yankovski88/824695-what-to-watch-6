@@ -1,33 +1,9 @@
 import {mockMovie, mockReviews} from "./action.test";
 import {adaptToClient, reducer} from "./reducer"; // adaptToClient,
-import {ALL_GENRES, AuthorizationStatus, RoutePaths} from "../constants/constants";
+import {ALL_GENRES, AuthorizationStatus, NUMBER_FILM, RoutePaths} from "../constants/constants";
 import {ActionType} from "./action";
 import {getGenreFilms} from "../utils/utils";
-console.log([mockMovie])
 
-const globalState = {
-  countShowFilm: 8, // число сколько фильмов отрендерить
-  genre: ALL_GENRES, // начальный жанр для main.jsx
-  genreFilms: [], // фильмы отсортированные по жанру
-  films: [], // загруженные фильмы с сервера все
-  likeGenre: ``, // жанр по умолчанию пустой для похожих фильмов
-  likeFilms: [], // похожие фильмы, появятся только после клика жанра
-  isDataLoaded: false, // загрузились ли фильмы с сервера
-  filmPromo: {}, // фильм на главной странице
-  authorizationStatus: null, // поле чтобы знать авторизирован ли пользователь
-  requestedRoute: RoutePaths.MAIN, // маршрут подставляется если пришел юзер не авторизованный
-  filmById: {}, // фильм полученный с помощью маршрута id
-  isFilmFound: false, // флаг если фильм получили т.е. через поиск напрямую id верный
-  isFilmLoaded: false, // нужный фильм загрузился
-
-  isAllComments: false, // все коменты полученны
-  allComments: [], // массив комментов пуст
-
-  isAddReview: true,
-  hasError: false, // флаг на форму комента
-
-  hasErrorLogin: false, // логин не проходит
-};
 
 describe(`Reducer 'selected movie' should work correctly`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
@@ -84,7 +60,7 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
     const filmById = {
       type: ActionType.FILM_BY_ID,
       payload: mockMovie // adaptToClient(mockMovie),
-    }
+    };
 
     const stateNew = {
       countShowFilm: 8, // число сколько фильмов отрендерить
@@ -111,8 +87,8 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
     };
 
     expect(reducer(state, filmById)).toEqual(
-      stateNew
-    )
+        stateNew
+    );
 
   });
 
@@ -146,10 +122,10 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
       type: ActionType.GET_ALL_FILMS,
       isDataLoaded: true,
       payload: [mockMovie],
-    }
+    };
 
     const stateNew = {
-  ...state,
+      ...state,
       isDataLoaded: true,
       films: [mockMovie].map((film)=>{ // по массиву объектов фильмов прошлись
         return adaptToClient(film); // и каждый объект пропустили через адатпер и вернули этот массив
@@ -157,8 +133,8 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
     };
 
     expect(reducer(state, item)).toEqual(
-      stateNew
-    )
+        stateNew
+    );
   });
 
 
@@ -191,7 +167,7 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
     const item = {
       type: ActionType.GENRE,
       payload: `Drama`,
-    }
+    };
 
     const stateNew = {
       ...state,
@@ -201,10 +177,9 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
     };
 
     expect(reducer(state, item)).toEqual(
-      stateNew
-    )
+        stateNew
+    );
   });
-
 
 
   it(`Reducer should get LIKE_FILMS`, () => {
@@ -236,7 +211,7 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
     const item = {
       type: ActionType.GENRE,
       payload: `Drama`,
-    }
+    };
 
     const stateNew = {
       ...state,
@@ -246,8 +221,8 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
     };
 
     expect(reducer(state, item)).toEqual(
-      stateNew
-    )
+        stateNew
+    );
   });
 
   it(`Reducer should get LIKE_FILMS`, () => {
@@ -279,7 +254,7 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
     const item = {
       type: ActionType.GET_FILM_PROMO,
       payload: mockMovie,
-    }
+    };
 
     const stateNew = {
       ...state,
@@ -287,8 +262,8 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
     };
 
     expect(reducer(state, item)).toEqual(
-      stateNew
-    )
+        stateNew
+    );
   });
 
 
@@ -321,7 +296,7 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
     const item = {
       type: ActionType.REQUIRED_AUTHORIZATION,
       payload: AuthorizationStatus.AUTH,
-    }
+    };
 
     const stateNew = {
       ...state,
@@ -329,11 +304,9 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
     };
 
     expect(reducer(state, item)).toEqual(
-      stateNew
-    )
+        stateNew
+    );
   });
-
-
 
 
   it(`Reducer should get ADD_REQUESTED_ROUTE`, () => {
@@ -365,7 +338,7 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
     const item = {
       type: ActionType.ADD_REQUESTED_ROUTE,
       payload: `/add-requeste-route`,
-    }
+    };
 
     const stateNew = {
       ...state,
@@ -373,8 +346,8 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
     };
 
     expect(reducer(state, item)).toEqual(
-      stateNew
-    )
+        stateNew
+    );
   });
 
 
@@ -407,7 +380,7 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
     const item = {
       type: ActionType.GET_ALL_COMMENTS,
       payload: mockReviews,
-    }
+    };
 
     const stateNew = {
       ...state,
@@ -418,13 +391,9 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
     };
 
     expect(reducer(state, item)).toEqual(
-      stateNew
-    )
+        stateNew
+    );
   });
-
-
-
-
 
 
   it(`Reducer should get ADD_REVIEW`, () => {
@@ -456,7 +425,7 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
     const item = {
       type: ActionType.ADD_REVIEW,
       payload: false,
-    }
+    };
 
     const stateNew = {
       ...state,
@@ -464,10 +433,9 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
     };
 
     expect(reducer(state, item)).toEqual(
-      stateNew
-    )
+        stateNew
+    );
   });
-
 
 
   it(`Reducer should get HAS_ERROR`, () => {
@@ -499,7 +467,7 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
     const item = {
       type: ActionType.HAS_ERROR,
       payload: true,
-    }
+    };
 
     const stateNew = {
       ...state,
@@ -507,10 +475,9 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
     };
 
     expect(reducer(state, item)).toEqual(
-      stateNew
-    )
+        stateNew
+    );
   });
-
 
 
   it(`Reducer should get HAS_ERROR_LOGIN`, () => {
@@ -542,7 +509,7 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
     const item = {
       type: ActionType.HAS_ERROR_LOGIN,
       payload: true,
-    }
+    };
 
     const stateNew = {
       ...state,
@@ -550,52 +517,51 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
     };
 
     expect(reducer(state, item)).toEqual(
-      stateNew
-    )
+        stateNew
+    );
   });
 
-  // it(`Reducer should get MORE_FILM`, () => {
-  //   const state = {
-  //     countShowFilm: 8, // число сколько фильмов отрендерить
-  //     genre: ALL_GENRES, // начальный жанр для main.jsx
-  //     genreFilms: [], // фильмы отсортированные по жанру
-  //     films: [mockMovie], // загруженные фильмы с сервера все
-  //     likeGenre: ``, // жанр по умолчанию пустой для похожих фильмов
-  //     likeFilms: [], // похожие фильмы, появятся только после клика жанра
-  //     isDataLoaded: false, // загрузились ли фильмы с сервера
-  //     filmPromo: {}, // фильм на главной странице
-  //     authorizationStatus: null, // поле чтобы знать авторизирован ли пользователь
-  //     requestedRoute: RoutePaths.MAIN, // маршрут подставляется если пришел юзер не авторизованный
-  //     filmById: {}, // фильм полученный с помощью маршрута id
-  //     isFilmFound: false, // флаг если фильм получили т.е. через поиск напрямую id верный
-  //     isFilmLoaded: false, // нужный фильм загрузился
-  //
-  //     isAllComments: false, // все коменты полученны
-  //     allComments: [], // массив комментов пуст
-  //
-  //     isAddReview: true,
-  //     hasError: false, // флаг на форму комента
-  //
-  //     hasErrorLogin: false, // логин не проходит
-  //   };
-  //
-  //
-  //   const item = {
-  //     type: ActionType.MORE_FILM,
-  //     payload: true,
-  //   }
-  //
-  //   const stateNew = {
-  //     ...state,
-  //     hasErrorLogin: true,
-  //   };
-  //
-  //   expect(reducer(state, item)).toEqual(
-  //     stateNew
-  //   )
-  // });
+  it(`Reducer should get MORE_FILM`, () => {
+    const state = {
+      countShowFilm: 8, // число сколько фильмов отрендерить
+      genre: ALL_GENRES, // начальный жанр для main.jsx
+      genreFilms: [], // фильмы отсортированные по жанру
+      films: [mockMovie], // загруженные фильмы с сервера все
+      likeGenre: ``, // жанр по умолчанию пустой для похожих фильмов
+      likeFilms: [], // похожие фильмы, появятся только после клика жанра
+      isDataLoaded: false, // загрузились ли фильмы с сервера
+      filmPromo: {}, // фильм на главной странице
+      authorizationStatus: null, // поле чтобы знать авторизирован ли пользователь
+      requestedRoute: RoutePaths.MAIN, // маршрут подставляется если пришел юзер не авторизованный
+      filmById: {}, // фильм полученный с помощью маршрута id
+      isFilmFound: false, // флаг если фильм получили т.е. через поиск напрямую id верный
+      isFilmLoaded: false, // нужный фильм загрузился
+
+      isAllComments: false, // все коменты полученны
+      allComments: [], // массив комментов пуст
+
+      isAddReview: true,
+      hasError: false, // флаг на форму комента
+
+      hasErrorLogin: false, // логин не проходит
+    };
 
 
-})
+    const item = {
+      type: ActionType.MORE_FILM
+    };
+
+    const stateNew = {
+      ...state,
+      countShowFilm: state.countShowFilm + NUMBER_FILM,
+    };
+
+    expect(reducer(state, item)).toEqual(
+        stateNew
+    );
+  });
+
+
+});
 
 

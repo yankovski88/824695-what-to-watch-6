@@ -77,17 +77,21 @@ export const reducer = (state = initialState, action) => { // второе ин�
         countShowFilm: 8,
       };
     case ActionType.MORE_FILM:
-      if (state.films.length - state.countShowFilm > NUMBER_FILM) {
-        return {
-          ...state,
-          countShowFilm: state.countShowFilm + NUMBER_FILM,
-        };
-      } else {
-        return {
-          ...state,
-          countShowFilm: state.countShowFilm + state.films.length - state.countShowFilm,
-        };
-      }
+      return {
+        ...state,
+        countShowFilm: state.countShowFilm + NUMBER_FILM,
+      };
+      // if (state.films.length - state.countShowFilm > NUMBER_FILM) {
+      //   return {
+      //     ...state,
+      //     countShowFilm: state.countShowFilm + NUMBER_FILM,
+      //   };
+      // } else {
+      //   return {
+      //     ...state,
+      //     countShowFilm: state.countShowFilm + state.films.length - state.countShowFilm,
+      //   };
+      // }
     case ActionType.GET_ALL_FILMS: // первое загрузили все фильмы
       return {
         ...state,
