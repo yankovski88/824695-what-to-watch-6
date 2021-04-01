@@ -16,6 +16,7 @@ export const ActionType = {
 
   HAS_ERROR: `addReview/hasError`,
   HAS_ERROR_LOGIN: `login/hasErrorLogin`,
+  LOGGED_IN: `login/LOGGED_IN`,
 };
 
 // создаем объект функция которые возвращают экшин
@@ -75,5 +76,9 @@ export const ActionCreator = {
   hasErrorLogin: (data)=>({
     type: ActionType.HAS_ERROR_LOGIN,
     payload: data,
+  }),
+  loggedIn: (userData) => ({
+    type: ActionType.LOGGED_IN,
+    payload: userData,
   })
 };

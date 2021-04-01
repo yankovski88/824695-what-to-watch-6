@@ -1,5 +1,6 @@
 import {ActionCreator} from "./action";
 import {AuthorizationStatus} from "../constants/constants";
+import {adaptToClientUser} from "./reducer";
 
 export const fetchMoviesList = () => (dispatch, _getState, api) => (
   api.get(`/films`)
@@ -20,18 +21,36 @@ export const fetchPromo = ()=>(dispatch, _getState, api)=>(
 // проверка авторизован ли пользователь
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(`/login`)
-    .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
+    .then(({data}) => {
+      dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+      const userData = adaptToClientUser(data);
+      dispatch(ActionCreator.loggedIn(userData));
+    })
+    // .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
     .catch(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)),
         () => dispatch(ActionCreator.hasErrorLogin(true)))
 );
 
-
-// отправка данных для авторизации
 export const login = ({login: email, password}) => (dispatch, getState, api) => (
   api.post(`/login`, {email, password})
-    .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
-    .then(() => dispatch(ActionCreator.redirectToRoute(getState().requestedRoute))) // если пользователь логинится, то закинь его на главную страницу
+    .then(({data}) => {
+      dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+      const userData = adaptToClientUser(data);
+      dispatch(ActionCreator.loggedIn(userData));
+      dispatch(ActionCreator.redirectToRoute(getState().requestedRoute));
+    })
+    .catch(() => {
+      dispatch(()=>{}); // loggedInFail()
+    })
 );
+
+
+// // отправка данных для авторизации
+// export const login = ({login: email, password}) => (dispatch, getState, api) => (
+//   api.post(`/login`, {email, password})
+//     .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
+//     .then(() => dispatch(ActionCreator.redirectToRoute(getState().requestedRoute))) // если пользователь логинится, то закинь его на главную страницу
+// );
 
 export const fetchFilmById = (id)=>(dispatch, _getState, api)=>(
   api.get(`/films/${id}`)

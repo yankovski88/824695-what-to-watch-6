@@ -40,6 +40,25 @@ export const adaptToClient = (film)=> { // получаем объект с не
   return adaptedFilm;
 };
 
+// метод Адаптер который адоптирует данные от сервера на читаемые данные для клиента
+export const adaptToClientUser = (user)=> { // получаем объект с неугодными нам полями изменили названия полей, удалили старые серверные и вернули отредоктированный объект
+
+  const adaptedUser = Object.assign(
+      {},
+      user,
+      {
+      // в basePrice записали, то что пришло с сервера, плюс можно модифицировать данные как с датой
+        avatarUrl: user.avatar_url,
+      }
+  );
+
+  // Ненужные ключи мы удаляем
+  delete adaptedUser.avatar_url;
+
+
+  return adaptedUser;
+};
+
 
 // начальное состояние хранилища store
 // Определяем действия
@@ -65,6 +84,7 @@ const initialState = {
   hasError: false, // флаг на форму комента
 
   hasErrorLogin: false, // логин не проходит
+  dataLoggedIn: {},
 };
 
 export const reducer = (state = initialState, action) => { // второе инициализируем стейт чтобы загрузить начальный жанр т.е. все фильмы
@@ -163,8 +183,16 @@ export const reducer = (state = initialState, action) => { // второе ин�
         hasErrorLogin: action.payload,
       };
 
+    case ActionType.LOGGED_IN:
+      console.log(action);
+      return {
+        ...state,
+        dataLoggedIn: action.payload,
+      };
+
     default:
       return state;
   }
 };
 
+console.log(initialState.dataLoggedIn);
