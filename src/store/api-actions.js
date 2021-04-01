@@ -27,8 +27,9 @@ export const checkAuth = () => (dispatch, _getState, api) => (
       dispatch(ActionCreator.loggedIn(userData));
     })
     // .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
-    .catch(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)),
-        () => dispatch(ActionCreator.hasErrorLogin(true)))
+    .catch(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH))
+        // () => dispatch(ActionCreator.hasErrorLogin(true)) // думаю может это удалить надо
+      )
 );
 
 export const login = ({login: email, password}) => (dispatch, getState, api) => (
@@ -37,6 +38,7 @@ export const login = ({login: email, password}) => (dispatch, getState, api) => 
       dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
       const userData = adaptToClientUser(data);
       dispatch(ActionCreator.loggedIn(userData));
+      // dispatch(ActionCreator.redirectToRoute(`/`)); // для теста проходит
       dispatch(ActionCreator.redirectToRoute(getState().requestedRoute));
     })
     .catch(() => {

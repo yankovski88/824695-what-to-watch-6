@@ -193,5 +193,3 @@ export const reducer = (state = initialState, action) => { // второе ин�
       return state;
   }
 };
-
-console.log(initialState.dataLoggedIn);
