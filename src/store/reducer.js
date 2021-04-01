@@ -184,7 +184,6 @@ export const reducer = (state = initialState, action) => { // второе ин�
       };
 
     case ActionType.LOGGED_IN:
-      console.log(action);
       return {
         ...state,
         dataLoggedIn: action.payload,
