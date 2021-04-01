@@ -73,10 +73,7 @@ export const reducer = (state = initialState, action) => { // второе ин�
       return {
         ...state, // это нужно чтобы вывесте все данные и не писать все построчно
         genre: action.payload,
-
-        // films: getGenreFilms(action.payload, state.films),
         genreFilms: getGenreFilms(action.payload, state.films),
-
         countShowFilm: 8,
       };
     case ActionType.MORE_FILM:
