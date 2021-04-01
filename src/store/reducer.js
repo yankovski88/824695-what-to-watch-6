@@ -80,20 +80,12 @@ export const reducer = (state = initialState, action) => { // второе ин�
       if (state.films.length - state.countShowFilm > NUMBER_FILM) {
         return {
           ...state,
-          genre: state.genre,
           countShowFilm: state.countShowFilm + NUMBER_FILM,
-          films: state.films,
-          genreFilms: state.genreFilms,
-          isDataLoaded: true,
         };
       } else {
         return {
           ...state,
-          genre: state.genre,
-          films: state.films,
           countShowFilm: state.countShowFilm + state.films.length - state.countShowFilm,
-          genreFilms: state.genreFilms,
-          isDataLoaded: true,
         };
       }
     case ActionType.GET_ALL_FILMS: // первое загрузили все фильмы

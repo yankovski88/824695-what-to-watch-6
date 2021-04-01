@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 
 const BtnShowMore = (props) => {
   const {onClickMoreFilm} = props;
+
+
   return (
     <div className="catalog__more">
       <button className="catalog__button" type="button"
