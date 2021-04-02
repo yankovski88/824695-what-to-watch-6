@@ -41,9 +41,12 @@ export const login = ({login: email, password}) => (dispatch, getState, api) => 
       // dispatch(ActionCreator.redirectToRoute(`/`)); // для теста проходит
       dispatch(ActionCreator.redirectToRoute(getState().requestedRoute));
     })
-    .catch(() => {
-      dispatch(()=>{}); // loggedInFail()
-    })
+    .catch(
+      ()=> dispatch(ActionCreator.hasError(true))
+    //   () => {
+    //   dispatch(()=>{}); // loggedInFail()
+    // }
+    )
 );
 
 
