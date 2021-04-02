@@ -60,6 +60,11 @@ export const login = ({login: email, password}) => (dispatch, getState, api) => 
 export const fetchFilmById = (id)=>(dispatch, _getState, api)=>(
   api.get(`/films/${id}`)
     .then((response)=>dispatch(ActionCreator.getFilmById(response.data)))
+    // .catch(({response}) => { // если не будет catch будет постоянная загрузка (spinner) т.к. не станет флаг true
+    //   if (response.status === 404) {
+    //     dispatch(ActionCreator.redirectToRoute(`/404`));
+    //   }
+    // })
 );
 
 export const fetchAllComments = (id)=>(dispatch, _getState, api)=>(
@@ -70,7 +75,9 @@ export const fetchAllComments = (id)=>(dispatch, _getState, api)=>(
 export const fetchPostComment = (id, rating, comment)=>(dispatch, getState, api)=> {
   dispatch(ActionCreator.changeIsAddReview(false)); // флаг что если false, то кнопку будет disable
   api.post(`/comments/${id}`, {rating, comment})
-    .then(() => dispatch(ActionCreator.redirectToRoute(`/films/${id}`))) // getState().requestedRoute
+    .then(() => {dispatch(ActionCreator.redirectToRoute(`/films/${id}`))
+      dispatch(ActionCreator.changeIsAddReview(true)); // флаг что если false, то кнопку будет disable
+    }) // getState().requestedRoute
     .catch(()=> dispatch(ActionCreator.hasError(true)));
 };
 

@@ -41,9 +41,9 @@ const Player = (props) => {
     }
   }, [params.id]); // useEffect сказали следи за этим флагом если он изменится, то делай запрос
 
-  if (!isFilmFound) {
-    return (<Error404/>);
-  }
+  // if (!isFilmFound) {
+  //   return (<Error404/>);
+  // }
 
   const hendlePlayPlayer = () => {
     if (isPlaying) {

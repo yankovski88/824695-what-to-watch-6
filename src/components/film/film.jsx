@@ -78,9 +78,9 @@ const Film = (props) => {
   }, [authorizationStatus]);
 
 
-  if (!isFilmFound) {
-    return (<Error404/>);
-  }
+  // if (!isFilmFound) {
+  //   return (<Error404/>);
+  // }
 
 
   return (
@@ -110,8 +110,10 @@ const Film = (props) => {
                 {authorizationStatus === AuthorizationStatus.AUTH ?
                   <>
                     <BtnAddMyList filmById={filmById}/>
-                    <Link to={`/films/${filmById ? filmById.id : ``}/add-review`}
-                      className="btn movie-card__button">Add review</Link>
+                    <Link to={`/films/${filmById.id}/add-review`}
+                          className="btn movie-card__button">Add review</Link>
+                    {/*<Link to={`/films/${filmById ? filmById.id : ``}/add-review`}*/}
+                    {/*  className="btn movie-card__button">Add review</Link>*/}
                   </>
                   : ``}
                 {/* <LinkAddReview film={film}/>*/}

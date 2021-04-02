@@ -14,6 +14,7 @@ const AddReview = (props) => {
   const {film, filmById, isFilmFound, loadFilmById, postCommentItem} = props; // authorizationStatus
   const {name, posterImage} = filmById;
   let {id} = useParams();
+console.log(id)
 
   const handleGetRatingComment = (rating, comment)=>{
     postCommentItem(id, rating, comment);
