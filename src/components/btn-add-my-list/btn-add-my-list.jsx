@@ -9,7 +9,6 @@ const BtnAddMyList = (props) => {
   const {loadFavorite, filmById, loadFilmById, filmPromo, authorizationStatus} = props;
   const history = useHistory();
   const {id} = useParams();
-console.log(filmById)
 
   // запускаем хук useEffect он запускается каждый раз когда открывается страница, он следит за флагом isDataLoaded
   React.useEffect(() => {
@@ -39,7 +38,6 @@ console.log(filmById)
     } else if (filmForBtn.isFavorite) {
       numberStatus = 0;
     }
-    console.log(filmForBtn.id, numberStatus)
     loadFavorite(filmForBtn.id, numberStatus);
   };
 
