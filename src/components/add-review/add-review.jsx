@@ -29,13 +29,21 @@ console.log(id)
   //
   // },[isFilmFound])
 
+  // React.useEffect(()=>{
+  //   if (!isFilmFound) {
+  //     loadFilmById(id);
+  //   }
+  //   loadFilmById(film.id); // тогда вызываем функцию которая делает запрос на сервер, отдает данные в dispatch, а тот меняет store
+  //
+  // }, [isFilmFound]);
+
   React.useEffect(()=>{
-    if (!isFilmFound) {
+    if (id) {
       loadFilmById(id);
     }
-    loadFilmById(film.id); // тогда вызываем функцию которая делает запрос на сервер, отдает данные в dispatch, а тот меняет store
+    // loadFilmById(film.id); // тогда вызываем функцию которая делает запрос на сервер, отдает данные в dispatch, а тот меняет store
 
-  }, [isFilmFound]);
+  }, [id]);
 
   return (
     <section className="movie-card movie-card--full">

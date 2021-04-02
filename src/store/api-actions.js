@@ -60,11 +60,11 @@ export const login = ({login: email, password}) => (dispatch, getState, api) => 
 export const fetchFilmById = (id)=>(dispatch, _getState, api)=>(
   api.get(`/films/${id}`)
     .then((response)=>dispatch(ActionCreator.getFilmById(response.data)))
-    // .catch(({response}) => { // если не будет catch будет постоянная загрузка (spinner) т.к. не станет флаг true
-    //   if (response.status === 404) {
-    //     dispatch(ActionCreator.redirectToRoute(`/404`));
-    //   }
-    // })
+    .catch(({response}) => { // если не будет catch будет постоянная загрузка (spinner) т.к. не станет флаг true
+      if (response.status === 404) {
+        dispatch(ActionCreator.redirectToRoute(`/404`));
+      }
+    })
 );
 
 export const fetchAllComments = (id)=>(dispatch, _getState, api)=>(
