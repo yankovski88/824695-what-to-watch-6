@@ -71,12 +71,13 @@ export const fetchPostComment = (id, rating, comment)=>(dispatch, getState, api)
   dispatch(ActionCreator.addReview(false));
   api.post(`/comments/${id}`, {rating, comment})
     .then(() => dispatch(ActionCreator.redirectToRoute(`/films/${id}`))) // getState().requestedRoute
-    .then(() => dispatch(ActionCreator.addReview(true)))
+    // .then(() => dispatch(ActionCreator.addReview(true)))
     .catch(()=> dispatch(ActionCreator.hasError(true)));
 };
 
 export const fetchFavorite = (idFilm, isFavorite)=>(dispatch, _getState, api)=>(
   api.post(`/favorite/${idFilm}/${isFavorite}`, {idFilm, isFavorite})
+    .then(()=>dispatch(ActionCreator.setMovieFavorite(idFilm, isFavorite)))
 );
 
 // проверка авторизован ли пользователь

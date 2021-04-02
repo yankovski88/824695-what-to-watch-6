@@ -17,6 +17,9 @@ export const ActionType = {
   HAS_ERROR: `addReview/hasError`,
   HAS_ERROR_LOGIN: `login/hasErrorLogin`,
   LOGGED_IN: `login/LOGGED_IN`,
+
+  SET_MOVIE_FAVORITE: `favorite/SET_MOVIE_FAVORITE`,
+
 };
 
 // создаем объект функция которые возвращают экшин
@@ -80,5 +83,12 @@ export const ActionCreator = {
   loggedIn: (userData) => ({
     type: ActionType.LOGGED_IN,
     payload: userData,
+  }),
+  setMovieFavorite: (movieId, isFavorite) => ({
+    type: ActionType.SET_MOVIE_FAVORITE,
+    payload: {
+      movieId,
+      isFavorite
+    },
   })
 };

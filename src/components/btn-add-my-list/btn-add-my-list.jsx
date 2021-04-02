@@ -9,7 +9,7 @@ const BtnAddMyList = (props) => {
   const {loadFavorite, filmById, loadFilmById, filmPromo, authorizationStatus} = props;
   const history = useHistory();
   const {id} = useParams();
-
+console.log(filmById)
 
   // запускаем хук useEffect он запускается каждый раз когда открывается страница, он следит за флагом isDataLoaded
   React.useEffect(() => {
@@ -19,22 +19,6 @@ const BtnAddMyList = (props) => {
   }, [id]); // useEffect сказали следи за этим флагом если он изменится, то делай запрос
 
 
-  const hendleOnClickFilmFavorite = (evt) => {
-    evt.preventDefault();
-    if (authorizationStatus !== AuthorizationStatus.AUTH) {
-      history.push(`/login`);
-    }
-
-    let numberStatus = 0;
-    if (filmForBtn.isFavorite === false) {
-      numberStatus = 1;
-    } else if (filmForBtn.isFavorite === true) {
-      numberStatus = 0;
-    }
-    loadFavorite(filmForBtn.id, numberStatus);
-  };
-
-
   let filmForBtn;
   if (filmById) {
     filmForBtn = filmById;
@@ -42,9 +26,29 @@ const BtnAddMyList = (props) => {
     filmForBtn = filmPromo;
   }
 
+
+  const hendleOnClickFilmFavorite = (evt) => {
+    evt.preventDefault();
+    if (authorizationStatus !== AuthorizationStatus.AUTH) {
+      history.push(`/login`);
+    }
+
+    let numberStatus = 0;
+    if (!filmForBtn.isFavorite) {
+      numberStatus = 1;
+    } else if (filmForBtn.isFavorite) {
+      numberStatus = 0;
+    }
+    console.log(filmForBtn.id, numberStatus)
+    loadFavorite(filmForBtn.id, numberStatus);
+  };
+
+
+
+
   return (
     <button className="btn btn--list movie-card__button" type="button" onClick={hendleOnClickFilmFavorite}>
-      {filmForBtn.isFavorite === true ?
+      {filmForBtn.isFavorite ?
         <svg viewBox="0 0 18 14" width="18" height="14">
           <path fillRule="evenodd" clipRule="evenodd"
             d="M2.40513 5.35353L6.1818 8.90902L15.5807 0L18 2.80485L6.18935 14L0 8.17346L2.40513 5.35353Z"

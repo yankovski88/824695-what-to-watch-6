@@ -7,23 +7,23 @@ import {ALL_GENRES, NUMBER_FILM, RoutePaths} from "../constants/constants";
 
 
 // метод Адаптер который адоптирует данные от сервера на читаемые данные для клиента
-export const adaptToClient = (film)=> { // получаем объект с неугодными нам полями изменили названия полей, удалили старые серверные и вернули отредоктированный объект
+export const adaptToClient = (film) => { // получаем объект с неугодными нам полями изменили названия полей, удалили старые серверные и вернули отредоктированный объект
 
   const adaptedFilm = Object.assign(
-      {},
-      film,
-      {
+    {},
+    film,
+    {
       // в basePrice записали, то что пришло с сервера, плюс можно модифицировать данные как с датой
-        backgroundColor: film.background_color,
-        backgroundImage: film.background_image,
-        isFavorite: film.is_favorite,
-        posterImage: film.poster_image,
-        previewImage: film.preview_image,
-        previewVideoLink: film.preview_video_link,
-        runTime: film.run_time,
-        scoresCount: film.scores_count,
-        videoLink: film.video_link,
-      }
+      backgroundColor: film.background_color,
+      backgroundImage: film.background_image,
+      isFavorite: film.is_favorite,
+      posterImage: film.poster_image,
+      previewImage: film.preview_image,
+      previewVideoLink: film.preview_video_link,
+      runTime: film.run_time,
+      scoresCount: film.scores_count,
+      videoLink: film.video_link,
+    }
   );
 
   // Ненужные ключи мы удаляем
@@ -41,15 +41,15 @@ export const adaptToClient = (film)=> { // получаем объект с не
 };
 
 // метод Адаптер который адоптирует данные от сервера на читаемые данные для клиента
-export const adaptToClientUser = (user)=> { // получаем объект с неугодными нам полями изменили названия полей, удалили старые серверные и вернули отредоктированный объект
+export const adaptToClientUser = (user) => { // получаем объект с неугодными нам полями изменили названия полей, удалили старые серверные и вернули отредоктированный объект
 
   const adaptedUser = Object.assign(
-      {},
-      user,
-      {
+    {},
+    user,
+    {
       // в basePrice записали, то что пришло с сервера, плюс можно модифицировать данные как с датой
-        avatarUrl: user.avatar_url,
-      }
+      avatarUrl: user.avatar_url,
+    }
   );
 
   // Ненужные ключи мы удаляем
@@ -101,27 +101,27 @@ export const reducer = (state = initialState, action) => { // второе ин�
         ...state,
         countShowFilm: state.countShowFilm + NUMBER_FILM,
       };
-      // if (state.films.length - state.countShowFilm > NUMBER_FILM) {
-      //   return {
-      //     ...state,
-      //     countShowFilm: state.countShowFilm + NUMBER_FILM,
-      //   };
-      // } else {
-      //   return {
-      //     ...state,
-      //     countShowFilm: state.countShowFilm + state.films.length - state.countShowFilm,
-      //   };
-      // }
+    // if (state.films.length - state.countShowFilm > NUMBER_FILM) {
+    //   return {
+    //     ...state,
+    //     countShowFilm: state.countShowFilm + NUMBER_FILM,
+    //   };
+    // } else {
+    //   return {
+    //     ...state,
+    //     countShowFilm: state.countShowFilm + state.films.length - state.countShowFilm,
+    //   };
+    // }
     case ActionType.GET_ALL_FILMS: // первое загрузили все фильмы
       return {
         ...state,
         isDataLoaded: true,
-        films: action.payload.map((film)=>{ // по массиву объектов фильмов прошлись
+        films: action.payload.map((film) => { // по массиву объектов фильмов прошлись
           return adaptToClient(film); // и каждый объект пропустили через адатпер и вернули этот массив
         })
       };
 
-      // УО удаляй осторожнее
+    // УО удаляй осторожнее
     // case ActionType.LIKE_FILMS:
     //   return {
     //     ...state,
@@ -188,6 +188,28 @@ export const reducer = (state = initialState, action) => { // второе ин�
         ...state,
         dataLoggedIn: action.payload,
       };
+
+
+    case ActionType.SET_MOVIE_FAVORITE:
+      console.log(action)
+      return {
+        ...state,
+        films: state.films.map((movie) => {
+          if (movie.id === action.payload.movieId) {
+            return {
+              ...movie,
+              isFavorite: action.payload.isFavorite
+            };
+          } else {
+            return movie;
+          }
+        }),
+        filmById: {
+          ...state.filmById,
+          isFavorite: action.payload.isFavorite,
+        }
+      };
+
 
     default:
       return state;
