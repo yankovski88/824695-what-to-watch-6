@@ -51,6 +51,10 @@ const AddReviewForm = (props) => {
   //   addReview({...review, [name]: value});
   // };
 
+
+  const style = {
+    color: `red`
+  };
   const stars = new Array(10).fill().map((el, index) =>
     <Fragment key={`star-${index}`}>
       <input
@@ -60,6 +64,8 @@ const AddReviewForm = (props) => {
         value={index + 1} //
         checked={index + 1 === rating} // index + 1 === rating
         onChange={() => setRating(index + 1)}
+        // style={{color: `red`}}
+        style={style}
       />
       <label className="rating__label" htmlFor={`star-${index}`}>Rating {index + 1} </label>
     </Fragment>
@@ -85,7 +91,7 @@ const AddReviewForm = (props) => {
           <div className="add-review__submit">
             <button
               ref={textareaBtn}
-              disabled = {checkReview(review) && isAddReview ? false : true}
+              disabled = {checkReview(review) && isAddReview && rating !== 0 ? false : true}
               className="add-review__btn" type="submit"
               onClick={handleSubmitClick}>Post</button>
           </div>
