@@ -159,17 +159,18 @@ export const reducer = (state = initialState, action) => { // второе ин�
         isAllComments: true,
       };
 
-
-    case ActionType.ADD_REVIEW:
-      return {
-        ...state,
-        isAddReview: action.payload,
-      };
+// не используется
+    // case ActionType.ADD_REVIEW:
+    //   return {
+    //     ...state,
+    //     isAddReview: action.payload,
+    //   };
 
     case ActionType.CHANGE_IS_ADD_REVIEW:
       return {
         ...state,
         isAddReview: action.payload,
+        isAllComments: false,
       };
 
     case ActionType.HAS_ERROR:

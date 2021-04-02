@@ -7,11 +7,12 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {fetchFilmById, fetchPostComment} from "../../store/api-actions";
 import {useParams} from "react-router-dom";
+import Spinner from "../spinner/spinner";
 // import {AuthorizationStatus} from "../../constants/constants";
 
 
 const AddReview = (props) => {
-  const {film, filmById, isFilmFound, loadFilmById, postCommentItem} = props; // authorizationStatus
+  const {film, filmById, isFilmFound, loadFilmById, postCommentItem, isFilmLoaded} = props; // authorizationStatus
   const {name, posterImage} = filmById;
   const {id} = useParams();
 console.log(id)
@@ -46,6 +47,7 @@ console.log(id)
   }, [id]);
 
   return (
+    !isFilmLoaded ? <Spinner/> :
     <section className="movie-card movie-card--full">
       <div className="movie-card__header">
         <div className="movie-card__bg">
@@ -84,6 +86,7 @@ AddReview.propTypes = {
 const mapStateToProps = (state) => ({
   isFilmFound: state.isFilmFound,
   filmById: state.filmById,
+  isFilmLoaded: state.isFilmLoaded,
   // authorizationStatus: state.authorizationStatus,
 });
 

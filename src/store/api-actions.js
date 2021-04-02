@@ -73,6 +73,7 @@ export const fetchAllComments = (id)=>(dispatch, _getState, api)=>(
 );
 
 export const fetchPostComment = (id, rating, comment)=>(dispatch, getState, api)=> {
+
   dispatch(ActionCreator.changeIsAddReview(false)); // флаг что если false, то кнопку будет disable
   api.post(`/comments/${id}`, {rating, comment})
     .then(() => {dispatch(ActionCreator.redirectToRoute(`/films/${id}`))
