@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 const UserBlock = (props)=>{
   const {dataLoggedIn} = props;
 
-  let history = useHistory();
+  const history = useHistory();
 
   function handleClick(evt) {
     evt.preventDefault();

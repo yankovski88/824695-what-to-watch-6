@@ -34,7 +34,7 @@ const Film = (props) => {
     path,
   } = props;
 
-  let {id} = useParams(); // берем данные с маршрута из app.js
+  const {id} = useParams(); // берем данные с маршрута из app.js
   const {posterImage, name, genre, released} = filmById;
   // const [nav] = React.useState({
   //   nav: `overview`,

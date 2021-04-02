@@ -15,7 +15,7 @@ export const getTimeMovie = (timeMovie)=>{
 
 
 export const getFilm = (filmActive, films)=>{
-  let filmEnter = {};
+  const filmEnter = {};
   for (const film of films) {
     if (film.id === filmActive) {
       filmEnter = film;
@@ -88,7 +88,7 @@ export const getGenreById = (idFilm, itemFilms) => {
   const films = itemFilms.slice();
 
   let genre = `All genre`;
-  for (let item of films) {
+  for (const item of films) {
     if (+idFilm === item.id) {
       genre = item.genre;
     }
@@ -101,7 +101,7 @@ export const getFilmById = (idFilm, itemFilms) => {
   const films = itemFilms.slice();
 
   let film = ``;
-  for (let item of films) {
+  for (const item of films) {
     // console.log(item.id)
     if (+idFilm === item.id) {
       film = item;

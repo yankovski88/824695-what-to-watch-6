@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 const CatalogLikeFilms = (props)=>{
   const {updateData, likeFilms} = props; // likeFilms,
-  let activeFilms = likeFilms;
+  const activeFilms = likeFilms;
 
   return (
     <section className="catalog catalog--like-this">
