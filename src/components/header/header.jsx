@@ -14,7 +14,6 @@ const Header = (props)=>{
     <>
       <header className="page-header movie-card__head">
         <Logo/>
-        {props.children}
         {authorizationStatus === AuthorizationStatus.AUTH ?
           <><UserBlock/><Logout/></>
 
@@ -26,7 +25,6 @@ const Header = (props)=>{
 
 Header.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
-  children: PropTypes.element.isRequired,
 };
 
 const mapStateToProps = (state)=>({
