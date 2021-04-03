@@ -8,29 +8,15 @@ const AddReviewForm = (props) => {
   const textarea = React.useRef();
   const textareaBtn = React.useRef();
 
-  // const [review, addReview] = React.useState({
-  //   rating: ``,
-  //   review: ``,
-  // });
-
   const COMMENT_LENGTH_MIN = 50;
   const COMMENT_LENGTH_MAX = 400;
-
-  // const isRatingInvalid = (rating) => !rating || isNaN(rating) || !RATING_STARS.includes(parseInt(rating, 10));
-  //
-  // const isCommentInvalid = (comment) => !comment || comment.length < COMMENT_LENGTH_MIN || comment.length > COMMENT_LENGTH_MAX;
-
 
   const [rating, setRating] = React.useState(0);
   const [review, setReview] = React.useState(``);
 
-  // let isAddReviewItem = isAddReview
-
   const handleSubmitClick = (evt) => {
     evt.preventDefault();
-    // isAddReviewItem = false;
-    // changeIsAddReview()
-    onSubmit(rating, review); // review
+    onSubmit(rating, review);
   };
 
 
@@ -41,16 +27,6 @@ const AddReviewForm = (props) => {
     return true;
   };
 
-  // const handleSubmit = (evt) => {
-  //   evt.preventDefault();
-  //   onAnswer(review);
-  // };
-  //
-  // const handleFieldChange = (evt) => {
-  //   const {name, value} = evt.target;
-  //   addReview({...review, [name]: value});
-  // };
-
 
   const stars = new Array(10).fill().map((el, index) =>
     <Fragment key={`star-${index}`}>
@@ -59,9 +35,8 @@ const AddReviewForm = (props) => {
         id={`star-${index}`}
         type="radio" name="rating"
         value={index + 1} //
-        checked={index + 1 === rating} // index + 1 === rating
+        checked={index + 1 === rating}
         onChange={() => setRating(index + 1)}
-        // style={{color: `red`}}
       />
       <label
         className="rating__label" htmlFor={`star-${index}`}>Rating {index + 1} </label>
@@ -81,9 +56,7 @@ const AddReviewForm = (props) => {
         <div className="add-review__text">
           <textarea ref={textarea} className="add-review__textarea" name="review" id="review-text"
             placeholder="Review text"
-            // onChange={handleReviewChange}
             onChange={(evt) => setReview(evt.target.value)}
-
           ></textarea>
           <div className="add-review__submit">
             <button

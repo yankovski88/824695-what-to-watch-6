@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 
 const CatalogLikeFilms = (props)=>{
-  const {updateData, likeFilms} = props; // likeFilms,
+  const {updateData, likeFilms} = props;
   const activeFilms = likeFilms;
 
   return (

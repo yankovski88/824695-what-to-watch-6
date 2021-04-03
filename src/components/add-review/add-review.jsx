@@ -8,11 +8,10 @@ import {connect} from "react-redux";
 import {fetchFilmById, fetchPostComment} from "../../store/api-actions";
 import {useParams} from "react-router-dom";
 import Spinner from "../spinner/spinner";
-// import {AuthorizationStatus} from "../../constants/constants";
 
 
 const AddReview = (props) => {
-  const {filmById, loadFilmById, postCommentItem, isFilmLoaded} = props; // authorizationStatus
+  const {filmById, loadFilmById, postCommentItem, isFilmLoaded} = props;
   const {name, posterImage} = filmById;
   const {id} = useParams();
 
@@ -20,29 +19,10 @@ const AddReview = (props) => {
     postCommentItem(id, rating, comment);
   };
 
-
-  // React.useEffect(()=>{
-  //   if(authorizationStatus === AuthorizationStatus.AUTH){
-  //     loadFilmById(id)
-  //   }
-  //   loadFilmById(film.id); // тогда вызываем функцию которая делает запрос на сервер, отдает данные в dispatch, а тот меняет store
-  //
-  // },[isFilmFound])
-
-  // React.useEffect(()=>{
-  //   if (!isFilmFound) {
-  //     loadFilmById(id);
-  //   }
-  //   loadFilmById(film.id); // тогда вызываем функцию которая делает запрос на сервер, отдает данные в dispatch, а тот меняет store
-  //
-  // }, [isFilmFound]);
-
   React.useEffect(()=>{
     if (id) {
       loadFilmById(id);
     }
-    // loadFilmById(film.id); // тогда вызываем функцию которая делает запрос на сервер, отдает данные в dispatch, а тот меняет store
-
   }, [id]);
 
   return (
@@ -84,7 +64,6 @@ AddReview.propTypes = {
 const mapStateToProps = (state) => ({
   filmById: state.filmById,
   isFilmLoaded: state.isFilmLoaded,
-  // authorizationStatus: state.authorizationStatus,
 });
 
 const mapDispatchToProps = (dispatch) => ({

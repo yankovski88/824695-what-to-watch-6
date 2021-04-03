@@ -11,7 +11,6 @@ const Copyright = (props)=>{
   </div>;
 };
 
-// export default Copyright;
 
 Copyright.propTypes = {
   onClickLeave: PropTypes.func.isRequired,
@@ -22,7 +21,6 @@ const mapDispatchToProps = (dispatch)=>({
     dispatch(checkAuthNo());
   }
 });
-// onClickLeave: PropTypes.func.isRequired,
 
 export {Copyright};
-export default connect(null, mapDispatchToProps)(Copyright); // mapStateToProps
+export default connect(null, mapDispatchToProps)(Copyright);

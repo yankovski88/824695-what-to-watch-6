@@ -15,8 +15,8 @@ import {ActionCreator} from "../../store/action";
 import PrivateRoute from "../private-route/private-route";
 
 const App = (props) => {
-  const {authorizationStatus, onPrivateRouteRequest} = props; // reviews, myListFilms,
-  const [film, setMovie] = React.useState({}); // фильм который хотим посмотреть // movie
+  const {authorizationStatus, onPrivateRouteRequest} = props;
+  const [film, setMovie] = React.useState({}); // фильм который хотим посмотреть
 
   const updateData = (value) => {
     setMovie(value);
@@ -33,7 +33,6 @@ const App = (props) => {
           <SignIn />
         </Route>
 
-        {/* myListFilms={myListFilms}*/}
         <PrivateRoute exact
           path={`/mylist`}
           onPrivateRouteRequest={onPrivateRouteRequest}
@@ -42,34 +41,19 @@ const App = (props) => {
         >
         </PrivateRoute>
 
-
-        {/* <Route exact path="/mylist">*/}
-        {/*  <MyList myListFilms={myListFilms} updateData={updateData}/>*/}
-        {/* </Route>*/}
-        {/* "/films/:id/review?"*/}
-        {/* ${film.id}*/}
         <PrivateRoute exact
           path={`/films/:id/add-review`}
           onPrivateRouteRequest={onPrivateRouteRequest}
-          render={()=><AddReview film={film}/>}// path={`/films/:id/add-review`}
+          render={()=><AddReview film={film}/>}
           authorizationStatus={authorizationStatus}
         >
         </PrivateRoute>
-
-        {/* <Route exact path={`/films/${film.id}/add-review`}>*/}
-        {/*  <AddReview film={film} onAnswer={() => {}}/>*/}
-        {/* </Route>*/}
-        {/* ${film.id}*/}
-        {/* /!*reviews={reviews}*!/ likeFilms={likeFilms}*/}
-
         <Route exact path={`/films/:id/details`}>
           <Film path={`/films/:id/details`} film={film} updateData={updateData} onPrivateRouteRequest={onPrivateRouteRequest}/>
         </Route>
-        {/* ${film.id}*/}
         <Route exact path={`/films/:id/reviews`}>
           <Film path={`/films/:id/reviews`} film={film} updateData={updateData} onPrivateRouteRequest={onPrivateRouteRequest}/>
         </Route>
-        {/* /films/:id?*/}
         <Route exact path={`/films/:id`}>
           <Film path={`/films/:id`} film={film} updateData={updateData} onPrivateRouteRequest={onPrivateRouteRequest}/>
         </Route>

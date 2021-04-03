@@ -9,19 +9,9 @@ import {fetchMoviesList} from "../../store/api-actions";
 const CatalogMyListFilms = (props) => {
   const {updateData, loadMoviesList, isDataLoaded, films} = props;
 
-
-  // React.useEffect(
-  //     () => {
-  //       if (!isDataLoaded) {
-  //         loadMoviesList();
-  //       }
-  //     }, [isDataLoaded]);
-
   React.useEffect(
       () => {
-      // if (!isDataLoaded) {
         loadMoviesList();
-      // }
       }, []);
 
   const favoriteFilms = [];
