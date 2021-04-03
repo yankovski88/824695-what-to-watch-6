@@ -29,7 +29,7 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
       allComments: [], // массив комментов пуст
 
       isAddReview: true,
-      hasError: false, // флаг на форму комента
+      isAddReviewFail: false, // флаг на форму комента
 
       hasErrorLogin: false, // логин не проходит
       dataLoggedIn: {},
@@ -483,22 +483,22 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
       allComments: [], // массив комментов пуст
 
       isAddReview: true,
-      hasError: false, // флаг на форму комента
 
       hasErrorLogin: false, // логин не проходит
       dataLoggedIn: {},
+      isAddReviewFail: false, // флаг на форму комента
 
     };
 
 
     const item = {
-      type: ActionType.HAS_ERROR,
+      type: ActionType.IS_ADD_REVIEW_FAIL,
       payload: true,
     };
 
     const stateNew = {
       ...state,
-      hasError: true,
+      isAddReviewFail: true,
     };
 
     expect(reducer(state, item)).toEqual(

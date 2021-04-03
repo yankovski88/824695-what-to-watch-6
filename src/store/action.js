@@ -14,11 +14,12 @@ export const ActionType = {
   ADD_REVIEW: `user/ADD_REVIEW`,
   CHANGE_IS_ADD_REVIEW: `user/CHANGE_IS_ADD_REVIEW`,
 
-  HAS_ERROR: `addReview/hasError`,
+  // HAS_ERROR: `addReview/hasError`,
   HAS_ERROR_LOGIN: `login/hasErrorLogin`,
   LOGGED_IN: `login/LOGGED_IN`,
 
   SET_MOVIE_FAVORITE: `favorite/SET_MOVIE_FAVORITE`,
+  IS_ADD_REVIEW_FAIL: `user/IS_ADD_REVIEW_FAIL`
 
 };
 
@@ -72,10 +73,10 @@ export const ActionCreator = {
     type: ActionType.CHANGE_IS_ADD_REVIEW,
     payload: data,
   }),
-  hasError: (data)=>({
-    type: ActionType.HAS_ERROR,
-    payload: data,
-  }),
+  // hasError: (data)=>({
+  //   type: ActionType.HAS_ERROR,
+  //   payload: data,
+  // }),
   hasErrorLogin: (data)=>({
     type: ActionType.HAS_ERROR_LOGIN,
     payload: data,
@@ -90,5 +91,9 @@ export const ActionCreator = {
       movieId,
       isFavorite
     },
+  }),
+  addReviewFail: (isAddPost) => ({
+    type: ActionType.IS_ADD_REVIEW_FAIL,
+    payload: isAddPost,
   })
 };

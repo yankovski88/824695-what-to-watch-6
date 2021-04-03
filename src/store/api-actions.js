@@ -78,8 +78,9 @@ export const fetchPostComment = (id, rating, comment)=>(dispatch, getState, api)
   api.post(`/comments/${id}`, {rating, comment})
     .then(() => {dispatch(ActionCreator.redirectToRoute(`/films/${id}`))
       dispatch(ActionCreator.changeIsAddReview(true)); // флаг что если false, то кнопку будет disable
-    }) // getState().requestedRoute
-    .catch(()=> dispatch(ActionCreator.hasError(true)));
+    }) // getState().requestedRoute addReviewFail
+    .catch(()=> dispatch(ActionCreator.addReviewFail(true)));
+  // .catch(()=> dispatch(ActionCreator.hasError(true)));
 };
 
 export const fetchFavorite = (idFilm, isFavorite)=>(dispatch, _getState, api)=>(

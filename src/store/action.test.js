@@ -141,12 +141,12 @@ describe(`Action creators work correctly`, () => {
     };
     expect(ActionCreator.addReview(true)).toEqual(expectedAction);
   });
-  it(`check btn more hasError`, ()=>{
+  it(`check btn more addReviewFail`, ()=>{
     const expectedAction = {
-      type: ActionType.HAS_ERROR,
+      type: ActionType.IS_ADD_REVIEW_FAIL,
       payload: true
     };
-    expect(ActionCreator.hasError(true)).toEqual(expectedAction);
+    expect(ActionCreator.addReviewFail(true)).toEqual(expectedAction);
   });
   it(`check btn more hasErrorLogin`, ()=>{
     const expectedAction = {

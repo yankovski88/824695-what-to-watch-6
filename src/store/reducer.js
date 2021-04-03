@@ -81,10 +81,10 @@ const initialState = {
   allComments: [], // массив комментов пуст
 
   isAddReview: true,
-  hasError: false, // флаг на форму комента
 
   hasErrorLogin: false, // логин не проходит
   dataLoggedIn: {},
+  isAddReviewFail: false, // флаг на форму комента
 };
 
 export const reducer = (state = initialState, action) => { // второе инициализируем стейт чтобы загрузить начальный жанр т.е. все фильмы
@@ -173,11 +173,11 @@ export const reducer = (state = initialState, action) => { // второе ин�
         isAllComments: false,
       };
 
-    case ActionType.HAS_ERROR:
-      return {
-        ...state,
-        hasError: action.payload,
-      };
+    // case ActionType.HAS_ERROR:
+    //   return {
+    //     ...state,
+    //     hasError: action.payload,
+    //   };
     case ActionType.HAS_ERROR_LOGIN:
       return {
         ...state,
@@ -209,6 +209,12 @@ export const reducer = (state = initialState, action) => { // второе ин�
           ...state.filmById,
           isFavorite: action.payload.isFavorite,
         }
+      };
+
+    case ActionType.IS_ADD_REVIEW_FAIL:
+      return {
+        ...state,
+        isAddReviewFail: action.payload,
       };
 
 

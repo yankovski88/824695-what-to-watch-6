@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 
 
 const AddReviewForm = (props) => {
-  const {onSubmit, isAddReview, hasError} = props;
+  const {onSubmit, isAddReview, isAddReviewFail} = props;
   const textarea = React.useRef();
   const textareaBtn = React.useRef();
 
@@ -96,7 +96,7 @@ const AddReviewForm = (props) => {
 
         </div>
       </form>
-      {hasError &&
+      {isAddReviewFail &&
       <p className="add-review__error">
         An error occurred while sending the review. Please try again later.
       </p>
@@ -109,13 +109,14 @@ const AddReviewForm = (props) => {
 AddReviewForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   isAddReview: PropTypes.bool.isRequired,
-  hasError: PropTypes.bool.isRequired,
+  isAddReviewFail: PropTypes.bool.isRequired,
 };
 
 export {AddReviewForm};
 
 const mapStateToProps = (state)=>({
   isAddReview: state.isAddReview,
+  isAddReviewFail: state.isAddReviewFail,
 });
 
 export default connect(mapStateToProps, null)(AddReviewForm);
