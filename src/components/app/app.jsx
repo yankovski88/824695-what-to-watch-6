@@ -48,13 +48,13 @@ const App = (props) => {
         >
         </PrivateRoute>
         <Route exact path={`/films/:id/details`}>
-          <Film path={`/films/:id/details`} film={film} updateData={updateData} onPrivateRouteRequest={onPrivateRouteRequest}/>
+          <Film film={film} updateData={updateData} onPrivateRouteRequest={onPrivateRouteRequest}/>
         </Route>
         <Route exact path={`/films/:id/reviews`}>
-          <Film path={`/films/:id/reviews`} film={film} updateData={updateData} onPrivateRouteRequest={onPrivateRouteRequest}/>
+          <Film film={film} updateData={updateData} onPrivateRouteRequest={onPrivateRouteRequest}/>
         </Route>
         <Route exact path={`/films/:id`}>
-          <Film path={`/films/:id`} film={film} updateData={updateData} onPrivateRouteRequest={onPrivateRouteRequest}/>
+          <Film film={film} updateData={updateData} onPrivateRouteRequest={onPrivateRouteRequest}/>
         </Route>
 
 

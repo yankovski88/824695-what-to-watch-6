@@ -27,7 +27,6 @@ const Film = (props) => {
     loadAllComments,
     authorizationStatus,
     onPrivateRouteRequest,
-    path,
   } = props;
 
   const {id} = useParams(); // берем данные с маршрута из app.js
@@ -122,8 +121,7 @@ const Film = (props) => {
             </div>
 
             <div className="movie-card__desc">
-              {/* nav={nav}*/}
-              <MovieNav path={path} film={filmById} reviews={allComments}/>
+              <MovieNav film={filmById} reviews={allComments}/>
 
             </div>
           </div>
@@ -132,7 +130,6 @@ const Film = (props) => {
 
       <div className="page-content">
 
-        {/* likeFilms={likeFilms}*/}
         <CatalogLikeFilms likeFilms={likeFilms} updateData={updateData}/>
 
         <footer className="page-footer">
@@ -145,7 +142,6 @@ const Film = (props) => {
 };
 
 Film.propTypes = {
-  // film: filmProp,
   updateData: PropTypes.func.isRequired,
   loadAllComments: PropTypes.func.isRequired,
   filmById: PropTypes.object.isRequired,
@@ -158,7 +154,6 @@ Film.propTypes = {
   isFilmFound: PropTypes.bool.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   onPrivateRouteRequest: PropTypes.func.isRequired,
-  path: PropTypes.string.isRequired,
 
 };
 
