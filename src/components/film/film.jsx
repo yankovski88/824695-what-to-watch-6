@@ -31,9 +31,6 @@ const Film = (props) => {
 
   const {id} = useParams(); // берем данные с маршрута из app.js
   const {posterImage, name, genre, released} = filmById;
-  // const [nav] = React.useState({
-  //   nav: `overview`,
-  // });
 
   const likeFilms = React.useMemo(()=>{
     const genreById = getGenreById(id, films); // нашли жанр фильма по id маршрута
@@ -45,11 +42,10 @@ const Film = (props) => {
   // запускаем хук useEffect он запускается каждый раз когда открывается страница, он следит за флагом isDataLoaded
   React.useEffect(() => {
     if (id) {
-      loadFilmById(id);
+      loadFilmById(id);// тогда вызываем функцию которая делает запрос на сервер, отдает данные в dispatch, а тот меняет store
     }
-    // loadFilmById(film.id); // тогда вызываем функцию которая делает запрос на сервер, отдает данные в dispatch, а тот меняет store
   }, [id]); // useEffect сказали следи за этим флагом если он изменится, то делай запрос
-  // film.id
+
   React.useEffect(() => {
     if (!isDataLoaded) {
       onLoadData();
@@ -60,8 +56,6 @@ const Film = (props) => {
     if (!isAllComments) { // елси флаг false, то никогда коменты не загружались
       loadAllComments(id); // делаем запрос на коменты
     }
-    // loadAllComments(id); // делаем запрос на коменты
-
   }, [isAllComments]); // ставим слежку за флагом коментов
 
 
@@ -94,12 +88,10 @@ const Film = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                {/* anyFilm={filmById}*/}
                 <BtnPlay />
 
                 {authorizationStatus === AuthorizationStatus.AUTH ?
                   <>
-                    {/* filmById={filmById}*/}
                     <BtnAddMyList/>
                     <Link to={`/films/${filmById.id}/add-review`}
                       className="btn movie-card__button">Add review</Link>
