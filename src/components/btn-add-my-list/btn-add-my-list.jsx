@@ -20,11 +20,8 @@ const BtnAddMyList = (props) => {
 
   let filmForBtn;
   if (filmById) {
-    console.log(filmById)
-
     filmForBtn = filmById;
   } else {
-    console.log(filmPromo)
     filmForBtn = filmPromo;
   }
 
@@ -43,8 +40,6 @@ const BtnAddMyList = (props) => {
     }
     loadFavorite(filmForBtn.id, numberStatus);
   };
-
-
 
 
   return (

@@ -10,20 +10,20 @@ import {ALL_GENRES, NUMBER_FILM, RoutePaths} from "../constants/constants";
 export const adaptToClient = (film) => { // получаем объект с неугодными нам полями изменили названия полей, удалили старые серверные и вернули отредоктированный объект
 
   const adaptedFilm = Object.assign(
-    {},
-    film,
-    {
+      {},
+      film,
+      {
       // в basePrice записали, то что пришло с сервера, плюс можно модифицировать данные как с датой
-      backgroundColor: film.background_color,
-      backgroundImage: film.background_image,
-      isFavorite: film.is_favorite,
-      posterImage: film.poster_image,
-      previewImage: film.preview_image,
-      previewVideoLink: film.preview_video_link,
-      runTime: film.run_time,
-      scoresCount: film.scores_count,
-      videoLink: film.video_link,
-    }
+        backgroundColor: film.background_color,
+        backgroundImage: film.background_image,
+        isFavorite: film.is_favorite,
+        posterImage: film.poster_image,
+        previewImage: film.preview_image,
+        previewVideoLink: film.preview_video_link,
+        runTime: film.run_time,
+        scoresCount: film.scores_count,
+        videoLink: film.video_link,
+      }
   );
 
   // Ненужные ключи мы удаляем
@@ -44,12 +44,12 @@ export const adaptToClient = (film) => { // получаем объект с н�
 export const adaptToClientUser = (user) => { // получаем объект с неугодными нам полями изменили названия полей, удалили старые серверные и вернули отредоктированный объект
 
   const adaptedUser = Object.assign(
-    {},
-    user,
-    {
+      {},
+      user,
+      {
       // в basePrice записали, то что пришло с сервера, плюс можно модифицировать данные как с датой
-      avatarUrl: user.avatar_url,
-    }
+        avatarUrl: user.avatar_url,
+      }
   );
 
   // Ненужные ключи мы удаляем
@@ -159,12 +159,12 @@ export const reducer = (state = initialState, action) => { // второе ин�
         isAllComments: true,
       };
 
-// не используется
-    // case ActionType.ADD_REVIEW:
-    //   return {
-    //     ...state,
-    //     isAddReview: action.payload,
-    //   };
+      // не используется
+      // case ActionType.ADD_REVIEW:
+      //   return {
+      //     ...state,
+      //     isAddReview: action.payload,
+      //   };
 
     case ActionType.CHANGE_IS_ADD_REVIEW:
       return {
@@ -192,7 +192,6 @@ export const reducer = (state = initialState, action) => { // второе ин�
 
 
     case ActionType.SET_MOVIE_FAVORITE:
-      console.log(action)
       return {
         ...state,
         films: state.films.map((movie) => {

@@ -4,11 +4,10 @@ import {
   fetchAllComments,
   fetchFilmById,
   fetchMoviesList,
-  fetchPostComment,
   fetchPromo,
   login
 } from "./api-actions";
-import {ActionCreator, ActionType} from "./action";
+import {ActionType} from "./action";
 import {ALL_GENRES, AuthorizationStatus, RoutePaths} from "../constants/constants";
 import {createApi} from "../services/api";
 import {mockMovie, mockReviews} from "./action.test";
@@ -60,7 +59,7 @@ describe(`Async operations work correctly`, () => {
       });
 
     return checkAuthLoader(dispatch, () => {
-      return state
+      return state;
     }, api) // в функцию вставили аргументы, что и в checkAuth()
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(2); // сраниваем, что dispatch был вызван 2 раза (НЕ понимаю чего 2 раза)
@@ -72,7 +71,7 @@ describe(`Async operations work correctly`, () => {
           type: ActionType.LOGGED_IN,
           payload: {
             email: `email@test.com`,
-            avatarUrl: "https://avatar.com/face.png",
+            avatarUrl: `https://avatar.com/face.png`,
           }
         });
       });
@@ -117,7 +116,7 @@ describe(`Async operations work correctly`, () => {
       });
 
     return checkLoginLoader(dispatch, () => {
-      return state
+      return state;
     }, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(3); // 3
@@ -129,8 +128,8 @@ describe(`Async operations work correctly`, () => {
           type: ActionType.LOGGED_IN,
           payload:
             {
-              "avatarUrl": "https://avatar.com/face.png",
-              "email": "email@test.com",
+              "avatarUrl": `https://avatar.com/face.png`,
+              "email": `email@test.com`,
             },
 
         });
@@ -179,7 +178,7 @@ describe(`Async operations work correctly`, () => {
         // toHaveBeenCalledTimes (1) 1 это колличество диспачей в then
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           // toHaveBeenNthCalledWith (1) 1 это порядковый номер диспача
-          type: ActionType.GET_FILM_PROMO,  // ожидаем тип промо
+          type: ActionType.GET_FILM_PROMO, // ожидаем тип промо
           payload: mockMovie, // и его объект
         });
       });
@@ -202,7 +201,7 @@ describe(`Async operations work correctly`, () => {
         // toHaveBeenCalledTimes (1) 1 это колличество диспачей в then
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           // toHaveBeenNthCalledWith (1) 1 это порядковый номер диспача
-          type: ActionType.FILM_BY_ID,  // ожидаем тип
+          type: ActionType.FILM_BY_ID, // ожидаем тип
           payload: mockMovie, // и его объект ну или че там у него
         });
       });
@@ -225,44 +224,44 @@ describe(`Async operations work correctly`, () => {
         // toHaveBeenCalledTimes (1) 1 это колличество диспачей в then
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           // toHaveBeenNthCalledWith (1) 1 это порядковый номер диспача
-          type: ActionType.GET_ALL_COMMENTS,  // ожидаем тип
+          type: ActionType.GET_ALL_COMMENTS, // ожидаем тип
           payload: mockReviews, // и его объект ну или че там у него
         });
       });
   });
 
 
-//   it(`Async operation for adding review works correctly`, () => {
-//     const apiMock = new MockAdapter(api);
-//     const dispatch = jest.fn();
-//     const fakeReview = {
-//       rating: 2,
-//       comment: `super cool movie`
-//     };
-//
-//     apiMock
-//       .onPost(`/comments/1`, fakeReview)
-//       .reply(200);
-//
-//     return addReview(1, 2, `super cool movie`)(dispatch, () => { }, api)
-//       .then(() => {
-//         expect(dispatch).toHaveBeenCalledTimes(3);
-//
-//         expect(dispatch).toHaveBeenNthCalledWith(1, {
-//           type: ActionType.ADD_REVIEW_REQUEST
-//         });
-//
-//         expect(dispatch).toHaveBeenNthCalledWith(2, {
-//           type: ActionType.ADD_REVIEW_SUCCESS
-//         });
-//
-//         expect(dispatch).toHaveBeenNthCalledWith(3, {
-//           type: ActionType.REDIRECT_TO_ROUTE,
-//           payload: `/films/1`
-//         });
-//       });
-//   });
-// });
+  //   it(`Async operation for adding review works correctly`, () => {
+  //     const apiMock = new MockAdapter(api);
+  //     const dispatch = jest.fn();
+  //     const fakeReview = {
+  //       rating: 2,
+  //       comment: `super cool movie`
+  //     };
+  //
+  //     apiMock
+  //       .onPost(`/comments/1`, fakeReview)
+  //       .reply(200);
+  //
+  //     return addReview(1, 2, `super cool movie`)(dispatch, () => { }, api)
+  //       .then(() => {
+  //         expect(dispatch).toHaveBeenCalledTimes(3);
+  //
+  //         expect(dispatch).toHaveBeenNthCalledWith(1, {
+  //           type: ActionType.ADD_REVIEW_REQUEST
+  //         });
+  //
+  //         expect(dispatch).toHaveBeenNthCalledWith(2, {
+  //           type: ActionType.ADD_REVIEW_SUCCESS
+  //         });
+  //
+  //         expect(dispatch).toHaveBeenNthCalledWith(3, {
+  //           type: ActionType.REDIRECT_TO_ROUTE,
+  //           payload: `/films/1`
+  //         });
+  //       });
+  //   });
+  // });
 
 
   // it(`Should make a correct Api call to /comments/:id`, () => { // при обращении к логину получим то, что ожидаем 200 код и данные
@@ -288,31 +287,26 @@ describe(`Async operations work correctly`, () => {
   //     });
 
 
-
-    // return fetchPostCommentLoader(dispatch, () => {}, api) // в функцию вставили аргументы, что и в checkAuth()
-    //   .then(() => {
-    //     expect(dispatch).toHaveBeenCalledTimes(1); // сраниваем, что dispatch был вызван 2 раза (НЕ понимаю чего 2 раза)
-    //     // toHaveBeenCalledTimes (1) 1 это колличество диспачей в then
-    //     expect(dispatch).toHaveBeenNthCalledWith(1, {
-    //       // toHaveBeenNthCalledWith (1) 1 это порядковый номер диспача
-    //       type: ActionType.REDIRECT_TO_ROUTE,  // ожидаем тип
-    //       payload: `/films/2`, // и его объект ну или че там у него
-    //     });
-    //
-    //
-    //     // expect(dispatch).toHaveBeenNthCalledWith(1, {
-    //     //   // toHaveBeenNthCalledWith (1) 1 это порядковый номер диспача
-    //     //   type: ActionType.ADD_REVIEW,  // ожидаем тип
-    //     //   payload: true, // и его объект ну или че там у него
-    //     // });
-    //   });
-
+  // return fetchPostCommentLoader(dispatch, () => {}, api) // в функцию вставили аргументы, что и в checkAuth()
+  //   .then(() => {
+  //     expect(dispatch).toHaveBeenCalledTimes(1); // сраниваем, что dispatch был вызван 2 раза (НЕ понимаю чего 2 раза)
+  //     // toHaveBeenCalledTimes (1) 1 это колличество диспачей в then
+  //     expect(dispatch).toHaveBeenNthCalledWith(1, {
+  //       // toHaveBeenNthCalledWith (1) 1 это порядковый номер диспача
+  //       type: ActionType.REDIRECT_TO_ROUTE,  // ожидаем тип
+  //       payload: `/films/2`, // и его объект ну или че там у него
+  //     });
+  //
+  //
+  //     // expect(dispatch).toHaveBeenNthCalledWith(1, {
+  //     //   // toHaveBeenNthCalledWith (1) 1 это порядковый номер диспача
+  //     //   type: ActionType.ADD_REVIEW,  // ожидаем тип
+  //     //   payload: true, // и его объект ну или че там у него
+  //     // });
+  //   });
 
 
-// });
-
-
-
+  // });
 
 
   it(`Should post correct Api call to /login`, () => {
@@ -354,7 +348,7 @@ describe(`Async operations work correctly`, () => {
       });
 
     return checkLoginLoader(dispatch, () => {
-      return state
+      return state;
     }, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(3); // 3
@@ -366,8 +360,8 @@ describe(`Async operations work correctly`, () => {
           type: ActionType.LOGGED_IN,
           payload:
             {
-              "avatarUrl": "https://avatar.com/face.png",
-              "email": "email@test.com",
+              "avatarUrl": `https://avatar.com/face.png`,
+              "email": `email@test.com`,
             },
 
         });
@@ -377,9 +371,6 @@ describe(`Async operations work correctly`, () => {
         });
       });
   });
-
-
-
 
 
   // it(`Should make a correct Api call to /favorite/:id`, () => { // при обращении к логину получим то, что ожидаем 200 код и данные

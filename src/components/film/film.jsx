@@ -7,19 +7,15 @@ import BtnAddMyList from "../btn-add-my-list/btn-add-my-list";
 import MovieNav from "../movie-nav/movie-nav.jsx";
 import PropTypes from "prop-types";
 import {Link, useParams} from "react-router-dom";
-// import filmProp from "./film.prop";
 import Header from "../header/header";
 import {connect} from "react-redux";
 import {fetchFilmById, fetchMoviesList, fetchAllComments} from "../../store/api-actions";
-import Error404 from "../error-404/error-404";
 import {getGenreById, getGenreFilms} from "../../utils/utils";
 import {AuthorizationStatus} from "../../constants/constants";
 
 
 const Film = (props) => {
   const {
-    isFilmFound,
-    // film,
     updateData,
     filmById,
     loadFilmById,
@@ -78,11 +74,6 @@ const Film = (props) => {
   }, [authorizationStatus]);
 
 
-  // if (!isFilmFound) {
-  //   return (<Error404/>);
-  // }
-
-
   return (
     <>
       <section className="movie-card movie-card--full">
@@ -111,8 +102,8 @@ const Film = (props) => {
                   <>
                     <BtnAddMyList filmById={filmById}/>
                     <Link to={`/films/${filmById.id}/add-review`}
-                          className="btn movie-card__button">Add review</Link>
-                    {/*<Link to={`/films/${filmById ? filmById.id : ``}/add-review`}*/}
+                      className="btn movie-card__button">Add review</Link>
+                    {/* <Link to={`/films/${filmById ? filmById.id : ``}/add-review`}*/}
                     {/*  className="btn movie-card__button">Add review</Link>*/}
                   </>
                   : ``}

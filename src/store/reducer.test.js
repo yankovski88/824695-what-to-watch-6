@@ -624,35 +624,29 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
     const item = {
       type: ActionType.LOGGED_IN,
       payload: {
-        avatarUrl: "https://assets.htmlacademy.ru/intensives/javascript-3/avatar/5.jpg",
-        email: "1@mail.ru",
+        avatarUrl: `https://assets.htmlacademy.ru/intensives/javascript-3/avatar/5.jpg`,
+        email: `1@mail.ru`,
         id: 1,
-        name: "1"
+        name: `1`
       },
     };
 
     const stateNew = {
       ...state,
       dataLoggedIn: {
-        avatarUrl: "https://assets.htmlacademy.ru/intensives/javascript-3/avatar/5.jpg",
-        email: "1@mail.ru",
+        avatarUrl: `https://assets.htmlacademy.ru/intensives/javascript-3/avatar/5.jpg`,
+        email: `1@mail.ru`,
         id: 1,
-        name: "1"
+        name: `1`
       },
     };
 
     expect(reducer(state, item)).toEqual(
-      stateNew
+        stateNew
     );
   });
 
 });
-
-
-
-
-
-
 
 
 // const api = createApi(() => { });

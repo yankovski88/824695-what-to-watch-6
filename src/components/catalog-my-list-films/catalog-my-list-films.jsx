@@ -18,11 +18,11 @@ const CatalogMyListFilms = (props) => {
   //     }, [isDataLoaded]);
 
   React.useEffect(
-    () => {
+      () => {
       // if (!isDataLoaded) {
         loadMoviesList();
       // }
-    }, []);
+      }, []);
 
   const favoriteFilms = [];
   for (const film of films) {

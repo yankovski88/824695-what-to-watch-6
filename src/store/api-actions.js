@@ -29,7 +29,7 @@ export const checkAuth = () => (dispatch, _getState, api) => (
     // .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
     .catch(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH))
         // () => dispatch(ActionCreator.hasErrorLogin(true)) // думаю может это удалить надо
-      )
+    )
 );
 
 export const login = ({login: email, password}) => (dispatch, getState, api) => (
@@ -42,7 +42,7 @@ export const login = ({login: email, password}) => (dispatch, getState, api) => 
       dispatch(ActionCreator.redirectToRoute(getState().requestedRoute));
     })
     .catch(
-      ()=> dispatch(ActionCreator.hasError(true))
+        ()=> dispatch(ActionCreator.hasError(true))
     //   () => {
     //   dispatch(()=>{}); // loggedInFail()
     // }
@@ -76,7 +76,8 @@ export const fetchPostComment = (id, rating, comment)=>(dispatch, getState, api)
 
   dispatch(ActionCreator.changeIsAddReview(false)); // флаг что если false, то кнопку будет disable
   api.post(`/comments/${id}`, {rating, comment})
-    .then(() => {dispatch(ActionCreator.redirectToRoute(`/films/${id}`))
+    .then(() => {
+      dispatch(ActionCreator.redirectToRoute(`/films/${id}`));
       dispatch(ActionCreator.changeIsAddReview(true)); // флаг что если false, то кнопку будет disable
     }) // getState().requestedRoute addReviewFail
     .catch(()=> dispatch(ActionCreator.addReviewFail(true)));

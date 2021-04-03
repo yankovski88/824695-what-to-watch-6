@@ -160,17 +160,17 @@ describe(`Action creators work correctly`, () => {
     const expectedAction = {
       type: ActionType.LOGGED_IN,
       payload: {
-        avatarUrl: "https://assets.htmlacademy.ru/intensives/javascript-3/avatar/5.jpg",
-        email: "1@mail.ru",
+        avatarUrl: `https://assets.htmlacademy.ru/intensives/javascript-3/avatar/5.jpg`,
+        email: `1@mail.ru`,
         id: 1,
-        name: "1"
+        name: `1`
       },
     };
     expect(ActionCreator.loggedIn({
-      avatarUrl: "https://assets.htmlacademy.ru/intensives/javascript-3/avatar/5.jpg",
-      email: "1@mail.ru",
+      avatarUrl: `https://assets.htmlacademy.ru/intensives/javascript-3/avatar/5.jpg`,
+      email: `1@mail.ru`,
       id: 1,
-      name: "1"
-    },)).toEqual(expectedAction);
+      name: `1`
+    })).toEqual(expectedAction);
   });
 });

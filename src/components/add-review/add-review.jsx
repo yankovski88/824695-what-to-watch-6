@@ -12,10 +12,9 @@ import Spinner from "../spinner/spinner";
 
 
 const AddReview = (props) => {
-  const {film, filmById, isFilmFound, loadFilmById, postCommentItem, isFilmLoaded} = props; // authorizationStatus
+  const {filmById, loadFilmById, postCommentItem, isFilmLoaded} = props; // authorizationStatus
   const {name, posterImage} = filmById;
   const {id} = useParams();
-console.log(id)
 
   const handleGetRatingComment = (rating, comment)=>{
     postCommentItem(id, rating, comment);
@@ -48,43 +47,42 @@ console.log(id)
 
   return (
     !isFilmLoaded ? <Spinner/> :
-    <section className="movie-card movie-card--full">
-      <div className="movie-card__header">
-        <div className="movie-card__bg">
-          <img src={filmById.backgroundImage} alt={name}/>
+      <section className="movie-card movie-card--full">
+        <div className="movie-card__header">
+          <div className="movie-card__bg">
+            <img src={filmById.backgroundImage} alt={name}/>
+          </div>
+
+          <h1 className="visually-hidden">WTW</h1>
+
+          <header className="page-header">
+            <Logo/>
+            <Breadcrumbs film={filmById}/>
+            <UserBlock/>
+          </header>
+
+          <div className="movie-card__poster movie-card__poster--small">
+            <img src={posterImage} alt={name} width="218"
+              height="327"/>
+          </div>
         </div>
 
-        <h1 className="visually-hidden">WTW</h1>
-
-        <header className="page-header">
-          <Logo/>
-          <Breadcrumbs film={filmById}/>
-          <UserBlock/>
-        </header>
-
-        <div className="movie-card__poster movie-card__poster--small">
-          <img src={posterImage} alt={name} width="218"
-            height="327"/>
-        </div>
-      </div>
-
-      <AddReviewForm onSubmit={handleGetRatingComment}/>
-    </section>
+        <AddReviewForm onSubmit={handleGetRatingComment}/>
+      </section>
 
   );
 };
 
 AddReview.propTypes = {
-  film: PropTypes.object.isRequired,
   onAnswer: PropTypes.func.isRequired,
   filmById: PropTypes.object.isRequired,
-  isFilmFound: PropTypes.bool.isRequired,
   postCommentItem: PropTypes.func.isRequired,
   loadFilmById: PropTypes.func.isRequired,
+  isFilmLoaded: PropTypes.bool.isRequired,
+
 };
 
 const mapStateToProps = (state) => ({
-  isFilmFound: state.isFilmFound,
   filmById: state.filmById,
   isFilmLoaded: state.isFilmLoaded,
   // authorizationStatus: state.authorizationStatus,

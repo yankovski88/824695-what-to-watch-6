@@ -3,14 +3,13 @@ import PropTypes from "prop-types";
 import {useParams} from "react-router-dom";
 import {fetchFilmById} from "../../store/api-actions";
 import {connect} from "react-redux";
-import Error404 from "../error-404/error-404";
 import {useHistory} from "react-router-dom";
 import {formatTime} from "../../utils/utils";
 import Spinner from "../spinner/spinner";
 
 
 const Player = (props) => {
-  const {loadFilmById, isFilmFound, filmById, isFilmLoaded} = props;
+  const {loadFilmById, filmById, isFilmLoaded} = props;
   const [isPlaying, setPlaying] = React.useState(false);
   const [duration, setDuration] = React.useState(0);
   const [currentTime, setCurrentTime] = React.useState(0);
@@ -126,7 +125,6 @@ const Player = (props) => {
 
 Player.propTypes = {
   loadFilmById: PropTypes.func.isRequired,
-  isFilmFound: PropTypes.bool.isRequired,
   filmById: PropTypes.object.isRequired,
   isFilmLoaded: PropTypes.bool.isRequired,
 };
@@ -135,7 +133,6 @@ export {Player};
 
 const mapStateToProps = (state) => ({
   films: state.films, // взято из reduce
-  isFilmFound: state.isFilmFound,
   filmById: state.filmById,
   isFilmLoaded: state.isFilmLoaded,
   isDataLoaded: state.isDataLoaded,

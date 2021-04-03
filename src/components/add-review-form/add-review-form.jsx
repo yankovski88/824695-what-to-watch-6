@@ -52,7 +52,6 @@ const AddReviewForm = (props) => {
   // };
 
 
-
   const stars = new Array(10).fill().map((el, index) =>
     <Fragment key={`star-${index}`}>
       <input
@@ -65,7 +64,7 @@ const AddReviewForm = (props) => {
         // style={{color: `red`}}
       />
       <label
-                     className="rating__label" htmlFor={`star-${index}`}>Rating {index + 1} </label>
+        className="rating__label" htmlFor={`star-${index}`}>Rating {index + 1} </label>
     </Fragment>
   );
 
