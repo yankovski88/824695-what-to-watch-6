@@ -5,9 +5,12 @@ import UserBlock from "../user-block/user-block.jsx";
 import Copyright from "../copyright/copyright.jsx";
 import CatalogMyListFilms from "../catalog-my-list-films/catalog-my-list-films.jsx";
 import PropTypes from "prop-types";
+import Logout from "../logout/logout";
+
 
 const MyList = (props) => {
-  const {myListFilms, updateData} = props;
+  const {updateData} = props;
+
   return (
     <>
       <div className="user-page">
@@ -15,14 +18,14 @@ const MyList = (props) => {
           <Logo/>
           <PageTitleMyList/>
           <UserBlock/>
+          <Logout/>
         </header>
 
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <div className="catalog__movies-list">
-            <CatalogMyListFilms myListFilms={myListFilms} updateData={updateData}/>
-
+            <CatalogMyListFilms updateData={updateData}/>
           </div>
         </section>
 
@@ -36,7 +39,6 @@ const MyList = (props) => {
 };
 
 MyList.propTypes = {
-  myListFilms: PropTypes.array.isRequired,
   updateData: PropTypes.func.isRequired,
 };
 

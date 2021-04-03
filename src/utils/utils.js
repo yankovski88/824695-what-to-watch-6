@@ -1,4 +1,4 @@
-import {ALL_GENRES, NUMBER_FILM} from "../constants/constants";
+import {ALL_GENRES, EMAIL_REGEX, NUMBER_FILM} from "../constants/constants";
 
 
 export const getTimeMovie = (timeMovie)=>{
@@ -13,21 +13,6 @@ export const getTimeMovie = (timeMovie)=>{
   return ``;
 };
 
-
-export const getFilm = (filmActive, films)=>{
-  let filmEnter = {};
-  for (const film of films) {
-    if (film.id === filmActive) {
-      filmEnter = film;
-    }
-  }
-  return filmEnter;
-};
-
-
-export const getRandomInRange = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-};
 
 export const getGenreFilms = (typeGenre, itemFilms)=>{
   const films = itemFilms.slice();
@@ -66,30 +51,12 @@ export const getUniqueGenres = (films)=>{
 };
 
 
-// // функция которая возвраещь массив фильмов для рендера на основании числа фильмов сколько надо
-// export const getActiveFilms = (films, countShowFilm)=>{
-//   const activeFilms = [];
-//
-//   if (films.length > NUMBER_FILM) {
-//     for (let i = 0; i < countShowFilm; i++) {
-//       activeFilms.push(films[i]);
-//     }
-//   } else {
-//     for (let item of films) {
-//       activeFilms.push(item);
-//     }
-//   }
-//   return activeFilms;
-// };
-
-
 // написать функцию которая из массива с фильмами по id найдет жанр
 export const getGenreById = (idFilm, itemFilms) => {
   const films = itemFilms.slice();
 
   let genre = `All genre`;
-  for (let item of films) {
-    // console.log(item.id)
+  for (const item of films) {
     if (+idFilm === item.id) {
       genre = item.genre;
     }
@@ -97,3 +64,17 @@ export const getGenreById = (idFilm, itemFilms) => {
   return genre;
 };
 
+export const formatTime = (seconds) => {
+  const SECONDS_IN_MINUTE = 60;
+  const SECONDS_IN_HOUR = SECONDS_IN_MINUTE * 60;
+
+  const fullHours = Math.floor(seconds / SECONDS_IN_HOUR);
+  const remainingSecondsAfterHour = seconds % SECONDS_IN_HOUR;
+  const fullMinutes = Math.floor(remainingSecondsAfterHour / SECONDS_IN_MINUTE);
+  const fullSeconds = Math.floor(remainingSecondsAfterHour % SECONDS_IN_MINUTE);
+
+  return `${fullHours.toString().padStart(2, `0`)}:${fullMinutes.toString().padStart(2, `0`)}:${fullSeconds.toString().padStart(2, `0`)}`;
+};
+
+
+export const isValidEmail = (email) => EMAIL_REGEX.test(email);

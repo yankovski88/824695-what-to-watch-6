@@ -1,40 +1,64 @@
 import React from "react";
 import SmallCard from "../small-card/small-card.jsx";
 import PropTypes from "prop-types";
-// import {getFilm} from "../../utils/utils";
+import {connect} from "react-redux";
+import Spinner from "../spinner/spinner";
+import {fetchMoviesList} from "../../store/api-actions";
 
 
-const CatalogMyListFilms = (props)=>{
-  const {myListFilms, updateData} = props;
-  // const [filmActive, setFilmActive] = React.useState(``);
-  //
-  // const updateFilmActive = (value) => {
-  //   setFilmActive(value);
-  // };
+const CatalogMyListFilms = (props) => {
+  const {updateData, loadMoviesList, isDataLoaded, films} = props;
 
-  // getFilm(filmActive, myListFilms);
+  React.useEffect(
+      () => {
+        loadMoviesList();
+      }, []);
 
-  return (
-    <section className="catalog">
-      <h2 className="catalog__title visually-hidden">Catalog</h2>
+  const favoriteFilms = [];
+  for (const film of films) {
+    if (film.isFavorite === true) {
+      favoriteFilms.push(film);
+    }
+  }
 
-      <div className="catalog__movies-list">
-        {myListFilms.map((myListFilm)=> {
-          return <SmallCard
-            key={myListFilm.id}
-            activeFilm = {myListFilm}
-            updateData={updateData}
-          />;
-        })}
-      </div>
-    </section>
+
+  return (!isDataLoaded ? <Spinner/> : <section className="catalog">
+    <h2 className="catalog__title visually-hidden">Catalog</h2>
+
+    <div className="catalog__movies-list">
+      {favoriteFilms.map((myListFilm) => {
+        return <SmallCard
+          key={myListFilm.id}
+          activeFilm={myListFilm}
+          updateData={updateData}
+        />;
+      })}
+    </div>
+  </section>
+
   );
 };
 
 CatalogMyListFilms.propTypes = {
-  myListFilms: PropTypes.array.isRequired,
+  films: PropTypes.array.isRequired,
   updateData: PropTypes.func.isRequired,
-
+  loadMoviesList: PropTypes.func.isRequired,
+  isDataLoaded: PropTypes.bool.isRequired,
 };
 
-export default CatalogMyListFilms;
+const mapStateToProps = (state) => ({
+  allFavoriteFilms: state.allFavoriteFilms,
+  isDataLoaded: state.isDataLoaded,
+  films: state.films,
+
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  loadMoviesList() { // когда вызовится эта функция, то в dispatch попадает результат функции по запросу на сервер
+    dispatch(fetchMoviesList());
+  },
+});
+
+export {CatalogMyListFilms};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CatalogMyListFilms);

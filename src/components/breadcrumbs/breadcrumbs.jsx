@@ -1,15 +1,17 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import PropTypes from "prop-types";
+
 
 const Breadcrumbs = (props) => {
   const {film} = props;
   const {name} = film;
+  const params = useParams();
   return (
-    <nav className="breadcrumbs">
+    <nav className="breadcrumbs" >
       <ul className="breadcrumbs__list">
         <li className="breadcrumbs__item">
-          <Link to="/film" className="breadcrumbs__link">{name}</Link>
+          <Link to={`/films/${params.id}`} className="breadcrumbs__link">{name}</Link>
         </li>
         <li className="breadcrumbs__item">
           <a className="breadcrumbs__link">Add review</a>
@@ -19,8 +21,11 @@ const Breadcrumbs = (props) => {
   );
 };
 
+
 Breadcrumbs.propTypes = {
   film: PropTypes.object.isRequired,
 };
 
 export default Breadcrumbs;
+
+

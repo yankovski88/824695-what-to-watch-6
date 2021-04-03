@@ -6,20 +6,17 @@ import BtnPlay from "../btn-play/btn-play";
 import BtnAddMyList from "../btn-add-my-list/btn-add-my-list";
 import MovieNav from "../movie-nav/movie-nav.jsx";
 import PropTypes from "prop-types";
-import {Link, useParams} from "react-router-dom";
-// import filmProp from "./film.prop";
+import {useParams} from "react-router-dom";
 import Header from "../header/header";
 import {connect} from "react-redux";
 import {fetchFilmById, fetchMoviesList, fetchAllComments} from "../../store/api-actions";
-import Error404 from "../error-404/error-404";
 import {getGenreById, getGenreFilms} from "../../utils/utils";
 import {AuthorizationStatus} from "../../constants/constants";
+import LinkAddReview from "../link-add-review/link-add-review";
 
 
 const Film = (props) => {
   const {
-    isFilmFound,
-    // film,
     updateData,
     filmById,
     loadFilmById,
@@ -33,24 +30,23 @@ const Film = (props) => {
     onPrivateRouteRequest,
   } = props;
 
-  let {id} = useParams(); // берем данные с маршрута из app.js
+  const {id} = useParams(); // берем данные с маршрута из app.js
   const {posterImage, name, genre, released} = filmById;
-  const [nav] = React.useState({
-    nav: `overview`,
-  });
 
-  const genreById = getGenreById(id, films); // нашли жанр фильма по id маршрута
-  const likeFilms = getGenreFilms(genreById, films).slice(0, 4); // нашли все похожие фильмы по жанру
+  const likeFilms = React.useMemo(()=>{
+    const genreById = getGenreById(id, films); // нашли жанр фильма по id маршрута
+
+    return getGenreFilms(genreById, films).slice(0, 4);
+  }, [films, id]); // нашли все похожие фильмы по жанру
 
 
   // запускаем хук useEffect он запускается каждый раз когда открывается страница, он следит за флагом isDataLoaded
   React.useEffect(() => {
     if (id) {
-      loadFilmById(id);
+      loadFilmById(id);// тогда вызываем функцию которая делает запрос на сервер, отдает данные в dispatch, а тот меняет store
     }
-    // loadFilmById(film.id); // тогда вызываем функцию которая делает запрос на сервер, отдает данные в dispatch, а тот меняет store
   }, [id]); // useEffect сказали следи за этим флагом если он изменится, то делай запрос
-  // film.id
+
   React.useEffect(() => {
     if (!isDataLoaded) {
       onLoadData();
@@ -61,8 +57,6 @@ const Film = (props) => {
     if (!isAllComments) { // елси флаг false, то никогда коменты не загружались
       loadAllComments(id); // делаем запрос на коменты
     }
-    // loadAllComments(id); // делаем запрос на коменты
-
   }, [isAllComments]); // ставим слежку за флагом коментов
 
 
@@ -72,11 +66,6 @@ const Film = (props) => {
       onPrivateRouteRequest(`/films/${id}`); // передал маршрут чтобы оставался на странице с фильмом
     }
   }, [authorizationStatus]);
-
-
-  if (!isFilmFound) {
-    return (<Error404/>);
-  }
 
 
   return (
@@ -100,13 +89,14 @@ const Film = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <BtnPlay anyFilm={filmById}/>
-                <BtnAddMyList/>
+                <BtnPlay />
+
                 {authorizationStatus === AuthorizationStatus.AUTH ?
-                  <Link to={`/films/${filmById ? filmById.id : ``}/add-review`}
-                    className="btn movie-card__button">Add review</Link>
+                  <>
+                    <BtnAddMyList/>
+                    <LinkAddReview filmById={filmById}/>
+                  </>
                   : ``}
-                {/* <LinkAddReview film={film}/>*/}
               </div>
             </div>
           </div>
@@ -120,8 +110,7 @@ const Film = (props) => {
             </div>
 
             <div className="movie-card__desc">
-
-              <MovieNav nav={nav} film={filmById} reviews={allComments}/>
+              <MovieNav film={filmById} reviews={allComments}/>
 
             </div>
           </div>
@@ -130,7 +119,6 @@ const Film = (props) => {
 
       <div className="page-content">
 
-        {/* likeFilms={likeFilms}*/}
         <CatalogLikeFilms likeFilms={likeFilms} updateData={updateData}/>
 
         <footer className="page-footer">
@@ -143,7 +131,6 @@ const Film = (props) => {
 };
 
 Film.propTypes = {
-  // film: filmProp,
   updateData: PropTypes.func.isRequired,
   loadAllComments: PropTypes.func.isRequired,
   filmById: PropTypes.object.isRequired,

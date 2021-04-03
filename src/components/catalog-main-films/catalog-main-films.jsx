@@ -22,10 +22,6 @@ const CatalogMainFilms = (props) => {
         return <SmallCard
           key={activeFilm.id}
           activeFilm={activeFilm}
-          // videoLink={mainFilm.videoLink}
-          // name={mainFilm.name}
-          // posterImage={mainFilm.posterImage}
-          // id={mainFilm.id}
           updateData={updateData}
         />;
       })}

@@ -1,5 +1,6 @@
 import {ActionCreator} from "./action";
 import {AuthorizationStatus} from "../constants/constants";
+import {adaptToClientUser} from "./reducer";
 
 export const fetchMoviesList = () => (dispatch, _getState, api) => (
   api.get(`/films`)
@@ -20,8 +21,63 @@ export const fetchPromo = ()=>(dispatch, _getState, api)=>(
 // проверка авторизован ли пользователь
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(`/login`)
-    .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
-    .catch(() => {})
+    .then(({data}) => {
+      dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+      const userData = adaptToClientUser(data);
+      dispatch(ActionCreator.loggedIn(userData));
+    })
+    .catch(()=>{})
+);
+
+export const login = ({login: email, password}) => (dispatch, getState, api) => (
+  api.post(`/login`, {email, password})
+    .then(({data}) => {
+      dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+      const userData = adaptToClientUser(data);
+      dispatch(ActionCreator.loggedIn(userData));
+      dispatch(ActionCreator.redirectToRoute(getState().requestedRoute));
+    })
+    .catch(
+        () => dispatch(ActionCreator.hasErrorLogin(true)) // думаю может это удалить надо
+    )
+);
+
+export const fetchFilmById = (id)=>(dispatch, _getState, api)=>(
+  api.get(`/films/${id}`)
+    .then((response)=>dispatch(ActionCreator.getFilmById(response.data)))
+    .catch(({response}) => { // если не будет catch будет постоянная загрузка (spinner) т.к. не станет флаг true
+      if (response.status === 404) {
+        dispatch(ActionCreator.redirectToRoute(`/404`)); // если id фильма не найден, то всех отправит страницу 404
+      }
+    })
+);
+
+export const fetchAllComments = (id)=>(dispatch, _getState, api)=>(
+  api.get(`/comments/${id}`)
+    .then((response)=>dispatch(ActionCreator.getAllComments(response.data)))
+);
+
+export const fetchPostComment = (id, rating, comment)=>(dispatch, getState, api)=> {
+
+  dispatch(ActionCreator.changeIsAddReview(false)); // флаг что если false, то кнопку будет disable
+  api.post(`/comments/${id}`, {rating, comment})
+    .then(() => {
+      dispatch(ActionCreator.redirectToRoute(`/films/${id}`));
+      dispatch(ActionCreator.changeIsAddReview(true)); // флаг что если false, то кнопку будет disable
+      dispatch(fetchAllComments(id));
+    })
+    .catch(()=> dispatch(ActionCreator.addReviewFail(true)));
+};
+
+export const fetchFavorite = (idFilm, isFavorite, isPromo)=>(dispatch, _getState, api)=>(
+  api.post(`/favorite/${idFilm}/${isFavorite}`, {idFilm, isFavorite})
+    .then(()=>{
+      if (isPromo) {
+        dispatch(ActionCreator.setPromoMovieFavorite(isFavorite));
+      } else {
+        dispatch(ActionCreator.setMovieFavorite(idFilm, isFavorite, isPromo));
+      }
+    })
 );
 
 // проверка авторизован ли пользователь
@@ -31,24 +87,3 @@ export const checkAuthNo = () => (dispatch, _getState, api) => (
     .catch(() => {})
 );
 
-// отправка данных для авторизации
-export const login = ({login: email, password}) => (dispatch, getState, api) => (
-  api.post(`/login`, {email, password})
-    .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
-    .then(() => dispatch(ActionCreator.redirectToRoute(getState().requestedRoute))) // если пользователь логинится, то закинь его на главную страницу
-);
-
-export const fetchFilmById = (id)=>(dispatch, _getState, api)=>(
-  api.get(`/films/${id}`)
-    .then((response)=>dispatch(ActionCreator.getFilmById(response.data)))
-);
-
-export const fetchAllComments = (id)=>(dispatch, _getState, api)=>(
-  api.get(`/comments/${id}`)
-    .then((response)=>dispatch(ActionCreator.getAllComments(response.data)))
-);
-
-export const fetchPostComment = (id, rating, comment)=>(dispatch, getState, api)=>(
-  api.post(`/comments/${id}`, {rating, comment})
-    .then(()=>dispatch(ActionCreator.redirectToRoute(getState().requestedRoute)))
-);

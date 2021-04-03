@@ -1,13 +1,9 @@
 import {ActionType} from "../store/action";
 import {getGenreFilms} from "../utils/utils";
-import {ALL_GENRES, NUMBER_FILM, AuthorizationStatus, RoutePaths} from "../constants/constants";
-
-
-// export const mainFilms = getFilmData().slice(0, 18);; // хранилище всех фильмов import {getFilmData} from "../components/mock/film";
-
+import {ALL_GENRES, NUMBER_FILM, RoutePaths} from "../constants/constants";
 
 // метод Адаптер который адоптирует данные от сервера на читаемые данные для клиента
-const adaptToClient = (film)=> { // получаем объект с неугодными нам полями изменили названия полей, удалили старые серверные и вернули отредоктированный объект
+export const adaptToClient = (film) => { // получаем объект с неугодными нам полями изменили названия полей, удалили старые серверные и вернули отредоктированный объект
 
   const adaptedFilm = Object.assign(
       {},
@@ -40,6 +36,25 @@ const adaptToClient = (film)=> { // получаем объект с неуго�
   return adaptedFilm;
 };
 
+// метод Адаптер который адоптирует данные от сервера на читаемые данные для клиента
+export const adaptToClientUser = (user) => { // получаем объект с неугодными нам полями изменили названия полей, удалили старые серверные и вернули отредоктированный объект
+
+  const adaptedUser = Object.assign(
+      {},
+      user,
+      {
+      // в basePrice записали, то что пришло с сервера, плюс можно модифицировать данные как с датой
+        avatarUrl: user.avatar_url,
+      }
+  );
+
+  // Ненужные ключи мы удаляем
+  delete adaptedUser.avatar_url;
+
+
+  return adaptedUser;
+};
+
 
 // начальное состояние хранилища store
 // Определяем действия
@@ -49,16 +64,23 @@ const initialState = {
   genreFilms: [], // фильмы отсортированные по жанру
   films: [], // загруженные фильмы с сервера все
   likeGenre: ``, // жанр по умолчанию пустой для похожих фильмов
-  likeFilms: [], // похожие фильмы, появятся только после клика жанра
+  likeFilms: [], // похожие фильмы, появятся только после клика жанра. Теперь они формируются сами.
   isDataLoaded: false, // загрузились ли фильмы с сервера
   filmPromo: {}, // фильм на главной странице
-  authorizationStatus: AuthorizationStatus.NO_AUTH, // поле чтобы знать авторизирован ли пользователь
+  authorizationStatus: ``, // null, // поле чтобы знать авторизирован ли пользователь
   requestedRoute: RoutePaths.MAIN, // маршрут подставляется если пришел юзер не авторизованный
   filmById: {}, // фильм полученный с помощью маршрута id
   isFilmFound: false, // флаг если фильм получили т.е. через поиск напрямую id верный
+  isFilmLoaded: false, // нужный фильм загрузился
 
   isAllComments: false, // все коменты полученны
   allComments: [], // массив комментов пуст
+
+  isAddReview: true,
+
+  hasErrorLogin: false, // логин не проходит
+  dataLoggedIn: {},
+  isAddReviewFail: false, // флаг на форму комента
 };
 
 export const reducer = (state = initialState, action) => { // второе инициализируем стейт чтобы загрузить начальный жанр т.е. все фильмы
@@ -67,47 +89,24 @@ export const reducer = (state = initialState, action) => { // второе ин�
       return {
         ...state, // это нужно чтобы вывесте все данные и не писать все построчно
         genre: action.payload,
-
-        // films: getGenreFilms(action.payload, state.films),
         genreFilms: getGenreFilms(action.payload, state.films),
-
         countShowFilm: 8,
       };
     case ActionType.MORE_FILM:
-      if (state.films.length - state.countShowFilm > NUMBER_FILM) {
-        return {
-          ...state,
-          genre: state.genre,
-          countShowFilm: state.countShowFilm + NUMBER_FILM,
-          films: state.films,
-          genreFilms: state.genreFilms,
-          isDataLoaded: true,
-        };
-      } else {
-        return {
-          ...state,
-          genre: state.genre,
-          films: state.films,
-          countShowFilm: state.countShowFilm + state.films.length - state.countShowFilm,
-          genreFilms: state.genreFilms,
-          isDataLoaded: true,
-        };
-      }
+      return {
+        ...state,
+        countShowFilm: state.countShowFilm + NUMBER_FILM,
+      };
+
     case ActionType.GET_ALL_FILMS: // первое загрузили все фильмы
       return {
         ...state,
         isDataLoaded: true,
-        films: action.payload.map((film)=>{ // по массиву объектов фильмов прошлись
+        films: action.payload.map((film) => { // по массиву объектов фильмов прошлись
           return adaptToClient(film); // и каждый объект пропустили через адатпер и вернули этот массив
         })
       };
 
-    case ActionType.LIKE_FILMS:
-      return {
-        ...state,
-        likeGenre: action.payload,
-        likeFilms: []
-      };
     case ActionType.GET_FILM_PROMO:
       return {
         ...state,
@@ -128,6 +127,7 @@ export const reducer = (state = initialState, action) => { // второе ин�
         ...state,
         filmById: adaptToClient(action.payload),
         isFilmFound: true,
+        isFilmLoaded: true,
       };
     case ActionType.GET_ALL_COMMENTS:
       return {
@@ -137,6 +137,60 @@ export const reducer = (state = initialState, action) => { // второе ин�
         isFilmFound: true,
         isAllComments: true,
       };
+
+    case ActionType.CHANGE_IS_ADD_REVIEW:
+      return {
+        ...state,
+        isAddReview: action.payload,
+        isAllComments: false,
+      };
+    case ActionType.HAS_ERROR_LOGIN:
+      return {
+        ...state,
+        hasErrorLogin: action.payload,
+      };
+
+    case ActionType.LOGGED_IN:
+      return {
+        ...state,
+        dataLoggedIn: action.payload,
+      };
+
+
+    case ActionType.SET_MOVIE_FAVORITE:
+      return {
+        ...state,
+        films: state.films.map((movie) => {
+          if (movie.id === action.payload.movieId) {
+            return {
+              ...movie,
+              isFavorite: action.payload.isFavorite
+            };
+          } else {
+            return movie;
+          }
+        }),
+        filmById: {
+          ...state.filmById,
+          isFavorite: action.payload.isFavorite,
+        }
+      };
+
+    case ActionType.IS_ADD_REVIEW_FAIL:
+      return {
+        ...state,
+        isAddReviewFail: action.payload,
+      };
+
+    case ActionType.SET_PROMO_MOVIE_FAVORITE:
+      return {
+        ...state,
+        filmPromo: {
+          ...state.filmPromo,
+          isFavorite: action.payload,
+        }
+      };
+
 
     default:
       return state;

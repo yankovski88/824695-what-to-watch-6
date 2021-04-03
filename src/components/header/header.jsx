@@ -5,6 +5,7 @@ import UserBlock from "../user-block/user-block";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {AuthorizationStatus} from "../../constants/constants";
+import Logout from "../logout/logout";
 
 
 const Header = (props)=>{
@@ -13,7 +14,10 @@ const Header = (props)=>{
     <>
       <header className="page-header movie-card__head">
         <Logo/>
-        {authorizationStatus === AuthorizationStatus.AUTH ? <UserBlock/> : <SignInLink/>}
+        {authorizationStatus === AuthorizationStatus.AUTH ?
+          <><UserBlock/><Logout/></>
+
+          : <SignInLink/>}
       </header>
     </>
   );
@@ -29,4 +33,4 @@ const mapStateToProps = (state)=>({
 
 export {Header};
 
-export default connect(mapStateToProps, null)(Header);
+export default connect(mapStateToProps, null)(Header); // если есть defalt то импорт со скобками

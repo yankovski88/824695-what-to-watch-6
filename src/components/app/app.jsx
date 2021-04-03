@@ -14,11 +14,9 @@ import browserHistory from "../../browser-history";
 import {ActionCreator} from "../../store/action";
 import PrivateRoute from "../private-route/private-route";
 
-
 const App = (props) => {
-  const {myListFilms, authorizationStatus, onPrivateRouteRequest} = props; // reviews,
-  const [film, setMovie] = React.useState({}); // фильм который хотим посмотреть // movie
-
+  const {authorizationStatus, onPrivateRouteRequest} = props;
+  const [film, setMovie] = React.useState({}); // фильм который хотим посмотреть
 
   const updateData = (value) => {
     setMovie(value);
@@ -35,49 +33,28 @@ const App = (props) => {
           <SignIn />
         </Route>
 
-
-        <PrivateRoute
-          exact
+        <PrivateRoute exact
           path={`/mylist`}
-          authorizationStatus={authorizationStatus}
           onPrivateRouteRequest={onPrivateRouteRequest}
-          render={()=><MyList myListFilms={myListFilms} updateData={updateData}
-          />}
+          render={()=><MyList updateData={updateData}/>}
+          authorizationStatus={authorizationStatus}
         >
         </PrivateRoute>
 
-
-        {/* <Route exact path="/mylist">*/}
-        {/*  <MyList myListFilms={myListFilms} updateData={updateData}/>*/}
-        {/* </Route>*/}
-        {/* "/films/:id/review?"*/}
-        {/* ${film.id}*/}
         <PrivateRoute exact
           path={`/films/:id/add-review`}
           onPrivateRouteRequest={onPrivateRouteRequest}
-          render={()=><AddReview path={`/films/:id/add-review`} film={film} onAnswer={() => {}}/>}
-          authorizationStatus={authorizationStatus}
+          render={()=><AddReview film={film}/>}
         >
         </PrivateRoute>
-
-        {/* <Route exact path={`/films/${film.id}/add-review`}>*/}
-        {/*  <AddReview film={film} onAnswer={() => {}}/>*/}
-        {/* </Route>*/}
-        {/* ${film.id}*/}
-        {/* /!*reviews={reviews}*!/ likeFilms={likeFilms}*/}
         <Route exact path={`/films/:id/details`}>
           <Film film={film} updateData={updateData} onPrivateRouteRequest={onPrivateRouteRequest}/>
         </Route>
-        {/* ${film.id}*/}
-        {/* /!*reviews={reviews}*!/likeFilms={likeFilms}*/}
         <Route exact path={`/films/:id/reviews`}>
           <Film film={film} updateData={updateData} onPrivateRouteRequest={onPrivateRouteRequest}/>
         </Route>
-
-        {/* /films/:id?*/}
-        {/* /!*reviews={reviews}*!/likeFilms={likeFilms}*/}
         <Route exact path={`/films/:id`}>
-          <Film path={`/films/:id`} film={film} updateData={updateData} onPrivateRouteRequest={onPrivateRouteRequest}/>
+          <Film film={film} updateData={updateData} onPrivateRouteRequest={onPrivateRouteRequest}/>
         </Route>
 
 
@@ -93,7 +70,6 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  myListFilms: PropTypes.array.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   onPrivateRouteRequest: PropTypes.func.isRequired,
 };

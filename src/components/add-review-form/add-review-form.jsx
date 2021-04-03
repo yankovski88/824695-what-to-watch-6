@@ -1,31 +1,31 @@
 import React, {Fragment} from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+
 
 const AddReviewForm = (props) => {
-  const {onSubmit} = props;
-  // const [review, addReview] = React.useState({
-  //   rating: ``,
-  //   review: ``,
-  // });
+  const {onSubmit, isAddReview, isAddReviewFail} = props;
+  const textarea = React.useRef();
+  const textareaBtn = React.useRef();
 
-  const [rating, setRating] = React.useState(1);
+  const COMMENT_LENGTH_MIN = 50;
+  const COMMENT_LENGTH_MAX = 400;
+
+  const [rating, setRating] = React.useState(0);
   const [review, setReview] = React.useState(``);
 
   const handleSubmitClick = (evt) => {
     evt.preventDefault();
-    onSubmit(rating, review); // review
+    onSubmit(rating, review);
   };
 
 
-  // const handleSubmit = (evt) => {
-  //   evt.preventDefault();
-  //   onAnswer(review);
-  // };
-  //
-  // const handleFieldChange = (evt) => {
-  //   const {name, value} = evt.target;
-  //   addReview({...review, [name]: value});
-  // };
+  const checkReview = (reviewText)=>{
+    if (reviewText.length < COMMENT_LENGTH_MIN || reviewText.length > COMMENT_LENGTH_MAX) {
+      return false;
+    }
+    return true;
+  };
 
 
   const stars = new Array(10).fill().map((el, index) =>
@@ -34,14 +34,15 @@ const AddReviewForm = (props) => {
         className="rating__input"
         id={`star-${index}`}
         type="radio" name="rating"
-        value={index + 1}
+        value={index + 1} //
         checked={index + 1 === rating}
         onChange={() => setRating(index + 1)}
       />
-      <label className="rating__label" htmlFor={`star-${index}`}>Rating {index + 1} </label>
+      <label
+        style={{color: `red`}}
+        className="rating__label" htmlFor={`star-${index}`}>Rating {index + 1} </label>
     </Fragment>
   );
-
 
   return (
     <div className="add-review">
@@ -54,18 +55,25 @@ const AddReviewForm = (props) => {
         </div>
 
         <div className="add-review__text">
-          <textarea className="add-review__textarea" name="review" id="review-text"
+          <textarea ref={textarea} className="add-review__textarea" name="review" id="review-text"
             placeholder="Review text"
-            // onChange={handleReviewChange}
             onChange={(evt) => setReview(evt.target.value)}
-
           ></textarea>
           <div className="add-review__submit">
-            <button className="add-review__btn" type="submit" onClick={handleSubmitClick}>Post</button>
+            <button
+              ref={textareaBtn}
+              disabled = {checkReview(review) && isAddReview && rating !== 0 ? false : true}
+              className="add-review__btn" type="submit"
+              onClick={handleSubmitClick}>Post</button>
           </div>
 
         </div>
       </form>
+      {isAddReviewFail &&
+      <p className="add-review__error">
+        An error occurred while sending the review. Please try again later.
+      </p>
+      }
     </div>
 
   );
@@ -73,5 +81,15 @@ const AddReviewForm = (props) => {
 
 AddReviewForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  isAddReview: PropTypes.bool.isRequired,
+  isAddReviewFail: PropTypes.bool.isRequired,
 };
-export default AddReviewForm;
+
+export {AddReviewForm};
+
+const mapStateToProps = (state)=>({
+  isAddReview: state.isAddReview,
+  isAddReviewFail: state.isAddReviewFail,
+});
+
+export default connect(mapStateToProps, null)(AddReviewForm);

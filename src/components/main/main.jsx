@@ -13,7 +13,8 @@ import Spinner from "../spinner/spinner";
 
 
 const Main = (props) => {
-  const {updateData, films, countShowFilm, setGenre, isDataLoaded, onLoadData, genreFilms} = props; // itemGenres, mainFilms,
+  const {updateData, films, countShowFilm, setGenre, isDataLoaded, onLoadData, genreFilms} = props;
+
 
   // код решает показать btn more или нет
   let itemGenreFilms; // переменная которая смотрит показывать ли кнопку More Show
@@ -35,14 +36,12 @@ const Main = (props) => {
     <Card />
     <div className="page-content">
 
-      {!isDataLoaded ? <Spinner /> :
-        <section className="catalog">
-          <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <ListGenres films={films} setGenre={setGenre}/>
-          <CatalogMainFilms updateData={updateData}/>
-          {/* itemGenreFilms*/}
-          {itemGenreFilms.length > countShowFilm ? <BtnShowMore /> : ``}
-        </section>
+      {!isDataLoaded ? <Spinner /> : <section className="catalog">
+        <h2 className="catalog__title visually-hidden">Catalog</h2>
+        <ListGenres films={films} setGenre={setGenre}/>
+        <CatalogMainFilms updateData={updateData}/>
+        {itemGenreFilms.length > countShowFilm ? <BtnShowMore /> : ``}
+      </section>
       }
 
 
@@ -55,7 +54,6 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  // mainFilms: PropTypes.array.isRequired,
   updateData: PropTypes.func.isRequired,
   genreFilms: PropTypes.array.isRequired,
   films: PropTypes.array.isRequired,
@@ -63,7 +61,6 @@ Main.propTypes = {
   setGenre: PropTypes.func.isRequired,
   isDataLoaded: PropTypes.bool.isRequired,
   onLoadData: PropTypes.func.isRequired,
-
 };
 
 const mapStateToProps = (state)=>({
@@ -71,7 +68,7 @@ const mapStateToProps = (state)=>({
   selectedGenre: state.genre, // взято из reduce action.payload
   films: state.films, // взято из reduce
   genreFilms: state.genreFilms,
-  isDataLoaded: state.isDataLoaded
+  isDataLoaded: state.isDataLoaded,
 });
 
 // если передать setGenre на клик меню жанр, то в aaction в payload попадет название жанра
@@ -81,7 +78,7 @@ const mapDispatchToProps = (dispatch)=>({
   },
   onLoadData() { // когда вызовится эта функция, то в dispatch попадает результат функции по запросу на сервер
     dispatch(fetchMoviesList());
-  }
+  },
 });
 
 export {Main};

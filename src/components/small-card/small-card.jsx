@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 
 
 const SmallCard = (props) => {
-  const {activeFilm, updateData} = props; // posterImage, name, id, filmById, loadFilmById
+  const {activeFilm, updateData} = props;
   const [filmActive, setFilmActive] = React.useState(``);
 
   let timeOutId = null; // флаг, таймер не включен
@@ -37,13 +37,9 @@ const SmallCard = (props) => {
     <>
 
       <article className="small-movie-card catalog__movies-card"
-        // id={activeFilm.id}
         onMouseOver={_handleHoverCard}
         onMouseLeave={_handleHoverOutCard}
 
-        // onClick={() => {
-        //   loadFilmById(activeFilm.id);
-        // }}
 
         onClick={() => {
           updateData(activeFilm);

@@ -1,20 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import Logo from "../logo/logo.jsx";
-// import UserBlock from "../user-block/user-block.jsx";
 import BtnAddMyList from "../btn-add-my-list/btn-add-my-list";
 import {connect} from "react-redux";
 import {fetchPromo} from "../../store/api-actions";
 import Header from "../header/header";
 import BtnPlay from "../btn-play/btn-play";
 
+
 const Card = (props) => {
-  const {filmPromo, onLoadFilmPromo} = props;
+  const {filmPromo, onLoadFilmPromo} = props; // loadFavorite
 
   React.useEffect(()=>{
     if (Object.keys(filmPromo).length === 0) {
       onLoadFilmPromo();
-
     }
   }, [filmPromo]);
 
@@ -42,7 +40,6 @@ const Card = (props) => {
             </p>
 
             <div className="movie-card__buttons">
-              {/* anyFilm={filmPromo}*/}
               <BtnPlay />
               <BtnAddMyList />
             </div>
@@ -53,7 +50,6 @@ const Card = (props) => {
 
   );
 };
-
 Card.propTypes = {
   filmPromo: PropTypes.object.isRequired,
   onLoadFilmPromo: PropTypes.func.isRequired,
@@ -61,12 +57,13 @@ Card.propTypes = {
 
 const mapStateToProps = (state)=>({
   filmPromo: state.filmPromo,
+  authorizationStatus: state.authorizationStatus,
 });
 
 const mapDispatchToProps = (dispatch)=>({
   onLoadFilmPromo() {
     dispatch(fetchPromo());
-  }
+  },
 });
 
 export {Card};

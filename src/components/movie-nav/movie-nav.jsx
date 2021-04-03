@@ -7,28 +7,22 @@ import FilmDetails from "../film-details/film-details";
 import FilmReviews from "../film-reviews/film-reviews";
 
 const MovieNav = (props) => {
-  const {nav, film, reviews} = props;
-  const [activeNav, setActiveNav] = React.useState(nav);
+  const {film, reviews} = props;
+  const [tab, setTab] = React.useState(0);
 
-
-  const handleNavChange = (evt) => {
-    const {name} = evt.target;
-    setActiveNav({nav: name});
-  };
-
-  const IsActiveNav = (navElement) => {
-    if (navElement.activeNav === `overview`) {
+  const Tabs = (item) => {
+    if (item.tab === 0) {
       return (
         <>
           <MovieRating film={film}/>
           <FilmDescription film={film}/>
         </>
       );
-    } else if (navElement.activeNav === `details`) {
+    } else if (item.tab === 1) {
       return (
         <FilmDetails film={film} />
       );
-    } else if (navElement.activeNav === `reviews`) {
+    } else if (item.tab === 2) {
       return (
         <FilmReviews reviews={reviews}/>
       );
@@ -36,30 +30,36 @@ const MovieNav = (props) => {
     return ``;
   };
 
+  const handleTabClick = (evt, index) => {
+    evt.preventDefault();
+    setTab(index);
+  };
+
+
   return (
     <>
       <nav className="movie-nav movie-card__nav">
         <ul className="movie-nav__list">
-          <li className={`movie-nav__item  ${activeNav.nav === `overview` ? `movie-nav__item--active` : ``}`}>
-            <Link to={`/films/${film.id}`} className="movie-nav__link" name="overview" onClick={handleNavChange}>Overview</Link>
+          <li onClick={(evt)=> handleTabClick(evt, 0)} className={`movie-nav__item  ${tab === 0 ? `movie-nav__item--active` : ``}`}>
+            <Link to={`/films/${film.id}`} className="movie-nav__link" name="overview"
+            >Overview</Link>
           </li>
-          <li className={`movie-nav__item  ${activeNav.nav === `details` ? `movie-nav__item--active` : ``}`}>
+          <li onClick={(evt)=> handleTabClick(evt, 1)} className={`movie-nav__item  ${tab === 1 ? `movie-nav__item--active` : ``}`}>
             <Link to={`/films/${film.id}/details`} className="movie-nav__link " name="details"
-              onClick={handleNavChange}>Details</Link>
+            >Details</Link>
           </li>
-          <li className={`movie-nav__item  ${activeNav.nav === `reviews` ? `movie-nav__item--active` : ``}`}>
+          <li onClick={(evt)=>handleTabClick(evt, 2)} className={`movie-nav__item  ${tab === 2 ? `movie-nav__item--active` : ``}`}>
             <Link to={`/films/${film.id}/reviews`} className="movie-nav__link " name="reviews"
-              onClick={handleNavChange}>Reviews</Link>
+            >Reviews</Link>
           </li>
         </ul>
       </nav>
-      <IsActiveNav activeNav = {activeNav.nav}/>
+      <Tabs tab = {tab}/>
     </>
   );
 };
 
 MovieNav.propTypes = {
-  nav: PropTypes.object.isRequired,
   film: PropTypes.object.isRequired,
   reviews: PropTypes.array.isRequired,
 };
