@@ -20,14 +20,19 @@ const Player = (props) => {
 
   const timeElapsed = duration - currentTime;
 
+  const intervalID = React.useRef();
+
   React.useEffect(() => {
-    setInterval(() => {
+    intervalID.current = setInterval(() => {
       if (isPlaying) {
         if (videoRef.current !== null) {
           setCurrentTime(videoRef.current.currentTime);
         }
       }
     }, 100);
+    return ()=>{
+      clearInterval(intervalID);
+    };
   }, [isPlaying]);
 
 

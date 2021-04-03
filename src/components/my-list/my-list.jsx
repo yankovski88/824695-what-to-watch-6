@@ -5,6 +5,7 @@ import UserBlock from "../user-block/user-block.jsx";
 import Copyright from "../copyright/copyright.jsx";
 import CatalogMyListFilms from "../catalog-my-list-films/catalog-my-list-films.jsx";
 import PropTypes from "prop-types";
+import Logout from "../logout/logout";
 
 
 const MyList = (props) => {
@@ -17,6 +18,7 @@ const MyList = (props) => {
           <Logo/>
           <PageTitleMyList/>
           <UserBlock/>
+          <Logout/>
         </header>
 
         <section className="catalog">

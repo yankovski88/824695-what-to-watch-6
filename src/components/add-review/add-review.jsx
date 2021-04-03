@@ -1,6 +1,4 @@
 import React from "react";
-import Logo from "../logo/logo.jsx";
-import UserBlock from "../user-block/user-block.jsx";
 import Breadcrumbs from "../breadcrumbs/breadcrumbs.jsx";
 import AddReviewForm from "../add-review-form/add-review-form";
 import PropTypes from "prop-types";
@@ -8,6 +6,7 @@ import {connect} from "react-redux";
 import {fetchFilmById, fetchPostComment} from "../../store/api-actions";
 import {useParams} from "react-router-dom";
 import Spinner from "../spinner/spinner";
+import Header from "../header/header";
 
 
 const AddReview = (props) => {
@@ -35,11 +34,9 @@ const AddReview = (props) => {
 
           <h1 className="visually-hidden">WTW</h1>
 
-          <header className="page-header">
-            <Logo/>
+          <Header>
             <Breadcrumbs film={filmById}/>
-            <UserBlock/>
-          </header>
+          </Header>
 
           <div className="movie-card__poster movie-card__poster--small">
             <img src={posterImage} alt={name} width="218"

@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть» [![Build status][travis-image]][travis-url]
 
 * Студент: [Юрий Янковский](https://up.htmlacademy.ru/react/6/user/824695).
-* Наставник: [Даниил Царёв](https://htmlacademy.ru/profile/id945835)
+* Наставник: [Александр Булах](https://htmlacademy.ru/profile/id1213123)
 
 ---
 
