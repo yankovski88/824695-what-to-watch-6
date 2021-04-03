@@ -74,7 +74,6 @@ const AddReview = (props) => {
 };
 
 AddReview.propTypes = {
-  onAnswer: PropTypes.func.isRequired,
   filmById: PropTypes.object.isRequired,
   postCommentItem: PropTypes.func.isRequired,
   loadFilmById: PropTypes.func.isRequired,
