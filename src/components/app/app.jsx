@@ -71,7 +71,6 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  myListFilms: PropTypes.array.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   onPrivateRouteRequest: PropTypes.func.isRequired,
 };

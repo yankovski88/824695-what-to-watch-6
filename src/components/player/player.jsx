@@ -15,8 +15,6 @@ const Player = (props) => {
   const [currentTime, setCurrentTime] = React.useState(0);
 
   const videoRef = React.useRef();
-  const playPlayer = React.useRef();
-  const fullScreen = React.useRef();
   const history = useHistory();
   const params = useParams();
 
@@ -39,10 +37,6 @@ const Player = (props) => {
       loadFilmById(params.id); // тогда вызываем функцию которая делает запрос на сервер, отдает данные в dispatch, а тот меняет store
     }
   }, [params.id]); // useEffect сказали следи за этим флагом если он изменится, то делай запрос
-
-  // if (!isFilmFound) {
-  //   return (<Error404/>);
-  // }
 
   const hendlePlayPlayer = () => {
     if (isPlaying) {
@@ -90,7 +84,7 @@ const Player = (props) => {
       <div className="player__controls-row">
 
         {!isPlaying ? <button
-          onClick={hendlePlayPlayer} ref={playPlayer}
+          onClick={hendlePlayPlayer}
           type="button" className="player__play">
           <svg viewBox="0 0 19 19" width="19" height="19">
             <use xlinkHref="#play-s"></use>
@@ -108,7 +102,7 @@ const Player = (props) => {
 
         <div className="player__name">Transpotting</div>
 
-        <button ref={fullScreen}
+        <button
           onClick={hendleFullScreen}
           type="button"
           className="player__full-screen">

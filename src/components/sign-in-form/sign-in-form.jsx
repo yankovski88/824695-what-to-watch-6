@@ -15,9 +15,6 @@ const SignInForm = (props)=>{
   const loginRef = React.useRef(); // useRef сохраняет в себе элемент разметки
   const passwordRef = React.useRef(); // сохранили пароль
 
-  // const history = useHistory(); // нужно для маршрутизации, но здесь не используется
-  // <button onClick={()=> history.push(`/game`)}></button>
-
   // пропишем функцию на отправку формы на авторизацию
   const handleSubmit = (evt)=>{
     evt.preventDefault();
@@ -113,5 +110,5 @@ const mapDispatchToProps = (dispatch)=>({
 });
 
 export {SignInForm};
-export default connect(mapStateToProps, mapDispatchToProps)(SignInForm); // mapStateToProps
+export default connect(mapStateToProps, mapDispatchToProps)(SignInForm);
 

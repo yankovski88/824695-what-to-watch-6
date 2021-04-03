@@ -73,10 +73,6 @@ export const ActionCreator = {
     type: ActionType.CHANGE_IS_ADD_REVIEW,
     payload: data,
   }),
-  // hasError: (data)=>({
-  //   type: ActionType.HAS_ERROR,
-  //   payload: data,
-  // }),
   hasErrorLogin: (data)=>({
     type: ActionType.HAS_ERROR_LOGIN,
     payload: data,

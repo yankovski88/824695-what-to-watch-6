@@ -13,7 +13,7 @@ import Spinner from "../spinner/spinner";
 
 
 const Main = (props) => {
-  const {updateData, films, countShowFilm, setGenre, isDataLoaded, onLoadData, genreFilms} = props; // itemGenres, mainFilms, loadFavorite
+  const {updateData, films, countShowFilm, setGenre, isDataLoaded, onLoadData, genreFilms} = props;
 
 
   // код решает показать btn more или нет
@@ -33,7 +33,6 @@ const Main = (props) => {
   }, [isDataLoaded]); // useEffect сказали следи за этим флагом если он изменится, то делай запрос
 
   return <React.Fragment>
-    {/* loadFilmFavorite={hendleLoadFilmFavorite}*/}
     <Card />
     <div className="page-content">
 
@@ -41,7 +40,6 @@ const Main = (props) => {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
         <ListGenres films={films} setGenre={setGenre}/>
         <CatalogMainFilms updateData={updateData}/>
-        {/* itemGenreFilms*/}
         {itemGenreFilms.length > countShowFilm ? <BtnShowMore /> : ``}
       </section>
       }
@@ -56,7 +54,6 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  // mainFilms: PropTypes.array.isRequired,
   updateData: PropTypes.func.isRequired,
   genreFilms: PropTypes.array.isRequired,
   films: PropTypes.array.isRequired,

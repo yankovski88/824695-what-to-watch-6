@@ -43,4 +43,4 @@ const mapStateToProps = (state)=>({
 });
 
 export {SignIn};
-export default connect(mapStateToProps)(SignIn); // mapDispatchToProps
+export default connect(mapStateToProps)(SignIn);

@@ -2,10 +2,6 @@ import {ActionType} from "../store/action";
 import {getGenreFilms} from "../utils/utils";
 import {ALL_GENRES, NUMBER_FILM, RoutePaths} from "../constants/constants";
 
-
-// export const mainFilms = getFilmData().slice(0, 18);; // хранилище всех фильмов import {getFilmData} from "../components/mock/film";
-
-
 // метод Адаптер который адоптирует данные от сервера на читаемые данные для клиента
 export const adaptToClient = (film) => { // получаем объект с неугодными нам полями изменили названия полей, удалили старые серверные и вернули отредоктированный объект
 
@@ -101,17 +97,7 @@ export const reducer = (state = initialState, action) => { // второе ин�
         ...state,
         countShowFilm: state.countShowFilm + NUMBER_FILM,
       };
-    // if (state.films.length - state.countShowFilm > NUMBER_FILM) {
-    //   return {
-    //     ...state,
-    //     countShowFilm: state.countShowFilm + NUMBER_FILM,
-    //   };
-    // } else {
-    //   return {
-    //     ...state,
-    //     countShowFilm: state.countShowFilm + state.films.length - state.countShowFilm,
-    //   };
-    // }
+
     case ActionType.GET_ALL_FILMS: // первое загрузили все фильмы
       return {
         ...state,
@@ -121,13 +107,6 @@ export const reducer = (state = initialState, action) => { // второе ин�
         })
       };
 
-    // УО удаляй осторожнее
-    // case ActionType.LIKE_FILMS:
-    //   return {
-    //     ...state,
-    //     likeGenre: action.payload,
-    //     likeFilms: []
-    //   };
     case ActionType.GET_FILM_PROMO:
       return {
         ...state,
@@ -159,25 +138,12 @@ export const reducer = (state = initialState, action) => { // второе ин�
         isAllComments: true,
       };
 
-      // не используется
-      // case ActionType.ADD_REVIEW:
-      //   return {
-      //     ...state,
-      //     isAddReview: action.payload,
-      //   };
-
     case ActionType.CHANGE_IS_ADD_REVIEW:
       return {
         ...state,
         isAddReview: action.payload,
         isAllComments: false,
       };
-
-    // case ActionType.HAS_ERROR:
-    //   return {
-    //     ...state,
-    //     hasError: action.payload,
-    //   };
     case ActionType.HAS_ERROR_LOGIN:
       return {
         ...state,

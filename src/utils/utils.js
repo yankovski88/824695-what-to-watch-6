@@ -14,21 +14,6 @@ export const getTimeMovie = (timeMovie)=>{
 };
 
 
-export const getFilm = (filmActive, films)=>{
-  const filmEnter = {};
-  for (const film of films) {
-    if (film.id === filmActive) {
-      filmEnter = film;
-    }
-  }
-  return filmEnter;
-};
-
-
-export const getRandomInRange = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-};
-
 export const getGenreFilms = (typeGenre, itemFilms)=>{
   const films = itemFilms.slice();
   if (typeGenre === ALL_GENRES) {
@@ -66,23 +51,6 @@ export const getUniqueGenres = (films)=>{
 };
 
 
-// // функция которая возвраещь массив фильмов для рендера на основании числа фильмов сколько надо
-// export const getActiveFilms = (films, countShowFilm)=>{
-//   const activeFilms = [];
-//
-//   if (films.length > NUMBER_FILM) {
-//     for (let i = 0; i < countShowFilm; i++) {
-//       activeFilms.push(films[i]);
-//     }
-//   } else {
-//     for (let item of films) {
-//       activeFilms.push(item);
-//     }
-//   }
-//   return activeFilms;
-// };
-
-
 // написать функцию которая из массива с фильмами по id найдет жанр
 export const getGenreById = (idFilm, itemFilms) => {
   const films = itemFilms.slice();
@@ -94,20 +62,6 @@ export const getGenreById = (idFilm, itemFilms) => {
     }
   }
   return genre;
-};
-
-// написать функцию которая из массива с фильмами по id найдет жанр
-export const getFilmById = (idFilm, itemFilms) => {
-  const films = itemFilms.slice();
-
-  let film = ``;
-  for (const item of films) {
-    // console.log(item.id)
-    if (+idFilm === item.id) {
-      film = item;
-    }
-  }
-  return film;
 };
 
 export const formatTime = (seconds) => {

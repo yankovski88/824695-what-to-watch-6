@@ -3,9 +3,6 @@ import {adaptToClient, reducer} from "./reducer"; // adaptToClient,
 import {ALL_GENRES, AuthorizationStatus, NUMBER_FILM, RoutePaths} from "../constants/constants";
 import {ActionType} from "./action";
 import {getGenreFilms} from "../utils/utils";
-// import MockAdapter from "axios-mock-adapter";
-// import {checkAuth, login} from "./api-actions";
-// import {createApi} from "../services/api";
 
 
 describe(`Reducer 'selected movie' should work correctly`, () => {
@@ -647,77 +644,3 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
   });
 
 });
-
-
-// const api = createApi(() => { });
-// describe(`Async operations work correctly`, () => {
-//   it(`Should make a correct Api call to /login`, () => { // при обращении к логину получим то, что ожидаем 200 код и данные
-//     const apiMock = new MockAdapter(api); // создаем экземпляр адаптера мок с оозданным api чтобы получить замоканую версию
-//     const dispatch = jest.fn(); // это нужно чтобы проверить, что действительно диспач был вызван
-//     const checkAuthLoader = checkAuth(); // сохраняем нашу функцию в переменную которая вернет функцию
-//
-//     apiMock // у нашего мока вызваем get на авторизацию
-//       .onGet(`/login`) // с маршрутом логин
-//       .reply(200, { // ожидаем ответ 200 и обеъкет с полями email и avatar
-//         "email": `email@test.com`,
-//         "avatar_url": `https://avatar.com/face.png`
-//       });
-//
-//     return checkAuthLoader(dispatch, () => { }, api) // в функцию вставили аргументы, что и в checkAuth()
-//       .then(() => {
-//         expect(dispatch).toHaveBeenCalledTimes(2); // сраниваем, что dispatch был вызван 2 раза (НЕ понимаю чего 2 раза)
-//         expect(dispatch).toHaveBeenNthCalledWith(1, {
-//           type: ActionType.REQUIRED_AUTHORIZATION,
-//           payload: AuthorizationStatus.AUTH,
-//         });
-//         expect(dispatch).toHaveBeenNthCalledWith(2, {
-//           type: ActionType.LOGGED_IN,
-//           payload: {
-//             email: `email@test.com`,
-//             avatarUrl: "https://avatar.com/face.png",
-//       }
-//         });
-//       });
-//   });
-//
-//   // it(`Should post correct Api call to /login`, () => {
-//   //   const apiMock = new MockAdapter(api);
-//   //   const dispatch = jest.fn();
-//   //   const checkLoginLoader = login({login: `email@test.com`, password: `12313123`});
-//   //
-//   //   apiMock
-//   //     .onPost(`/login`) // отправляем пост запрос на логин
-//   //     .reply(200, {
-//   //       "email": `email@test.com`,
-//   //       "avatar_url": `https://avatar.com/face.png`
-//   //     });
-//   //
-//   //   return checkLoginLoader(dispatch, () => { }, api)
-//   //     .then(() => {
-//   //       expect(dispatch).toHaveBeenCalledTimes(3); // 3
-//   //       expect(dispatch).toHaveBeenNthCalledWith(1, {
-//   //         type: ActionType.REQUIRED_AUTHORIZATION,
-//   //         payload: AuthorizationStatus.AUTH,
-//   //       });
-//   //       expect(dispatch).toHaveBeenNthCalledWith(2, {
-//   //         type: ActionType.LOGGED_IN,
-//   //         payload:
-//   //         //   {
-//   //         //   // email: `email@test.com`,
-//   //         //   // avatar: `https://avatar.com/face.png`
-//   //         // }
-//   //       {
-//   //              "avatarUrl": "https://avatar.com/face.png",
-//   //              "email": "email@test.com",
-//   //         },
-//   //
-//   //     });
-//   //       expect(dispatch).toHaveBeenNthCalledWith(3, {
-//   //         type: ActionType.REDIRECT_TO_ROUTE,
-//   //         payload: `/`
-//   //       });
-//   //     });
-//   // });
-// });
-
-
