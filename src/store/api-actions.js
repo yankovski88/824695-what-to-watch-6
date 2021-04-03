@@ -69,9 +69,15 @@ export const fetchPostComment = (id, rating, comment)=>(dispatch, getState, api)
     .catch(()=> dispatch(ActionCreator.addReviewFail(true)));
 };
 
-export const fetchFavorite = (idFilm, isFavorite)=>(dispatch, _getState, api)=>(
+export const fetchFavorite = (idFilm, isFavorite, isPromo)=>(dispatch, _getState, api)=>(
   api.post(`/favorite/${idFilm}/${isFavorite}`, {idFilm, isFavorite})
-    .then(()=>dispatch(ActionCreator.setMovieFavorite(idFilm, isFavorite)))
+    .then(()=>{
+      if (isPromo) {
+        dispatch(ActionCreator.setPromoMovieFavorite(isFavorite));
+      } else {
+        dispatch(ActionCreator.setMovieFavorite(idFilm, isFavorite, isPromo));
+      }
+    })
 );
 
 // проверка авторизован ли пользователь

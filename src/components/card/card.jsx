@@ -40,14 +40,6 @@ const Card = (props) => {
             </p>
 
             <div className="movie-card__buttons">
-              {/* anyFilm={filmPromo}*/}
-              {/* <button className="btn btn--list movie-card__button" type="button">*/}
-              {/*  <svg viewBox="0 0 18 14" width="18" height="14">*/}
-              {/*    <use xlink:href="#in-list"></use>*/}
-              {/*  </svg>*/}
-              {/*  <span>My list</span>*/}
-              {/* </button>*/}
-
               <BtnPlay />
               <BtnAddMyList />
             </div>

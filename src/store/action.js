@@ -19,8 +19,8 @@ export const ActionType = {
   LOGGED_IN: `login/LOGGED_IN`,
 
   SET_MOVIE_FAVORITE: `favorite/SET_MOVIE_FAVORITE`,
-  IS_ADD_REVIEW_FAIL: `user/IS_ADD_REVIEW_FAIL`
-
+  IS_ADD_REVIEW_FAIL: `user/IS_ADD_REVIEW_FAIL`,
+  SET_PROMO_MOVIE_FAVORITE: `main/SET_PROMO_MOVIE_FAVORITE`
 };
 
 // создаем объект функция которые возвращают экшин
@@ -85,11 +85,15 @@ export const ActionCreator = {
     type: ActionType.SET_MOVIE_FAVORITE,
     payload: {
       movieId,
-      isFavorite
+      isFavorite,
     },
   }),
   addReviewFail: (isAddPost) => ({
     type: ActionType.IS_ADD_REVIEW_FAIL,
     payload: isAddPost,
+  }),
+  setPromoMovieFavorite: (isFavorite) => ({
+    type: ActionType.SET_PROMO_MOVIE_FAVORITE,
+    payload: isFavorite,
   })
 };

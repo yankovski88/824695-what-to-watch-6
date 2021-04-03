@@ -6,25 +6,17 @@ import {AuthorizationStatus} from "../../constants/constants";
 import PropTypes from "prop-types";
 
 const BtnAddMyList = (props) => {
-  const {loadFavorite, filmById, loadFilmById, filmPromo, authorizationStatus} = props;
+  const {loadFavorite, filmById, filmPromo, authorizationStatus} = props;
   const history = useHistory();
   const {id} = useParams();
 
-  // запускаем хук useEffect он запускается каждый раз когда открывается страница, он следит за флагом isDataLoaded
-  React.useEffect(() => {
-    if (id) {
-      loadFilmById(id);
-    }
-  }, [id]); // useEffect сказали следи за этим флагом если он изменится, то делай запрос
-
 
   let filmForBtn;
-  if (filmById) {
+  if (id) {
     filmForBtn = filmById;
   } else {
     filmForBtn = filmPromo;
   }
-
 
   const hendleOnClickFilmFavorite = (evt) => {
     evt.preventDefault();
@@ -38,7 +30,7 @@ const BtnAddMyList = (props) => {
     } else if (filmForBtn.isFavorite) {
       numberStatus = 0;
     }
-    loadFavorite(filmForBtn.id, numberStatus);
+    loadFavorite(filmForBtn.id, numberStatus, !id);
   };
 
 
@@ -65,7 +57,6 @@ BtnAddMyList.propTypes = {
   loadFavorite: PropTypes.func.isRequired,
   filmPromo: PropTypes.object.isRequired,
   filmById: PropTypes.object.isRequired,
-  loadFilmById: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
 };
 
@@ -80,8 +71,8 @@ const mapDispatchToProps = (dispatch) => ({
   onLoadData() { // когда вызовится эта функция, то в dispatch попадает результат функции по запросу на сервер
     dispatch(fetchMoviesList());
   },
-  loadFavorite(idFilm, isFavorite) {
-    dispatch(fetchFavorite(idFilm, isFavorite));
+  loadFavorite(idFilm, isFavorite, isPromo) {
+    dispatch(fetchFavorite(idFilm, isFavorite, isPromo));
   },
   loadFilmById(id) {
     dispatch(fetchFilmById(id));

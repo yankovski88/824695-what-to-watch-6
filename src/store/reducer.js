@@ -182,6 +182,15 @@ export const reducer = (state = initialState, action) => { // второе ин�
         isAddReviewFail: action.payload,
       };
 
+    case ActionType.SET_PROMO_MOVIE_FAVORITE:
+      return {
+        ...state,
+        filmPromo: {
+          ...state.filmPromo,
+          isFavorite: action.payload,
+        }
+      };
+
 
     default:
       return state;
