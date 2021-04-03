@@ -419,7 +419,7 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
   });
 
 
-  it(`Reducer should get ADD_REVIEW`, () => {
+  it(`Reducer should get changeIsAddReview`, () => {
     const state = {
       countShowFilm: 8, // число сколько фильмов отрендерить
       genre: ALL_GENRES, // начальный жанр для main.jsx
@@ -448,7 +448,7 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
 
 
     const item = {
-      type: ActionType.ADD_REVIEW,
+      type: ActionType.CHANGE_IS_ADD_REVIEW,
       payload: false,
     };
 

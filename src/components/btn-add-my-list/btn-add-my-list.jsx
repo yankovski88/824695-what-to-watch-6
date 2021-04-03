@@ -20,8 +20,11 @@ const BtnAddMyList = (props) => {
 
   let filmForBtn;
   if (filmById) {
+    console.log(filmById)
+
     filmForBtn = filmById;
   } else {
+    console.log(filmPromo)
     filmForBtn = filmPromo;
   }
 

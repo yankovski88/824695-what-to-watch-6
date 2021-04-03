@@ -10,12 +10,19 @@ const CatalogMyListFilms = (props) => {
   const {updateData, loadMoviesList, isDataLoaded, films} = props;
 
 
+  // React.useEffect(
+  //     () => {
+  //       if (!isDataLoaded) {
+  //         loadMoviesList();
+  //       }
+  //     }, [isDataLoaded]);
+
   React.useEffect(
-      () => {
-        if (!isDataLoaded) {
-          loadMoviesList();
-        }
-      }, [isDataLoaded]);
+    () => {
+      // if (!isDataLoaded) {
+        loadMoviesList();
+      // }
+    }, []);
 
   const favoriteFilms = [];
   for (const film of films) {
