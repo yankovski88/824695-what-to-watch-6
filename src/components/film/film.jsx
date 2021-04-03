@@ -6,12 +6,13 @@ import BtnPlay from "../btn-play/btn-play";
 import BtnAddMyList from "../btn-add-my-list/btn-add-my-list";
 import MovieNav from "../movie-nav/movie-nav.jsx";
 import PropTypes from "prop-types";
-import {Link, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import Header from "../header/header";
 import {connect} from "react-redux";
 import {fetchFilmById, fetchMoviesList, fetchAllComments} from "../../store/api-actions";
 import {getGenreById, getGenreFilms} from "../../utils/utils";
 import {AuthorizationStatus} from "../../constants/constants";
+import LinkAddReview from "../link-add-review/link-add-review";
 
 
 const Film = (props) => {
@@ -93,13 +94,9 @@ const Film = (props) => {
                 {authorizationStatus === AuthorizationStatus.AUTH ?
                   <>
                     <BtnAddMyList/>
-                    <Link to={`/films/${filmById.id}/add-review`}
-                      className="btn movie-card__button">Add review</Link>
-                    {/* <Link to={`/films/${filmById ? filmById.id : ``}/add-review`}*/}
-                    {/*  className="btn movie-card__button">Add review</Link>*/}
+                    <LinkAddReview filmById={filmById}/>
                   </>
                   : ``}
-                {/* <LinkAddReview film={film}/>*/}
               </div>
             </div>
           </div>

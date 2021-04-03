@@ -15,6 +15,7 @@ const handleUserNotAuthtorized = (route, onPrivateRouteRequest)=>{
 
 
 const PrivateRoute = ({render, path, exact, authorizationStatus, onPrivateRouteRequest}) =>{
+
   return (
     authorizationStatus === null ? <Spinner/> :
       <Route
@@ -40,4 +41,5 @@ export {PrivateRoute};
 const mapStateToProps = (state)=>({
   authorizationStatus: state.authorizationStatus
 });
+
 export default connect(mapStateToProps, null)(PrivateRoute);

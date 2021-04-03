@@ -72,7 +72,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
   postCommentItem(id, rating, comment) {
     dispatch(fetchPostComment(id, rating, comment));
-  }
+  },
 });
 
 export {AddReview};
