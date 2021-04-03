@@ -26,9 +26,7 @@ export const checkAuth = () => (dispatch, _getState, api) => (
       const userData = adaptToClientUser(data);
       dispatch(ActionCreator.loggedIn(userData));
     })
-    // .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
     .catch(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH))
-        // () => dispatch(ActionCreator.hasErrorLogin(true)) // думаю может это удалить надо
     )
 );
 
@@ -38,31 +36,24 @@ export const login = ({login: email, password}) => (dispatch, getState, api) => 
       dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
       const userData = adaptToClientUser(data);
       dispatch(ActionCreator.loggedIn(userData));
-      // dispatch(ActionCreator.redirectToRoute(`/`)); // для теста проходит
       dispatch(ActionCreator.redirectToRoute(getState().requestedRoute));
     })
     .catch(
         ()=> dispatch(ActionCreator.hasError(true))
-    //   () => {
+      // () => dispatch(ActionCreator.hasErrorLogin(true)) // думаю может это удалить надо
+
+      //   () => {
     //   dispatch(()=>{}); // loggedInFail()
     // }
     )
 );
-
-
-// // отправка данных для авторизации
-// export const login = ({login: email, password}) => (dispatch, getState, api) => (
-//   api.post(`/login`, {email, password})
-//     .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
-//     .then(() => dispatch(ActionCreator.redirectToRoute(getState().requestedRoute))) // если пользователь логинится, то закинь его на главную страницу
-// );
 
 export const fetchFilmById = (id)=>(dispatch, _getState, api)=>(
   api.get(`/films/${id}`)
     .then((response)=>dispatch(ActionCreator.getFilmById(response.data)))
     .catch(({response}) => { // если не будет catch будет постоянная загрузка (spinner) т.к. не станет флаг true
       if (response.status === 404) {
-        dispatch(ActionCreator.redirectToRoute(`/404`));
+        dispatch(ActionCreator.redirectToRoute(`/404`)); // если id фильма не найден, то всех отправит страницу 404
       }
     })
 );
@@ -79,9 +70,9 @@ export const fetchPostComment = (id, rating, comment)=>(dispatch, getState, api)
     .then(() => {
       dispatch(ActionCreator.redirectToRoute(`/films/${id}`));
       dispatch(ActionCreator.changeIsAddReview(true)); // флаг что если false, то кнопку будет disable
-    }) // getState().requestedRoute addReviewFail
+      dispatch(fetchAllComments(id))
+    })
     .catch(()=> dispatch(ActionCreator.addReviewFail(true)));
-  // .catch(()=> dispatch(ActionCreator.hasError(true)));
 };
 
 export const fetchFavorite = (idFilm, isFavorite)=>(dispatch, _getState, api)=>(

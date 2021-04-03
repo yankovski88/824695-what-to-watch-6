@@ -39,6 +39,7 @@ const AddReviewForm = (props) => {
         onChange={() => setRating(index + 1)}
       />
       <label
+        style={{color: `red`}}
         className="rating__label" htmlFor={`star-${index}`}>Rating {index + 1} </label>
     </Fragment>
   );
