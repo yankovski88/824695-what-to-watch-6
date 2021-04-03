@@ -100,7 +100,8 @@ const Film = (props) => {
 
                 {authorizationStatus === AuthorizationStatus.AUTH ?
                   <>
-                    <BtnAddMyList filmById={filmById}/>
+                    {/* filmById={filmById}*/}
+                    <BtnAddMyList/>
                     <Link to={`/films/${filmById.id}/add-review`}
                       className="btn movie-card__button">Add review</Link>
                     {/* <Link to={`/films/${filmById ? filmById.id : ``}/add-review`}*/}

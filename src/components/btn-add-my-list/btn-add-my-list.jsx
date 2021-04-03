@@ -72,7 +72,8 @@ BtnAddMyList.propTypes = {
 const mapStateToProps = (state) => ({
   films: state.films,
   filmPromo: state.filmPromo,
-  authorizationStatus: state.authorizationStatus
+  authorizationStatus: state.authorizationStatus,
+  filmById: state.filmById,
 });
 
 const mapDispatchToProps = (dispatch) => ({

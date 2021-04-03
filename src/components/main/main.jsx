@@ -64,7 +64,6 @@ Main.propTypes = {
   setGenre: PropTypes.func.isRequired,
   isDataLoaded: PropTypes.bool.isRequired,
   onLoadData: PropTypes.func.isRequired,
-  loadFavorite: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state)=>({
