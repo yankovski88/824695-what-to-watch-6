@@ -26,8 +26,7 @@ export const checkAuth = () => (dispatch, _getState, api) => (
       const userData = adaptToClientUser(data);
       dispatch(ActionCreator.loggedIn(userData));
     })
-    .catch(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH))
-    )
+    .catch(()=>{})
 );
 
 export const login = ({login: email, password}) => (dispatch, getState, api) => (
@@ -39,12 +38,7 @@ export const login = ({login: email, password}) => (dispatch, getState, api) => 
       dispatch(ActionCreator.redirectToRoute(getState().requestedRoute));
     })
     .catch(
-        ()=> dispatch(ActionCreator.hasError(true))
-      // () => dispatch(ActionCreator.hasErrorLogin(true)) // думаю может это удалить надо
-
-      //   () => {
-    //   dispatch(()=>{}); // loggedInFail()
-    // }
+        () => dispatch(ActionCreator.hasErrorLogin(true)) // думаю может это удалить надо
     )
 );
 
@@ -70,7 +64,7 @@ export const fetchPostComment = (id, rating, comment)=>(dispatch, getState, api)
     .then(() => {
       dispatch(ActionCreator.redirectToRoute(`/films/${id}`));
       dispatch(ActionCreator.changeIsAddReview(true)); // флаг что если false, то кнопку будет disable
-      dispatch(fetchAllComments(id))
+      dispatch(fetchAllComments(id));
     })
     .catch(()=> dispatch(ActionCreator.addReviewFail(true)));
 };

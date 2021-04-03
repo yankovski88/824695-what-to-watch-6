@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {Route, Redirect} from 'react-router-dom';
 import {AuthorizationStatus, RoutePaths} from "../../constants/constants";
 import Spinner from "../spinner/spinner";
+import {connect} from "react-redux";
 
 const handleUserNotAuthtorized = (route, onPrivateRouteRequest)=>{
   // onPrivateRouteRequest эта функция которая получит rout(маршрут вместо `/`)
@@ -35,4 +36,8 @@ PrivateRoute.propTypes = {
   onPrivateRouteRequest: PropTypes.func.isRequired,
 };
 
-export default PrivateRoute;
+export {PrivateRoute};
+const mapStateToProps = (state)=>({
+  authorizationStatus: state.authorizationStatus
+});
+export default connect(mapStateToProps, null)(PrivateRoute);

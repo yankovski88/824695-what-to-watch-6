@@ -12,12 +12,11 @@ import PropTypes from "prop-types";
 const SignIn = (props) => {
   const {authorizationStatus} = props;
   const history = useHistory();
-
-React.useEffect(()=>{
-  if (authorizationStatus === AuthorizationStatus.AUTH) {
-    history.push(`/`);
-  }
-},[])
+  React.useEffect(()=>{
+    if (authorizationStatus === AuthorizationStatus.AUTH) {
+      history.push(`/`);
+    }
+  }, [authorizationStatus]);
 
   return <React.Fragment>
     <div className="user-page">

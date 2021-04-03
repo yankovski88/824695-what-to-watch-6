@@ -45,7 +45,6 @@ const App = (props) => {
           path={`/films/:id/add-review`}
           onPrivateRouteRequest={onPrivateRouteRequest}
           render={()=><AddReview film={film}/>}
-          authorizationStatus={authorizationStatus}
         >
         </PrivateRoute>
         <Route exact path={`/films/:id/details`}>

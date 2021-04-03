@@ -11,7 +11,7 @@ import {ActionCreator} from "./store/action";
 import {AuthorizationStatus} from "./constants/constants";
 import {checkAuth} from "./store/api-actions";
 import {redirect} from "./store/middlewares/redirect";
-import "./main.css"
+import "./main.css";
 
 
 // переменная с конфигурацией api
