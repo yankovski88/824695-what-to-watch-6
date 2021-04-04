@@ -35,8 +35,7 @@ const Film = (props) => {
 
   const likeFilms = React.useMemo(()=>{
     const genreById = getGenreById(id, films); // нашли жанр фильма по id маршрута
-
-    return getGenreFilms(genreById, films).slice(0, 4);
+    return getGenreFilms(genreById, films, id).slice(0, 4);
   }, [films, id]); // нашли все похожие фильмы по жанру
 
 

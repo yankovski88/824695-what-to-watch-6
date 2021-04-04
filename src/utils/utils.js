@@ -14,14 +14,14 @@ export const getTimeMovie = (timeMovie)=>{
 };
 
 
-export const getGenreFilms = (typeGenre, itemFilms)=>{
+export const getGenreFilms = (typeGenre, itemFilms, id)=>{
   const films = itemFilms.slice();
   if (typeGenre === ALL_GENRES) {
     return films;
   } else {
     const genreFilms = [];
     for (const item of films) {
-      if (item.genre === typeGenre) {
+      if (item.genre === typeGenre && item.id !== +id) {
         genreFilms.push(item);
       }
     }
