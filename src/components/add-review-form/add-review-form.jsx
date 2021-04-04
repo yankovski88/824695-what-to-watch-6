@@ -85,11 +85,11 @@ AddReviewForm.propTypes = {
   isAddReviewFail: PropTypes.bool.isRequired,
 };
 
-export {AddReviewForm};
 
 const mapStateToProps = (state)=>({
   isAddReview: state.isAddReview,
   isAddReviewFail: state.isAddReviewFail,
 });
 
+export {AddReviewForm};
 export default connect(mapStateToProps, null)(AddReviewForm);

@@ -19,10 +19,10 @@ const FilmDetails = (props) => {
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Starring</strong>
           <span className="movie-card__details-value" key={film.id}>
-            {film.starring.map((item, index) => {
+            {film.starring.map((item) => {
 
               return (
-                <li key={index} style={{listStyle: `none`}}> {item} <br/>   </li>
+                <li key={item} style={{listStyle: `none`}}> {item} <br/>   </li>
               );
             })}
           </span>
