@@ -32,10 +32,13 @@ const Film = (props) => {
 
   const {id} = useParams(); // берем данные с маршрута из app.js
   const {posterImage, name, genre, released} = filmById;
+  const BEGIN_INDEX = 0;
+  const END_INDEX = 4;
+
 
   const likeFilms = React.useMemo(()=>{
     const genreById = getGenreById(id, films); // нашли жанр фильма по id маршрута
-    return getGenreFilms(genreById, films, id).slice(0, 4);
+    return getGenreFilms(genreById, films, id).slice(BEGIN_INDEX, END_INDEX);
   }, [films, id]); // нашли все похожие фильмы по жанру
 
 

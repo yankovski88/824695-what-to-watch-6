@@ -13,19 +13,26 @@ const MovieRating = (props)=>{
     AWESOME: `Awesome`
   };
 
+  const NumberRating = {
+    THREE: 3,
+    FIVE: 5,
+    EIGHT: 8,
+    TEN: 10,
+  };
+
   let textRating = ``;
-  if (film.rating < 3) {
+  if (film.rating < NumberRating.THREE) {
     textRating = TextRating.BAD;
-  } else if (film.rating >= 3 && film.rating < 5) {
+  } else if (film.rating >= NumberRating.THREE && film.rating < NumberRating.FIVE) {
     textRating = TextRating.NORMAL;
 
-  } else if (film.rating >= 5 && film.rating < 8) {
+  } else if (film.rating >= NumberRating.FIVE && film.rating < NumberRating.EIGHT) {
     textRating = TextRating.GOOD;
 
-  } else if (film.rating >= 8 && film.rating < 10) {
+  } else if (film.rating >= NumberRating.EIGHT && film.rating < NumberRating.TEN) {
     textRating = TextRating.VERY_GOOD;
 
-  } else if (film.rating === 10) {
+  } else if (film.rating === NumberRating.TEN) {
     textRating = TextRating.AWESOME;
   }
 
