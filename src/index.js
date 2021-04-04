@@ -17,7 +17,9 @@ import "./main.css";
 // переменная с конфигурацией api
 const api = createApi(
     // передаем в reduce при загрузке приложения, что авторизации не было
-    () => store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)) // по умолчанию передали колбек, что юзер не авторизован
+    () => store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)), // по умолчанию передали колбек, что юзер не авторизован
+    () => store.dispatch(ActionCreator.redirectToRoute(`/404`)) // по умолчанию передали колбек, что юзер не авторизован
+
 );
 
 
