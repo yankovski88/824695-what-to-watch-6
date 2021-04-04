@@ -32,7 +32,6 @@ const FilmDetails = (props) => {
       <div className="movie-card__text-col">
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Run Time</strong>
-          {/* 1h 39m*/}
           <span className="movie-card__details-value">{getTimeMovie(film.runTime)}</span>
         </p>
         <p className="movie-card__details-item">

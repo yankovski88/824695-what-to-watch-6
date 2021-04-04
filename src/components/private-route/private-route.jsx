@@ -15,7 +15,6 @@ const handleUserNotAuthtorized = (route, onPrivateRouteRequest)=>{
 
 
 const PrivateRoute = ({render, path, exact, authorizationStatus, onPrivateRouteRequest}) =>{
-
   return (
     authorizationStatus === `` ? <Spinner/> :
       <Route
