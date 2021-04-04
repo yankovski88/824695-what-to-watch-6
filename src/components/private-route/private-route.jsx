@@ -37,9 +37,9 @@ PrivateRoute.propTypes = {
   onPrivateRouteRequest: PropTypes.func.isRequired,
 };
 
-export {PrivateRoute};
 const mapStateToProps = (state)=>({
   authorizationStatus: state.authorizationStatus
 });
 
+export {PrivateRoute};
 export default connect(mapStateToProps, null)(PrivateRoute);

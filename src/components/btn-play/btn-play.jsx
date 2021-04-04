@@ -33,11 +33,11 @@ BtnPlay.propTypes = {
 
 };
 
-export {BtnPlay};
 
 const mapStateToProps = (state)=>({
   filmPromo: state.filmPromo,
   filmById: state.filmById,
 });
 
+export {BtnPlay};
 export default connect(mapStateToProps, null)(BtnPlay);

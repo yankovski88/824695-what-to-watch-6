@@ -128,7 +128,6 @@ Player.propTypes = {
   isFilmLoaded: PropTypes.bool.isRequired,
 };
 
-export {Player};
 
 const mapStateToProps = (state) => ({
   films: state.films, // взято из reduce
@@ -144,4 +143,5 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
+export {Player};
 export default connect(mapStateToProps, mapDispatchToProps)(Player);

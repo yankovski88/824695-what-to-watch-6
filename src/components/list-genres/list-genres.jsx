@@ -25,11 +25,11 @@ ListGenres.propTypes = {
   setGenre: PropTypes.func.isRequired,
 };
 
-export {ListGenres};
 
 const mapStateToProps = (state) => ({
   films: state.films
 });
 
+export {ListGenres};
 // здесь ничего не передаем значит диспачь не нужен
 export default connect(mapStateToProps, null)(ListGenres); // connect подружит наш компонент с провайдером
