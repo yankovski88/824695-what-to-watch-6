@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BACKEND_URL = `https://6.react.pages.academy/wtwq`; // url на который отправим запрос
+const BACKEND_URL = `https://6.react.pages.academy/wtw`; // url на который отправим запрос
 const REQUEST_TIMEOUT = 5000; // время для запроса
 const HttpCode = {
   UNAUTHORIZED: 401, // 401 ошибка означает, что в авторизации отказано
