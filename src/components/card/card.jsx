@@ -8,7 +8,7 @@ import BtnPlay from "../btn-play/btn-play";
 
 
 const Card = (props) => {
-  const {filmPromo, onLoadFilmPromo} = props; // loadFavorite
+  const {filmPromo, onLoadFilmPromo} = props;
 
   React.useEffect(()=>{
     if (Object.keys(filmPromo).length === 0) {

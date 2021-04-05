@@ -6,4 +6,4 @@ const Copyright = ()=>{
   </div>;
 };
 
-export default Copyright;
+export default React.memo(Copyright); // React.memo пропсы не меняются значит не нужно все время компонент перерисовывать

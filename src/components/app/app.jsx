@@ -18,9 +18,10 @@ const App = (props) => {
   const {authorizationStatus, onPrivateRouteRequest} = props;
   const [film, setMovie] = React.useState({}); // фильм который хотим посмотреть
 
-  const updateData = (value) => {
+  const updateData = React.useCallback((value) => {
     setMovie(value);
-  };
+  }, [film]);
+
 
   return (
     // теперь вся знаю об экземпляре класса истории
