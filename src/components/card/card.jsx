@@ -8,11 +8,13 @@ import BtnPlay from "../btn-play/btn-play";
 import {moviePropTypes} from "../../prop-types";
 import {NameSpace} from "../../store/reducer";
 import Spinner from "../spinner/spinner";
+import {getFilmPromoSelect} from "../../store/all-movies/selectors";
+import {getAuthorizationStatus} from "../../store/user/selectors";
 
 
 const Card = (props) => {
   const {filmPromo, onLoadFilmPromo} = props;
-console.log(filmPromo)
+  console.log(filmPromo);
 
   React.useEffect(()=>{
     if (Object.keys(filmPromo).length === 0) {
@@ -22,36 +24,36 @@ console.log(filmPromo)
 
   return (
     Object.keys(filmPromo).length === 0 ? <Spinner/> :
-    <section className="movie-card">
-      <div className="movie-card__bg">
-        <img src={filmPromo.backgroundImage} alt={filmPromo.name}/>
-      </div>
+      <section className="movie-card">
+        <div className="movie-card__bg">
+          <img src={filmPromo.backgroundImage} alt={filmPromo.name}/>
+        </div>
 
-      <h1 className="visually-hidden">WTW</h1>
+        <h1 className="visually-hidden">WTW</h1>
 
-      <Header/>
+        <Header/>
 
-      <div className="movie-card__wrap">
-        <div className="movie-card__info">
-          <div className="movie-card__poster">
-            <img src={filmPromo.posterImage} alt={`${filmPromo.name} promo`} width="218" height="327" />
-          </div>
+        <div className="movie-card__wrap">
+          <div className="movie-card__info">
+            <div className="movie-card__poster">
+              <img src={filmPromo.posterImage} alt={`${filmPromo.name} promo`} width="218" height="327" />
+            </div>
 
-          <div className="movie-card__desc">
-            <h2 className="movie-card__title">{filmPromo.name}</h2>
-            <p className="movie-card__meta">
-              <span className="movie-card__genre">{filmPromo.genre}</span>
-              <span className="movie-card__year">{filmPromo.released}</span>
-            </p>
+            <div className="movie-card__desc">
+              <h2 className="movie-card__title">{filmPromo.name}</h2>
+              <p className="movie-card__meta">
+                <span className="movie-card__genre">{filmPromo.genre}</span>
+                <span className="movie-card__year">{filmPromo.released}</span>
+              </p>
 
-            <div className="movie-card__buttons">
-              <BtnPlay />
-              <BtnAddMyList />
+              <div className="movie-card__buttons">
+                <BtnPlay />
+                <BtnAddMyList />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
   );
 };
 Card.propTypes = {
@@ -59,9 +61,9 @@ Card.propTypes = {
   onLoadFilmPromo: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ALL_MOVIES, USER})=>({ // state
-  filmPromo: ALL_MOVIES.filmPromo, // state.ALL_MOVIES.filmPromo,   //state[NameSpace.ALL_MOVIES].filmPromo,
-  authorizationStatus: USER.authorizationStatus // state.USER.authorizationStatus,
+const mapStateToProps = (state)=>({
+  filmPromo: getFilmPromoSelect(state),
+  authorizationStatus: getAuthorizationStatus(state)
 });
 
 const mapDispatchToProps = (dispatch)=>({

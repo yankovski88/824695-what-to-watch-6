@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {getUniqueGenres} from "../../utils/utils";
 import {moviePropTypes} from "../../prop-types";
+import {getAllFilmsSelect} from "../../store/all-movies/selectors";
 
 const ListGenres = (props)=>{
   const {setGenre, films} = props;
@@ -27,8 +28,8 @@ ListGenres.propTypes = {
 };
 
 
-const mapStateToProps = ({ALL_MOVIES}) => ({
-  films: ALL_MOVIES.films
+const mapStateToProps = (state) => ({
+  films: getAllFilmsSelect(state)
 });
 
 export {ListGenres};

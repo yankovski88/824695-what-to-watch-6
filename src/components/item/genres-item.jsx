@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from 'react-redux';
 import PropTypes from "prop-types";
+import {getAllFilmsSelect, getGenreSelect} from "../../store/all-movies/selectors";
 
 const GenresItem = (props) => {
   const {
@@ -29,9 +30,9 @@ GenresItem.propTypes = {
 };
 
 // код который достает пропс с фильмами
-const mapStateToProps = ({ALL_MOVIES}) => ({ // state это состояние хранилища
-  films: ALL_MOVIES.films,
-  selectedGenre: ALL_MOVIES.genre
+const mapStateToProps = (state) => ({ // state это состояние хранилища
+  films: getAllFilmsSelect(state),
+  selectedGenre: getGenreSelect(state)
 });
 
 export {GenresItem};

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import VideoPlayer from "../videoPlayer/video-player";
 import {connect} from "react-redux";
+import {getFilmByIdSelect} from "../../store/all-movies/selectors";
 
 
 const SmallCard = (props) => {
@@ -64,8 +65,8 @@ SmallCard.propTypes = {
   updateData: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ALL_MOVIES})=>({
-  filmById: ALL_MOVIES.filmById,
+const mapStateToProps = (state)=>({
+  filmById: getFilmByIdSelect(state),
 });
 
 

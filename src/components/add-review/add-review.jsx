@@ -10,6 +10,7 @@ import {useParams} from "react-router-dom";
 import Spinner from "../spinner/spinner";
 import Logout from "../logout/logout";
 import {moviePropTypes} from "../../prop-types";
+import {getFilmById, getIsFilmLoadedSelect} from "../../store/all-movies/selectors";
 
 
 const AddReview = (props) => {
@@ -63,9 +64,9 @@ AddReview.propTypes = {
   isFilmLoaded: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = ({ALL_MOVIES}) => ({
-  filmById: ALL_MOVIES.filmById,
-  isFilmLoaded: ALL_MOVIES.isFilmLoaded,
+const mapStateToProps = (state) => ({
+  filmById: getFilmById(state),
+  isFilmLoaded: getIsFilmLoadedSelect(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

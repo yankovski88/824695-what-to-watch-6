@@ -10,11 +10,15 @@ import {connect} from "react-redux";
 import {setGenre} from "../../store/action";
 import {fetchMoviesList} from '../../store/api-actions';
 import Spinner from "../spinner/spinner";
+import {
+  getAllFilmsSelect,
+  getCountShowFilmSelect, getFilmPromoSelect, getGenreFilmsSelect,
+  getGenreSelect, getIsDataLoadedSelect
+} from "../../store/all-movies/selectors";
 
 
 const Main = (props) => {
   const {updateData, films, countShowFilm, onSetGenre, isDataLoaded, onLoadData, genreFilms, filmPromo} = props;
-console.log(filmPromo)
 
   // код решает показать btn more или нет
   let itemGenreFilms; // переменная которая смотрит показывать ли кнопку More Show
@@ -34,8 +38,8 @@ console.log(filmPromo)
 
   return (<>
 
-    {/*{Object.keys(filmPromo).length === 0 ? <Spinner/> : <Card />}*/}
-      <Card />
+    {/* {Object.keys(filmPromo).length === 0 ? <Spinner/> : <Card />}*/}
+    <Card />
     <div className="page-content">
 
       {!isDataLoaded ? <Spinner /> : <section className="catalog">
@@ -53,8 +57,8 @@ console.log(filmPromo)
       </footer>
     </div>
   </>
-)
-}
+  );
+};
 
 Main.propTypes = {
   updateData: PropTypes.func.isRequired,
@@ -66,13 +70,13 @@ Main.propTypes = {
   onLoadData: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ALL_MOVIES})=>({
-  countShowFilm: ALL_MOVIES.countShowFilm, // взято из reduce
-  selectedGenre: ALL_MOVIES.genre, // взято из reduce action.payload
-  films: ALL_MOVIES.films, // взято из reduce
-  genreFilms: ALL_MOVIES.genreFilms,
-  isDataLoaded: ALL_MOVIES.isDataLoaded,
-  filmPromo: ALL_MOVIES.filmPromo,
+const mapStateToProps = (state)=>({
+  countShowFilm: getCountShowFilmSelect(state), // взято из reduce
+  selectedGenre: getGenreSelect(state), // взято из reduce action.payload
+  films: getAllFilmsSelect(state), // взято из reduce
+  genreFilms: getGenreFilmsSelect(state),
+  isDataLoaded: getIsDataLoadedSelect(state),
+  filmPromo: getFilmPromoSelect(state),
 });
 
 // если передать setGenre на клик меню жанр, то в aaction в payload попадет название жанра

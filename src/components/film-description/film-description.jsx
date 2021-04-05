@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import Spinner from "../spinner/spinner";
 import {moviePropTypes} from "../../prop-types";
+import {getFilmByIdSelect} from "../../store/all-movies/selectors";
 
 
 const FilmDescription = (props)=>{
@@ -28,8 +29,8 @@ FilmDescription.propTypes = {
   filmById: moviePropTypes
 };
 
-const mapStateToProps = ({ALL_MOVIES})=>({
-  filmById: ALL_MOVIES.filmById,
+const mapStateToProps = (state)=>({
+  filmById: getFilmByIdSelect(state),
 });
 
 

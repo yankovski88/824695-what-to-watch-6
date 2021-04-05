@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import {login} from "../../store/api-actions";
 import {isValidEmail} from "../../utils/utils";
 import classNames from 'classnames';
+import {getHasErrorLogin} from "../../store/user/selectors";
 
 
 const SignInForm = (props)=>{
@@ -99,8 +100,8 @@ SignInForm.propTypes = {
   hasErrorLogin: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = ({USER})=>({
-  hasErrorLogin: USER.hasErrorLogin,
+const mapStateToProps = (state)=>({
+  hasErrorLogin: getHasErrorLogin(state),
 });
 
 const mapDispatchToProps = (dispatch)=>({

@@ -13,6 +13,7 @@ import {connect} from "react-redux";
 import browserHistory from "../../browser-history";
 import {addRequestedRoute} from "../../store/action";
 import PrivateRoute from "../private-route/private-route";
+import {getAuthorizationStatus} from "../../store/user/selectors";
 
 const App = (props) => {
   const {authorizationStatus, onPrivateRouteRequest} = props;
@@ -77,8 +78,8 @@ App.propTypes = {
 
 export {App};
 
-const mapStateToProps = ({USER})=>({
-  authorizationStatus: USER.authorizationStatus,
+const mapStateToProps = (state)=>({
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch)=>({

@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import {connect} from 'react-redux';
 import {getActiveFilms} from "../../utils/utils";
 import {moviePropTypes} from "../../prop-types";
+import {getAllFilmsSelect, getCountShowFilmSelect, getGenreFilmsSelect} from "../../store/all-movies/selectors";
 
 
 const CatalogMainFilms = (props) => {
@@ -38,10 +39,10 @@ CatalogMainFilms.propTypes = {
 };
 
 
-const mapStateToProps = ({ALL_MOVIES}) => ({
-  countShowFilm: ALL_MOVIES.countShowFilm,
-  films: ALL_MOVIES.films,
-  genreFilms: ALL_MOVIES.genreFilms,
+const mapStateToProps = (state) => ({
+  countShowFilm: getCountShowFilmSelect(state),
+  films: getAllFilmsSelect(state),
+  genreFilms: getGenreFilmsSelect(state),
 });
 
 export {CatalogMainFilms};

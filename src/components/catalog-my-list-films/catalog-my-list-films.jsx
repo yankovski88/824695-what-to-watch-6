@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import Spinner from "../spinner/spinner";
 import {fetchMoviesList} from "../../store/api-actions";
 import {moviePropTypes} from "../../prop-types";
+import {getAllFilmsSelect, getIsDataLoadedSelect} from "../../store/all-movies/selectors";
 
 
 const CatalogMyListFilms = (props) => {
@@ -47,9 +48,9 @@ CatalogMyListFilms.propTypes = {
   isDataLoaded: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = ({ALL_MOVIES}) => ({
-  isDataLoaded: ALL_MOVIES.isDataLoaded,
-  films: ALL_MOVIES.films,
+const mapStateToProps = (state) => ({
+  isDataLoaded: getIsDataLoadedSelect(state),
+  films: getAllFilmsSelect(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

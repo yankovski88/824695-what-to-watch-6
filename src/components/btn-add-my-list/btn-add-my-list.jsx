@@ -5,6 +5,8 @@ import {connect} from "react-redux";
 import {AuthorizationStatus} from "../../constants/constants";
 import PropTypes from "prop-types";
 import {moviePropTypes} from "../../prop-types";
+import {getAllFilmsSelect, getFilmByIdSelect, getFilmPromoSelect} from "../../store/all-movies/selectors";
+import {getAuthorizationStatus} from "../../store/user/selectors";
 
 const BtnAddMyList = (props) => {
   const {loadFavorite, filmById, filmPromo, authorizationStatus} = props;
@@ -61,11 +63,11 @@ BtnAddMyList.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = ({ALL_MOVIES, USER}) => ({
-  films: ALL_MOVIES.films,
-  filmPromo: ALL_MOVIES.filmPromo,
-  authorizationStatus: USER.authorizationStatus,
-  filmById: ALL_MOVIES.filmById,
+const mapStateToProps = (state) => ({
+  films: getAllFilmsSelect(state),
+  filmPromo: getFilmPromoSelect(state),
+  authorizationStatus: getAuthorizationStatus(state),
+  filmById: getFilmByIdSelect(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

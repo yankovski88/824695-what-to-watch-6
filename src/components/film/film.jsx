@@ -14,6 +14,14 @@ import {getGenreById, getGenreFilms} from "../../utils/utils";
 import {AuthorizationStatus} from "../../constants/constants";
 import LinkAddReview from "../link-add-review/link-add-review";
 import {moviePropTypes, reviewPropTypes} from "../../prop-types";
+import {
+  getAllCommentsSelect,
+  getAllFilmsSelect,
+  getFilmByIdSelect, getGenreFilmsSelect, getIsAllCommentsSelect,
+  getIsDataLoadedSelect,
+  getIsFilmFoundSelect
+} from "../../store/all-movies/selectors";
+import {getAuthorizationStatus} from "../../store/user/selectors";
 
 
 const Film = (props) => {
@@ -149,15 +157,15 @@ Film.propTypes = {
 
 };
 
-const mapStateToProps = ({ALL_MOVIES, USER}) => ({
-  filmById: ALL_MOVIES.filmById,
-  isFilmFound: ALL_MOVIES.isFilmFound,
-  isDataLoaded: ALL_MOVIES.isDataLoaded,
-  films: ALL_MOVIES.films,
-  genreFilms: ALL_MOVIES.genreFilms,
-  isAllComments: ALL_MOVIES.isAllComments,
-  allComments: ALL_MOVIES.allComments,
-  authorizationStatus: USER.authorizationStatus,
+const mapStateToProps = (state) => ({
+  filmById: getFilmByIdSelect(state),
+  isFilmFound: getIsFilmFoundSelect(state),
+  isDataLoaded: getIsDataLoadedSelect(state),
+  films: getAllFilmsSelect(state),
+  genreFilms: getGenreFilmsSelect(state),
+  isAllComments: getIsAllCommentsSelect(state),
+  allComments: getAllCommentsSelect(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

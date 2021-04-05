@@ -6,6 +6,12 @@ import {connect} from "react-redux";
 import {useHistory} from "react-router-dom";
 import {formatTime} from "../../utils/utils";
 import Spinner from "../spinner/spinner";
+import {
+  getAllFilmsSelect,
+  getFilmByIdSelect,
+  getIsDataLoadedSelect,
+  getIsFilmLoadedSelect
+} from "../../store/all-movies/selectors";
 
 
 const Player = (props) => {
@@ -129,11 +135,11 @@ Player.propTypes = {
 };
 
 
-const mapStateToProps = ({ALL_MOVIES}) => ({
-  films: ALL_MOVIES.films, // взято из reduce
-  filmById: ALL_MOVIES.filmById,
-  isFilmLoaded: ALL_MOVIES.isFilmLoaded,
-  isDataLoaded: ALL_MOVIES.isDataLoaded,
+const mapStateToProps = (state) => ({
+  films: getAllFilmsSelect(state), // взято из reduce
+  filmById: getFilmByIdSelect(state),
+  isFilmLoaded: getIsFilmLoadedSelect(state),
+  isDataLoaded: getIsDataLoadedSelect(state),
 });
 
 // если передать setGenre на клик меню жанр, то в aaction в payload попадет название жанра

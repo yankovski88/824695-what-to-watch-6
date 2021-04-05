@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {AuthorizationStatus} from "../../constants/constants";
 import Logout from "../logout/logout";
+import {getAuthorizationStatus} from "../../store/user/selectors";
 
 
 const Header = (props)=>{
@@ -27,8 +28,8 @@ Header.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = ({USER})=>({
-  authorizationStatus: USER.authorizationStatus,
+const mapStateToProps = (state)=>({
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 export {Header};

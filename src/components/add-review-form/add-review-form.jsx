@@ -1,6 +1,7 @@
 import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import {getIsAddReviewFailSelect, getIsAddReviewSelect} from "../../store/all-movies/selectors";
 
 
 const AddReviewForm = (props) => {
@@ -86,9 +87,9 @@ AddReviewForm.propTypes = {
 };
 
 
-const mapStateToProps = ({ALL_MOVIES})=>({
-  isAddReview: ALL_MOVIES.isAddReview,
-  isAddReviewFail: ALL_MOVIES.isAddReviewFail,
+const mapStateToProps = (state)=>({
+  isAddReview: getIsAddReviewSelect(state),
+  isAddReviewFail: getIsAddReviewFailSelect(state),
 });
 
 export {AddReviewForm};

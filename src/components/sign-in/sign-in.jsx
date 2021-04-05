@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 import {AuthorizationStatus} from "../../constants/constants";
 import {useHistory} from "react-router-dom";
 import PropTypes from "prop-types";
+import {getAuthorizationStatus} from "../../store/user/selectors";
 
 
 const SignIn = (props) => {
@@ -39,8 +40,8 @@ SignIn.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = ({USER})=>({
-  authorizationStatus: USER.authorizationStatus
+const mapStateToProps = (state)=>({
+  authorizationStatus: getAuthorizationStatus(state)
 });
 
 export {SignIn};
