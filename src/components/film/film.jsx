@@ -35,7 +35,7 @@ const Film = (props) => {
   const BEGIN_INDEX = 0;
   const END_INDEX = 4;
 
-
+  // эта функция вызывается при каждом рендере. Делаем оптимизацию чтобы она вызывалась если меняются пропсы.
   const likeFilms = React.useMemo(()=>{
     const genreById = getGenreById(id, films); // нашли жанр фильма по id маршрута
     return getGenreFilms(genreById, films, id).slice(BEGIN_INDEX, END_INDEX);
