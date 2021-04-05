@@ -6,7 +6,6 @@ import {fetchPromo} from "../../store/api-actions";
 import Header from "../header/header";
 import BtnPlay from "../btn-play/btn-play";
 import {moviePropTypes} from "../../prop-types";
-import {NameSpace} from "../../store/reducer";
 import Spinner from "../spinner/spinner";
 import {getFilmPromoSelect} from "../../store/all-movies/selectors";
 import {getAuthorizationStatus} from "../../store/user/selectors";
@@ -14,7 +13,6 @@ import {getAuthorizationStatus} from "../../store/user/selectors";
 
 const Card = (props) => {
   const {filmPromo, onLoadFilmPromo} = props;
-  console.log(filmPromo);
 
   React.useEffect(()=>{
     if (Object.keys(filmPromo).length === 0) {

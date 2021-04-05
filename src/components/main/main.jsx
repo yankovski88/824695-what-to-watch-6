@@ -12,13 +12,13 @@ import {fetchMoviesList} from '../../store/api-actions';
 import Spinner from "../spinner/spinner";
 import {
   getAllFilmsSelect,
-  getCountShowFilmSelect, getFilmPromoSelect, getGenreFilmsSelect,
+  getCountShowFilmSelect, getGenreFilmsSelect,
   getGenreSelect, getIsDataLoadedSelect
 } from "../../store/all-movies/selectors";
 
 
 const Main = (props) => {
-  const {updateData, films, countShowFilm, onSetGenre, isDataLoaded, onLoadData, genreFilms, filmPromo} = props;
+  const {updateData, films, countShowFilm, onSetGenre, isDataLoaded, onLoadData, genreFilms} = props;
 
   // код решает показать btn more или нет
   let itemGenreFilms; // переменная которая смотрит показывать ли кнопку More Show
@@ -37,8 +37,6 @@ const Main = (props) => {
   }, [isDataLoaded]); // useEffect сказали следи за этим флагом если он изменится, то делай запрос
 
   return (<>
-
-    {/* {Object.keys(filmPromo).length === 0 ? <Spinner/> : <Card />}*/}
     <Card />
     <div className="page-content">
 
@@ -76,7 +74,6 @@ const mapStateToProps = (state)=>({
   films: getAllFilmsSelect(state), // взято из reduce
   genreFilms: getGenreFilmsSelect(state),
   isDataLoaded: getIsDataLoadedSelect(state),
-  filmPromo: getFilmPromoSelect(state),
 });
 
 // если передать setGenre на клик меню жанр, то в aaction в payload попадет название жанра

@@ -1,6 +1,5 @@
 import React from "react";
 import {useHistory} from "react-router-dom";
-import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {moviePropTypes} from "../../prop-types";
 import {getFilmByIdSelect, getFilmPromoSelect} from "../../store/all-movies/selectors";
