@@ -11,7 +11,7 @@ import Film from "../film/film.jsx";
 import Error404 from "../error-404/error-404";
 import {connect} from "react-redux";
 import browserHistory from "../../browser-history";
-import {ActionCreator} from "../../store/action";
+import {addRequestedRoute} from "../../store/action";
 import PrivateRoute from "../private-route/private-route";
 
 const App = (props) => {
@@ -83,7 +83,7 @@ const mapStateToProps = (state)=>({
 
 const mapDispatchToProps = (dispatch)=>({
   onPrivateRouteRequest(route) {
-    dispatch(ActionCreator.addRequestedRoute(route)); // закидываем роуте в диспач он закидывает в action и далее reducer поменяет вместо пути "/" на главную на путь route
+    dispatch(addRequestedRoute(route)); // закидываем роуте в диспач он закидывает в action и далее reducer поменяет вместо пути "/" на главную на путь route
   }
 });
 

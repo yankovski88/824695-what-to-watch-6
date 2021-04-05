@@ -7,7 +7,7 @@ import {Provider} from 'react-redux'; // соединяем храниище и 
 import {reducer} from './store/reducer';
 import thunk from "redux-thunk";
 import {createApi} from "./services/api";
-import {ActionCreator} from "./store/action";
+import {redirectToRoute, requireAuthorization} from "./store/action";
 import {AuthorizationStatus} from "./constants/constants";
 import {checkAuth} from "./store/api-actions";
 import {redirect} from "./store/middlewares/redirect";
@@ -17,8 +17,8 @@ import "./main.css";
 // переменная с конфигурацией api
 const api = createApi(
     // передаем в reduce при загрузке приложения, что авторизации не было
-    () => store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)), // по умолчанию передали колбек, что юзер не авторизован
-    () => store.dispatch(ActionCreator.redirectToRoute(`/404`)) // по умолчанию передали колбек, что юзер не авторизован
+    () => store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH)), // по умолчанию передали колбек, что юзер не авторизован
+    () => store.dispatch(redirectToRoute(`/404`)) // по умолчанию передали колбек, что юзер не авторизован
 
 );
 

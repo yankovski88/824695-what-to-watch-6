@@ -7,13 +7,13 @@ import CatalogMainFilms from "../catalog-main-films/catalog-main-films";
 import ListGenres from "../list-genres/list-genres";
 import BtnShowMore from "../btn-show-more/btn-show-more";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../store/action";
+import {setGenre} from "../../store/action";
 import {fetchMoviesList} from '../../store/api-actions';
 import Spinner from "../spinner/spinner";
 
 
 const Main = (props) => {
-  const {updateData, films, countShowFilm, setGenre, isDataLoaded, onLoadData, genreFilms} = props;
+  const {updateData, films, countShowFilm, onSetGenre, isDataLoaded, onLoadData, genreFilms} = props;
 
 
   // код решает показать btn more или нет
@@ -38,7 +38,7 @@ const Main = (props) => {
 
       {!isDataLoaded ? <Spinner /> : <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <ListGenres films={films} setGenre={setGenre}/>
+        <ListGenres films={films} setGenre={onSetGenre}/>
         <CatalogMainFilms updateData={updateData}/>
         {itemGenreFilms.length > countShowFilm ? <BtnShowMore /> : ``}
       </section>
@@ -58,7 +58,7 @@ Main.propTypes = {
   genreFilms: PropTypes.array.isRequired,
   films: PropTypes.array.isRequired,
   countShowFilm: PropTypes.number.isRequired,
-  setGenre: PropTypes.func.isRequired,
+  onSetGenre: PropTypes.func.isRequired,
   isDataLoaded: PropTypes.bool.isRequired,
   onLoadData: PropTypes.func.isRequired,
 };
@@ -73,8 +73,8 @@ const mapStateToProps = (state)=>({
 
 // если передать setGenre на клик меню жанр, то в aaction в payload попадет название жанра
 const mapDispatchToProps = (dispatch)=>({
-  setGenre(genre) {
-    dispatch(ActionCreator.setGenre(genre)); // genre это payload дополнитеьная инфа
+  onSetGenre(genre) {
+    dispatch(setGenre(genre)); // genre это payload дополнитеьная инфа
   },
   onLoadData() { // когда вызовится эта функция, то в dispatch попадает результат функции по запросу на сервер
     dispatch(fetchMoviesList());
