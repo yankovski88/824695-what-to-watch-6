@@ -6,10 +6,10 @@ const initialState = {
   filmById: {}, // фильм полученный с помощью маршрута id
   isFilmLoaded: false, // нужный фильм загрузился
   isFilmFound: false, // флаг если фильм получили т.е. через поиск напрямую id верный
-
+  requestedRoute: RoutePaths.MAIN, // маршрут подставляется если пришел юзер не авторизованный
 };
 
-export const FilmGet = (state = initialState, action) => {
+export const filmGet = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.FILM_BY_ID:
       return {

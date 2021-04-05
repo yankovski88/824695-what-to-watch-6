@@ -5,7 +5,7 @@ const initialState = {
   allComments: [], // массив комментов пуст
 };
 
-export const AllComments = (state = initialState, action) => {
+export const allComments = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.GET_ALL_COMMENTS:
       return {

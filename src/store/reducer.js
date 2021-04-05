@@ -1,3 +1,34 @@
+import {combineReducers} from 'redux';
+import {allMovies} from "./all-movies/all-movies";
+import {userAuthorization} from "./user/user";
+import {allComments} from "./all-comments/all-comments";
+import {filmGet} from "./film-get/film-get";
+import {filmPromo} from "./film-promo/film-promo";
+import {reviewAdd} from "./review-add/review-add";
+
+
+// в NameSpace определяем разделы стора
+export const NameSpace = {
+  ALL_COMMENTS: `ALL_COMMENTS`,
+  ALL_MOVIES: `ALL_MOVIES`,
+  FILM_GET: `FILM_GET`,
+  FILM_PROMO: `FILM_PROMO`,
+  REVIEW_ADD: `REVIEW_ADD`,
+  USER: `USER`,
+};
+
+// здесь соединяем наши раздельные редьюсеры
+// указали поля и ссылки на наши редьюсеры
+export default combineReducers({
+  [NameSpace.ALL_COMMENTS]: allComments,
+  [NameSpace.ALL_MOVIES]: allMovies,
+  [NameSpace.FILM_GET]: filmGet,
+  [NameSpace.FILM_PROMO]: filmPromo,
+  [NameSpace.REVIEW_ADD]: reviewAdd,
+  [NameSpace.USER]: userAuthorization,
+});
+
+
 // import {ActionType} from "../store/action";
 // import {getGenreFilms} from "../utils/utils";
 // import {ALL_GENRES, NUMBER_FILM, RoutePaths} from "../constants/constants";

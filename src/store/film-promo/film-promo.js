@@ -2,12 +2,10 @@ import {ActionType} from "../action";
 import {adaptToClient} from "../../utils/utils";
 
 const initialState = {
-  filmById: {}, // фильм полученный с помощью маршрута id
-  isFilmLoaded: false, // нужный фильм загрузился
-  isFilmFound: false, // флаг если фильм получили т.е. через поиск напрямую id верный
+  filmPromo: {}, // фильм на главной странице
 };
 
-export const FilmPromo = (state = initialState, action) => {
+export const filmPromo = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.GET_FILM_PROMO:
       return {
