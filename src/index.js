@@ -4,7 +4,7 @@ import App from "./components/app/app.jsx";
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {createStore, applyMiddleware} from 'redux'; // создаем хранилище
 import {Provider} from 'react-redux'; // соединяем храниище и react
-import {reducer} from './store/reducer';
+import reducer from './store/reducer';
 import thunk from "redux-thunk";
 import {createApi} from "./services/api";
 import {redirectToRoute, requireAuthorization} from "./store/action";

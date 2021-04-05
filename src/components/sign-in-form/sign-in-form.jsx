@@ -99,8 +99,8 @@ SignInForm.propTypes = {
   hasErrorLogin: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = (state)=>({
-  hasErrorLogin: state.hasErrorLogin,
+const mapStateToProps = ({USER})=>({
+  hasErrorLogin: USER.hasErrorLogin,
 });
 
 const mapDispatchToProps = (dispatch)=>({

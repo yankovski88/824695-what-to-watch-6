@@ -3,6 +3,7 @@ import SmallCard from "../small-card/small-card.jsx";
 import PropTypes from "prop-types";
 import {connect} from 'react-redux';
 import {getActiveFilms} from "../../utils/utils";
+import {moviePropTypes} from "../../prop-types";
 
 
 const CatalogMainFilms = (props) => {
@@ -31,16 +32,16 @@ const CatalogMainFilms = (props) => {
 
 CatalogMainFilms.propTypes = {
   updateData: PropTypes.func.isRequired,
-  films: PropTypes.array.isRequired,
-  genreFilms: PropTypes.array.isRequired,
+  films: PropTypes.arrayOf(moviePropTypes).isRequired,
+  genreFilms: PropTypes.arrayOf(moviePropTypes).isRequired,
   countShowFilm: PropTypes.number.isRequired,
 };
 
 
-const mapStateToProps = (state) => ({
-  countShowFilm: state.countShowFilm,
-  films: state.films,
-  genreFilms: state.genreFilms,
+const mapStateToProps = ({ALL_MOVIES}) => ({
+  countShowFilm: ALL_MOVIES.countShowFilm,
+  films: ALL_MOVIES.films,
+  genreFilms: ALL_MOVIES.genreFilms,
 });
 
 export {CatalogMainFilms};

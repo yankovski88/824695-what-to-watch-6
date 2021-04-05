@@ -2,6 +2,7 @@ import React from "react";
 import {useHistory} from "react-router-dom";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import {moviePropTypes} from "../../prop-types";
 
 const BtnPlay = (props) => {
   const {filmById, filmPromo} = props;
@@ -28,15 +29,15 @@ const BtnPlay = (props) => {
 };
 
 BtnPlay.propTypes = {
-  filmById: PropTypes.object.isRequired,
-  filmPromo: PropTypes.object.isRequired,
+  filmById: moviePropTypes,
+  filmPromo: moviePropTypes,
 
 };
 
 
-const mapStateToProps = (state)=>({
-  filmPromo: state.filmPromo,
-  filmById: state.filmById,
+const mapStateToProps = ({ALL_MOVIES})=>({
+  filmPromo: ALL_MOVIES.filmPromo,
+  filmById: ALL_MOVIES.filmById,
 });
 
 export {BtnPlay};

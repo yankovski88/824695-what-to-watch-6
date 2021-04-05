@@ -32,8 +32,8 @@ UserBlock.propTypes = {
   dataLoggedIn: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state)=>({
-  dataLoggedIn: state.dataLoggedIn, // взято из reduce
+const mapStateToProps = ({USER})=>({
+  dataLoggedIn: USER.dataLoggedIn, // взято из reduce
 });
 
 

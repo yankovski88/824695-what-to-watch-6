@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import Spinner from "../spinner/spinner";
+import {moviePropTypes} from "../../prop-types";
 
 
 const FilmDescription = (props)=>{
@@ -24,14 +25,13 @@ const FilmDescription = (props)=>{
 };
 
 FilmDescription.propTypes = {
-  filmById: PropTypes.object.isRequired
+  filmById: moviePropTypes
 };
 
-const mapStateToProps = (state)=>({
-  filmById: state.filmById,
+const mapStateToProps = ({ALL_MOVIES})=>({
+  filmById: ALL_MOVIES.filmById,
 });
 
 
 export {FilmDescription};
-
 export default connect(mapStateToProps, null)(FilmDescription);

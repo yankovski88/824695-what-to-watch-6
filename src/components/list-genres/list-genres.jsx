@@ -3,6 +3,7 @@ import GenresItem from "../item/genres-item";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {getUniqueGenres} from "../../utils/utils";
+import {moviePropTypes} from "../../prop-types";
 
 const ListGenres = (props)=>{
   const {setGenre, films} = props;
@@ -21,13 +22,13 @@ const ListGenres = (props)=>{
 };
 
 ListGenres.propTypes = {
-  films: PropTypes.array.isRequired,
+  films: PropTypes.arrayOf(moviePropTypes).isRequired,
   setGenre: PropTypes.func.isRequired,
 };
 
 
-const mapStateToProps = (state) => ({
-  films: state.films
+const mapStateToProps = ({ALL_MOVIES}) => ({
+  films: ALL_MOVIES.films
 });
 
 export {ListGenres};

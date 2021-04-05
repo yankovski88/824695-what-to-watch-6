@@ -64,8 +64,8 @@ SmallCard.propTypes = {
   updateData: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state)=>({
-  filmById: state.filmById,
+const mapStateToProps = ({ALL_MOVIES})=>({
+  filmById: ALL_MOVIES.filmById,
 });
 
 

@@ -9,6 +9,7 @@ import {fetchFilmById, fetchPostComment} from "../../store/api-actions";
 import {useParams} from "react-router-dom";
 import Spinner from "../spinner/spinner";
 import Logout from "../logout/logout";
+import {moviePropTypes} from "../../prop-types";
 
 
 const AddReview = (props) => {
@@ -56,16 +57,15 @@ const AddReview = (props) => {
 };
 
 AddReview.propTypes = {
-  filmById: PropTypes.object.isRequired,
+  filmById: moviePropTypes,
   postCommentItem: PropTypes.func.isRequired,
   loadFilmById: PropTypes.func.isRequired,
   isFilmLoaded: PropTypes.bool.isRequired,
-
 };
 
-const mapStateToProps = (state) => ({
-  filmById: state.filmById,
-  isFilmLoaded: state.isFilmLoaded,
+const mapStateToProps = ({ALL_MOVIES}) => ({
+  filmById: ALL_MOVIES.filmById,
+  isFilmLoaded: ALL_MOVIES.isFilmLoaded,
 });
 
 const mapDispatchToProps = (dispatch) => ({

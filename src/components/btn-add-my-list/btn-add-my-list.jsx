@@ -4,6 +4,7 @@ import {fetchFavorite, fetchFilmById, fetchMoviesList} from "../../store/api-act
 import {connect} from "react-redux";
 import {AuthorizationStatus} from "../../constants/constants";
 import PropTypes from "prop-types";
+import {moviePropTypes} from "../../prop-types";
 
 const BtnAddMyList = (props) => {
   const {loadFavorite, filmById, filmPromo, authorizationStatus} = props;
@@ -55,16 +56,16 @@ export {BtnAddMyList};
 
 BtnAddMyList.propTypes = {
   loadFavorite: PropTypes.func.isRequired,
-  filmPromo: PropTypes.object.isRequired,
-  filmById: PropTypes.object.isRequired,
+  filmPromo: moviePropTypes,
+  filmById: moviePropTypes,
   authorizationStatus: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  films: state.films,
-  filmPromo: state.filmPromo,
-  authorizationStatus: state.authorizationStatus,
-  filmById: state.filmById,
+const mapStateToProps = ({ALL_MOVIES, USER}) => ({
+  films: ALL_MOVIES.films,
+  filmPromo: ALL_MOVIES.filmPromo,
+  authorizationStatus: USER.authorizationStatus,
+  filmById: ALL_MOVIES.filmById,
 });
 
 const mapDispatchToProps = (dispatch) => ({

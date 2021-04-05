@@ -129,11 +129,11 @@ Player.propTypes = {
 };
 
 
-const mapStateToProps = (state) => ({
-  films: state.films, // взято из reduce
-  filmById: state.filmById,
-  isFilmLoaded: state.isFilmLoaded,
-  isDataLoaded: state.isDataLoaded,
+const mapStateToProps = ({ALL_MOVIES}) => ({
+  films: ALL_MOVIES.films, // взято из reduce
+  filmById: ALL_MOVIES.filmById,
+  isFilmLoaded: ALL_MOVIES.isFilmLoaded,
+  isDataLoaded: ALL_MOVIES.isDataLoaded,
 });
 
 // если передать setGenre на клик меню жанр, то в aaction в payload попадет название жанра

@@ -27,10 +27,9 @@ Header.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = (state)=>({
-  authorizationStatus: state.authorizationStatus,
+const mapStateToProps = ({USER})=>({
+  authorizationStatus: USER.authorizationStatus,
 });
 
 export {Header};
-
 export default connect(mapStateToProps, null)(Header); // если есть defalt то импорт со скобками

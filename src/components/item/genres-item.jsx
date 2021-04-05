@@ -22,19 +22,17 @@ const GenresItem = (props) => {
   );
 };
 
-
-// код который достает пропс с фильмами
-const mapStateToProps = (state) => ({ // state это состояние хранилища
-  films: state.films,
-  selectedGenre: state.genre
-});
-
-
 GenresItem.propTypes = {
   itemGenre: PropTypes.string.isRequired,
   selectedGenre: PropTypes.string.isRequired,
   setGenre: PropTypes.func.isRequired,
 };
+
+// код который достает пропс с фильмами
+const mapStateToProps = ({ALL_MOVIES}) => ({ // state это состояние хранилища
+  films: ALL_MOVIES.films,
+  selectedGenre: ALL_MOVIES.genre
+});
 
 export {GenresItem};
 export default connect(mapStateToProps, null)(GenresItem); // connect подружит наш компонент с провайдером

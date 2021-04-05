@@ -1,6 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
 import moment from "moment";
+import {reviewPropTypes} from "../../prop-types";
 
 const FilmReview = (props) => {
   const {review} = props;
@@ -23,7 +23,7 @@ const FilmReview = (props) => {
 
 
 FilmReview.propTypes = {
-  review: PropTypes.object.isRequired,
+  review: reviewPropTypes,
 };
 
 export default FilmReview;

@@ -36,8 +36,8 @@ PrivateRoute.propTypes = {
   onPrivateRouteRequest: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state)=>({
-  authorizationStatus: state.authorizationStatus
+const mapStateToProps = ({USER})=>({
+  authorizationStatus: USER.authorizationStatus
 });
 
 export {PrivateRoute};

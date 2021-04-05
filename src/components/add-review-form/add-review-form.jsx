@@ -86,9 +86,9 @@ AddReviewForm.propTypes = {
 };
 
 
-const mapStateToProps = (state)=>({
-  isAddReview: state.isAddReview,
-  isAddReviewFail: state.isAddReviewFail,
+const mapStateToProps = ({ALL_MOVIES})=>({
+  isAddReview: ALL_MOVIES.isAddReview,
+  isAddReviewFail: ALL_MOVIES.isAddReviewFail,
 });
 
 export {AddReviewForm};

@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import Spinner from "../spinner/spinner";
 import {fetchMoviesList} from "../../store/api-actions";
+import {moviePropTypes} from "../../prop-types";
 
 
 const CatalogMyListFilms = (props) => {
@@ -40,17 +41,15 @@ const CatalogMyListFilms = (props) => {
 };
 
 CatalogMyListFilms.propTypes = {
-  films: PropTypes.array.isRequired,
+  films: PropTypes.arrayOf(moviePropTypes).isRequired,
   updateData: PropTypes.func.isRequired,
   loadMoviesList: PropTypes.func.isRequired,
   isDataLoaded: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  allFavoriteFilms: state.allFavoriteFilms,
-  isDataLoaded: state.isDataLoaded,
-  films: state.films,
-
+const mapStateToProps = ({ALL_MOVIES}) => ({
+  isDataLoaded: ALL_MOVIES.isDataLoaded,
+  films: ALL_MOVIES.films,
 });
 
 const mapDispatchToProps = (dispatch) => ({

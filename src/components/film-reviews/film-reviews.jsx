@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import FilmReview from "../film-review/film-review";
+import {reviewPropTypes} from "../../prop-types";
 
 
 const FilmReviews = (props) => {
@@ -36,7 +37,7 @@ const FilmReviews = (props) => {
 };
 
 FilmReviews.propTypes = {
-  reviews: PropTypes.array.isRequired,
+  reviews: PropTypes.arrayOf(reviewPropTypes).isRequired,
 };
 
 export default FilmReviews;

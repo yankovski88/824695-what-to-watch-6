@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {getTimeMovie} from "../../utils/utils";
 import Spinner from "../spinner/spinner";
+import {moviePropTypes} from "../../prop-types";
 
 const FilmDetails = (props) => {
   const {film} = props;
@@ -49,7 +50,7 @@ const FilmDetails = (props) => {
 
 
 FilmDetails.propTypes = {
-  film: PropTypes.object.isRequired,
+  film: moviePropTypes,
 };
 
 export default FilmDetails;

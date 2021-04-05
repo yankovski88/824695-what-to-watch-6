@@ -5,10 +5,14 @@ import {connect} from "react-redux";
 import {fetchPromo} from "../../store/api-actions";
 import Header from "../header/header";
 import BtnPlay from "../btn-play/btn-play";
+import {moviePropTypes} from "../../prop-types";
+import {NameSpace} from "../../store/reducer";
+import Spinner from "../spinner/spinner";
 
 
 const Card = (props) => {
   const {filmPromo, onLoadFilmPromo} = props;
+console.log(filmPromo)
 
   React.useEffect(()=>{
     if (Object.keys(filmPromo).length === 0) {
@@ -17,6 +21,7 @@ const Card = (props) => {
   }, [filmPromo]);
 
   return (
+    Object.keys(filmPromo).length === 0 ? <Spinner/> :
     <section className="movie-card">
       <div className="movie-card__bg">
         <img src={filmPromo.backgroundImage} alt={filmPromo.name}/>
@@ -47,17 +52,16 @@ const Card = (props) => {
         </div>
       </div>
     </section>
-
   );
 };
 Card.propTypes = {
-  filmPromo: PropTypes.object.isRequired,
+  filmPromo: moviePropTypes, // PropTypes.object.isRequired, // moviePropTypes,
   onLoadFilmPromo: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state)=>({
-  filmPromo: state.filmPromo,
-  authorizationStatus: state.authorizationStatus,
+const mapStateToProps = ({ALL_MOVIES, USER})=>({ // state
+  filmPromo: ALL_MOVIES.filmPromo, // state.ALL_MOVIES.filmPromo,   //state[NameSpace.ALL_MOVIES].filmPromo,
+  authorizationStatus: USER.authorizationStatus // state.USER.authorizationStatus,
 });
 
 const mapDispatchToProps = (dispatch)=>({

@@ -13,8 +13,8 @@ import Spinner from "../spinner/spinner";
 
 
 const Main = (props) => {
-  const {updateData, films, countShowFilm, onSetGenre, isDataLoaded, onLoadData, genreFilms} = props;
-
+  const {updateData, films, countShowFilm, onSetGenre, isDataLoaded, onLoadData, genreFilms, filmPromo} = props;
+console.log(filmPromo)
 
   // код решает показать btn more или нет
   let itemGenreFilms; // переменная которая смотрит показывать ли кнопку More Show
@@ -32,8 +32,10 @@ const Main = (props) => {
     }
   }, [isDataLoaded]); // useEffect сказали следи за этим флагом если он изменится, то делай запрос
 
-  return <React.Fragment>
-    <Card />
+  return (<>
+
+    {/*{Object.keys(filmPromo).length === 0 ? <Spinner/> : <Card />}*/}
+      <Card />
     <div className="page-content">
 
       {!isDataLoaded ? <Spinner /> : <section className="catalog">
@@ -50,8 +52,9 @@ const Main = (props) => {
         <Copyright/>
       </footer>
     </div>
-  </React.Fragment>;
-};
+  </>
+)
+}
 
 Main.propTypes = {
   updateData: PropTypes.func.isRequired,
@@ -63,12 +66,13 @@ Main.propTypes = {
   onLoadData: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state)=>({
-  countShowFilm: state.countShowFilm, // взято из reduce
-  selectedGenre: state.genre, // взято из reduce action.payload
-  films: state.films, // взято из reduce
-  genreFilms: state.genreFilms,
-  isDataLoaded: state.isDataLoaded,
+const mapStateToProps = ({ALL_MOVIES})=>({
+  countShowFilm: ALL_MOVIES.countShowFilm, // взято из reduce
+  selectedGenre: ALL_MOVIES.genre, // взято из reduce action.payload
+  films: ALL_MOVIES.films, // взято из reduce
+  genreFilms: ALL_MOVIES.genreFilms,
+  isDataLoaded: ALL_MOVIES.isDataLoaded,
+  filmPromo: ALL_MOVIES.filmPromo,
 });
 
 // если передать setGenre на клик меню жанр, то в aaction в payload попадет название жанра

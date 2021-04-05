@@ -13,6 +13,7 @@ import {fetchFilmById, fetchMoviesList, fetchAllComments} from "../../store/api-
 import {getGenreById, getGenreFilms} from "../../utils/utils";
 import {AuthorizationStatus} from "../../constants/constants";
 import LinkAddReview from "../link-add-review/link-add-review";
+import {moviePropTypes, reviewPropTypes} from "../../prop-types";
 
 
 const Film = (props) => {
@@ -135,29 +136,28 @@ const Film = (props) => {
 Film.propTypes = {
   updateData: PropTypes.func.isRequired,
   loadAllComments: PropTypes.func.isRequired,
-  filmById: PropTypes.object.isRequired,
+  filmById: moviePropTypes,
   loadFilmById: PropTypes.func.isRequired,
   isDataLoaded: PropTypes.bool.isRequired,
   onLoadData: PropTypes.func.isRequired,
-  films: PropTypes.array.isRequired,
+  films: PropTypes.arrayOf(moviePropTypes).isRequired,
   isAllComments: PropTypes.bool.isRequired,
-  allComments: PropTypes.array.isRequired,
+  allComments: PropTypes.arrayOf(reviewPropTypes).isRequired,
   isFilmFound: PropTypes.bool.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   onPrivateRouteRequest: PropTypes.func.isRequired,
 
 };
 
-const mapStateToProps = (state) => ({
-  filmById: state.filmById,
-  isFilmFound: state.isFilmFound,
-  isDataLoaded: state.isDataLoaded,
-  films: state.films,
-  genreFilms: state.genreFilms,
-  // likeGenre: state.likeGenre,
-  isAllComments: state.isAllComments,
-  allComments: state.allComments,
-  authorizationStatus: state.authorizationStatus,
+const mapStateToProps = ({ALL_MOVIES, USER}) => ({
+  filmById: ALL_MOVIES.filmById,
+  isFilmFound: ALL_MOVIES.isFilmFound,
+  isDataLoaded: ALL_MOVIES.isDataLoaded,
+  films: ALL_MOVIES.films,
+  genreFilms: ALL_MOVIES.genreFilms,
+  isAllComments: ALL_MOVIES.isAllComments,
+  allComments: ALL_MOVIES.allComments,
+  authorizationStatus: USER.authorizationStatus,
 });
 
 const mapDispatchToProps = (dispatch) => ({
