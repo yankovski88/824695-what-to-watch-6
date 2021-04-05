@@ -1,8 +1,8 @@
 import {mockMovie, mockReviews} from "./action.test";
-import {adaptToClient, reducer} from "./reducer"; // adaptToClient,
+import {reducer} from "./reducer"; // adaptToClient,
 import {ALL_GENRES, AuthorizationStatus, NUMBER_FILM, RoutePaths} from "../constants/constants";
 import {ActionType} from "./action";
-import {getGenreFilms} from "../utils/utils";
+import {adaptToClient, getGenreFilms} from "../utils/utils";
 
 
 describe(`Reducer 'selected movie' should work correctly`, () => {

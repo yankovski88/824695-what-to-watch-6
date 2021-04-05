@@ -9,7 +9,7 @@ import {
   requireAuthorization, setMovieFavorite, setPromoMovieFavorite
 } from "./action";
 import {AuthorizationStatus} from "../constants/constants";
-import {adaptToClientUser} from "./reducer";
+import {adaptToClientUser} from "../utils/utils";
 
 export const fetchMoviesList = () => (dispatch, _getState, api) => (
   api.get(`/films`)

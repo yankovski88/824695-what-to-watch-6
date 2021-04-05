@@ -78,3 +78,57 @@ export const formatTime = (seconds) => {
 
 
 export const isValidEmail = (email) => EMAIL_REGEX.test(email);
+
+
+// метод Адаптер который адоптирует данные от сервера на читаемые данные для клиента
+export const adaptToClient = (film) => { // получаем объект с неугодными нам полями изменили названия полей, удалили старые серверные и вернули отредоктированный объект
+
+  const adaptedFilm = Object.assign(
+      {},
+      film,
+      {
+      // в basePrice записали, то что пришло с сервера, плюс можно модифицировать данные как с датой
+        backgroundColor: film.background_color,
+        backgroundImage: film.background_image,
+        isFavorite: film.is_favorite,
+        posterImage: film.poster_image,
+        previewImage: film.preview_image,
+        previewVideoLink: film.preview_video_link,
+        runTime: film.run_time,
+        scoresCount: film.scores_count,
+        videoLink: film.video_link,
+      }
+  );
+
+  // Ненужные ключи мы удаляем
+  delete adaptedFilm.background_color;
+  delete adaptedFilm.background_image;
+  delete adaptedFilm.is_favorite;
+  delete adaptedFilm.poster_image;
+  delete adaptedFilm.preview_image;
+  delete adaptedFilm.preview_video_link;
+  delete adaptedFilm.run_time;
+  delete adaptedFilm.scores_count;
+  delete adaptedFilm.video_link;
+
+  return adaptedFilm;
+};
+
+// метод Адаптер который адоптирует данные от сервера на читаемые данные для клиента
+export const adaptToClientUser = (user) => { // получаем объект с неугодными нам полями изменили названия полей, удалили старые серверные и вернули отредоктированный объект
+
+  const adaptedUser = Object.assign(
+      {},
+      user,
+      {
+      // в basePrice записали, то что пришло с сервера, плюс можно модифицировать данные как с датой
+        avatarUrl: user.avatar_url,
+      }
+  );
+
+  // Ненужные ключи мы удаляем
+  delete adaptedUser.avatar_url;
+
+
+  return adaptedUser;
+};

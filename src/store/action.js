@@ -3,7 +3,7 @@ export const ActionType = {
   GENRE: `main/genre`,
   MORE_FILM: `MORE_FILM`,
   GET_ALL_FILMS: `main/getAllFilms`,
-  LIKE_FILMS: `card/like-films`, // создал тип экшина по которому сделаем функцию по его возврату
+  // LIKE_FILMS: `card/like-films`, // создал тип экшина по которому сделаем функцию по его возврату
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
   GET_FILM_PROMO: `main/promo`,
   REDIRECT_TO_ROUTE: `user/redirectToRoute`,
@@ -11,7 +11,7 @@ export const ActionType = {
   FILM_BY_ID: `user/film`,
   GET_ALL_COMMENTS: `film/comments`,
 
-  ADD_REVIEW: `user/ADD_REVIEW`,
+  // ADD_REVIEW: `user/ADD_REVIEW`,
   CHANGE_IS_ADD_REVIEW: `user/CHANGE_IS_ADD_REVIEW`,
 
   HAS_ERROR_LOGIN: `login/hasErrorLogin`,
@@ -35,10 +35,10 @@ export const getAllFilms = (data) => ({
   type: ActionType.GET_ALL_FILMS,
   payload: data
 });
-export const likeFilms = (data) => ({ // функция для похожих фильмов
-  type: ActionType.LIKE_FILMS,
-  payload: data
-});
+// export const likeFilms = (data) => ({ // функция для похожих фильмов
+//   type: ActionType.LIKE_FILMS,
+//   payload: data
+// });
 export const getFilmPromo = (filmPromo) => ({
   type: ActionType.GET_FILM_PROMO,
   payload: filmPromo,
@@ -64,10 +64,10 @@ export const getAllComments = (comments) => ({
   payload: comments,
 });
 
-export const addReview = (data) => ({ // булеан на отправку формы и блокировки кнопки
-  type: ActionType.ADD_REVIEW,
-  payload: data,
-});
+// export const addReview = (data) => ({ // булеан на отправку формы и блокировки кнопки
+//   type: ActionType.ADD_REVIEW,
+//   payload: data,
+// });
 export const changeIsAddReview = (data) => ({
   type: ActionType.CHANGE_IS_ADD_REVIEW,
   payload: data,

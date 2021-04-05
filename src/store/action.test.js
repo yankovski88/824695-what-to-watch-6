@@ -66,7 +66,7 @@
 //   });
 //
 //
-//   it(`check btn more film`, ()=>{
+//   it(`check btn more film-get`, ()=>{
 //     const expectedAction = {
 //       type: ActionType.MORE_FILM
 //     };

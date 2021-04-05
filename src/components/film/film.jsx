@@ -154,7 +154,7 @@ const mapStateToProps = (state) => ({
   isDataLoaded: state.isDataLoaded,
   films: state.films,
   genreFilms: state.genreFilms,
-  likeGenre: state.likeGenre,
+  // likeGenre: state.likeGenre,
   isAllComments: state.isAllComments,
   allComments: state.allComments,
   authorizationStatus: state.authorizationStatus,
