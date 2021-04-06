@@ -1,5 +1,5 @@
 import {mockMovie, mockReviews} from "../action.test";
-import {ALL_GENRES, AuthorizationStatus, NUMBER_FILM, RoutePaths} from "../../constants/constants";
+import {ALL_GENRES, NUMBER_FILM, RoutePaths} from "../../constants/constants";
 import {ActionType} from "../action";
 import {adaptToClient, getGenreFilms} from "../../utils/utils";
 import {allMovies} from "./all-movies";
@@ -66,7 +66,7 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
     };
 
     expect(allMovies(state, filmById)).toEqual(
-      stateNew
+        stateNew
     );
 
   });
@@ -105,7 +105,7 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
     };
 
     expect(allMovies(state, item)).toEqual(
-      stateNew
+        stateNew
     );
   });
 
@@ -142,7 +142,7 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
     };
 
     expect(allMovies(state, item)).toEqual(
-      stateNew
+        stateNew
     );
   });
 
@@ -179,7 +179,7 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
     };
 
     expect(allMovies(state, item)).toEqual(
-      stateNew
+        stateNew
     );
   });
 
@@ -213,70 +213,10 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
     };
 
     expect(allMovies(state, item)).toEqual(
-      stateNew
+        stateNew
     );
   });
 
-
-  // // user12
-  // it(`Reducer should get REQUIRED_AUTHORIZATION`, () => {
-  //   const state = {
-  // countShowFilm: 8, // число сколько фильмов отрендерить
-  //   isDataLoaded: false, // загрузились ли фильмы с сервера
-  //   genre: ALL_GENRES, // начальный жанр для main.jsx
-  //   genreFilms: [], // фильмы отсортированные по жанру
-  //   films: [mockMovie], // загруженные фильмы с сервера все
-  //   filmById: {}, // фильм полученный с помощью маршрута id
-  // isFilmLoaded: false, // нужный фильм загрузился
-  //   isFilmFound: false, // флаг если фильм получили т.е. через поиск напрямую id верный
-  //   requestedRoute: RoutePaths.MAIN, // маршрут подставляется если пришел юзер не авторизованный
-  //   filmPromo: {}, // фильм на главной странице
-  // isAllComments: false, // все коменты полученны
-  //   allComments: [], // массив комментов пуст
-  //   isAddReview: true, // нужно чтобы бы знать или комент добавлен
-  //   isAddReviewFail: false, // флаг на форму комента
-  // //     countShowFilm: 8, // число сколько фильмов отрендерить
-  // //     genre: ALL_GENRES, // начальный жанр для main.jsx
-  // //     genreFilms: [], // фильмы отсортированные по жанру
-  // //     films: [mockMovie], // загруженные фильмы с сервера все
-  // //     likeGenre: ``, // жанр по умолчанию пустой для похожих фильмов
-  // //     likeFilms: [], // похожие фильмы, появятся только после клика жанра
-  // //     isDataLoaded: false, // загрузились ли фильмы с сервера
-  // //     filmPromo: {}, // фильм на главной странице
-  // //     authorizationStatus: null, // поле чтобы знать авторизирован ли пользователь
-  // //     requestedRoute: RoutePaths.MAIN, // маршрут подставляется если пришел юзер не авторизованный
-  // //     filmById: {}, // фильм полученный с помощью маршрута id
-  // //     isFilmFound: false, // флаг если фильм получили т.е. через поиск напрямую id верный
-  // //     isFilmLoaded: false, // нужный фильм загрузился
-  // //
-  // //     isAllComments: false, // все коменты полученны
-  // //     allComments: [], // массив комментов пуст
-  // //
-  // //     isAddReview: true,
-  // //     hasError: false, // флаг на форму комента
-  // //
-  // //     hasErrorLogin: false, // логин не проходит
-  // //     dataLoggedIn: {},
-  // //
-  //   };
-  //
-  //
-  //   const item = {
-  //     type: ActionType.REQUIRED_AUTHORIZATION,
-  //     payload: AuthorizationStatus.AUTH,
-  //   };
-  //
-  //   const stateNew = {
-  //     ...state,
-  //     authorizationStatus: AuthorizationStatus.AUTH,
-  //   };
-  //
-  //   expect(allMovies(state, item)).toEqual(
-  //       stateNew
-  //   );
-  // });
-
-  //
   it(`Reducer should get ADD_REQUESTED_ROUTE`, () => {
     const state = {
       countShowFilm: 8, // число сколько фильмов отрендерить
@@ -307,7 +247,7 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
     };
 
     expect(allMovies(state, item)).toEqual(
-      stateNew
+        stateNew
     );
   });
 
@@ -345,7 +285,7 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
     };
 
     expect(allMovies(state, item)).toEqual(
-      stateNew
+        stateNew
     );
   });
 
@@ -366,30 +306,6 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
       allComments: [], // массив комментов пуст
       isAddReview: true, // нужно чтобы бы знать или комент добавлен
       isAddReviewFail: false, // флаг на форму комента
-
-      //     countShowFilm: 8, // число сколько фильмов отрендерить
-  //     genre: ALL_GENRES, // начальный жанр для main.jsx
-  //     genreFilms: [], // фильмы отсортированные по жанру
-  //     films: [mockMovie], // загруженные фильмы с сервера все
-  //     likeGenre: ``, // жанр по умолчанию пустой для похожих фильмов
-  //     likeFilms: [], // похожие фильмы, появятся только после клика жанра
-  //     isDataLoaded: false, // загрузились ли фильмы с сервера
-  //     filmPromo: {}, // фильм на главной странице
-  //     authorizationStatus: null, // поле чтобы знать авторизирован ли пользователь
-  //     requestedRoute: RoutePaths.MAIN, // маршрут подставляется если пришел юзер не авторизованный
-  //     filmById: {}, // фильм полученный с помощью маршрута id
-  //     isFilmFound: false, // флаг если фильм получили т.е. через поиск напрямую id верный
-  //     isFilmLoaded: false, // нужный фильм загрузился
-  //
-  //     isAllComments: false, // все коменты полученны
-  //     allComments: [], // массив комментов пуст
-  //
-  //     isAddReview: true,
-  //     hasError: false, // флаг на форму комента
-  //
-  //     hasErrorLogin: false, // логин не проходит
-  //     dataLoggedIn: {},
-  //
     };
 
 
@@ -411,20 +327,20 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
 
   it(`Reducer should get HAS_ERROR`, () => {
     const state = {
-  countShowFilm: 8, // число сколько фильмов отрендерить
-    isDataLoaded: false, // загрузились ли фильмы с сервера
-    genre: ALL_GENRES, // начальный жанр для main.jsx
-    genreFilms: [], // фильмы отсортированные по жанру
-    films: [mockMovie], // загруженные фильмы с сервера все
-    filmById: {}, // фильм полученный с помощью маршрута id
-  isFilmLoaded: false, // нужный фильм загрузился
-    isFilmFound: false, // флаг если фильм получили т.е. через поиск напрямую id верный
-    requestedRoute: RoutePaths.MAIN, // маршрут подставляется если пришел юзер не авторизованный
-    filmPromo: {}, // фильм на главной странице
-  isAllComments: false, // все коменты полученны
-    allComments: [], // массив комментов пуст
-    isAddReview: true, // нужно чтобы бы знать или комент добавлен
-    isAddReviewFail: false, // флаг на форму комента
+      countShowFilm: 8, // число сколько фильмов отрендерить
+      isDataLoaded: false, // загрузились ли фильмы с сервера
+      genre: ALL_GENRES, // начальный жанр для main.jsx
+      genreFilms: [], // фильмы отсортированные по жанру
+      films: [mockMovie], // загруженные фильмы с сервера все
+      filmById: {}, // фильм полученный с помощью маршрута id
+      isFilmLoaded: false, // нужный фильм загрузился
+      isFilmFound: false, // флаг если фильм получили т.е. через поиск напрямую id верный
+      requestedRoute: RoutePaths.MAIN, // маршрут подставляется если пришел юзер не авторизованный
+      filmPromo: {}, // фильм на главной странице
+      isAllComments: false, // все коменты полученны
+      allComments: [], // массив комментов пуст
+      isAddReview: true, // нужно чтобы бы знать или комент добавлен
+      isAddReviewFail: false, // флаг на форму комента
     };
 
 
@@ -442,50 +358,6 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
         stateNew
     );
   });
-  //
-  //
-  // it(`Reducer should get HAS_ERROR_LOGIN`, () => {
-  //   const state = {
-  //     countShowFilm: 8, // число сколько фильмов отрендерить
-  //     genre: ALL_GENRES, // начальный жанр для main.jsx
-  //     genreFilms: [], // фильмы отсортированные по жанру
-  //     films: [mockMovie], // загруженные фильмы с сервера все
-  //     likeGenre: ``, // жанр по умолчанию пустой для похожих фильмов
-  //     likeFilms: [], // похожие фильмы, появятся только после клика жанра
-  //     isDataLoaded: false, // загрузились ли фильмы с сервера
-  //     filmPromo: {}, // фильм на главной странице
-  //     authorizationStatus: null, // поле чтобы знать авторизирован ли пользователь
-  //     requestedRoute: RoutePaths.MAIN, // маршрут подставляется если пришел юзер не авторизованный
-  //     filmById: {}, // фильм полученный с помощью маршрута id
-  //     isFilmFound: false, // флаг если фильм получили т.е. через поиск напрямую id верный
-  //     isFilmLoaded: false, // нужный фильм загрузился
-  //
-  //     isAllComments: false, // все коменты полученны
-  //     allComments: [], // массив комментов пуст
-  //
-  //     isAddReview: true,
-  //     hasError: false, // флаг на форму комента
-  //
-  //     hasErrorLogin: false, // логин не проходит
-  //     dataLoggedIn: {},
-  //
-  //   };
-  //
-  //
-  //   const item = {
-  //     type: ActionType.HAS_ERROR_LOGIN,
-  //     payload: true,
-  //   };
-  //
-  //   const stateNew = {
-  //     ...state,
-  //     hasErrorLogin: true,
-  //   };
-  //
-  //   expect(reducer(state, item)).toEqual(
-  //       stateNew
-  //   );
-  // });
 
 
   it(`Reducer should get MORE_FILM`, () => {
@@ -504,30 +376,6 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
       allComments: [], // массив комментов пуст
       isAddReview: true, // нужно чтобы бы знать или комент добавлен
       isAddReviewFail: false, // флаг на форму комента
-
-      //     countShowFilm: 8, // число сколько фильмов отрендерить
-  //     genre: ALL_GENRES, // начальный жанр для main.jsx
-  //     genreFilms: [], // фильмы отсортированные по жанру
-  //     films: [mockMovie], // загруженные фильмы с сервера все
-  //     likeGenre: ``, // жанр по умолчанию пустой для похожих фильмов
-  //     likeFilms: [], // похожие фильмы, появятся только после клика жанра
-  //     isDataLoaded: false, // загрузились ли фильмы с сервера
-  //     filmPromo: {}, // фильм на главной странице
-  //     authorizationStatus: null, // поле чтобы знать авторизирован ли пользователь
-  //     requestedRoute: RoutePaths.MAIN, // маршрут подставляется если пришел юзер не авторизованный
-  //     filmById: {}, // фильм полученный с помощью маршрута id
-  //     isFilmFound: false, // флаг если фильм получили т.е. через поиск напрямую id верный
-  //     isFilmLoaded: false, // нужный фильм загрузился
-  //
-  //     isAllComments: false, // все коменты полученны
-  //     allComments: [], // массив комментов пуст
-  //
-  //     isAddReview: true,
-  //     hasError: false, // флаг на форму комента
-  //
-  //     hasErrorLogin: false, // логин не проходит
-  //     dataLoggedIn: {},
-
     };
 
 
@@ -544,59 +392,4 @@ describe(`Reducer 'selected movie' should work correctly`, () => {
         stateNew
     );
   });
-  //
-  //
-  // it(`Reducer should get LOGGED_IN`, () => {
-  //   const state = {
-  //     countShowFilm: 8, // число сколько фильмов отрендерить
-  //     genre: ALL_GENRES, // начальный жанр для main.jsx
-  //     genreFilms: [], // фильмы отсортированные по жанру
-  //     films: [mockMovie], // загруженные фильмы с сервера все
-  //     likeGenre: ``, // жанр по умолчанию пустой для похожих фильмов
-  //     likeFilms: [], // похожие фильмы, появятся только после клика жанра
-  //     isDataLoaded: false, // загрузились ли фильмы с сервера
-  //     filmPromo: {}, // фильм на главной странице
-  //     authorizationStatus: null, // поле чтобы знать авторизирован ли пользователь
-  //     requestedRoute: RoutePaths.MAIN, // маршрут подставляется если пришел юзер не авторизованный
-  //     filmById: {}, // фильм полученный с помощью маршрута id
-  //     isFilmFound: false, // флаг если фильм получили т.е. через поиск напрямую id верный
-  //     isFilmLoaded: false, // нужный фильм загрузился
-  //
-  //     isAllComments: false, // все коменты полученны
-  //     allComments: [], // массив комментов пуст
-  //
-  //     isAddReview: true,
-  //     hasError: false, // флаг на форму комента
-  //
-  //     hasErrorLogin: false, // логин не проходит
-  //     dataLoggedIn: {},
-  //
-  //   };
-  //
-  //
-  //   const item = {
-  //     type: ActionType.LOGGED_IN,
-  //     payload: {
-  //       avatarUrl: `https://assets.htmlacademy.ru/intensives/javascript-3/avatar/5.jpg`,
-  //       email: `1@mail.ru`,
-  //       id: 1,
-  //       name: `1`
-  //     },
-  //   };
-  //
-  //   const stateNew = {
-  //     ...state,
-  //     dataLoggedIn: {
-  //       avatarUrl: `https://assets.htmlacademy.ru/intensives/javascript-3/avatar/5.jpg`,
-  //       email: `1@mail.ru`,
-  //       id: 1,
-  //       name: `1`
-  //     },
-  //   };
-  //
-  //   expect(reducer(state, item)).toEqual(
-  //       stateNew
-  //   );
-  // });
-
 });
