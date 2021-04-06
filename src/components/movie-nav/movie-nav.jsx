@@ -68,7 +68,10 @@ const MovieNav = (props) => {
 };
 
 MovieNav.propTypes = {
-  film: PropTypes.arrayOf(moviePropTypes).isRequired,
+  film: PropTypes.oneOfType([
+    moviePropTypes,
+    PropTypes.shape({}).isRequired,
+  ]).isRequired,
   reviews: PropTypes.arrayOf(reviewPropTypes).isRequired,
 };
 

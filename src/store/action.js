@@ -1,24 +1,21 @@
 // определяем действия
 export const ActionType = {
-  GENRE: `main/genre`,
-  MORE_FILM: `MORE_FILM`,
-  GET_ALL_FILMS: `main/getAllFilms`,
-  // LIKE_FILMS: `card/like-films`, // создал тип экшина по которому сделаем функцию по его возврату
-  REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
-  GET_FILM_PROMO: `main/promo`,
-  REDIRECT_TO_ROUTE: `user/redirectToRoute`,
-  ADD_REQUESTED_ROUTE: `user/addRequestedRoute`,
-  FILM_BY_ID: `user/film`,
-  GET_ALL_COMMENTS: `film/comments`,
-
-  // ADD_REVIEW: `user/ADD_REVIEW`,
+  GENRE: `main/GENRE`,
+  MORE_FILM: `main/MORE_FILM`,
+  GET_ALL_FILMS: `main/GET_ALL_FILMS`,
+  REQUIRED_AUTHORIZATION: `user/REQUIRED_AUTHORIZATION`,
+  GET_FILM_PROMO: `main/GET_FILM_PROMO`,
+  REDIRECT_TO_ROUTE: `main/REDIRECT_TO_ROUTE`,
+  ADD_REQUESTED_ROUTE: `main/ADD_REQUESTED_ROUTE`,
+  FILM_BY_ID: `main/FILM_BY_ID`,
+  GET_ALL_COMMENTS: `main/GET_ALL_COMMENTS`,
   CHANGE_IS_ADD_REVIEW: `user/CHANGE_IS_ADD_REVIEW`,
 
-  HAS_ERROR_LOGIN: `login/hasErrorLogin`,
-  LOGGED_IN: `login/LOGGED_IN`,
+  HAS_ERROR_LOGIN: `user/HAS_ERROR_LOGIN`,
+  LOGGED_IN: `user/LOGGED_IN`,
 
-  SET_MOVIE_FAVORITE: `favorite/SET_MOVIE_FAVORITE`,
-  IS_ADD_REVIEW_FAIL: `user/IS_ADD_REVIEW_FAIL`,
+  SET_MOVIE_FAVORITE: `main/SET_MOVIE_FAVORITE`,
+  IS_ADD_REVIEW_FAIL: `main/IS_ADD_REVIEW_FAIL`,
   SET_PROMO_MOVIE_FAVORITE: `main/SET_PROMO_MOVIE_FAVORITE`
 };
 
@@ -35,10 +32,6 @@ export const getAllFilms = (data) => ({
   type: ActionType.GET_ALL_FILMS,
   payload: data
 });
-// export const likeFilms = (data) => ({ // функция для похожих фильмов
-//   type: ActionType.LIKE_FILMS,
-//   payload: data
-// });
 export const getFilmPromo = (filmPromo) => ({
   type: ActionType.GET_FILM_PROMO,
   payload: filmPromo,
@@ -63,11 +56,6 @@ export const getAllComments = (comments) => ({
   type: ActionType.GET_ALL_COMMENTS,
   payload: comments,
 });
-
-// export const addReview = (data) => ({ // булеан на отправку формы и блокировки кнопки
-//   type: ActionType.ADD_REVIEW,
-//   payload: data,
-// });
 export const changeIsAddReview = (data) => ({
   type: ActionType.CHANGE_IS_ADD_REVIEW,
   payload: data,

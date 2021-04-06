@@ -144,7 +144,10 @@ const Film = (props) => {
 Film.propTypes = {
   updateData: PropTypes.func.isRequired,
   loadAllComments: PropTypes.func.isRequired,
-  filmById: moviePropTypes,
+  filmById: PropTypes.oneOfType([
+    moviePropTypes,
+    PropTypes.shape({}).isRequired,
+  ]).isRequired,
   loadFilmById: PropTypes.func.isRequired,
   isDataLoaded: PropTypes.bool.isRequired,
   onLoadData: PropTypes.func.isRequired,

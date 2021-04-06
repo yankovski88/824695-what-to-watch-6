@@ -16,4 +16,4 @@ export const getAllCommentsSelect = (state) => state[NameSpace.ALL_MOVIES].allCo
 export const getIsAddReviewSelect = (state) => state[NameSpace.ALL_MOVIES].isAddReview;
 export const getIsAddReviewFailSelect = (state) => state[NameSpace.ALL_MOVIES].isAddReviewFail;
 export const getIsFilmFoundSelect = (state) => state[NameSpace.ALL_MOVIES].isFilmFound;
-export const getRequestedRouteSelect = (state) => state[NameSpace.ALL_MOVIES].requestedRoute;
+// export const getRequestedRouteSelect = (state) => state[NameSpace.ALL_MOVIES].requestedRoute;
