@@ -1,6 +1,7 @@
 import React from "react";
 import {Link, useParams} from "react-router-dom";
 import PropTypes from "prop-types";
+import {moviePropTypes} from "../../prop-types";
 
 
 const Breadcrumbs = (props) => {
@@ -23,7 +24,10 @@ const Breadcrumbs = (props) => {
 
 
 Breadcrumbs.propTypes = {
-  film: PropTypes.object.isRequired,
+  film: PropTypes.oneOfType([
+    moviePropTypes,
+    PropTypes.shape({}).isRequired,
+  ]).isRequired,
 };
 
 export default Breadcrumbs;

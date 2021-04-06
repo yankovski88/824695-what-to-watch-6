@@ -58,8 +58,14 @@ export {BtnAddMyList};
 
 BtnAddMyList.propTypes = {
   loadFavorite: PropTypes.func.isRequired,
-  filmPromo: moviePropTypes,
-  filmById: moviePropTypes,
+  filmPromo: PropTypes.oneOfType([
+    moviePropTypes,
+    PropTypes.shape({}).isRequired,
+  ]).isRequired,
+  filmById: PropTypes.oneOfType([
+    moviePropTypes,
+    PropTypes.shape({}).isRequired,
+  ]).isRequired,
   authorizationStatus: PropTypes.string.isRequired,
 };
 

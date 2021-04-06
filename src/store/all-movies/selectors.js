@@ -9,7 +9,6 @@ export const getCountShowFilmSelect = (state) => state[NameSpace.ALL_MOVIES].cou
 
 export const getFilmByIdSelect = (state) => state[NameSpace.ALL_MOVIES].filmById;
 export const getIsFilmLoadedSelect = (state) => state[NameSpace.ALL_MOVIES].isFilmLoaded;
-
 export const getFilmPromoSelect = (state) => state[NameSpace.ALL_MOVIES].filmPromo;
 export const getIsAllCommentsSelect = (state) => state[NameSpace.ALL_MOVIES].isAllComments;
 export const getAllCommentsSelect = (state) => state[NameSpace.ALL_MOVIES].allComments;

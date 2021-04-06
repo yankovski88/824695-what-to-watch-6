@@ -1,6 +1,7 @@
 import React from "react";
 import SmallCard from "../small-card/small-card.jsx";
 import PropTypes from "prop-types";
+import {moviePropTypes} from "../../prop-types";
 
 
 const CatalogLikeFilms = (props)=>{
@@ -25,7 +26,7 @@ const CatalogLikeFilms = (props)=>{
 };
 
 CatalogLikeFilms.propTypes = {
-  likeFilms: PropTypes.array.isRequired,
+  likeFilms: PropTypes.arrayOf(moviePropTypes).isRequired,
   updateData: PropTypes.func.isRequired,
 };
 

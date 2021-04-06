@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {moviePropTypes} from "../../prop-types";
+import PropTypes from "prop-types";
 
 const LinkAddReview = (props)=>{
   const {filmById} = props;
@@ -11,7 +12,10 @@ const LinkAddReview = (props)=>{
 };
 
 LinkAddReview.propTypes = {
-  filmById: moviePropTypes,
+  filmById: PropTypes.oneOfType([
+    moviePropTypes,
+    PropTypes.shape({}).isRequired,
+  ]).isRequired,
 };
 
 export default LinkAddReview;

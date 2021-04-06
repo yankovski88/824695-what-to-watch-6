@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import VideoPlayer from "../videoPlayer/video-player";
 import {connect} from "react-redux";
 import {getFilmByIdSelect} from "../../store/all-movies/selectors";
+import {moviePropTypes} from "../../prop-types";
 
 
 const SmallCard = (props) => {
@@ -61,7 +62,10 @@ const SmallCard = (props) => {
 };
 
 SmallCard.propTypes = {
-  activeFilm: PropTypes.object.isRequired,
+  activeFilm: PropTypes.oneOfType([
+    moviePropTypes,
+    PropTypes.shape({}).isRequired,
+  ]).isRequired,
   updateData: PropTypes.func.isRequired,
 };
 

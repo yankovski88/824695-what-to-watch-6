@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {moviePropTypes} from "../../prop-types";
 
 
 const MovieRating = (props)=>{
@@ -48,7 +49,10 @@ const MovieRating = (props)=>{
 };
 
 MovieRating.propTypes = {
-  film: PropTypes.object.isRequired
+  film: PropTypes.oneOfType([
+    moviePropTypes,
+    PropTypes.shape({}).isRequired,
+  ]).isRequired
 };
 
 export default MovieRating;

@@ -10,7 +10,7 @@ import {useParams} from "react-router-dom";
 import Spinner from "../spinner/spinner";
 import Logout from "../logout/logout";
 import {moviePropTypes} from "../../prop-types";
-import {getFilmById, getIsFilmLoadedSelect} from "../../store/all-movies/selectors";
+import {getFilmByIdSelect, getIsFilmLoadedSelect} from "../../store/all-movies/selectors";
 
 
 const AddReview = (props) => {
@@ -58,14 +58,17 @@ const AddReview = (props) => {
 };
 
 AddReview.propTypes = {
-  filmById: moviePropTypes,
+  filmById: PropTypes.oneOfType([
+    moviePropTypes,
+    PropTypes.shape({}).isRequired,
+  ]).isRequired,
   postCommentItem: PropTypes.func.isRequired,
   loadFilmById: PropTypes.func.isRequired,
   isFilmLoaded: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  filmById: getFilmById(state),
+  filmById: getFilmByIdSelect(state),
   isFilmLoaded: getIsFilmLoadedSelect(state),
 });
 

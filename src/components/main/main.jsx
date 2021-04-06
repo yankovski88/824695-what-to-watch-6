@@ -15,6 +15,7 @@ import {
   getCountShowFilmSelect, getGenreFilmsSelect,
   getGenreSelect, getIsDataLoadedSelect
 } from "../../store/all-movies/selectors";
+import {moviePropTypes} from "../../prop-types";
 
 
 const Main = (props) => {
@@ -61,7 +62,7 @@ const Main = (props) => {
 Main.propTypes = {
   updateData: PropTypes.func.isRequired,
   genreFilms: PropTypes.array.isRequired,
-  films: PropTypes.array.isRequired,
+  films: PropTypes.arrayOf(moviePropTypes).isRequired,
   countShowFilm: PropTypes.number.isRequired,
   onSetGenre: PropTypes.func.isRequired,
   isDataLoaded: PropTypes.bool.isRequired,

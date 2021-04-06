@@ -12,6 +12,7 @@ import {
   getIsDataLoadedSelect,
   getIsFilmLoadedSelect
 } from "../../store/all-movies/selectors";
+import {moviePropTypes} from "../../prop-types";
 
 
 const Player = (props) => {
@@ -130,7 +131,10 @@ const Player = (props) => {
 
 Player.propTypes = {
   loadFilmById: PropTypes.func.isRequired,
-  filmById: PropTypes.object.isRequired,
+  filmById: PropTypes.oneOfType([
+    moviePropTypes,
+    PropTypes.shape({}).isRequired,
+  ]).isRequired,
   isFilmLoaded: PropTypes.bool.isRequired,
 };
 

@@ -5,6 +5,7 @@ import MovieRating from "../movie-rating/movie-rating";
 import FilmDescription from "../film-description/film-description";
 import FilmDetails from "../film-details/film-details";
 import FilmReviews from "../film-reviews/film-reviews";
+import {moviePropTypes, reviewPropTypes} from "../../prop-types";
 
 const MovieNav = (props) => {
   const {film, reviews} = props;
@@ -67,8 +68,8 @@ const MovieNav = (props) => {
 };
 
 MovieNav.propTypes = {
-  film: PropTypes.object.isRequired,
-  reviews: PropTypes.array.isRequired,
+  film: PropTypes.arrayOf(moviePropTypes).isRequired,
+  reviews: PropTypes.arrayOf(reviewPropTypes).isRequired,
 };
 
 export default MovieNav;

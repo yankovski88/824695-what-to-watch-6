@@ -55,7 +55,10 @@ const Card = (props) => {
   );
 };
 Card.propTypes = {
-  filmPromo: moviePropTypes, // PropTypes.object.isRequired, // moviePropTypes,
+  filmPromo: PropTypes.oneOfType([
+    moviePropTypes,
+    PropTypes.shape({}).isRequired,
+  ]).isRequired,
   onLoadFilmPromo: PropTypes.func.isRequired,
 };
 

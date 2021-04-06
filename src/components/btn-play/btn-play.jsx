@@ -3,6 +3,7 @@ import {useHistory} from "react-router-dom";
 import {connect} from "react-redux";
 import {moviePropTypes} from "../../prop-types";
 import {getFilmByIdSelect, getFilmPromoSelect} from "../../store/all-movies/selectors";
+import PropTypes from "prop-types";
 
 const BtnPlay = (props) => {
   const {filmById, filmPromo} = props;
@@ -29,9 +30,14 @@ const BtnPlay = (props) => {
 };
 
 BtnPlay.propTypes = {
-  filmById: moviePropTypes,
-  filmPromo: moviePropTypes,
-
+  filmById: PropTypes.oneOfType([
+    moviePropTypes,
+    PropTypes.shape({}).isRequired,
+  ]).isRequired,
+  filmPromo: PropTypes.oneOfType([
+    moviePropTypes,
+    PropTypes.shape({}).isRequired,
+  ]).isRequired,
 };
 
 

@@ -3,6 +3,7 @@ import {useHistory} from "react-router-dom";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {getDataLoggedIn} from "../../store/user/selectors";
+import {user} from "../../prop-types";
 
 
 const UserBlock = (props)=>{
@@ -30,7 +31,10 @@ const UserBlock = (props)=>{
 };
 
 UserBlock.propTypes = {
-  dataLoggedIn: PropTypes.object.isRequired,
+  dataLoggedIn: PropTypes.oneOfType([
+    user,
+    PropTypes.shape({}).isRequired,
+  ]).isRequired,
 };
 
 const mapStateToProps = (state)=>({
