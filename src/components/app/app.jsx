@@ -13,6 +13,7 @@ import {connect} from "react-redux";
 import browserHistory from "../../browser-history";
 import {ActionCreator} from "../../store/action";
 import PrivateRoute from "../private-route/private-route";
+import Error from "../error/error";
 
 const App = (props) => {
   const {authorizationStatus, onPrivateRouteRequest} = props;
@@ -62,9 +63,13 @@ const App = (props) => {
         <Route exact path="/player/:id">
           <Player film={film}/>
         </Route>
+        <Route exact path="/error">
+          <Error />
+        </Route>
         <Route>
           <Error404 />
         </Route>
+
       </Switch>
     </BrowserRouter>
   );

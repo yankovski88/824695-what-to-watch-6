@@ -32,13 +32,16 @@ const Film = (props) => {
 
   const {id} = useParams(); // берем данные с маршрута из app.js
   const {posterImage, name, genre, released} = filmById;
-  const BEGIN_INDEX = 0;
-  const END_INDEX = 4;
+  const Index = {
+    BEGIN_INDEX: 0,
+    END_INDEX: 4,
+  };
+
 
   // эта функция вызывается при каждом рендере. Делаем оптимизацию чтобы она вызывалась если меняются пропсы.
   const likeFilms = React.useMemo(()=>{
     const genreById = getGenreById(id, films); // нашли жанр фильма по id маршрута
-    return getGenreFilms(genreById, films, id).slice(BEGIN_INDEX, END_INDEX);
+    return getGenreFilms(genreById, films, id).slice(Index.BEGIN_INDEX, Index.END_INDEX);
   }, [films, id]); // нашли все похожие фильмы по жанру
 
 

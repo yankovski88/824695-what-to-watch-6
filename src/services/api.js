@@ -9,7 +9,7 @@ const HttpCode = {
 
 
 // создадим функцию по конфигу, она возвращает объект с конфигом
-export const createApi = (onUnauthorized, notFound)=>{
+export const createApi = (onUnauthorized, notFound, error)=>{
   // чтобы постоянно не писать config можно создать функцию конфигурации экземпляра axios для запроса
   const api = axios.create({
     baseURL: BACKEND_URL, // url для запроса
@@ -24,11 +24,11 @@ export const createApi = (onUnauthorized, notFound)=>{
   // если ошибка, то деструктуризируем ее, и берем от нее response
   const onFail = (err)=>{
     const {response} = err;
-
-    if (response.status === HttpCode.UNAUTHORIZED) {
+    if (typeof err[`response`] === `undefined`) {
+      error();
+      throw err;
+    } else if (response.status === HttpCode.UNAUTHORIZED) {
       onUnauthorized(); // эта функция будет у нас редиректить т.е. перенапровлять на другую страницу
-
-
       // Бросаем ошибку, потому что нам важно прервать цепочку промисов после запроса авторизации.
       // Запрос авторизации — это особый случай и важно дать понять приложению, что запрос был неудачным.
       throw err;
@@ -36,7 +36,6 @@ export const createApi = (onUnauthorized, notFound)=>{
       notFound();
       throw err;
     }
-
 
     throw err;
   };
@@ -46,5 +45,4 @@ export const createApi = (onUnauthorized, notFound)=>{
   // interceptors это перехватчик в зависимости от ответа сервера вызывается onSuccess или onFail
 
   return api;
-
 };
