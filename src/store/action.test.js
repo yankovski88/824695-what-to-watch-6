@@ -88,16 +88,6 @@ describe(`Action creators work correctly`, () => {
     };
     expect(getAllFilms([mockMovie])).toEqual(expectedAction);
   });
-
-
-  // it(`check btn more likeFilms`, ()=>{
-  //   const expectedAction = {
-  //     type: ActionType.LIKE_FILMS,
-  //     payload: [mockMovie]
-  //   };
-  //   expect(ActionCreator.likeFilms([mockMovie])).toEqual(expectedAction);
-  // });
-
   it(`check btn more getFilmPromo`, ()=>{
     const expectedAction = {
       type: ActionType.GET_FILM_PROMO,
@@ -141,14 +131,6 @@ describe(`Action creators work correctly`, () => {
     };
     expect(getAllComments(mockReviews)).toEqual(expectedAction);
   });
-
-  // it(`check btn more addReview`, ()=>{
-  //   const expectedAction = {
-  //     type: ActionType.ADD_REVIEW,
-  //     payload: true
-  //   };
-  //   expect(ActionCreator.addReview(true)).toEqual(expectedAction);
-  // });
   it(`check btn more addReviewFail`, ()=>{
     const expectedAction = {
       type: ActionType.IS_ADD_REVIEW_FAIL,
