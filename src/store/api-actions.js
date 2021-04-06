@@ -12,7 +12,7 @@ export const fetchMoviesList = () => (dispatch, _getState, api) => (
 
 // далее в диспачь для store попадает пришедшие с запроса data фильмы
 
-export const fetchPromo = ()=>(dispatch, _getState, api)=>(
+export const fetchPromo = () => (dispatch, _getState, api) => (
   api.get(`/films/promo`)
     .then((response) => dispatch(ActionCreator.getFilmPromo(response.data)))
 );
@@ -26,7 +26,8 @@ export const checkAuth = () => (dispatch, _getState, api) => (
       const userData = adaptToClientUser(data);
       dispatch(ActionCreator.loggedIn(userData));
     })
-    .catch(()=>{})
+    .catch(() => {
+    })
 );
 
 export const login = ({login: email, password}) => (dispatch, getState, api) => (
@@ -42,22 +43,24 @@ export const login = ({login: email, password}) => (dispatch, getState, api) => 
     )
 );
 
-export const fetchFilmById = (id)=>(dispatch, _getState, api)=>(
+export const fetchFilmById = (id) => (dispatch, _getState, api) => (
   api.get(`/films/${id}`)
-    .then((response)=>dispatch(ActionCreator.getFilmById(response.data)))
+    .then((response) => dispatch(ActionCreator.getFilmById(response.data)))
     .catch(({response}) => { // если не будет catch будет постоянная загрузка (spinner) т.к. не станет флаг true
-      if (response.status === 404) {
+      if (!response) {
+        dispatch(ActionCreator.redirectToRoute(`/error`)); // если id фильма не найден, то всех отправит страницу 404
+      } else if (response.status === 404) {
         dispatch(ActionCreator.redirectToRoute(`/404`)); // если id фильма не найден, то всех отправит страницу 404
       }
     })
 );
 
-export const fetchAllComments = (id)=>(dispatch, _getState, api)=>(
+export const fetchAllComments = (id) => (dispatch, _getState, api) => (
   api.get(`/comments/${id}`)
-    .then((response)=>dispatch(ActionCreator.getAllComments(response.data)))
+    .then((response) => dispatch(ActionCreator.getAllComments(response.data)))
 );
 
-export const fetchPostComment = (id, rating, comment)=>(dispatch, getState, api)=> {
+export const fetchPostComment = (id, rating, comment) => (dispatch, getState, api) => {
 
   dispatch(ActionCreator.changeIsAddReview(false)); // флаг что если false, то кнопку будет disable
   api.post(`/comments/${id}`, {rating, comment})
@@ -66,12 +69,12 @@ export const fetchPostComment = (id, rating, comment)=>(dispatch, getState, api)
       dispatch(ActionCreator.changeIsAddReview(true)); // флаг что если false, то кнопку будет disable
       dispatch(fetchAllComments(id));
     })
-    .catch(()=> dispatch(ActionCreator.addReviewFail(true)));
+    .catch(() => dispatch(ActionCreator.addReviewFail(true)));
 };
 
-export const fetchFavorite = (idFilm, isFavorite, isPromo)=>(dispatch, _getState, api)=>(
+export const fetchFavorite = (idFilm, isFavorite, isPromo) => (dispatch, _getState, api) => (
   api.post(`/favorite/${idFilm}/${isFavorite}`, {idFilm, isFavorite})
-    .then(()=>{
+    .then(() => {
       if (isPromo) {
         dispatch(ActionCreator.setPromoMovieFavorite(isFavorite));
       } else {
@@ -84,6 +87,7 @@ export const fetchFavorite = (idFilm, isFavorite, isPromo)=>(dispatch, _getState
 export const checkAuthNo = () => (dispatch, _getState, api) => (
   api.get(`/logout`)
     .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)))
-    .catch(() => {})
+    .catch(() => {
+    })
 );
 
