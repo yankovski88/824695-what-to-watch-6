@@ -3,7 +3,7 @@ import {
   checkAuth, checkAuthNo,
   fetchAllComments,
   fetchFilmById,
-  fetchMoviesList,
+  fetchMoviesList, fetchPostComment,
   fetchPromo,
   login
 } from "./api-actions";
@@ -245,7 +245,7 @@ describe(`Async operations work correctly`, () => {
   });
 
 
-  // it(`Should post correct Api call to /login`, () => {
+  // it(`Should post correct Api call to /comments/{id}`, () => {
   //   const state = {
   //     countShowFilm: 8, // число сколько фильмов отрендерить
   //     isDataLoaded: false, // загрузились ли фильмы с сервера
@@ -266,27 +266,27 @@ describe(`Async operations work correctly`, () => {
   //     hasErrorLogin: false, // логин не проходит
   //     dataLoggedIn: {},
   //   };
-  //
-  //
   //   const apiMock = new MockAdapter(api);
   //   const dispatch = jest.fn();
-  //   const checkLoginLoader = login({login: `email@test.com`, password: `12313123`}); // передаю логин и пароль
+  //   const fakeReview = {
+  //     id: 2,
+  //     rating: 2,
+  //     comment: `super cool movie`
+  //   };
+  //   const fetchPostCommentLoader = fetchPostComment(fakeReview); // передаю логин и пароль
   //
   //   apiMock
-  //     .onPost(`/login`) // отправляем пост запрос на логин
-  //     .reply(200, {
-  //       "email": `email@test.com`,
-  //       "avatar_url": `https://avatar.com/face.png`
-  //     });
+  //     .onPost(`/comments/2`) // отправляем пост запрос
+  //     .reply(200);
   //
-  //   return checkLoginLoader(dispatch, () => {
+  //   return fetchPostCommentLoader(dispatch, () => {
   //     return state;
   //   }, api)
   //     .then(() => {
   //       expect(dispatch).toHaveBeenCalledTimes(3); // 3
   //       expect(dispatch).toHaveBeenNthCalledWith(1, {
-  //         type: ActionType.REQUIRED_AUTHORIZATION,
-  //         payload: AuthorizationStatus.AUTH,
+  //         type: ActionType.REDIRECT_TO_ROUTE,
+  //         payload: `/films/${fakeReview.id}`,
   //       });
   //       expect(dispatch).toHaveBeenNthCalledWith(2, {
   //         type: ActionType.LOGGED_IN,
