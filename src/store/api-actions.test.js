@@ -1,7 +1,7 @@
 import MockAdapter from "axios-mock-adapter";
 import {
   checkAuth, checkAuthNo,
-  fetchAllComments,
+  fetchAllComments, fetchFavorite,
   fetchFilmById,
   fetchMoviesList, fetchPostComment,
   fetchPromo,
@@ -245,7 +245,65 @@ describe(`Async operations work correctly`, () => {
   });
 
 
-  // it(`Should post correct Api call to /comments/{id}`, () => {
+  // // it(`Should post correct Api call to /comments/{id}`, () => {
+  // //   const state = {
+  // //     countShowFilm: 8, // число сколько фильмов отрендерить
+  // //     isDataLoaded: false, // загрузились ли фильмы с сервера
+  // //     genre: ALL_GENRES, // начальный жанр для main.jsx
+  // //     genreFilms: [], // фильмы отсортированные по жанру
+  // //     films: [mockMovie], // загруженные фильмы с сервера все
+  // //     filmById: {}, // фильм полученный с помощью маршрута id
+  // //     isFilmLoaded: false, // нужный фильм загрузился
+  // //     isFilmFound: false, // флаг если фильм получили т.е. через поиск напрямую id верный
+  // //     requestedRoute: RoutePaths.MAIN, // маршрут подставляется если пришел юзер не авторизованный
+  // //     filmPromo: {}, // фильм на главной странице
+  // //     isAllComments: false, // все коменты полученны
+  // //     allComments: [], // массив комментов пуст
+  // //     isAddReview: true, // нужно чтобы бы знать или комент добавлен
+  // //     isAddReviewFail: false, // флаг на форму комента
+  // //
+  // //     authorizationStatus: ``, // null, // поле чтобы знать авторизирован ли пользователь
+  // //     hasErrorLogin: false, // логин не проходит
+  // //     dataLoggedIn: {},
+  // //   };
+  // //   const apiMock = new MockAdapter(api);
+  // //   const dispatch = jest.fn();
+  // //   const fakeReview = {
+  // //     rating: 2,
+  // //     comment: `super cool movie`
+  // //   };
+  // //   const fetchPostCommentLoader = fetchPostComment(2, 2, `super cool movie`); // передаю логин и пароль
+  // //
+  // //   apiMock
+  // //     .onPost(`/comments/2`, fakeReview) // отправляем пост запрос
+  // //     .reply(200);
+  // //
+  // //   return fetchPostCommentLoader(dispatch, () => {}, api)
+  // //     .then(() => {
+  // //       expect(dispatch).toHaveBeenCalledTimes(4);
+  // //
+  // //       expect(dispatch).toHaveBeenNthCalledWith(1, {
+  // //         type: ActionType.CHANGE_IS_ADD_REVIEW,
+  // //         payload: false,
+  // //       });
+  // //       expect(dispatch).toHaveBeenNthCalledWith(2, {
+  // //         type: ActionType.REDIRECT_TO_ROUTE,
+  // //         payload: `/films/2`,
+  // //       });
+  // //       expect(dispatch).toHaveBeenNthCalledWith(3, {
+  // //         type: ActionType.CHANGE_IS_ADD_REVIEW,
+  // //         payload: true,
+  // //       });
+  // //       expect(dispatch).toHaveBeenNthCalledWith(4,
+  // //         fetchAllComments(2)
+  // //       );
+  // //     });
+  // // });
+  //
+  //
+  //
+  //
+  // it(`Should post correct Api call to /favorite/${idFilm}/${isFavorite}`, () => {
   //   const state = {
   //     countShowFilm: 8, // число сколько фильмов отрендерить
   //     isDataLoaded: false, // загрузились ли фильмы с сервера
@@ -268,41 +326,28 @@ describe(`Async operations work correctly`, () => {
   //   };
   //   const apiMock = new MockAdapter(api);
   //   const dispatch = jest.fn();
-  //   const fakeReview = {
-  //     id: 2,
-  //     rating: 2,
-  //     comment: `super cool movie`
-  //   };
-  //   const fetchPostCommentLoader = fetchPostComment(fakeReview); // передаю логин и пароль
+  //   // const fakeReview = {
+  //   //   isFavorite: true,
+  //   // };
+  //   const fetchFavoriteLoader = fetchFavorite(2, true, false); // передаю логин и пароль
   //
   //   apiMock
-  //     .onPost(`/comments/2`) // отправляем пост запрос
+  //     .onPost(`/favorite/2/1`, {rating: 2, isFavorite: true}) // отправляем пост запрос
   //     .reply(200);
   //
-  //   return fetchPostCommentLoader(dispatch, () => {
-  //     return state;
-  //   }, api)
+  //   return fetchFavoriteLoader(dispatch, () => {}, api)
   //     .then(() => {
-  //       expect(dispatch).toHaveBeenCalledTimes(3); // 3
-  //       expect(dispatch).toHaveBeenNthCalledWith(1, {
-  //         type: ActionType.REDIRECT_TO_ROUTE,
-  //         payload: `/films/${fakeReview.id}`,
-  //       });
-  //       expect(dispatch).toHaveBeenNthCalledWith(2, {
-  //         type: ActionType.LOGGED_IN,
-  //         payload:
-  //           {
-  //             "avatarUrl": `https://avatar.com/face.png`,
-  //             "email": `email@test.com`,
-  //           },
+  //       expect(dispatch).toHaveBeenCalledTimes(1);
   //
+  //       expect(dispatch).toHaveBeenNthCalledWith(1, {
+  //         type: ActionType.SET_MOVIE_FAVORITE,
+  //         payload: {
+  //           id: 2,
+  //           isFavorite: true,
+  //         }
   //       });
-  //       expect(dispatch).toHaveBeenNthCalledWith(3, {
-  //         type: ActionType.REDIRECT_TO_ROUTE,
-  //         payload: `/`
-  //       });
+  //
   //     });
   // });
-
 
 });

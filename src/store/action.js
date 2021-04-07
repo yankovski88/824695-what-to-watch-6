@@ -56,9 +56,9 @@ export const getAllComments = (comments) => ({
   type: ActionType.GET_ALL_COMMENTS,
   payload: comments,
 });
-export const changeIsAddReview = (data) => ({
+export const changeIsAddReview = (bool) => ({
   type: ActionType.CHANGE_IS_ADD_REVIEW,
-  payload: data,
+  payload: bool,
 });
 export const hasErrorLogin = (data) => ({
   type: ActionType.HAS_ERROR_LOGIN,
